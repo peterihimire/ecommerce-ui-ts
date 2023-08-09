@@ -1,0 +1,360 @@
+// @import "../../../styles/main.scss";
+body.dark-mode {
+  .dash_headerr {
+    // @include themify($themes) {
+    width: calc(100% - 300px);
+    height: 60px;
+    // position: relative;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    background-color: var(--black);
+    // background: themed("bg");
+    top: 0px;
+    left: 0;
+    z-index: 9;
+
+    &.bgDark {
+      background: #0202c6;
+    }
+
+    @media (min-width: 1271px) {
+      left: 300px;
+      z-index: 2;
+    }
+
+    @media (max-width: 1271px) {
+      width: var(--full);
+      top: 70px;
+      box-shadow: none;
+    }
+
+    @media screen and (max-width: 1270px) {
+      // top: 60px;
+    }
+
+    @media (max-width: 903px) {
+      top: 70px;
+    }
+    @media (max-width: 659px) {
+      position: static;
+    }
+
+    .wrapper {
+      width: 95%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      max-width: var(--wrapper-max-width);
+      // background-color: yellow;
+
+      @media (max-width: 1387px) {
+        // width: 90%;
+        width: 95%;
+      }
+
+      @media (max-width: 1315px) {
+        width: 95%;
+      }
+
+      @media (max-width: 1264px) {
+        justify-content: space-between;
+      }
+    }
+
+    &__notif {
+      > span {
+        font-size: 24px;
+        line-height: 29px;
+        font-weight: bold;
+        // text-transform: capitalize;
+        color: var(--white);
+        // color: themed("textColor");
+
+        @media (max-width: 659px) {
+          font-size: 14px;
+          line-height: 19px;
+        }
+
+        @media (max-width: 319px) {
+        }
+      }
+    }
+
+    &__actions {
+      @media (max-width: 659px) {
+      }
+
+      @media (max-width: 319px) {
+      }
+
+      .profile_img {
+        width: 40px;
+        height: 40px;
+        margin-left: 32px;
+
+        @media (max-width: 659px) {
+          margin-left: auto;
+        }
+
+        @media (max-width: 319px) {
+          margin-left: 0;
+          margin-bottom: 16px;
+        }
+
+        img {
+          display: block;
+          object-fit: cover;
+          border-radius: 100vh;
+          width: var(--full);
+          height: var(--full);
+        }
+      }
+
+      .dropdown_wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: var(--full);
+        margin-left: 10px;
+
+        font-size: 20px;
+        line-height: 29px;
+        font-weight: bold;
+        text-transform: capitalize;
+
+        a {
+          color: var(--dashBlue) !important;
+          // color: themed("textColor") !important;
+        }
+        @media (max-width: 319px) {
+          margin-left: 0;
+        }
+
+        button {
+          padding: 0;
+          background: transparent;
+          border: 0;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          width: auto;
+
+          > span {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            white-space: nowrap;
+          }
+
+          > svg {
+            width: 8px;
+            height: 8px;
+            margin-left: 7px;
+
+            path {
+              fill: var(--text-primary);
+            }
+          }
+        }
+      }
+    }
+
+    .hamburgerBtn {
+      display: none;
+
+      @media (max-width: 1264px) {
+        display: block;
+      }
+    }
+    // }
+  }
+}
+
+// @import "../../../styles/main.scss";
+body.light-mode {
+  .dash_headerr {
+    // @include themify($themes) {
+    width: calc(100% - 300px);
+    height: 60px;
+    // position: relative;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    // background-color: rgb(177, 172, 172);
+    background-color: var(--white);
+    // background: themed("bg");
+    top: 0px;
+    left: 0;
+    z-index: 9;
+    border-bottom: #dbdef2 solid 1px;
+    // box-shadow: 0px 5px 15px #dbdef2;
+
+    &.bgDark {
+      background: #0202c6;
+    }
+
+    @media (min-width: 1271px) {
+      left: 300px;
+      z-index: 2;
+    }
+
+    @media (max-width: 1271px) {
+      width: var(--full);
+      top: 70px;
+      box-shadow: none;
+    }
+
+    @media screen and (max-width: 1270px) {
+      // top: 60px;
+    }
+
+    @media (max-width: 903px) {
+      top: 70px;
+    }
+    @media (max-width: 659px) {
+      // position: static;
+      top: 72px;
+      position: relative;
+      // height: 60px;
+      // margin-top: 40px;
+      z-index: 9;
+      background-color: rgb(177, 172, 172);
+      // border-radius: 10px;
+      // margin: 0px 10px;
+    }
+
+    .wrapper {
+      width: 95%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      max-width: var(--wrapper-max-width);
+      // background-color: yellow;
+
+      @media (max-width: 1387px) {
+        // width: 90%;
+        width: 95%;
+      }
+
+      @media (max-width: 1315px) {
+        width: 95%;
+      }
+
+      @media (max-width: 1264px) {
+        justify-content: space-between;
+      }
+    }
+
+    &__notif {
+      > span {
+        font-size: 24px;
+        line-height: 29px;
+        font-weight: bold;
+        // text-transform: capitalize;
+        color: var(--black);
+        // color: themed("textColor");
+
+        @media (max-width: 659px) {
+          font-size: 14px;
+          line-height: 19px;
+        }
+
+        @media (max-width: 319px) {
+        }
+      }
+    }
+
+    &__actions {
+      @media (max-width: 659px) {
+      }
+
+      @media (max-width: 319px) {
+      }
+
+      .profile_img {
+        width: 40px;
+        height: 40px;
+        margin-left: 32px;
+
+        @media (max-width: 659px) {
+          margin-left: auto;
+        }
+
+        @media (max-width: 319px) {
+          margin-left: 0;
+          margin-bottom: 16px;
+        }
+
+        img {
+          display: block;
+          object-fit: cover;
+          border-radius: 100vh;
+          width: var(--full);
+          height: var(--full);
+        }
+      }
+
+      .dropdown_wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: var(--full);
+        margin-left: 10px;
+
+        font-size: 20px;
+        line-height: 29px;
+        font-weight: bold;
+        text-transform: capitalize;
+
+        a {
+          color: var(--dashBlue) !important;
+          // color: themed("textColor") !important;
+        }
+        @media (max-width: 319px) {
+          margin-left: 0;
+        }
+
+        button {
+          padding: 0;
+          background: transparent;
+          border: 0;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          width: auto;
+
+          > span {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            white-space: nowrap;
+          }
+
+          > svg {
+            width: 8px;
+            height: 8px;
+            margin-left: 7px;
+
+            path {
+              fill: var(--text-primary);
+            }
+          }
+        }
+      }
+    }
+
+    .hamburgerBtn {
+      display: none;
+
+      @media (max-width: 1264px) {
+        display: block;
+      }
+    }
+    // }
+  }
+}

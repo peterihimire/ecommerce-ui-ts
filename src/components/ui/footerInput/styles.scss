@@ -1,0 +1,22 @@
+// mine
+.input-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100% !important;
+
+  .icon-wrapper {
+    position: absolute;
+    right: 6px;
+    bottom: 10%;
+    padding: 13px 40px;
+    background: var(--btn-color);
+    border-radius: var(--border);
+    color: var(--white);
+  }
+
+  input {
+    padding: 12px 118px 12px 18px !important;
+  }
+}

@@ -1,0 +1,13 @@
+.alert-box {
+  max-width: 300px;
+  margin: 20px auto 0px auto;
+  height: auto;
+  font-size: 1rem;
+  position: relative;
+  border-radius: 0.25rem;
+  padding: 16px;
+  line-height: 1.5;
+  background: var(--success);
+  border: 1px solid var(--success-border);
+  color: var(--success-color);
+}

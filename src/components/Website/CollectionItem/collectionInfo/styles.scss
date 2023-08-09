@@ -1,0 +1,173 @@
+body.dark-mode {
+  .collection-info {
+    margin: 100px 0;
+    .collection-details {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 40px;
+
+      .detail-img {
+        background-color: rgb(15, 15, 15);
+        max-width: 500px;
+        max-height: 500px;
+
+        img {
+          width: 100%;
+        }
+      }
+      .detail-txt {
+        h2 {
+          font-size: 40px;
+          margin-bottom: 20px;
+        }
+        p {
+          margin-bottom: 20px;
+        }
+        h4 {
+          font-size: 30px;
+          margin-bottom: 20px;
+        }
+        .detail-extra-wrapper {
+          > div {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+
+            .color-list {
+              display: flex;
+              align-items: center;
+              margin-left: 10px;
+              li {
+                height: 30px;
+                width: 30px;
+                background-color: red;
+                margin-right: 10px;
+                border-radius: 50%;
+              }
+            }
+
+            .detail-select {
+              width: 90px;
+              margin-left: 10px;
+            }
+
+            .update-qty {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              // width: 70px;
+              padding: 5px;
+              border: solid 1px var(--main-color);
+              margin-left: 10px;
+              border-radius: var(--radius);
+
+              button {
+                background: none;
+                font-size: 27px;
+              }
+              .qty-txt {
+                // border: solid 1px var(--main-color);
+                padding: 10px 20px;
+                margin: 0px 10px;
+                border-radius: var(--radius);
+                font-size: 20px;
+                // background-color: aqua;
+              }
+            }
+
+            span {
+              width: 60px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+body.light-mode {
+  .collection-info {
+    margin: 100px 0;
+    .collection-details {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 40px;
+
+      .detail-img {
+        background-color: rgb(210, 210, 210);
+        max-width: 500px;
+        max-height: 500px;
+
+        img {
+          width: 100%;
+        }
+      }
+      .detail-txt {
+        h2 {
+          font-size: 40px;
+          margin-bottom: 20px;
+        }
+        p {
+          margin-bottom: 20px;
+        }
+        h4 {
+          font-size: 30px;
+          margin-bottom: 20px;
+        }
+        .detail-extra-wrapper {
+          > div {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+
+            .color-list {
+              display: flex;
+              align-items: center;
+              margin-left: 10px;
+              li {
+                height: 30px;
+                width: 30px;
+                background-color: red;
+                margin-right: 10px;
+                border-radius: 50%;
+              }
+            }
+
+            .detail-select {
+              width: 90px;
+              margin-left: 10px;
+            }
+
+            .update-qty {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              // width: 70px;
+              padding: 5px;
+              border: solid 1px var(--main-color);
+              margin-left: 10px;
+              border-radius: var(--radius);
+
+              button {
+                background: none;
+                font-size: 27px;
+              }
+              .qty-txt {
+                // border: solid 1px var(--main-color);
+                padding: 10px 20px;
+                margin: 0px 10px;
+                border-radius: var(--radius);
+                font-size: 20px;
+                // background-color: aqua;
+              }
+            }
+
+            span {
+              width: 60px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

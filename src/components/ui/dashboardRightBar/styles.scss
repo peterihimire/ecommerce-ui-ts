@@ -1,0 +1,13 @@
+body.dark-mode {
+  .right-bar {
+    background: var(--dark-bg);
+    margin-bottom: 120px;
+  }
+}
+
+body.light-mode {
+  .right-bar {
+    background: var(--light-bg);
+    margin-bottom: 120px;
+  }
+}

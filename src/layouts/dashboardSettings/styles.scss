@@ -1,0 +1,48 @@
+.layoutt {
+  // width: var(--full);
+  width: 100%;
+  max-width: var(--wrapper-max-width);
+  min-width: var(--wrapper-min-width);
+  margin: 0 auto;
+
+  // added
+  @media (max-width: 1272px) {
+    display: block;
+  }
+
+  .main {
+    position: relative;
+    left: 300px;
+    width: calc(100% - 300px);
+    display: block;
+    // padding: 0px 56px 69px 56px;
+    // margin-top: 120px;
+    margin-top: 0px;
+    // padding: 40px 0 0 0;
+    // background: #e5e5e5;
+    height: calc(100% - 60px);
+    // background: #7edf7e;
+
+    @media (max-width: 1312px) {
+      left: 300px;
+    }
+
+    @media (max-width: 1264px) {
+      left: 0;
+      width: 100%;
+
+      // position: fixed;
+      margin-top: 70px;
+      // margin-top: 0px;
+    }
+  }
+  // .main {
+  //   width: 100%;
+  //   height: 100%;
+  //   // margin-top: 70px; // height of header
+
+  //   // @media (max-width: 1275px) {
+  //   //   margin-top: 55px;
+  //   // }
+  // }
+}

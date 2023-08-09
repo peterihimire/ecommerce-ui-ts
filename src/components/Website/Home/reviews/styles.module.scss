@@ -1,0 +1,94 @@
+.reviews {
+  width: var(--full);
+  padding: 100px 16px;
+
+  .wrapper {
+    width: 65%;
+    margin: 0 auto;
+    height: 100%;
+    max-width: var(--wrapper-max-width);
+
+    @media (max-width: 1387px) {
+      width: 90%;
+    }
+
+    @media (max-width: 1315px) {
+      width: 95%;
+    }
+
+    @media (max-width: 1264px) {
+      justify-content: space-between;
+    }
+
+    > h6 {
+      color: var(--main-color);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      font-family: NotoSans-Medium;
+      font-size: 15px;
+      text-align: center;
+    }
+    > h4 {
+      font-size: 30px;
+      line-height: 35px;
+      font-weight: 700;
+      font-family: NotoSans-Medium;
+      text-align: center;
+    }
+
+    .reviewsCarousel {
+      margin-top: 40px;
+
+      .reviewContent {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        > p {
+          max-width: 500px;
+          text-align: center;
+          margin: 0 auto;
+          margin-bottom: 32px;
+          line-height: 1.6;
+        }
+
+        .reviewPerson {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          > .left {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+
+            > img {
+              width: var(--full);
+              height: var(--full);
+              border-radius: 50%;
+            }
+          }
+
+          > .right {
+            margin-left: 12px;
+            display: flex;
+            flex-direction: column;
+
+            > span {
+              &:first-of-type {
+                font-size: 17px;
+                font-family: NotoSans-Medium;
+                margin-bottom: 8px;
+              }
+
+              &:last-of-type {
+                font-size: 13px;
+                font-family: NotoSans-Light;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

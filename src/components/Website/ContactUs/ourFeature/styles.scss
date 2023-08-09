@@ -1,0 +1,107 @@
+body.dark-mode {
+  .feature-our {
+    position: relative;
+    background-color: var(--dark-bg);
+    padding: 100px 0px;
+
+    .choose-head {
+      text-align: center;
+      margin: 0 auto 30px auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0px 0px;
+      align-items: center;
+      justify-content: center;
+      // box-shadow: 0 0 10px #464646;
+
+      .contact-icon {
+        font-size: 50px;
+        margin-bottom: 20px;
+        color: var(--main-color);
+      }
+
+      > div {
+        background-color: var(--bg-dark);
+        border-right: 1px solid #444343;
+        padding: 20px;
+
+        &:last-of-type {
+          border-right: none;
+        }
+      }
+
+      h5 {
+        text-transform: uppercase;
+        font-size: 30px;
+        font-weight: 950;
+      }
+
+      p {
+        line-height: 26px;
+        margin: 20px 0px 20px 0;
+        height: 55px;
+      }
+    }
+  }
+}
+
+body.light-mode {
+  .feature-our {
+    position: relative;
+    background-color: var(--gray-bg);
+    padding: 100px 0px;
+
+    .choose-head {
+      text-align: center;
+      margin: 0 auto 30px auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0px 0px;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px #cccccc;
+
+      @media (max-width: 700px) {
+        grid-template-columns: repeat(1, 1fr);
+      }
+
+      .contact-icon {
+        font-size: 50px;
+        margin-bottom: 20px;
+        color: var(--main-color);
+      }
+
+      > div {
+        background-color: var(--white);
+        border-right: 1px solid #cecece;
+        border-bottom: none;
+        padding: 20px;
+
+        &:last-of-type {
+          border-right: none;
+        }
+
+        @media (max-width: 700px) {
+          border-bottom: 1px solid #cecece;
+          border-right: none;
+
+          &:last-of-type {
+            border-bottom: none;
+          }
+        }
+      }
+
+      h5 {
+        text-transform: uppercase;
+        font-size: 30px;
+        font-weight: 950;
+      }
+
+      p {
+        line-height: 26px;
+        margin: 20px 0px 20px 0;
+        height: 55px;
+      }
+    }
+  }
+}

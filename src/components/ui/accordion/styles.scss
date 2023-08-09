@@ -1,0 +1,114 @@
+.accordion-list {
+  background: #f7f9fe;
+
+  border-radius: 8px;
+  padding: 0px 24px;
+  margin-bottom: 16px;
+
+  &:last-of-type {
+    margin-bottom: 0px;
+  }
+
+  > button {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    text-align: left;
+    background: transparent;
+    padding: 12px 0px;
+
+    .headInfo {
+      display: flex;
+      flex-direction: column;
+
+      h4 {
+        font-size: 12px;
+        line-height: 16px;
+        color: var(--primary);
+        // font-family: Noto-Bold;
+        // margin-bottom: 8px;
+      }
+
+      .duration {
+        font-size: 12px;
+        color: rgba(244, 244, 244, 0.8);
+      }
+    }
+
+    .rotate {
+      // background: #191919;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      margin-left: auto;
+      flex-shrink: 0;
+
+      i {
+        transition: all 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25);
+      }
+
+      .fas fa-caret-down {
+        font-size: 20px;
+        color: var(--primary);
+      }
+    }
+  }
+
+  > .content {
+    margin-top: 0px;
+    border-top: 1px solid rgba(244, 244, 244, 0.5);
+    // padding: 24px 0px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25),
+      opacity 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25),
+      visibility 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25),
+      margin 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25),
+      padding 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    &.show {
+      max-height: 400px;
+      overflow-y: auto;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+      margin-top: 12px;
+      padding: 24px 0px;
+
+      @media screen and (max-width: 903px) {
+        max-height: 700px;
+      }
+    }
+
+    .subHead {
+      // display: flex;
+      // margin-bottom: 13px;
+      // align-items: center;
+      font-size: 16px;
+      line-height: 22px;
+      // font-family: Noto-Bold;
+      color: #333131;
+
+      > div {
+        margin-right: 8px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(93, 85, 255, 0.2);
+      }
+    }
+  }
+}

@@ -1,0 +1,107 @@
+.contactUs {
+  position: relative;
+  padding: 100px 0px;
+  // background-color: #fff;
+
+   .title {
+    font-size: 22px;
+    text-transform: capitalize;
+    margin: 40px 0px;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+    gap: 0px 32px;
+
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+    }
+
+    .left {
+      @media (max-width: 900px) {
+        display: none;
+      }
+      .left-top {
+        h4 {
+          font-size: 30px;
+          line-height: 35px;
+          font-weight: 700;
+        }
+        p {
+          padding: 20px 0px;
+          line-height: 26px;
+        }
+        .check-container {
+          .check-completed {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+          }
+        }
+      }
+    }
+
+    .right {
+      .built-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0px 0px;
+
+        .grid-item1 {
+          border-right: solid 1px var(--gray-color);
+          padding: 0px 20px 30px 10px;
+
+          h5 {
+            font-size: 20px;
+            margin-top: 20px;
+          }
+          p {
+            margin-top: 20px;
+            line-height: 26px;
+          }
+        }
+        .grid-item2 {
+          padding: 0px 10px 30px 30px;
+
+          h5 {
+            font-size: 20px;
+            margin-top: 20px;
+          }
+          p {
+            margin-top: 20px;
+            line-height: 26px;
+          }
+        }
+        .grid-item3 {
+          border-right: solid 1px var(--gray-color);
+          border-top: solid 1px var(--gray-color);
+          padding: 30px 20px 10px 10px;
+
+          h5 {
+            font-size: 20px;
+            margin-top: 20px;
+          }
+          p {
+            margin-top: 20px;
+            line-height: 26px;
+          }
+        }
+        .grid-item4 {
+          padding: 30px 10px 10px 30px;
+
+          border-top: solid 1px var(--gray-color);
+
+          h5 {
+            font-size: 20px;
+            margin-top: 20px;
+          }
+          p {
+            margin-top: 20px;
+            line-height: 26px;
+          }
+        }
+      }
+    }
+  }
+}

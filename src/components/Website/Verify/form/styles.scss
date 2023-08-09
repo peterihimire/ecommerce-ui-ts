@@ -1,0 +1,159 @@
+body.dark-mode {
+  .login-form {
+    max-width: 500px;
+    margin: 134px auto 0px auto;
+
+    @media screen and (max-width: 700px) {
+      max-width: 500px;
+      margin: 104px auto 0px auto;
+    }
+
+    @media screen and (max-width: 900px) {
+      // display: none;
+    }
+    @media screen and (max-width: 1200px) {
+      // display: none;
+      // width: 40%;
+    }
+
+    h2 {
+      font-size: 32px;
+      line-height: 39px;
+      margin-bottom: 40px;
+      max-width: 200px;
+    }
+    p {
+      margin-bottom: 40px;
+      max-width: 200px;
+    }
+    .formGroup {
+      margin-bottom: 8px;
+      height: 90px;
+
+      .errorStyle {
+        color: var(--red);
+        font-size: 10px;
+        font-style: italic;
+        padding: 1px 0 0 5px;
+      }
+    }
+    .forgot {
+      display: flex;
+      justify-content: flex-end;
+
+      .linkStyle {
+        color: #004ef0;
+        font-size: 16px;
+        line-height: 19px;
+        font-weight: 600;
+      }
+    }
+    .btnWithError {
+      .errorStyle {
+        color: var(--red);
+        font-size: 10px;
+        font-style: italic;
+        padding: 1px 0 0 5px;
+      }
+
+      .submitBtn {
+        margin: 5px 0px 40px 0;
+      }
+    }
+
+    .register {
+      display: flex;
+      justify-content: center;
+
+      span {
+        margin-right: 10px;
+      }
+      .linkStyle {
+        color: #004ef0;
+        font-size: 16px;
+        line-height: 19px;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+body.light-mode {
+  .login-form {
+    max-width: 500px;
+    margin: 134px auto 0px auto;
+
+    @media screen and (max-width: 700px) {
+      max-width: 500px;
+      margin: 104px auto 0px auto;
+    }
+
+    @media screen and (max-width: 900px) {
+      // display: none;
+    }
+    @media screen and (max-width: 1200px) {
+      // display: none;
+      // width: 40%;
+    }
+
+    h2 {
+      font-size: 32px;
+      line-height: 39px;
+      margin-bottom: 40px;
+      max-width: 200px;
+    }
+    p {
+      margin-bottom: 40px;
+      max-width: 200px;
+    }
+    .formGroup {
+      margin-bottom: 8px;
+      height: 90px;
+
+      .errorStyle {
+        color: var(--red);
+        font-size: 10px;
+        font-style: italic;
+        padding: 1px 0 0 5px;
+      }
+    }
+    .forgot {
+      display: flex;
+      justify-content: flex-end;
+
+      .linkStyle {
+        color: #004ef0;
+        font-size: 16px;
+        line-height: 19px;
+        font-weight: 600;
+      }
+    }
+    .btnWithError {
+      .errorStyle {
+        color: var(--red);
+        font-size: 10px;
+        font-style: italic;
+        padding: 1px 0 0 5px;
+      }
+
+      .submitBtn {
+        margin: 5px 0px 40px 0;
+      }
+    }
+
+    .register {
+      display: flex;
+      justify-content: center;
+
+      span {
+        margin-right: 10px;
+      }
+      .linkStyle {
+        color: #004ef0;
+        font-size: 16px;
+        line-height: 19px;
+        font-weight: 600;
+      }
+    }
+  }
+}
