@@ -1,7 +1,7 @@
 import React from "react";
 import HomeHero from "./Home/hero";
 import OneWallet from "./Home/oneWallet";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const HomePage = () => {
   return (
