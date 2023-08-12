@@ -1,8 +1,8 @@
 import React from "react";
-import HomeHero from "./hero";
-import OneWallet from "./oneWallet";
+// import HomeHero from "./hero";
+// import OneWallet from "./oneWallet";
 // import Design from "./design";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const HomePage = () => {
   return (
@@ -11,8 +11,8 @@ const HomePage = () => {
         <title>Admin | HalaDigital</title>
       </Helmet>
       {/* <div className="wrapper"> */}
-        <HomeHero />
-        <OneWallet />
+        {/* <HomeHero />
+        <OneWallet /> */}
       {/* </div> */}
     </div>
   );

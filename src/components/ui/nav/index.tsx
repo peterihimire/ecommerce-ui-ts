@@ -12,7 +12,7 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { WbSunnyOutlined } from "@mui/icons-material";
-import useDarkMode from "use-dark-mode";
+import { useDarkMode } from "use-dark-mode-ts";
 
 import "./styles.scss";
 

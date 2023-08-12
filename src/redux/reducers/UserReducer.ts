@@ -1,14 +1,14 @@
 import * as actionTypes from "../actions/actionTypes";
-const userData = JSON.parse(localStorage.getItem("ecommerce_user"));
-
-const defaultState = {
+const userData = JSON.parse(localStorage.getItem("ecommerce_user") || "");
+interface DefaultState {}
+const defaultState: DefaultState = {
   authenticated: !!userData,
   userData: userData,
   loading: false,
   error: null,
   response: {},
 };
-const UserReducer = (state = defaultState, action) => {
+const UserReducer = (state: DefaultState = defaultState, action: any) => {
   switch (action.type) {
     case actionTypes.USER_LOGIN_RESPONSE:
       return { ...state, authenticated: true, userData: action.payload };

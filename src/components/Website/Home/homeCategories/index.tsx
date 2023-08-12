@@ -1,20 +1,24 @@
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation, Autoplay } from "swiper";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import SwiperCore, { Navigation, Autoplay } from "swiper";
+// import pix1 from "../../../../assets/images/cat1.webp";
+// import pix2 from "../../../../assets/images/cat2.webp";
+// import pix3 from "../../../../assets/images/cat3.webp";
 
 import "./styles.scss";
 
-SwiperCore.use([Navigation, Autoplay]);
+// SwiperCore.use([Navigation, Autoplay]);
 
-const HomeBrands = () => {
+const HomeCategories = () => {
   return (
-    <section className={`home-brands`}>
+    <section className={`home-categories`}>
       <div className="wrapper">
         <div className={`featured-head`}>
-          <h3>Shop by Brands</h3>
+          <h3>Categories</h3>
         </div>
+
         <div className={`cat-carousel`}>
-          <Swiper
+          {/* <Swiper
             spaceBetween={20}
             slidesPerView={3}
             // autoHeight={true}
@@ -30,91 +34,67 @@ const HomeBrands = () => {
           >
             <SwiperSlide>
               <div className={`category-item`}>
+                <img src={pix1} alt="" />
                 <div className={`category-item-info`}>
                   <h4>Men</h4>
-                  <button
-                    className="btn-block btn-small"
-                    style={{ border: "solid 1px #000" }}
-                  >
-                    Shop Now
-                  </button>
+                  <button className="btn-block btn-small">Shop Now</button>
                 </div>
               </div>
             </SwiperSlide>
 
             <SwiperSlide>
               <div className={`category-item`}>
+                <img src={pix2} alt="" />
                 <div className={`category-item-info`}>
                   <h4>Men</h4>
-                  <button
-                    className="btn-block btn-small"
-                    style={{ border: "solid 1px #000" }}
-                  >
-                    Shop Now
-                  </button>
+                  <button className="btn-block btn-small">Shop Now</button>
                 </div>
               </div>
             </SwiperSlide>
 
             <SwiperSlide>
               <div className={`category-item`}>
+                <img src={pix3} alt="" />
                 <div className={`category-item-info`}>
                   <h4>Men</h4>
-                  <button
-                    className="btn-block btn-small"
-                    style={{ border: "solid 1px #000" }}
-                  >
-                    Shop Now
-                  </button>
+                  <button className="btn-block btn-small">Shop Now</button>
                 </div>
               </div>
             </SwiperSlide>
             <SwiperSlide>
               <div className={`category-item`}>
+                <img src={pix1} alt="" />
                 <div className={`category-item-info`}>
                   <h4>Men</h4>
-                  <button
-                    className="btn-block btn-small"
-                    style={{ border: "solid 1px #000" }}
-                  >
-                    Shop Now
-                  </button>
+                  <button className="btn-block btn-small">Shop Now</button>
                 </div>
               </div>
             </SwiperSlide>
 
             <SwiperSlide>
               <div className={`category-item`}>
+                <img src={pix2} alt="" />
                 <div className={`category-item-info`}>
                   <h4>Men</h4>
-                  <button
-                    className="btn-block btn-small"
-                    style={{ border: "solid 1px #000" }}
-                  >
-                    Shop Now
-                  </button>
+                  <button className="btn-block btn-small">Shop Now</button>
                 </div>
               </div>
             </SwiperSlide>
 
             <SwiperSlide>
               <div className={`category-item`}>
+                <img src={pix1} alt="" />
                 <div className={`category-item-info`}>
                   <h4>Men</h4>
-                  <button
-                    className="btn-block btn-small"
-                    style={{ border: "solid 1px #000" }}
-                  >
-                    Shop Now
-                  </button>
+                  <button className="btn-block btn-small">Shop Now</button>
                 </div>
               </div>
             </SwiperSlide>
-          </Swiper>
+          </Swiper> */}
         </div>
       </div>
     </section>
   );
 };
 
-export default HomeBrands;
+export default HomeCategories;
