@@ -1,29 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
-  ArrowDownward,
+  // ArrowDownward,
   DarkModeOutlined,
   Search,
   PersonOutline,
   ShoppingCartOutlined,
 } from "@mui/icons-material";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+// import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
+// import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { WbSunnyOutlined } from "@mui/icons-material";
 import { useDarkMode } from "use-dark-mode-ts";
+import { NavProps } from "../../../types/NavProps";
 
 import "./styles.scss";
 
-const Nav = ({ isOpen }) => {
+const Nav: React.FC<NavProps> = ({ isOpen }) => {
   const location = useLocation();
   console.log(location);
   console.log(location.pathname.split("/")[1]);
   const fullPath = location.pathname;
   let pathUrl = location.pathname.split("/")[1];
 
-  const darkMode = useDarkMode(false);
+  const darkMode = useDarkMode();
   console.log(darkMode);
 
   const [about, openAbout] = useState(false);
@@ -61,17 +62,6 @@ const Nav = ({ isOpen }) => {
             Contact
           </NavLink>
         </li>
-
-        {/* <li>
-          <NavLink to="/login" activeclassname="active">
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/register" activeclassname="active">
-            Register
-          </NavLink>
-        </li> */}
       </ul>
       <div className={`nav-end`}>
         <div className={`hasDrop`}>
@@ -81,7 +71,7 @@ const Nav = ({ isOpen }) => {
               openAbout(!about);
             }}
           >
-            {darkMode.value ? (
+            {darkMode ? (
               <PersonOutline className="toggle-theme-dark" />
             ) : (
               <PersonOutline className="toggle-theme-light" />
@@ -120,7 +110,7 @@ const Nav = ({ isOpen }) => {
         </div>
         <div className={`cart-count`}>
           <div>21</div>
-          {darkMode.value ? (
+          {darkMode ? (
             <ShoppingCartOutlined className="toggle-theme-dark" />
           ) : (
             <ShoppingCartOutlined className="toggle-theme-light" />

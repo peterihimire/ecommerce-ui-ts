@@ -2,16 +2,22 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Nav from "../nav";
 import { useLocation } from "react-router-dom";
+// import { HeaderProps } from "../../../types/HeaderProps";
 // import { ReactComponent as Logo } from "../../../assets/images/logo.svg";
 import "./styles.scss";
 
-const Header = ({ isOpen, clicked }) => {
+interface Props {
+  isOpen?: boolean;
+  clicked?: () => void;
+}
+
+const Header: React.FC<Props> = ({ isOpen, clicked }) => {
   const router = useLocation();
 
   const [isDropOpen, setDropOpen] = useState(false);
   const [bgChange, setBgChange] = useState(false);
 
-  const dropHandler = (payload) => {
+  const dropHandler = (payload: boolean) => {
     setDropOpen(payload);
   };
 
@@ -54,7 +60,7 @@ const Header = ({ isOpen, clicked }) => {
           bgChange={bgChange}
           isDrop={isDropOpen}
           isOpen={isOpen}
-          clicked={(payload) => dropHandler(payload)}
+          clicked={(payload: boolean) => dropHandler(payload)}
         />
 
         <div className="hamburgerBtn">
