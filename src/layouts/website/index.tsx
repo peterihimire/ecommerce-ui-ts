@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Header from "../../components/ui/header";
+// import Header from "../../components/ui/header";
 import Backdrop from "../../components/ui/backdrop";
 import { useLocation } from "react-router-dom";
 // import Footer from "../../components/ui/footer";
@@ -29,14 +29,14 @@ const WebsiteLayout = () => {
         }}
       />
 
-      <Header
+      {/* <Header
         isOpen={open}
         clicked={() => {
           setOpen(!open);
           document.documentElement.classList.toggle("_fixed");
           document.body.classList.toggle("_fixed");
         }}
-      />
+      /> */}
 
       <main className="main">
         <Outlet />

@@ -6,16 +6,16 @@ import WebsiteLayout from "../layouts/website";
 import { HomePage } from "../pages/home";
 
 const AllRoutes = () => {
-  const loggedAuth = useSelector((state) => {
-    return state;
-  });
-  console.log(loggedAuth);
+  // const loggedAuth = useSelector((state) => {
+  //   return state;
+  // });
+  // console.log(loggedAuth);
   // const { admin, user } = loggedAuth;
-  const [adminAuth, setAdminAuth] = useState(loggedAuth?.admin);
-  const [userAuth, setUserAuth] = useState(loggedAuth?.user);
+  // const [adminAuth, setAdminAuth] = useState(loggedAuth?.admin);
+  // const [userAuth, setUserAuth] = useState(loggedAuth?.user);
   //  console.log(loggedAuth);
-  console.log(adminAuth);
-  console.log(userAuth);
+  // console.log(adminAuth);
+  // console.log(userAuth);
 
   return (
     <BrowserRouter>
