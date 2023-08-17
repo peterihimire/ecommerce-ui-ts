@@ -28,7 +28,9 @@ const Hero = () => {
   //   },
   // };
   return (
-    <div>This is home</div>
+    <div>
+      <h1>This is home</h1>
+    </div>
     // <Swiper
     //   spaceBetween={0}
     //   slidesPerView={1}
