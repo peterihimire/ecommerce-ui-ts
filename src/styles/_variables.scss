@@ -1,41 +1,16 @@
 :root {
   // --main-color:
-  --main-color: #ef8025;
-  --btn-color: linear-gradient(to right, #ef8a25, #c833af);
-  --bg-light: #ffffff;
-  --txt-light: #232323;
-  --product-dark: #10171d;
-  --product-light: #f5f5f5;
-  --bg-dark: #212121;
-  --txt-dark: #dfdfdf;
-
-  --gray-txt: #666666;
-  --gray-bg: #f4f7fc;
-  // --dark-bg: #0000008e;
-  --dark-bg: #000000;
-  --gray-color: #e7e7e7;
-
-  --form-control-color: #2568ef;
-  --form-control-disabled: #959495;
-  --radius: 2px;
-  --white: #fff;
-  --black: #000000;
-  --red: #e22626;
-
-  --alert: #f8d7da;
-  --alert-color: #721c24;
-  --alert-border: #f5c6cb;
-
-  --success: #d7f8de;
-  --success-color: #1c7225;
-  --success-border: #c6f5ca;
+  --main: #e26559;
+  --btn: #883d35;
+  --hover: #b55147;
+  --white: #ffffff;
+  --black: #3c4043;
+  --grey: #636669;
+  --light-grey: #d8d9d9;
+  --progress-grey: #ebecec;
 
   --full: 100%;
-  --radius: 2px;
-  --tran: #ffffff00;
-  --box-shadow: 0px 15px 26px rgba(1, 73, 159, 0.05);
-  --box-shadow-dark: 0px 15px 26px rgba(69, 71, 73, 0.168);
-  // --wrapper-max-width: 1980px;
+
   --wrapper-max-width: 2620px;
   --wrapper-min-width: 240px;
 }

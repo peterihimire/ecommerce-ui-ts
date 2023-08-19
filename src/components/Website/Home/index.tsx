@@ -1,12 +1,9 @@
 import React from "react";
 import HomeHero from "./hero";
 import HomeCategories from "./homeCategories";
-
 import { Helmet } from "react-helmet-async";
 
-import "./styles.scss";
-
-const HomePage = () => {
+const HomePage: React.FC = () => {
   return (
     <div className={`homepage`}>
       <Helmet>
