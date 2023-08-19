@@ -1,9 +1,9 @@
 import React from "react";
-import HomeHero from "./hero";
-import HomeCategories from "./homeCategories";
+import HomeHero from "./Hero";
+import HomeCategories from "./HomeCategories";
 import { Helmet } from "react-helmet-async";
 
-const HomePage: React.FC = () => {
+const Home: React.FC = () => {
   return (
     <div className={`homepage`}>
       <Helmet>
@@ -16,4 +16,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;
+export default Home;
