@@ -47,7 +47,7 @@ const Header: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
       <div className="wrapper">
         <div className="logo">
           <Link to="/">
-            BRID<span>GET</span>
+            BRI<span>GGY</span>
           </Link>
         </div>
 

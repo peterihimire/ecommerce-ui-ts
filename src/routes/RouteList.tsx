@@ -1,6 +1,7 @@
 import { RouteObject } from "react-router-dom";
 import WebsiteLayout from "../layouts/website";
-import { Home } from "../pages/home"; // Assuming HomePage is the default export
+import { Home } from "../pages/home";
+import { About } from "../pages/about"; // Assuming HomePage is the default export
 
 export const routes: RouteObject[] = [
   {
@@ -13,7 +14,7 @@ export const routes: RouteObject[] = [
       },
       {
         path: "/about",
-        element: <Home />,
+        element: <About />,
       },
     ],
   },

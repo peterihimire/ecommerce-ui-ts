@@ -1,7 +1,5 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import "./App.css";
-// import logo from "./logo.svg";
 import { AllRoutes } from "./routes/AllRoutes";
 // import { Provider } from "react-redux";
 // import initStore from "./redux/store";
@@ -11,9 +9,9 @@ import { AllRoutes } from "./routes/AllRoutes";
 const App: React.FC = (): JSX.Element => {
   return (
     // <Provider store={store}>
-    <BrowserRouter>
-      <AllRoutes />
-    </BrowserRouter>
+      <BrowserRouter>
+        <AllRoutes />
+      </BrowserRouter>
     // </Provider>
   );
 };
