@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-// import Header from "../../components/ui/header";
-// import Backdrop from "../../components/shared/backdrop";
+import Header from "../../components/shared/header";
+import Backdrop from "../../components/shared/backdrop";
 import { useLocation } from "react-router-dom";
-// import Footer from "../../components/ui/footer";
+import Footer from "../../components/shared/footer";
 import { Outlet } from "react-router-dom";
 
 import "./styles.scss";
@@ -20,29 +20,29 @@ const WebsiteLayout: React.FC = () => {
 
   return (
     <div className="landing-layout">
-      {/* <Backdrop
+      <Backdrop
         open={open}
         clicked={() => {
           setOpen(false);
           document.documentElement.classList.remove("_fixed");
           document.body.classList.remove("_fixed");
         }}
-      /> */}
+      />
 
-      {/* <Header
+      <Header
         isOpen={open}
         clicked={() => {
           setOpen(!open);
           document.documentElement.classList.toggle("_fixed");
           document.body.classList.toggle("_fixed");
         }}
-      /> */}
+      />
 
       <main className="main">
         <Outlet />
       </main>
 
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
