@@ -9,15 +9,15 @@
 
   // 2.5K
   @media (max-width: 2560px) {
-    margin-left: 550px;
+    margin-left: 650px;
   }
   // FULL HD
   @media (max-width: 1920px) {
-    margin-left: 330px;
+    margin-left: 430px;
   }
   // 13 RETINA MAC
   @media screen and (max-width: 1680px) {
-    margin-left: 250px;
+    margin-left: 350px;
   }
   // WINDOWS
   @media screen and (max-width: 1366px) {
@@ -99,12 +99,12 @@
         }
 
         &:hover {
-          color: var(--main-color) !important;
+          color: var(--main) !important;
         }
       }
 
       .active {
-        color: var(--main-color) !important;
+        color: var(--main) !important;
         // font-size: 16px;
         // font-family: Poppins-Bold, sans-serif;
         font-weight: 700;
@@ -112,7 +112,10 @@
 
       &.hasDrop {
         position: relative;
+        top: 3px;
         margin-bottom: 25px;
+        color: var(--white);
+        // line-height: 18.5px;
 
         @media (min-width: 1276px) {
           margin-bottom: 0px;
@@ -132,7 +135,7 @@
           padding: 0;
           display: flex;
           align-items: center;
-          font-size: 15px;
+          font-size: 12px;
           color: var(--black);
           // font-family: Proxima-Medium;
 
@@ -150,11 +153,11 @@
           }
 
           &:hover {
-            color: var(--main-color);
-            font-size: 15px;
+            color: var(--main);
+            font-size: 12px;
 
             span {
-              color: var(--main-color);
+              color: var(--main);
             }
 
             @media screen and (max-width: 900px) {
@@ -164,12 +167,12 @@
 
           > span {
             margin-right: 7px;
-            font-size: 14px;
+            font-size: 12px;
             color: var(--black);
             font-family: NotoSans-Medium, sans-serif;
 
             @media (max-width: 905px) {
-              font-size: 16px;
+              font-size: 12px;
             }
           }
         }
@@ -177,11 +180,11 @@
         .dropdownMenu {
           position: absolute;
           // width: auto;
-          width: 150px;
+          width: 120px;
           z-index: 21;
           padding-top: 2px;
           top: 100%;
-          left: -20px;
+          left: 0px;
           cursor: default;
           visibility: hidden;
           opacity: 0;
@@ -220,22 +223,22 @@
           .dropdownContainer {
             width: auto;
             display: flex;
-            background-color: var(--white);
+            background-color: var(--black);
             border-radius: 2px;
             box-shadow: var(--box-shadow);
-            padding: 10px 0px;
+            padding: 0px 0px;
 
             @media (max-width: 1275px) {
               flex-direction: column;
               box-shadow: none;
               border-radius: 0;
-              background-color: var(--gray-bg);
+              background-color: var(--grey);
             }
           }
 
           .dropdownWrapper {
             display: grid;
-            grid-template-columns: repeat(1, 150px);
+            grid-template-columns: repeat(1, 120px);
             // gap: 10px 0px;
 
             @media (max-width: 1275px) {
@@ -245,10 +248,10 @@
 
             > li {
               height: var(--full);
-              border-top: rgba(220, 220, 220, 0.162) solid 1px;
+              // border-top: rgba(220, 220, 220, 0.162) solid 1px;
 
               &:last-of-type {
-                border-bottom: rgba(220, 220, 220, 0.162) solid 1px;
+                // border-bottom: rgba(220, 220, 220, 0.162) solid 1px;
               }
 
               @media (max-width: 1275px) {
@@ -274,8 +277,8 @@
                 }
 
                 &:hover {
-                  background: var(--gray-bg);
-                  color: var(--main-color);
+                  background: var(--yellow);
+                  color: var(--black);
                   padding: 10px 20px;
                   border-radius: 0px;
 
@@ -341,11 +344,11 @@
         }
 
         &:hover {
-          color: var(--main-color);
+          color: var(--main);
           font-size: 15px;
 
           span {
-            color: var(--main-color);
+            color: var(--main);
           }
 
           @media screen and (max-width: 900px) {
@@ -469,7 +472,7 @@
 
               &:hover {
                 background: var(--gray-bg);
-                color: var(--main-color);
+                color: var(--main);
                 padding: 10px 20px;
                 border-radius: 0px;
 
@@ -488,7 +491,7 @@
 
       div {
         position: absolute;
-        background-color: var(--main-color);
+        background-color: var(--main);
         height: 20px;
         width: 20px;
         border-radius: 50%;

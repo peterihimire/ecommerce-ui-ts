@@ -1,71 +1,52 @@
 import React, { useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 
-interface Props {
-  open?: boolean;
-  clicked?: () => void;
+interface BackdropProps {
+  open: boolean;
+  clicked: () => void;
 }
 
-const Backdrop: React.FC<Props> = ({ open, clicked }) => {
-  const elRef = useRef<HTMLDivElement | null>(null); // Add type annotation for elRef
+const Backdrop: React.FC<BackdropProps> = ({ open, clicked }) => {
+  const backdropRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    // Refine your useEffect to handle the cleanup function properly
-    const element = elRef.current;
+    const backdropElement = backdropRef.current;
 
-    if (open && element) {
-      const handleClick = (event: MouseEvent) => {
-        if (element.contains(event.target as Node)) {
-          // Clicked inside the backdrop, do nothing
-          return;
-        }
-        clicked?.(); // Call the clicked function if provided
-      };
+    const handleBackdropClick = (event: MouseEvent) => {
+      if (backdropElement && backdropElement.contains(event.target as Node)) {
+        clicked();
+      }
+    };
 
-      // Attach the event listener
-      document.addEventListener("mousedown", handleClick);
-
-      // Return a cleanup function to remove the event listener
-      return () => {
-        document.removeEventListener("mousedown", handleClick);
-      };
+    if (open) {
+      document.addEventListener("mousedown", handleBackdropClick);
     }
+
+    return () => {
+      document.removeEventListener("mousedown", handleBackdropClick);
+    };
   }, [open, clicked]);
 
-  return elRef.current
-    ? ReactDOM.createPortal(
-        <div
-          className={`backdrop ${open ? "show" : ""}`}
-          onClick={clicked}
-        ></div>,
-        elRef.current
-      )
-    : null; // Return null if elRef.current is null
+  return ReactDOM.createPortal(
+    <div ref={backdropRef} className={`backdrop ${open ? "show" : ""}`} />,
+    document.body
+  );
 };
 
 export default Backdrop;
 
-// import React, { useRef, useEffect } from "react";
+// import React from "react";
 // import ReactDOM from "react-dom";
 
-// interface Props {
-//   open?: boolean;
-//   clicked?: () => void;
+// interface BackdropProps {
+//   open: boolean;
+//   clicked: () => void;
 // }
 
-// const Backdrop: React.FC<Props> = ({ open, clicked }) => {
-//   const elRef = useRef(null);
-
-//   useEffect(() => {
-//     // 👉️ ref could be null here
-//     if (elRef.current != null) {
-//       // 👉️ TypeScript knows that ref is not null here
-//       return elRef.current;
-//     }
-//   }, []);
+// const Backdrop: React.FC<BackdropProps> = ({ open, clicked }) => {
 //   return ReactDOM.createPortal(
 //     <div className={`backdrop ${open ? "show" : ""}`} onClick={clicked}></div>,
-//     elRef.current as any
+//     document.getElementById("backdrop")!
 //   );
 // };
 

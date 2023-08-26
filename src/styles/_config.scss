@@ -360,8 +360,8 @@ button {
 }
 
 .btn-primary {
-  background-color: var(--btn-color);
-  border: 1px solid var(--btn-color);
+  background-color: var(--main);
+  border: 1px solid var(--main);
   border-radius: 4px;
   color: var(--white);
   font-family: Poppins-Regular, sans-serif;
@@ -370,8 +370,8 @@ button {
   transition: background 0.6s ease-in-out;
 
   &:hover {
-    border: 1px solid var(--btn-color);
-    background: #0d4e993a;
+    border: 1px solid var(--main);
+    background: var(--black);
     color: var(--btn-color);
     transition: background 0.6s ease-in-out;
   }
@@ -432,10 +432,10 @@ button {
 }
 
 .btn-medium {
-  width: 290px;
+  width: 200px;
   height: 50px;
   max-width: 100%;
-  border-radius: 100px;
+  // border-radius: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -816,7 +816,7 @@ input[type="radio"] {
 }
 
 .wrapper {
-  width: 80%;
+  width: 75%;
   margin: 0 auto;
   height: 100%;
   max-width: var(--wrapper-max-width);

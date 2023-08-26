@@ -44,33 +44,41 @@ const Header: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
 
   return (
     <header className={`header   ${bgChangee || isOpen ? "bgHeader" : ""}`}>
-      <div className="wrapper">
-        <div className="logo">
-          <Link to="/">
-            BRI<span>GGY</span>
-          </Link>
+      <div>
+        <div className="first-wrapper-div">
+          <div className="first-wrapper">This is the first header</div>
         </div>
 
-        <Nav
-          bgChange={bgChangee}
-          isDrop={isDropOpen}
-          isOpen={isOpen}
-          clicked={(payload:boolean) => dropHandler(payload)}
-        />
+        <div className="wrapper">
+          <div className="logo">
+            <Link to="/">
+              BRI<span>GGY</span>
+            </Link>
+          </div>
 
-        <div className="hamburgerBtn">
-          <button
-            type="button"
-            aria-label="navigation button"
-            onClick={clicked}
-            className={`hamburger hamburger--spin ${isOpen ? "is-active" : ""}`}
-          >
-            <span className="hamburger-box">
-              <span
-                className={`${"hamburger-inner hamburger-inner-dark"}`}
-              ></span>
-            </span>
-          </button>
+          <Nav
+            bgChange={bgChangee}
+            isDrop={isDropOpen}
+            isOpen={isOpen}
+            clicked={(payload: boolean) => dropHandler(payload)}
+          />
+
+          <div className="hamburgerBtn">
+            <button
+              type="button"
+              aria-label="navigation button"
+              onClick={clicked}
+              className={`hamburger hamburger--spin ${
+                isOpen ? "is-active" : ""
+              }`}
+            >
+              <span className="hamburger-box">
+                <span
+                  className={`${"hamburger-inner hamburger-inner-dark"}`}
+                ></span>
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </header>

@@ -28,7 +28,7 @@ const WebsiteLayout: React.FC = () => {
           document.body.classList.remove("_fixed");
         }}
       />
-
+ 
       <Header
         isOpen={open}
         clicked={() => {

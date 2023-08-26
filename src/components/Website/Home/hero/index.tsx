@@ -15,7 +15,7 @@ import {
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperCore } from "swiper/types";
 
-import "swiper/css";
+// import "swiper/css";
 
 import "./styles.scss";
 // Import Swiper styles
@@ -74,33 +74,31 @@ const Hero: React.FC = () => {
         <section className={`hero-header`}>
           <div className="wrapper">
             <div className={`container`}>
-              <div className={`left`}>
+              <div className={`center`}>
                 <h1>
-                  Homemade <br /> Fresh<span> BURGER</span>
-                  100% Natural.
+                  Classic shoes for your fashion <span>sense</span>
                 </h1>
 
                 <p>
                   Celebrated delightful an especially increasing instrument am.
                   Indulgence contrasted sufficient to unpleasant in in
-                  insensible favourable.
                 </p>
 
                 <div className={`get-started`}>
-                  <button className="btn-primary  btn-medium indicato">
+                  <button className="btn-primary  btn-medium indicator">
                     Shop now
                   </button>
                 </div>
               </div>
-              <div className={`rightt`}>
-                {/* <img src={heroImg} alt="" /> */}
-              </div>
+              {/* <div className={`rightt`}>
+                <img src={heroImg} alt="" />
+              </div> */}
             </div>
           </div>
         </section>
       </SwiperSlide>
 
-      <SwiperSlide>
+      {/* <SwiperSlide>
         <section className={`hero-header-2`}>
           <div className="wrapper">
             <div className={`container`}>
@@ -124,12 +122,12 @@ const Hero: React.FC = () => {
                 </div>
               </div>
               <div className={`rightt`}>
-                {/* <img src={heroImg2} alt="" /> */}
+                <img src={heroImg2} alt="" />
               </div>
             </div>
           </div>
         </section>
-      </SwiperSlide>
+      </SwiperSlide> */}
     </Swiper>
   );
 };

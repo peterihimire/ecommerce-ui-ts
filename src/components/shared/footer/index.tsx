@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
         <div className={`first`}>
           <div className={`logo`}>
             <Link to="/">
-              BRID<span>GET</span>
+              BRI<span>GGY</span>
               {/* <img src={logo} alt='' /> */}
             </Link>
           </div>
@@ -131,69 +131,20 @@ const Footer: React.FC = () => {
               </li>
             </ul>
           </div>
-
-          <div className={`social-wrapper`}>
-            <h3>Support</h3>
-
-            <ul className={`quick-links`}>
-              <li>
-                <Link to="/">Contact Us</Link>
-              </li>
-              <li>
-                <Link to="/products-services">Help Center</Link>
-              </li>
-              <li>
-                <Link to="/our-process">Site Map</Link>
-              </li>
-            </ul>
-            {/* <p>we are welcoming some new faces at Benkih to give you</p> */}
-            {/* <div className={`social-list`}>
-              <a
-                href="https://www.facebook.com/omniswift"
-                target="_blank"
-                rel="noreferrer"
-                className="social-link"
-              >
-                <Facebook />
-              </a>
-              <a
-                href="https://www.linkedin.com/company/omniswift/?originalSubdomain=ng"
-                target="_blank"
-                rel="noreferrer"
-                className="social-link"
-              >
-                <Youtube />
-              </a>
-              <a
-                href="https://twitter.com/omniswift"
-                target="_blank"
-                rel="noreferrer"
-                className="social-link"
-              >
-                <Twitter />
-              </a>
-              <a
-                href="https://www.instagram.com/omniswiftltd/"
-                target="_blank"
-                rel="noreferrer"
-                className="social-link"
-              >
-                <Instagram />
-              </a>
-            </div> */}
-          </div>
         </div>
       </div>
-      <div className={`outro wrapper`}>
-        <div className="copyright">
-          <p>Copyright © 2023 — Benkih Limited. All Rights Reserved.</p>
-        </div>
-        <div className={`policy-terms`}>
-          <div className="policy">
-            <Link to="/privacy-policy">— Privacy Policy</Link>
+      <div className={`outro `}>
+        <div className={` wrapper`}>
+          <div className="copyright">
+            <p>Copyright © 2023 — Benkih Limited. All Rights Reserved.</p>
           </div>
-          <div className="terms">
-            <Link to="/terms-and-conditions">— Terms of Use</Link>
+          <div className={`policy-terms`}>
+            <div className="policy">
+              <Link to="/privacy-policy">— Privacy Policy</Link>
+            </div>
+            <div className="terms">
+              <Link to="/terms-and-conditions">— Terms of Use</Link>
+            </div>
           </div>
         </div>
       </div>

@@ -8,7 +8,9 @@ import {
   ShoppingCartOutlined,
 } from "@mui/icons-material";
 import { NavProps } from "../../../types/NavProps.type";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 // import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 // import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 // import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -48,8 +50,45 @@ const Nav: React.FC<NavProps> = ({ isOpen }: NavProps) => {
         <li>
           <NavLink to="/collections">Collections</NavLink>
         </li>
-        <li>
-          <NavLink to="/about">About</NavLink>
+        <li className={`hasDrop`}>
+          <div
+            className={`hasDropBtn`}
+            onClick={() => {
+              openAbout(!about);
+            }}
+          >
+            <span className={`${fullPath.includes("about") ? "active" : ""}`}>
+              ABOUT
+            </span>
+            {about ? (
+              <FontAwesomeIcon
+                icon={faChevronDown}
+                className={`${fullPath.includes("about-us") ? "active" : ""}`}
+              />
+            ) : (
+              <FontAwesomeIcon
+                icon={faChevronDown}
+                className={`${fullPath.includes("about-us") ? "active" : ""}`}
+              />
+            )}
+          </div>
+
+          <div className={`dropdownMenu dropResources ${about ? "show" : ""}`}>
+            <div className={`dropdownContainer`}>
+              <ul className={`dropdownWrapper`}>
+                <li>
+                  <NavLink className={`forDrop`} to="/about-us/who-we-are">
+                    Who we are
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className={`forDrop`} to="/about-us/our-vision">
+                    Our Vision
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
+          </div>
         </li>
         <li>
           <NavLink to="/contact">Contact</NavLink>
@@ -57,7 +96,7 @@ const Nav: React.FC<NavProps> = ({ isOpen }: NavProps) => {
       </ul>
 
       <div className={`nav-end`}>
-        <div className={`hasDrop`}>
+        {/* <div className={`hasDrop`}>
           <button
             className={`hasDropBtn`}
             onClick={() => {
@@ -83,6 +122,9 @@ const Nav: React.FC<NavProps> = ({ isOpen }: NavProps) => {
               </ul>
             </div>
           </div>
+        </div> */}
+        <div className={`search-btn`}>
+          <PersonOutline className="toggle-theme-light" />
         </div>
         <div className={`search-btn`}>
           <Search className="toggle-theme-light" />
