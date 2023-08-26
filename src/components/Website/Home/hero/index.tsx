@@ -46,7 +46,7 @@ const Hero: React.FC = () => {
         swiperRef.current = swiper;
       }}
 
-      // spaceBetween={0}
+      // spaceBetween={10}
       // slidesPerView={1}
       // pagination={pagination}
       // navigation={{
@@ -98,11 +98,11 @@ const Hero: React.FC = () => {
         </section>
       </SwiperSlide>
 
-      {/* <SwiperSlide>
+      <SwiperSlide>
         <section className={`hero-header-2`}>
           <div className="wrapper">
             <div className={`container`}>
-              <div className={`left`}>
+              <div className={`center`}>
                 <h1>
                   Sweet <br />
                   Fresh<span> BURGER</span>
@@ -121,13 +121,10 @@ const Hero: React.FC = () => {
                   </button>
                 </div>
               </div>
-              <div className={`rightt`}>
-                <img src={heroImg2} alt="" />
-              </div>
             </div>
           </div>
         </section>
-      </SwiperSlide> */}
+      </SwiperSlide>
     </Swiper>
   );
 };
