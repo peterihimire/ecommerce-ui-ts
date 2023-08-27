@@ -3,19 +3,19 @@ import React, { useCallback, useState, useEffect, useRef } from "react";
 // import heroImg from "../../../../assets/images/product7.png";
 // import heroImg2 from "../../../../assets/images/product8.png";
 import { Link } from "react-router-dom";
-import {
-  Pagination,
-  Autoplay,
-  EffectFlip,
-  EffectFade,
-  Navigation,
-  EffectCoverflow,
-} from "swiper/modules";
+// import {
+//   Pagination,
+//   Autoplay,
+//   EffectFlip,
+//   EffectFade,
+//   Navigation,
+//   EffectCoverflow,
+// } from "swiper/modules";
 // import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperCore } from "swiper/types";
 
-import "swiper/css";
+// import "swiper/css";
 
 import "./styles.scss";
 // Import Swiper styles
