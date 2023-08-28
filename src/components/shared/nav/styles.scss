@@ -89,7 +89,7 @@
 
       > a {
         font-size: 12px;
-        color: var(--black);
+        color: var(--white);
         font-family: NotoSans-Bold, sans-serif;
         text-transform: uppercase;
 
@@ -136,7 +136,7 @@
           display: flex;
           align-items: center;
           font-size: 12px;
-          color: var(--black);
+          color: var(--white);
           // font-family: Proxima-Medium;
 
           @media (max-width: 1275px) {
@@ -168,7 +168,7 @@
           > span {
             margin-right: 7px;
             font-size: 12px;
-            color: var(--black);
+            color: var(--white);
             font-family: NotoSans-Medium, sans-serif;
 
             @media (max-width: 905px) {
@@ -294,7 +294,7 @@
     }
 
     .toggle-theme-light {
-      color: var(--black);
+      color: var(--white);
     }
   }
 
@@ -303,6 +303,10 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+
+    .toggle-theme-light {
+      color: var(--white);
+    }
 
     .hasDrop {
       position: relative;

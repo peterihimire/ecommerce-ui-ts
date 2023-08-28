@@ -46,7 +46,11 @@ const Header: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
     <header className={`header   ${bgChangee || isOpen ? "bgHeader" : ""}`}>
       <div>
         <div className="first-wrapper-div">
-          <div className="first-wrapper">This is the first header</div>
+          <div className="first-wrapper">
+            <div className="items">This is the first header</div>
+            <div className="items">This is the first header</div>
+            <div className="items">This is the first header</div>
+          </div>
         </div>
 
         <div className="wrapper">

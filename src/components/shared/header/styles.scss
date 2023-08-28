@@ -17,6 +17,7 @@
   }
   &.bgHeader {
     background-color: var(--white);
+    color: var(--black);
   }
   .first-wrapper-div {
     padding: 10px 0px;
@@ -29,6 +30,7 @@
       margin: 0px auto;
       // padding: 20px 0px;
       display: flex;
+      justify-content: space-between;
       align-items: center;
       height: 100%;
       max-width: var(--wrapper-max-width);
@@ -67,7 +69,7 @@
       }
       > a {
         width: 102px;
-        background-color: var(--black);
+        background-color: var(--white);
         // background: linear-gradient(to right, #ef8a25, #c833af);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;

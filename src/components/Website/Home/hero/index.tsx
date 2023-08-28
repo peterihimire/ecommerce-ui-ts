@@ -13,7 +13,7 @@ import SwiperCore, {
   EffectFade,
 } from "swiper";
 
-import "./styles.scss";
+import styles from "./styles.module.scss";
 
 SwiperCore.use([Pagination, Navigation]);
 SwiperCore.use([Autoplay, EffectFlip, EffectCoverflow, EffectFade]);
@@ -32,87 +32,73 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <Swiper
-      spaceBetween={0}
-      slidesPerView={1}
-      pagination={pagination}
-      navigation={{
-        nextEl: ".custom-next1",
-        prevEl: ".custom-prev1",
-      }}
-      className={`container`}
-      autoHeight={true}
-      centeredSlides={true}
-      speed={2000}
-      autoplay={{
-        delay: 7000,
-        disableOnInteraction: false,
-      }}
-      effect="fade"
+    <section className={`${styles.hero} hero-section`}>
+      <Swiper
+        spaceBetween={0}
+        slidesPerView={1}
+        pagination={pagination}
+        className={`${styles.wrapper}`}
+        loop
+        autoHeight={true}
+        centeredSlides={true}
+        speed={1000}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        effect="fade"
+      >
+        <SwiperSlide>
+          <div className={styles.slideItem1}>
+            <div className={"wrapper"}>
+              <div className={styles.container}>
+                <div className={styles.center}>
+                  <h1>
+                    Classic shoes for your fashion <span>sense</span>
+                  </h1>
 
-      // autoplay={true}
-      // effect="flip"
-      // effect='cube'
-      // effect="cards"
-      // effect={"coverflow"}
-      // loop
-    >
-      <SwiperSlide>
-        <section className={`hero-header`}>
-          <div className="wrapper">
-            <div className={`container`}>
-              <div className={`center`}>
-                <h1>
-                  Classic shoes for your fashion <span>sense</span>
-                </h1>
+                  <p>
+                    Celebrated delightful an especially increasing instrument
+                    am. Indulgence contrasted sufficient to unpleasant in in
+                  </p>
 
-                <p>
-                  Celebrated delightful an especially increasing instrument am.
-                  Indulgence contrasted sufficient to unpleasant in in
-                </p>
-
-                <div className={`get-started`}>
-                  <button className="btn-primary  btn-medium indicator">
-                    Shop now
-                  </button>
+                  <div className={styles.getStarted}>
+                    <button className="btn-primary  btn-medium indicator">
+                      Shop now
+                    </button>
+                  </div>
                 </div>
               </div>
-              {/* <div className={`rightt`}>
-                <img src={heroImg} alt="" />
-              </div> */}
             </div>
           </div>
-        </section>
-      </SwiperSlide>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className={styles.slideItem2}>
+            <div className={"wrapper"}>
+              <div className={styles.container}>
+                <div className={styles.center}>
+                  <h1>
+                    Runner shoes for a healthy <span>live</span>
+                  </h1>
 
-      <SwiperSlide>
-        <section className={`hero-header`}>
-          <div className="wrapper">
-            <div className={`container`}>
-              <div className={`center`}>
-                <h1>
-                  Runner shoes for your fashion <span>sense</span>
-                </h1>
+                  <p>
+                    Celebrated delightful an especially increasing instrument
+                    am. Indulgence contrasted sufficient to unpleasant in in
+                  </p>
 
-                <p>
-                  Celebrated delightful an especially increasing instrument am.
-                  Indulgence contrasted sufficient to unpleasant in in
-                </p>
-
-                <div className={`get-started`}>
-                  <button className="btn-primary  btn-medium indicator">
-                    Shop now
-                  </button>
+                  <div className={styles.getStarted}>
+                    <button className="btn-primary  btn-medium indicator">
+                      Shop now
+                    </button>
+                  </div>
                 </div>
               </div>
-              {/* <div className={`rightt`}>
-                <img src={heroImg} alt="" />
-              </div> */}
             </div>
           </div>
-        </section>
-      </SwiperSlide>
-    </Swiper>
+        </SwiperSlide>
+      </Swiper>
+      {/* <Accomplishment /> */}
+    </section>
   );
 };
 
