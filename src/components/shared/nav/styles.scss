@@ -93,6 +93,10 @@
         font-family: NotoSans-Bold, sans-serif;
         text-transform: uppercase;
 
+        &.dark {
+          color: var(--black);
+        }
+
         @media (max-width: 1264px) {
           color: var(--head-txt) !important;
           font-size: 16px;
@@ -136,7 +140,7 @@
           display: flex;
           align-items: center;
           font-size: 12px;
-          color: var(--white);
+          color: var(--white); //note this
           // font-family: Proxima-Medium;
 
           @media (max-width: 1275px) {
@@ -168,12 +172,19 @@
           > span {
             margin-right: 7px;
             font-size: 12px;
-            color: var(--white);
+            color: var(--white); //note this
             font-family: NotoSans-Medium, sans-serif;
 
+            .dark {
+              color: var(--black);
+            }
             @media (max-width: 905px) {
               font-size: 12px;
             }
+          }
+
+          .dark {
+            color: var(--black);
           }
         }
 

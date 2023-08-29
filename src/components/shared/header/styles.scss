@@ -69,7 +69,7 @@
       }
       > a {
         width: 102px;
-        background-color: var(--white);
+        background-color: var(--black);
         // background: linear-gradient(to right, #ef8a25, #c833af);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -80,6 +80,10 @@
           font-size: 25px !important;
           font-weight: 900;
         }
+      }
+
+      .dark {
+        background-color: var(--white);
       }
     }
 

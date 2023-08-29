@@ -54,11 +54,19 @@ const Header: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
         </div>
 
         <div className="wrapper">
-          <div className="logo">
-            <Link to="/">
-              BRI<span>GGY</span>
-            </Link>
-          </div>
+          {bgChangee ? (
+            <div className="logo">
+              <Link to="/">
+                BRI<span>GGY</span>
+              </Link>
+            </div>
+          ) : (
+            <div className="logo">
+              <Link to="/" className="dark">
+                BRI<span>GGY</span>
+              </Link>
+            </div>
+          )}
 
           <Nav
             bgChange={bgChangee}

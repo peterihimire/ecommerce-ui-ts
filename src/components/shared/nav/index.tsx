@@ -14,17 +14,18 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 // import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 // import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 // import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { WbSunnyOutlined } from "@mui/icons-material";
+// import { WbSunnyOutlined } from "@mui/icons-material";
 // import useDarkMode from "use-dark-mode-ts";
 
 import "./styles.scss";
 
-const Nav: React.FC<NavProps> = ({ isOpen }: NavProps) => {
+const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
   const location = useLocation();
   console.log(location);
   console.log(location.pathname.split("/")[1]);
   const fullPath = location.pathname;
   let pathUrl = location.pathname.split("/")[1];
+  console.log("This is path-url...", pathUrl);
 
   // const darkMode = useDarkMode(false);
   // console.log(darkMode);
@@ -45,44 +46,47 @@ const Nav: React.FC<NavProps> = ({ isOpen }: NavProps) => {
     <nav className={`nav ${isOpen ? "show" : ""}`} id="navbar">
       <ul className="navLinks">
         <li>
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/" className={`${bgChange ? "dark" : ""}`}>
+            Home
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/collections">Collections</NavLink>
+          <NavLink to="/collections" className={`${bgChange ? "dark" : ""}`}>
+            Collections
+          </NavLink>
         </li>
         <li className={`hasDrop`}>
           <div
-            className={`hasDropBtn`}
+            className={`hasDropBtn ${bgChange ? "dark" : ""}`}
             onClick={() => {
               openAbout(!about);
             }}
           >
-            <span className={`${fullPath.includes("about") ? "active" : ""}`}>
+            <span
+              className={`${fullPath.includes("about") ? "active" : ""} ${
+                bgChange ? "dark" : ""
+              }`}
+            >
               ABOUT
             </span>
-            {about ? (
-              <FontAwesomeIcon
-                icon={faChevronDown}
-                className={`${fullPath.includes("about-us") ? "active" : ""}`}
-              />
-            ) : (
-              <FontAwesomeIcon
-                icon={faChevronDown}
-                className={`${fullPath.includes("about-us") ? "active" : ""}`}
-              />
-            )}
+            <FontAwesomeIcon
+              icon={faChevronDown}
+              className={`${fullPath.includes("about") ? "active" : ""} ${
+                bgChange ? "dark" : ""
+              }`}
+            />
           </div>
 
           <div className={`dropdownMenu dropResources ${about ? "show" : ""}`}>
             <div className={`dropdownContainer`}>
               <ul className={`dropdownWrapper`}>
                 <li>
-                  <NavLink className={`forDrop`} to="/about-us/who-we-are">
+                  <NavLink className={`forDrop`} to="/about/who-we-are">
                     Who we are
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className={`forDrop`} to="/about-us/our-vision">
+                  <NavLink className={`forDrop`} to="/about/our-vision">
                     Our Vision
                   </NavLink>
                 </li>
@@ -91,57 +95,27 @@ const Nav: React.FC<NavProps> = ({ isOpen }: NavProps) => {
           </div>
         </li>
         <li>
-          <NavLink to="/contact">Contact</NavLink>
+          <NavLink to="/contact" className={`${bgChange ? "dark" : ""}`}>
+            Contact
+          </NavLink>
         </li>
       </ul>
 
       <div className={`nav-end`}>
-        {/* <div className={`hasDrop`}>
-          <button
-            className={`hasDropBtn`}
-            onClick={() => {
-              openAbout(!about);
-            }}
-          >
-            <PersonOutline className="toggle-theme-light" />
-          </button>
-
-          <div className={`dropdownMenu dropResources ${about ? "show" : ""}`}>
-            <div className={`dropdownContainer`}>
-              <ul className={`dropdownWrapper`}>
-                <li>
-                  <NavLink className={`forDrop`} to="/login">
-                    Login
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink className={`forDrop`} to="/register">
-                    Register
-                  </NavLink>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div> */}
         <div className={`search-btn`}>
-          <PersonOutline className="toggle-theme-light" />
+          <PersonOutline
+            className={`${bgChange ? "dark" : "toggle-theme-light"}`}
+          />
         </div>
         <div className={`search-btn`}>
-          <Search className="toggle-theme-light" />
+          <Search className={`${bgChange ? "dark" : "toggle-theme-light"}`} />
         </div>
         <div className={`cart-count`}>
           <div>21</div>
-          <ShoppingCartOutlined className="toggle-theme-light" />
+          <ShoppingCartOutlined
+            className={`${bgChange ? "dark" : "toggle-theme-light"}`}
+          />
         </div>
-
-        {/* <div className={`reg-btn`}>
-          <Link href="/register">
-            <button className="btn-primary  btn-medium">register</button>
-          </Link>
-        </div> */}
-        {/* <div>
-          <DarkModeOutlined className="toggle-theme-light" />
-        </div> */}
       </div>
     </nav>
   );
