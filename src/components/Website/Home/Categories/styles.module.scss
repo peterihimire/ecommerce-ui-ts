@@ -1,0 +1,86 @@
+.homeCategories {
+  padding: 70px 0;
+
+  .featuredHead {
+    margin: 0 auto 30px auto;
+
+    h6 {
+      // color: var(--main-color);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+
+    h3 {
+      font-size: 30px;
+      font-weight: 950;
+    }
+
+    p {
+      line-height: 26px;
+      margin: 20px 0px 60px 0;
+    }
+
+    @media screen and (max-width: 900px) {
+      max-width: 630px;
+      margin: 0 auto;
+    }
+  }
+
+  .catCarousel {
+    color: var(--white);
+    display: flex;
+
+    .catItem {
+      margin-right: 20px;
+      flex-basis: 30.3333%;
+      flex-grow: 1;
+      position: relative;
+      height: 270px;
+      // background: var(--gray-bg);
+      border-radius: var(--radius);
+      // border: 1px solid #e7e9eb;
+
+      &:last-of-type {
+        margin-right: 0px;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .catItemInfo {
+        padding: 20px;
+        position: absolute;
+        width: 270px;
+        top: 50%;
+        left: 37%;
+        transform: translate(-50%, -50%); /* 7. Add this. */
+
+        h4 {
+          font-size: 28px;
+          margin-bottom: 15px;
+        }
+
+        p {
+          font-size: 16px;
+          margin-bottom: 15px;
+        }
+      }
+    }
+
+    .cat1 {
+    }
+    .cat3 {
+    }
+    .cat2 {
+    }
+  }
+}
+
+//7060937125
+//0243698367
+//3020171781
+//yinka
+//firstbank

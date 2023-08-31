@@ -441,6 +441,21 @@ button {
   justify-content: center;
 }
 
+.btn-small {
+  width: 120px;
+  height: 45px;
+  max-width: 100%;
+  display: flex;
+  border-radius: 2px;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--main);
+  color: var(--white);
+}
+
 img {
   object-fit: cover;
   display: block;

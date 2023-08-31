@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import "./styles.scss";
+import styles from "./styles.module.scss";
 
 interface Props {
   header?: string;
@@ -18,15 +18,15 @@ const Modal: React.FC<Props> = ({
   ...props
 }) => {
   return ReactDOM.createPortal(
-    <div className={`modal`} onClick={click}>
+    <div className={`${styles.modal}`} onClick={click}>
       <div
-        className={`modalBody ${bodyClass ? bodyClass : ""}`}
+        className={`${styles.modalBody} ${bodyClass ? bodyClass : ""}`}
         {...props}
         onClick={(e) => e.stopPropagation()}
       >
         <h2>{header}</h2>
 
-        <div className={`cancel`}>
+        <div className={`${styles.cancel}`}>
           {/* <button onClick={click}>X</button> */}
         </div>
 

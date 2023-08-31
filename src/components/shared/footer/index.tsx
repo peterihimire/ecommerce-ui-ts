@@ -15,26 +15,31 @@ import { faSquareInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faTwitterSquare } from "@fortawesome/free-brands-svg-icons";
 
-import "./styles.scss";
+import styles from "./styles.module.scss";
 
 const Footer: React.FC = () => {
   return (
-    <footer className={`footer`}>
-      <div className="wrapper">
-        <div className={`first`}>
-          <div className={`logo`}>
+    <footer className={`${styles.footer}`}>
+      <div className={`${styles.wrapper}`}>
+        <div className={`${styles.first}`}>
+          <div className={`${styles.logo}`}>
             <Link to="/">
               BRI<span>GGY</span>
               {/* <img src={logo} alt='' /> */}
             </Link>
           </div>
-
-          <div className={`social-list`}>
+          <div className={`${styles.companyInfo}`}>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
+              tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+            </p>
+          </div>
+          <div className={`${styles.socialList}`}>
             <a
               href="https://www.facebook.com"
               target="_blank"
               rel="noreferrer"
-              className="social-link"
+              className={`${styles.socialLink}`}
             >
               {/* <Facebook width="9px" /> */}
               {/* <FontAwesomeIcon icon={faCoffee} /> */}
@@ -44,7 +49,7 @@ const Footer: React.FC = () => {
               href="https://www.linkedin.com"
               target="_blank"
               rel="noreferrer"
-              className="social-link"
+              className={`${styles.socialLink}`}
             >
               {/* <Youtube width="17px" /> */}
               <FontAwesomeIcon icon={faFacebookSquare} />
@@ -53,7 +58,7 @@ const Footer: React.FC = () => {
               href="https://twitter.com"
               target="_blank"
               rel="noreferrer"
-              className="social-link"
+              className={`${styles.socialLink}`}
             >
               <FontAwesomeIcon icon={faTwitterSquare} />
               {/* <Twitter width="17px" /> */}
@@ -62,37 +67,17 @@ const Footer: React.FC = () => {
               href="https://www.instagram.com/"
               target="_blank"
               rel="noreferrer"
-              className="social-link"
+              className={`${styles.socialLink}`}
             >
               {/* <Instagram width="17px" /> */}
               <FontAwesomeIcon icon={faLinkedin} />
             </a>
           </div>
-
-          {/* <div className={`newsletter`}>
-            <p>
-              Subscribe to our weekly newsletter, by entering your email below.
-            </p>
-            <form className={`form`}>
-              <div className={`formGroup`}>
-                <Input
-                  type="email"
-                  id="email"
-                  // required
-                  name="email"
-                  placeholder="Enter your email..."
-                  src="/images/send-icon.svg"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-            </form>
-          </div> */}
         </div>
-        <div className={`second`}>
-          <div className={`quick-links-wrapper`}>
+        <div className={`${styles.second}`}>
+          <div className={`${styles.quickLinksWrapper}`}>
             <h3>Company</h3>
-            <ul className={`quick-links`}>
+            <ul className={`${styles.quickLinks}`}>
               <li>
                 <Link to="/">Home</Link>
               </li>
@@ -105,9 +90,9 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          <div className={`location-wrapper`}>
+          <div className={`${styles.locationWrapper}`}>
             <h3>Legal</h3>
-            <ul className={`quick-links`}>
+            <ul className={`${styles.quickLinks}`}>
               <li>
                 <Link to="/">Privacy Policy</Link>
               </li>
@@ -117,9 +102,9 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          <div className={`location-wrapper`}>
+          <div className={`${styles.locationWrapper}`}>
             <h3>Platform</h3>
-            <ul className={`quick-links`}>
+            <ul className={`${styles.quickLinks}`}>
               <li>
                 <Link to="/products-services">Help Center</Link>
               </li>
@@ -133,12 +118,12 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className={`outro `}>
-        <div className={` wrapper`}>
+      <div className={`${styles.outro} `}>
+        <div className={` ${styles.wrapper}`}>
           <div className="copyright">
             <p>Copyright © 2023 — Benkih Limited. All Rights Reserved.</p>
           </div>
-          <div className={`policy-terms`}>
+          <div className={`${styles.policyTerms}`}>
             <div className="policy">
               <Link to="/privacy-policy">— Privacy Policy</Link>
             </div>

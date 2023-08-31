@@ -4,7 +4,7 @@ import Nav from "../nav";
 import { useLocation } from "react-router-dom";
 import { HeaderProps } from "../../../types/HeaderProps.type";
 // import { ReactComponent as Logo } from "../../../assets/images/logo.svg";
-import "./styles.scss";
+import styles from "./styles.module.scss";
 
 const Header: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
   const router = useLocation();
@@ -43,26 +43,28 @@ const Header: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
   }, []);
 
   return (
-    <header className={`header   ${bgChangee || isOpen ? "bgHeader" : ""}`}>
+    <header
+      className={`${styles.header}   ${bgChangee || isOpen ? styles.bgHeader : ""}`}
+    >
       <div>
-        <div className="first-wrapper-div">
-          <div className="first-wrapper">
-            <div className="items">This is the first header</div>
-            <div className="items">This is the first header</div>
-            <div className="items">This is the first header</div>
+        <div className={`${styles.firstWrapperDiv}`}>
+          <div className={`${styles.firstWrapper}`}>
+            <div className={`${styles.items}`}>This is the first header</div>
+            <div className={`${styles.items}`}>This is the first header</div>
+            <div className={`${styles.items}`}>This is the first header</div>
           </div>
         </div>
 
-        <div className="wrapper">
+        <div className={`${styles.wrapper}`}>
           {bgChangee ? (
-            <div className="logo">
+            <div className={`${styles.logo}`}>
               <Link to="/">
                 BRI<span>GGY</span>
               </Link>
             </div>
           ) : (
-            <div className="logo">
-              <Link to="/" className="dark">
+            <div className={`${styles.logo}`}>
+              <Link to="/" className={`${styles.dark}`}>
                 BRI<span>GGY</span>
               </Link>
             </div>
@@ -75,7 +77,7 @@ const Header: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
             clicked={(payload: boolean) => dropHandler(payload)}
           />
 
-          <div className="hamburgerBtn">
+          <div className={`${styles.hamburgerBtn}`}>
             <button
               type="button"
               aria-label="navigation button"

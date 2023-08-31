@@ -1,18 +1,20 @@
 import React from "react";
 import HomeHero from "./Hero";
-import HomeCategories from "./HomeCategories";
-// import { Helmet } from "react-helmet-async";
+import Categories from "./Categories";
+import Popular from "./Popular";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const Home: React.FC = () => {
   return (
-    <div className={`homepage`}>
-      {/* <Helmet>
+    <HelmetProvider>
+      <Helmet>
         <title>Home - Benkih</title>
-      </Helmet> */}
+      </Helmet>
 
       <HomeHero />
-      <HomeCategories />
-    </div>
+      <Categories />
+      <Popular />
+    </HelmetProvider>
   );
 };
 

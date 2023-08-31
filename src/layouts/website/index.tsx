@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import Footer from "../../components/shared/footer";
 import { Outlet } from "react-router-dom";
 
-import "./styles.scss";
+import styles from "./styles.module.scss";
 
 const WebsiteLayout: React.FC = () => {
   const router = useLocation();
@@ -19,7 +19,7 @@ const WebsiteLayout: React.FC = () => {
   }, [router.pathname]);
 
   return (
-    <div className="landing-layout">
+    <div className={`${styles.landingLayout}`}>
       <Backdrop
         open={open}
         clicked={() => {
@@ -28,7 +28,7 @@ const WebsiteLayout: React.FC = () => {
           document.body.classList.remove("_fixed");
         }}
       />
- 
+
       <Header
         isOpen={open}
         clicked={() => {
@@ -38,7 +38,7 @@ const WebsiteLayout: React.FC = () => {
         }}
       />
 
-      <main className="main">
+      <main className={`${styles.main}`}>
         <Outlet />
       </main>
 

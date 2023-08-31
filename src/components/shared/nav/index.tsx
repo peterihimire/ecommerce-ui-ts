@@ -16,8 +16,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 // import { faSearch } from "@fortawesome/free-solid-svg-icons";
 // import { WbSunnyOutlined } from "@mui/icons-material";
 // import useDarkMode from "use-dark-mode-ts";
-
-import "./styles.scss";
+import styles from "./styles.module.scss";
 
 const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
   const location = useLocation();
@@ -43,50 +42,68 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
   }, [isOpen]);
 
   return (
-    <nav className={`nav ${isOpen ? "show" : ""}`} id="navbar">
-      <ul className="navLinks">
+    <nav className={`${styles.nav} ${isOpen ? styles.show : ""}`} id="navbar">
+      <ul className={`${styles.navLinks}`}>
         <li>
-          <NavLink to="/" className={`${bgChange ? "dark" : ""}`}>
+          <NavLink
+            to="/"
+            className={`${bgChange ? styles.dark : ""} ${
+              fullPath === "/" ? styles.active : ""
+            }`}
+          >
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink to="/collections" className={`${bgChange ? "dark" : ""}`}>
+          <NavLink
+            to="/collections"
+            className={`${bgChange ? styles.dark : ""}`}
+          >
             Collections
           </NavLink>
         </li>
-        <li className={`hasDrop`}>
+        <li className={`${styles.hasDrop}`}>
           <div
-            className={`hasDropBtn ${bgChange ? "dark" : ""}`}
+            className={`${styles.hasDropBtn}`}
             onClick={() => {
               openAbout(!about);
             }}
           >
             <span
-              className={`${fullPath.includes("about") ? "active" : ""} ${
-                bgChange ? "dark" : ""
+              className={`${fullPath.includes("about" ? styles.active : "")} ${
+                bgChange ? styles.dark : ""
               }`}
             >
               ABOUT
             </span>
             <FontAwesomeIcon
               icon={faChevronDown}
-              className={`${fullPath.includes("about") ? "active" : ""} ${
-                bgChange ? "dark" : ""
+              className={`${fullPath.includes("about" ? styles.active : "")} ${
+                bgChange ? styles.dark : ""
               }`}
             />
           </div>
 
-          <div className={`dropdownMenu dropResources ${about ? "show" : ""}`}>
-            <div className={`dropdownContainer`}>
-              <ul className={`dropdownWrapper`}>
+          <div
+            className={`${styles.dropdownMenu} ${styles.dropResources} ${
+              about ? styles.show : ""
+            }`}
+          >
+            <div className={`${styles.dropdownContainer}`}>
+              <ul className={`${styles.dropdownWrapper}`}>
                 <li>
-                  <NavLink className={`forDrop`} to="/about/who-we-are">
+                  <NavLink
+                    className={`${styles.forDrop}`}
+                    to="/about/who-we-are"
+                  >
                     Who we are
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink className={`forDrop`} to="/about/our-vision">
+                  <NavLink
+                    className={`${styles.forDrop}`}
+                    to="/about/our-vision"
+                  >
                     Our Vision
                   </NavLink>
                 </li>
@@ -95,25 +112,33 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
           </div>
         </li>
         <li>
-          <NavLink to="/contact" className={`${bgChange ? "dark" : ""}`}>
+          <NavLink to="/contact" className={`${bgChange ? styles.dark : ""}`}>
             Contact
           </NavLink>
         </li>
       </ul>
 
-      <div className={`nav-end`}>
-        <div className={`search-btn`}>
+      <div className={`${styles.navEnd}`}>
+        <div className={`${styles.searchBtn}`}>
           <PersonOutline
-            className={`${bgChange ? "dark" : "toggle-theme-light"}`}
+            className={` iconStyle  ${
+              bgChange ? styles.dark : styles.iconStyleLight
+            }`}
           />
         </div>
-        <div className={`search-btn`}>
-          <Search className={`${bgChange ? "dark" : "toggle-theme-light"}`} />
+        <div className={`${styles.searchBtn}`}>
+          <Search
+            className={` iconStyle  ${
+              bgChange ? styles.dark : styles.iconStyleLight
+            }`}
+          />
         </div>
-        <div className={`cart-count`}>
+        <div className={`${styles.cartCount}`}>
           <div>21</div>
           <ShoppingCartOutlined
-            className={`${bgChange ? "dark" : "toggle-theme-light"}`}
+            className={` iconStyle  ${
+              bgChange ? styles.dark : styles.iconStyleLight
+            }`}
           />
         </div>
       </div>

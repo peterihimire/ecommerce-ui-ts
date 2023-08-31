@@ -4,7 +4,8 @@
   position: relative;
   // background: url(../../../../assets/images/css-bg.png);
   // background-color: var(--gray-bg);
-  // background-color: #fdfbef;
+  background-color: #b5a85e;
+  overflow: hidden;
 
   @keyframes bounce {
     0% {
@@ -32,289 +33,314 @@
   }
 
   .wrapper {
-    .slideItem1 {
-      padding: 150px 0 150px 0;
+    .sliderOne,
+    .sliderTwo,
+    .sliderThree,
+    .sliderFour {
       width: 100%;
-      background-size: cover;
-      position: relative;
-      background: linear-gradient(
-          to right,
-          rgba(47, 49, 62, 0.502),
-          rgba(47, 49, 62, 0.502)
-        ),
-        url("../../../../assets/images/runner-sneaker-unsplash.jpeg") center/cover
-          no-repeat;
+      // height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation: slider-one 12s linear infinite;
 
-      .indicator {
-        animation: bounce;
-        animation-duration: 2s;
-        animation-iteration-count: infinite;
-      }
+      .sliderOneImg,
+      .sliderTwoImg,
+      .sliderThreeImg,
+      .sliderFourImg {
+        width: 100%;
+        height: 737px;
+        // height: 100%;
 
-      .container {
-        display: flex;
-        // position: relative !important;
-        // width: 97.5vw !important;
-        // left: 0;
-        // top: 0;
-        // right: 0;
-        height: 100%;
-        align-items: center;
-        justify-content: center;
+        background: linear-gradient(
+            to right,
+            rgba(8, 8, 8, 0.502),
+            rgba(8, 8, 8, 0.502)
+          ),
+          url("../../../../assets/images/emily-pottiger-unsplash.jpeg");
 
-        @media screen and (max-width: 1200px) {
-          flex-direction: column;
-          width: 100vw;
-          transform: translateX(-50%);
-          left: 50%;
-          right: 50%;
-          padding-bottom: 0px;
-        }
-
-        .center {
-          // width: 45%;
-          padding-top: 100px;
-          color: var(--white);
-          max-width: 700px;
-          // position: relative;
-
-          h1 {
-            font-style: normal;
-            // line-height: 42px;
-            // max-width: 700px;
-            font-weight: 700;
-            font-size: 60px;
-            letter-spacing: 1px;
-            // margin-bottom: 30px;
-            // margin-top: -5px;
-            text-align: center;
-            justify-content: center;
-
-            span {
-              background: var(--main);
-              // background: linear-gradient(to right, #ef8a25, #c833af);
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-            }
-
-            @media (max-width: 1387px) {
-              font-size: 60px;
-              font-style: normal;
-              line-height: 72px;
-              // max-width: 700px;
-              letter-spacing: 1px;
-              font-weight: 700;
-            }
-
-            @media screen and (max-width: 1200px) {
-              // max-width: 750px;
-              font-size: 60px;
-              font-style: normal;
-              line-height: 72px;
-              font-weight: 700;
-            }
-
-            @media screen and (max-width: 900px) {
-              // max-width: 650px;
-              font-size: 60px;
-              font-style: normal;
-              line-height: 62px;
-              font-weight: 700;
-            }
-
-            @media screen and (max-width: 700px) {
-              // max-width: 320px;
-              font-size: 40px;
-              font-style: normal;
-              line-height: 50px;
-              font-weight: 700;
-            }
-          }
-
-          p {
-            // max-width: 500px;
-            font-style: normal;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 26px;
-            color: var(--text-sec);
-            letter-spacing: 1px;
-            margin: 20px 0px;
-            opacity: 0.7;
-            text-align: center;
-            justify-content: center;
-          }
-
-          @media screen and (max-width: 1387px) {
-            width: 55%;
-          }
-          @media screen and (max-width: 1200px) {
-            padding-bottom: 0px;
-            padding-top: 0px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            width: 100%;
-          }
-
-          .getStarted {
-            margin-top: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            button {
-              margin-right: 20px;
-
-              &:last-of-type {
-                margin-right: 0px;
-              }
-            }
-          }
-        }
+        // background-image: url("../../../../assets/images/runner-sneaker-unsplash.jpeg");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        animation: zoom-out 12s linear infinite;
+        -webkit-animation: zoom-out 12s linear infinite;
+        -moz-animation: zoom-out 12s linear infinite;
       }
     }
 
-    .slideItem2 {
-      padding: 150px 0 150px 0;
-      width: 100%;
-      background-size: cover;
-      position: relative;
-      background: linear-gradient(
-          to right,
-          rgba(47, 49, 62, 0.502),
-          rgba(47, 49, 62, 0.502)
-        ),
-        url("../../../../assets/images/k-swiss-unsplash.jpeg") center/cover
-          no-repeat;
+    .sliderTwo {
+      animation: slider-two 12s linear infinite;
 
-      .indicator {
-        animation: bounce;
-        animation-duration: 2s;
-        animation-iteration-count: infinite;
+      .sliderTwoImg {
+        // background-image: url("../../../../assets/images/k-swiss-unsplash.jpeg");
+        background: linear-gradient(
+            to right,
+            rgba(8, 8, 8, 0.502),
+            rgba(8, 8, 8, 0.502)
+          ),
+          url("../../../../assets/images/fachry-zella-unsplash.jpeg")
+            center/cover no-repeat;
+      }
+    }
+
+    .sliderThree {
+      animation: slider-three 12s linear infinite;
+
+      .sliderThreeImg {
+        // background-image: url("../../../../assets/images/red-nike-unsplash.jpeg");
+        background: linear-gradient(
+            to right,
+            rgba(8, 8, 8, 0.502),
+            rgba(8, 8, 8, 0.502)
+          ),
+          url("../../../../assets/images/luxury-fashion-woman-accessories-golden-heeled-shoes-little-evening-purse-elegant-style-vintage-style-sandals-footwear.jpeg")
+            center/cover no-repeat;
+      }
+    }
+
+    .sliderFour {
+      animation: slider-four 12s linear infinite;
+
+      .sliderFourImg {
+        // background-image: url("../../../../assets/images/cat3.webp");
+        background: linear-gradient(
+            to right,
+            rgba(8, 8, 8, 0.502),
+            rgba(8, 8, 8, 0.502)
+          ),
+          url("../../../../assets/images/noah-smith-unsplash.jpeg") center/cover
+            no-repeat;
+      }
+    }
+
+    @keyframes zoom-out {
+      100% {
+        width: 110%;
+      }
+    }
+
+    @keyframes slider-one {
+      0% {
+        visibility: visible;
       }
 
-      .container {
+      25% {
+        visibility: hidden;
+      }
+
+      50% {
+        visibility: hidden;
+      }
+
+      75% {
+        visibility: hidden;
+      }
+
+      100% {
+        visibility: visible;
+      }
+    }
+
+    @keyframes slider-two {
+      0% {
+        visibility: hidden;
+      }
+
+      25% {
+        visibility: hidden;
+      }
+
+      50% {
+        visibility: visible;
+      }
+
+      75% {
+        visibility: hidden;
+      }
+
+      100% {
+        visibility: hidden;
+      }
+    }
+
+    @keyframes slider-three {
+      0% {
+        visibility: hidden;
+      }
+
+      25% {
+        visibility: hidden;
+      }
+
+      50% {
+        visibility: hidden;
+      }
+
+      75% {
+        visibility: visible;
+      }
+
+      100% {
+        visibility: hidden;
+      }
+    }
+
+    @keyframes slider-four {
+      0% {
+        visibility: hidden;
+      }
+
+      25% {
+        visibility: hidden;
+      }
+
+      50% {
+        visibility: hidden;
+      }
+
+      75% {
+        visibility: hidden;
+      }
+
+      100% {
+        visibility: visible;
+      }
+    }
+  }
+
+  @media only screen and (min-width: 992px) {
+    height: 737px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    height: 737px;
+  }
+
+  @media only screen and (max-width: 728px) {
+    height: 437px;
+  }
+
+  .floatingInfo {
+    top: 250px;
+    // width: 1170px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    // left: 50%;
+    margin: auto 0;
+    // margin-left: -585px;
+    // text-align: center;
+
+    .center {
+      color: var(--white);
+      max-width: 700px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+
+      h1 {
+        font-style: normal;
+        // line-height: 42px;
+        // max-width: 700px;
+        // opacity: 0.9;
+        font-weight: 700;
+        font-size: 60px;
+        letter-spacing: 1px;
+        // margin-bottom: 30px;
+        // margin-top: -5px;
+        text-align: center;
+        justify-content: center;
+        // position: absolute;
+        // left: 50%;
+        // transform: translateX(-50%);
+
+        span {
+          background: var(--main);
+          // background: linear-gradient(to right, #ef8a25, #c833af);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        @media (max-width: 1387px) {
+          font-size: 60px;
+          font-style: normal;
+          line-height: 72px;
+          // max-width: 700px;
+          letter-spacing: 1px;
+          font-weight: 700;
+        }
+
+        @media screen and (max-width: 1200px) {
+          // max-width: 750px;
+          font-size: 60px;
+          font-style: normal;
+          line-height: 72px;
+          font-weight: 700;
+        }
+
+        @media screen and (max-width: 900px) {
+          // max-width: 650px;
+          font-size: 60px;
+          font-style: normal;
+          line-height: 62px;
+          font-weight: 700;
+        }
+
+        @media screen and (max-width: 700px) {
+          // max-width: 320px;
+          font-size: 40px;
+          font-style: normal;
+          line-height: 50px;
+          font-weight: 700;
+        }
+      }
+
+      p {
+        // max-width: 500px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 26px;
+        color: var(--text-sec);
+        letter-spacing: 1px;
+        margin: 20px 0px;
+        opacity: 0.9;
+        text-align: center;
+        justify-content: center;
+      }
+
+      // @media screen and (max-width: 1387px) {
+      //   width: 55%;
+      // }
+
+      @media screen and (max-width: 1200px) {
+        padding-bottom: 0px;
+        padding-top: 0px;
         display: flex;
-        // position: relative !important;
-        // width: 97.5vw !important;
-        // left: 0;
-        // top: 0;
-        // right: 0;
-        height: 100%;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+      }
+
+      .getStarted {
+        margin-top: 40px;
+        display: flex;
         align-items: center;
         justify-content: center;
 
-        @media screen and (max-width: 1200px) {
-          flex-direction: column;
-          width: 100vw;
-          transform: translateX(-50%);
-          left: 50%;
-          right: 50%;
-          padding-bottom: 0px;
+        .indicator {
+          animation: bounce;
+          animation-duration: 2s;
+          animation-iteration-count: infinite;
         }
 
-        .center {
-          // width: 45%;
-          padding-top: 100px;
-          color: var(--white);
-          max-width: 700px;
-          // position: relative;
+        button {
+          margin-right: 20px;
 
-          h1 {
-            font-style: normal;
-            // line-height: 42px;
-            // max-width: 700px;
-            font-weight: 700;
-            font-size: 60px;
-            letter-spacing: 1px;
-            // margin-bottom: 30px;
-            // margin-top: -5px;
-            text-align: center;
-            justify-content: center;
-
-            span {
-              background: var(--main);
-              // background: linear-gradient(to right, #ef8a25, #c833af);
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-            }
-
-            @media (max-width: 1387px) {
-              font-size: 60px;
-              font-style: normal;
-              line-height: 72px;
-              // max-width: 700px;
-              letter-spacing: 1px;
-              font-weight: 700;
-            }
-
-            @media screen and (max-width: 1200px) {
-              // max-width: 750px;
-              font-size: 60px;
-              font-style: normal;
-              line-height: 72px;
-              font-weight: 700;
-            }
-
-            @media screen and (max-width: 900px) {
-              // max-width: 650px;
-              font-size: 60px;
-              font-style: normal;
-              line-height: 62px;
-              font-weight: 700;
-            }
-
-            @media screen and (max-width: 700px) {
-              // max-width: 320px;
-              font-size: 40px;
-              font-style: normal;
-              line-height: 50px;
-              font-weight: 700;
-            }
-          }
-
-          p {
-            // max-width: 500px;
-            font-style: normal;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 26px;
-            color: var(--text-sec);
-            letter-spacing: 1px;
-            margin: 20px 0px;
-            opacity: 0.7;
-            text-align: center;
-            justify-content: center;
-          }
-
-          @media screen and (max-width: 1387px) {
-            width: 55%;
-          }
-          @media screen and (max-width: 1200px) {
-            padding-bottom: 0px;
-            padding-top: 0px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            width: 100%;
-          }
-
-          .getStarted {
-            margin-top: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            button {
-              margin-right: 20px;
-
-              &:last-of-type {
-                margin-right: 0px;
-              }
-            }
+          &:last-of-type {
+            margin-right: 0px;
           }
         }
       }
