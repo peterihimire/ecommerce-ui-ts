@@ -1,0 +1,152 @@
+.productCard {
+  background: var(--product-light);
+  box-shadow: var(--box-shadow);
+  // margin: auto 0;
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+  // box-shadow: 0.1rem 0.1rem 0.8rem 0.1rem rgb(199 197 197 / 85%);
+  // box-shadow: 0.1rem 0.1rem 0.8rem 0.1rem rgba(199, 197, 197, 0.849);
+  // border: 1px solid #e7e9eb;
+  border-radius: 2px;
+  // padding: 30px;
+  position: relative;
+  height: 450px;
+
+  &::after {
+    content: "";
+    /* Set the element as full-size */
+    // position: absolute;
+    // left: 0;
+    // top: 0;
+    width: 100%;
+    height: 100%;
+    /* Set bg and hide the element + animation */
+    background-color: var(--black);
+    opacity: 0;
+    transition: all 0.5s ease;
+    border-radius: var(--radius);
+  }
+
+  // .circleDiv {
+  //   padding: 50px;
+  //   background-color: rgb(249, 249, 249);
+  //   border-radius: 50%;
+  //   height: 220px;
+  //   width: 220px;
+  //   position: absolute;
+  //   text-align: center;
+  //   top: 50%;
+  //   left: 50%;
+  //   transform: translate(-50%, -50%); /* 7. Add this. */
+  // }
+
+  .productDiv {
+    margin-bottom: 30px;
+    img {
+      height: 250px;
+      width: 250px;
+      // position: absolute;
+      text-align: center;
+      // top: 30%;
+      // left: 50%;
+      // transform: translate(-50%, -50%) scale(1); /* 7. Add this. */
+      transition: all 0.5s ease;
+    }
+  }
+
+  .titlePrice {
+    // position: absolute;
+    text-align: center;
+    // bottom: 60px;
+    // left: 50%;
+    // transform: translateX(-50%);
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 20px;
+
+      span {
+        color: grey;
+        margin-left: 5px;
+        // font-size: smaller;
+        text-decoration: line-through;
+      }
+    }
+
+    .btnDiv {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto 0;
+    }
+  }
+
+  .productActions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 7. Add this. */
+    opacity: 0;
+    transition: all 0.5s ease;
+    z-index: 2;
+
+    // transition: 300ms ease-out;
+    // transform: translateY(20px);
+
+    .productAct {
+      border-radius: 50%;
+      background-color: var(--white);
+      height: 40px;
+      width: 40px;
+      position: relative;
+      margin-right: 10px;
+      transition: all 0.5s ease;
+      cursor: pointer;
+
+      &:last-of-type {
+        margin-right: 0px;
+      }
+
+      .shop-icon {
+        // font-size: 17px;
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* 7. Add this. */
+      }
+
+      &:hover {
+        transform: scale(1.1);
+        transition: all 0.5s ease;
+      }
+    }
+  }
+
+  &:hover .productActions {
+    opacity: 1;
+    transition: all 0.5s ease;
+  }
+  &:hover::after {
+    transition: all 0.5s ease;
+    /* Show the overlay on hover */
+    opacity: 0.01;
+    // backdrop-filter: blur(10px);
+    // -webkit-backdrop-filter: blur(10px);
+  }
+  &:hover .productDiv {
+    img {
+      transition: all 0.5s ease;
+      // transform: translate(-50%, -50%) scale(1.01);
+    }
+  }
+}

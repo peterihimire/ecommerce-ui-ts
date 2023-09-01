@@ -1,6 +1,6 @@
 import React from "react";
 import pix1 from "../../../../assets/images/cat1.webp";
-import pix2 from "../../../../assets/images/cat2.webp";
+import pix2 from "../../../../assets/images/loafers.webp";
 import pix3 from "../../../../assets/images/cat3.webp";
 
 import styles from "./styles.module.scss";
@@ -16,7 +16,7 @@ const Categories: React.FC = () => {
           <div className={`${styles.catItem} cat1`}>
             <img src={pix2} alt="" />
             <div className={`${styles.catItemInfo}`}>
-              <h4>Men Shoes</h4>
+              <h4>Men's Shoes</h4>
               <p>
                 This is the category section for men shoes, immerse yourselve in
                 house.
@@ -27,7 +27,7 @@ const Categories: React.FC = () => {
           <div className={`${styles.catItem} cat1`}>
             <img src={pix2} alt="" />
             <div className={`${styles.catItemInfo}`}>
-              <h4>Men Shoes</h4>
+              <h4>Women's Shoes</h4>
               <p>
                 This is the category section for men shoes, immerse yourselve in
                 house.
@@ -38,7 +38,7 @@ const Categories: React.FC = () => {
           <div className={`${styles.catItem} cat1`}>
             <img src={pix2} alt="" />
             <div className={`${styles.catItemInfo}`}>
-              <h4>Men Shoes</h4>
+              <h4>Kid's Shoes</h4>
               <p>
                 This is the category section for men shoes, immerse yourselve in
                 house.

@@ -445,11 +445,11 @@ button {
   width: 120px;
   height: 45px;
   max-width: 100%;
-  display: flex;
+  // display: flex;
   border-radius: 2px;
-  align-items: center;
-  justify-content: center;
-  text-transform: uppercase;
+  // align-items: center;
+  // justify-content: center;
+  // text-transform: capitalize;
   font-size: 12px;
   font-weight: 700;
   background: var(--main);
