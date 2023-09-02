@@ -1,8 +1,13 @@
 import React from "react";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+
 import HomeHero from "./Hero";
 import Categories from "./Categories";
 import Popular from "./Popular";
-import { Helmet, HelmetProvider } from "react-helmet-async";
+import Explore from "./Explore";
+import Latest from "./Latest";
+import Choose from "./Choose";
+import Sale from "./Sale";
 
 const Home: React.FC = () => {
   return (
@@ -14,6 +19,10 @@ const Home: React.FC = () => {
       <HomeHero />
       <Categories />
       <Popular />
+      <Explore />
+      <Latest />
+      <Choose />
+      <Sale />
     </HelmetProvider>
   );
 };

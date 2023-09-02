@@ -20,6 +20,7 @@ const Popular: React.FC = () => {
           {products.slice(0, 4).map((product) => {
             return (
               <ProductCard
+                key={product.id}
                 id={product.id}
                 title={product.title}
                 price={product.price}

@@ -50,10 +50,13 @@ ProductCardProps) => {
         </ul>
         <div className={`${styles.titlePrice}`}>
           <p>{title}</p>
-          <p>
-            ${price}
-            <span>${price}</span>
-          </p>
+          <div className={`${styles.price}`}>
+            <p>${price}</p>
+            <span>
+              <p>${price}</p>
+            </span>
+          </div>
+
           <div className={`${styles.btnDiv}`}>
             <button className="btn btn-small btn-block">Add to cart</button>
           </div>
