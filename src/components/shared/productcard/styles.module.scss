@@ -14,6 +14,27 @@
   position: relative;
   height: 450px;
 
+  .sale {
+    position: absolute;
+    right: 0;
+
+    div {
+      position: absolute;
+      background-color: var(--main);
+      height: 45px;
+      width: 45px;
+      border-radius: 50%;
+      top: -10px;
+      right: -10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 12px;
+      font-weight: bolder;
+    }
+  }
+
   &::after {
     content: "";
     /* Set the element as full-size */
@@ -28,19 +49,6 @@
     transition: all 0.5s ease;
     border-radius: var(--radius);
   }
-
-  // .circleDiv {
-  //   padding: 50px;
-  //   background-color: rgb(249, 249, 249);
-  //   border-radius: 50%;
-  //   height: 220px;
-  //   width: 220px;
-  //   position: absolute;
-  //   text-align: center;
-  //   top: 50%;
-  //   left: 50%;
-  //   transform: translate(-50%, -50%); /* 7. Add this. */
-  // }
 
   .productDiv {
     margin-bottom: 30px;
@@ -161,6 +169,7 @@
   &:hover .productDiv {
     img {
       transition: all 0.5s ease;
+      // box-shadow: ;
       // transform: translate(-50%, -50%) scale(1.01);
     }
   }

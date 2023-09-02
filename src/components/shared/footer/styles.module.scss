@@ -13,7 +13,7 @@
     // width: 67%;
     // background-color: var(--black);
     // color: var(--white);
-    padding: 50px 0px;
+    padding: 100px 0px;
     width: 75%;
     margin: 0 auto;
     display: grid;
@@ -132,18 +132,24 @@
       }
 
       .companyInfo {
-        width: 300px;
+        width: 380px;
         height: fit-content;
         margin: 20px 0px;
+
+        p {
+          font-size: 16px;
+          line-height: 25px;
+        }
       }
 
       .socialList {
         display: flex;
         align-items: center;
+        
         .socialLink {
           margin-right: 15px;
           color: var(--white);
-          font-size: 20px;
+          font-size: 16px;
 
           &:last-of-type {
             margin-right: 0;

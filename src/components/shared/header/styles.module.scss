@@ -1,6 +1,6 @@
 .header {
   width: 100%;
-  height: 90px;
+  height: 110px;
   // height: 150px;
   position: fixed;
   top: 0;
@@ -34,13 +34,31 @@
       align-items: center;
       height: 100%;
       max-width: var(--wrapper-max-width);
+
+      .items {
+        font-size: 14px;
+      }
+
+      .socialList {
+        display: flex;
+        align-items: center;
+        .socialLink {
+          margin-right: 15px;
+          color: var(--black);
+          font-size: 16px;
+
+          &:last-of-type {
+            margin-right: 0;
+          }
+        }
+      }
     }
   }
 
   .wrapper {
     // width: 67%;
     width: 75%;
-    margin: 10px auto 0px auto;
+    margin: 20px auto 0px auto;
     // padding: 20px 0px;
     display: flex;
     align-items: center;

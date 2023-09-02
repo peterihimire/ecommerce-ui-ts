@@ -3,7 +3,12 @@ import { Link } from "react-router-dom";
 import Nav from "../nav";
 import { useLocation } from "react-router-dom";
 import { HeaderProps } from "../../../types/HeaderProps.type";
-// import { ReactComponent as Logo } from "../../../assets/images/logo.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
+import { faSquareInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faTwitterSquare } from "@fortawesome/free-brands-svg-icons";
+
 import styles from "./styles.module.scss";
 
 const Header: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
@@ -44,14 +49,55 @@ const Header: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
 
   return (
     <header
-      className={`${styles.header}   ${bgChangee || isOpen ? styles.bgHeader : ""}`}
+      className={`${styles.header}   ${
+        bgChangee || isOpen ? styles.bgHeader : ""
+      }`}
     >
       <div>
         <div className={`${styles.firstWrapperDiv}`}>
           <div className={`${styles.firstWrapper}`}>
-            <div className={`${styles.items}`}>This is the first header</div>
-            <div className={`${styles.items}`}>This is the first header</div>
-            <div className={`${styles.items}`}>This is the first header</div>
+            <div className={`${styles.items}`}>+(234)80-3049-6069</div>
+            <div className={`${styles.items}`}>
+              Express delivery and free returns within 30 days
+            </div>
+            <div className={`${styles.items} ${styles.socialList}`}>
+              {" "}
+              <a
+                href="https://www.facebook.com"
+                target="_blank"
+                rel="noreferrer"
+                className={`${styles.socialLink}`}
+              >
+                <FontAwesomeIcon icon={faSquareInstagram} />
+              </a>
+              <a
+                href="https://www.linkedin.com"
+                target="_blank"
+                rel="noreferrer"
+                className={`${styles.socialLink}`}
+              >
+                {/* <Youtube width="17px" /> */}
+                <FontAwesomeIcon icon={faFacebookSquare} />
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noreferrer"
+                className={`${styles.socialLink}`}
+              >
+                <FontAwesomeIcon icon={faTwitterSquare} />
+                {/* <Twitter width="17px" /> */}
+              </a>
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noreferrer"
+                className={`${styles.socialLink}`}
+              >
+                {/* <Instagram width="17px" /> */}
+                <FontAwesomeIcon icon={faLinkedin} />
+              </a>
+            </div>
           </div>
         </div>
 
