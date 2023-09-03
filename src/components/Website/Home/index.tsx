@@ -8,6 +8,7 @@ import Explore from "./Explore";
 import Latest from "./Latest";
 import Choose from "./Choose";
 import Sale from "./Sale";
+import Flash from "./Flash";
 
 const Home: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ const Home: React.FC = () => {
       <Explore />
       <Latest />
       <Choose />
+      <Flash />
       <Sale />
     </HelmetProvider>
   );
