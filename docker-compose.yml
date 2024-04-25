@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: ecommerce-ftend-ui
+    image: ecommerce-ftend-app
+    build:
+      context: .
+      target: production
