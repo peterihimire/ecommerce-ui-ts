@@ -14,7 +14,7 @@ const Categories: React.FC = () => {
         </div> */}
         <div className={`${styles.catCarousel}`}>
           <div className={`${styles.catItem} cat1`}>
-            <img src={pix2} alt="" />
+            <img src={pix1} alt="" />
             <div className={`${styles.catItemInfo}`}>
               <h4>Men's Shoes</h4>
               <p>
@@ -36,7 +36,7 @@ const Categories: React.FC = () => {
             </div>
           </div>
           <div className={`${styles.catItem} cat1`}>
-            <img src={pix2} alt="" />
+            <img src={pix3} alt="" />
             <div className={`${styles.catItemInfo}`}>
               <h4>Kid's Shoes</h4>
               <p>

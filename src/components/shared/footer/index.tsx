@@ -1,25 +1,73 @@
 import React from "react";
-// import logo from "../../../assets/images/logo.svg";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
+import { faSquareInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faDropbox } from "@fortawesome/free-brands-svg-icons";
+import { faShopify } from "@fortawesome/free-brands-svg-icons";
+import { faWpexplorer } from "@fortawesome/free-brands-svg-icons";
+import { faKeybase } from "@fortawesome/free-brands-svg-icons";
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faTwitterSquare } from "@fortawesome/free-brands-svg-icons";
+
+// import logo from "../../../assets/images/logo.svg";
 // import { ReactComponent as Facebook } from "../../../assets/images/facebook.svg";
 // import { ReactComponent as Instagram } from "../../../assets/images/instagram.svg";
 // import { ReactComponent as Youtube } from "../../../assets/images/youtube.svg";
 // import { ReactComponent as Twitter } from "../../../assets/images/twitter.svg";
 // import Input from "../footerInput";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
-import { faSquareInstagram } from "@fortawesome/free-brands-svg-icons";
-// import { faCoffee } from "@fortawesome/free-solid-svg-icons";
-// import { faYoutubeSquare } from "@fortawesome/free-brands-svg-icons";
-import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faTwitterSquare } from "@fortawesome/free-brands-svg-icons";
-
 import styles from "./styles.module.scss";
 
 const Footer: React.FC = () => {
   return (
     <footer className={`${styles.footer}`}>
+      <div className={`${styles.intro} `}>
+        <div className={`wrapper`}>
+          <div className={`${styles.introGrid}`}>
+            <div className={`${styles.feat}`}>
+              <FontAwesomeIcon
+                icon={faShopify}
+                className={`${styles.customIcon}`}
+              />
+              <div className={`${styles.customText}`}>
+                <h4>Free Shipping</h4>
+                <p>Support worldwide shipping</p>
+              </div>
+            </div>
+            <div className={`${styles.feat}`}>
+              <FontAwesomeIcon
+                icon={faDropbox}
+                className={`${styles.customIcon}`}
+              />
+              <div className={`${styles.customText}`}>
+                <h4>Free Shipping</h4>
+                <p>30 days money back guarantee</p>
+              </div>
+            </div>
+            <div className={`${styles.feat}`}>
+              <FontAwesomeIcon
+                icon={faWpexplorer}
+                className={`${styles.customIcon}`}
+              />
+              <div className={`${styles.customText}`}>
+                <h4>Free Shipping</h4>
+                <p>On all orders above N500</p>
+              </div>
+            </div>
+            <div className={`${styles.feat}`}>
+              <FontAwesomeIcon
+                icon={faKeybase}
+                className={`${styles.customIcon}`}
+              />
+              <div className={`${styles.customText}`}>
+                <h4>Free Shipping</h4>
+                <p>100% secure checkout</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className={`${styles.wrapper}`}>
         <div className={`${styles.first}`}>
           <div className={`${styles.logo}`}>
