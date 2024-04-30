@@ -1,19 +1,51 @@
 :root {
   // --main-color:
   --main: #9b2602;
-  --btn: #883d35;
+  --btn: #9b2602;
   --hover: #b55147;
   --white: #ffffff;
+  --off-white: #f9f9f9;
   --black: #1e1e1e;
-  --grey: #636669;
+  --second-black: #181712;
+  --grey: #54595f;
   --white-clear: #ffffff1a;
   --lite-grey: #e0e0e0;
+  --dark-grey: #7a7a7a;
   --yellow: #f9f47e;
+  --green: #61ce70;
   --box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
-  --border-radius: 4px;
+
+  --alert: #f8d7da;
+  --alert-color: #721c24;
+  --alert-border: #f5c6cb;
+
+  --success: #d7f8de;
+  --success-color: #1c7225;
+  --success-border: #c6f5ca;
 
   --full: 100%;
-
   --wrapper-max-width: 2620px;
   --wrapper-min-width: 240px;
+
+  --radius-two: 2px;
+  --radius-four: 4px;
+  --radius-eight: 8px;
+  --radius-sixteen: 16px;
+  --radius-twenty-four: 24px;
+
+  --font-max-one: 64px;
+  --font-max-two: 55px;
+  --font-max-three: 32px;
+
+  --font-med-one: 56px;
+  --font-med-two: 46px;
+  --font-med-three: 24px;
+
+  --font-min-one: 24px;
+  --font-min-two: 12px;
+  --font-min-three: 8px;
+
+  --font-txt-one: 16px;
+  --font-txt-two: 12px;
+  --font-txt-three: 8px;
 }

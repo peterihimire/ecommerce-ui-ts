@@ -1,22 +1,22 @@
 import React from "react";
-import AboutHero from "./Hero";
+import ContactHero from "./Hero";
 import WhoWeAre from "./WhoWeAre";
 import Choose from "./Choose";
 import Testimonial from "./Testimonial";
 // import { Helmet } from "react-helmet-async";
 
-const About: React.FC = () => {
+const Contact: React.FC = () => {
   return (
     <div className={`homepage`}>
       {/* <Helmet>
         <title>Home - Benkih</title>
       </Helmet> */}
-      <AboutHero />
+      <ContactHero />
       {/* <WhoWeAre /> */}
       <Choose />
-      <Testimonial />
+      {/* <Testimonial /> */}
     </div>
   );
 };
 
-export default About;
+export default Contact;

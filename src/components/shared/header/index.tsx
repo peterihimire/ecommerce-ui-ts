@@ -105,13 +105,13 @@ const Header: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
           {bgChangee ? (
             <div className={`${styles.logo}`}>
               <Link to="/">
-                BRI<span>GGY</span>
+                BEN<span>KIH</span>
               </Link>
             </div>
           ) : (
             <div className={`${styles.logo}`}>
               <Link to="/" className={`${styles.dark}`}>
-                BRI<span>GGY</span>
+                BEN<span>KIH</span>
               </Link>
             </div>
           )}

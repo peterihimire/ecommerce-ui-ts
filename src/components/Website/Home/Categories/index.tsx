@@ -1,7 +1,7 @@
 import React from "react";
-import pix1 from "../../../../assets/images/cat1.webp";
-import pix2 from "../../../../assets/images/loafers.webp";
-import pix3 from "../../../../assets/images/cat3.webp";
+import pix1 from "../../../../assets/images/vecteezy_abstract-white-fluid-wave-background_7075692.jpg";
+import pix2 from "../../../../assets/images/pexels-frans-van-heerden-201846-847371.jpeg"
+import pix3 from "../../../../assets/images/loafers.webp";
 
 import styles from "./styles.module.scss";
 

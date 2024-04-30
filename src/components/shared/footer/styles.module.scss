@@ -10,7 +10,7 @@
   }
 
   .intro {
-    background-color: var(--lite-grey);
+    background-color: var(--white);
     color: var(--black);
 
     .introGrid {
@@ -156,6 +156,7 @@
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           font-size: 25px;
+          font-family: Montserrat-Bold, sans-serif;
           font-weight: 300;
 
           span {
@@ -276,7 +277,7 @@
 
           > a {
             color: var(--gray-txt);
-            font-family: NotoSans-Regular, sans-serif;
+            font-family: Montserrat-Regula, sans-serif;
             font-size: 14px;
           }
         }
@@ -297,7 +298,7 @@
 
           > a {
             color: var(--gray-txt);
-            font-family: NotoSans-Regular, sans-serif;
+            font-family: Montserrat-Regula, sans-serif;
             font-size: 14px;
           }
         }
@@ -339,7 +340,7 @@
           font-size: 14px;
           line-height: 170%;
           color: var(--txt-light);
-          font-family: NotoSans-Regular, sans-serif;
+          font-family: Montserrat-Regula, sans-serif;
           font-size: 14px;
 
           // opacity: 0.7;
@@ -367,7 +368,7 @@
             font-size: 14px;
             line-height: 170%;
             color: var(--txt-light);
-            font-family: NotoSans-Regular, sans-serif;
+            font-family: Montserrat-Regula, sans-serif;
             font-size: 14px;
           }
         }
@@ -381,7 +382,7 @@
             font-size: 14px;
             line-height: 170%;
             color: var(--txt-light);
-            font-family: NotoSans-Regular, sans-serif;
+            font-family: Montserrat-Regula, sans-serif;
             font-size: 14px;
             // opacity: 0.7;
           }

@@ -88,10 +88,10 @@
       }
 
       > a {
-        font-size: 13px;
+        font-size: 16px;
         color: var(--white);
-        font-family: NotoSans-Bold, sans-serif;
-        text-transform: uppercase;
+        font-family: Montserrat-Bold, sans-serif;
+        text-transform: capitalize;
 
         &.dark {
           color: var(--black);
@@ -100,6 +100,7 @@
         @media (max-width: 1264px) {
           color: var(--head-txt) !important;
           font-size: 16px;
+          font-family: Montserrat-Bold, sans-serif;
         }
 
         &:hover {
@@ -150,9 +151,14 @@
         }
       }
 
+      .activeDrop {
+        color: var(--main) !important;
+        font-weight: 700;
+      }
+
       &.hasDrop {
         position: relative;
-        top: 2px;
+        top: 0px;
         margin-bottom: 25px;
         color: var(--white);
         // line-height: 18.5px;
@@ -193,7 +199,9 @@
           padding: 0;
           display: flex;
           align-items: center;
-          font-size: 12px;
+          // font-size: 12px;
+          font-size: 16px;
+          font-family: Montserrat-Bold, sans-serif;
           color: var(--white); //note this
           // font-family: Proxima-Medium;
 
@@ -212,7 +220,9 @@
 
           &:hover {
             color: var(--main);
-            font-size: 12px;
+            // font-size: 12px;
+            font-size: 16px;
+            font-family: Montserrat-Bold, sans-serif;
 
             .dark {
               color: var(--main);
@@ -228,17 +238,21 @@
 
             @media screen and (max-width: 900px) {
               font-size: 16px;
+              font-family: Montserrat-Bold, sans-serif;
             }
           }
 
           > span {
             margin-right: 7px;
-            font-size: 12px;
+            // font-size: 12px;
+            font-size: 16px;
+            font-family: Montserrat-Bold, sans-serif;
             color: var(--white);
-            font-family: NotoSans-Medium, sans-serif;
 
             @media (max-width: 905px) {
-              font-size: 12px;
+              // font-size: 12px;
+              font-size: 16px;
+              font-family: Montserrat-Bold, sans-serif;
             }
           }
 
@@ -250,7 +264,7 @@
         .dropdownMenu {
           position: absolute;
           // width: auto;
-          width: 120px;
+          width: 150px; // note here was 120px
           z-index: 21;
           padding-top: 8px;
           top: 100%;
@@ -308,7 +322,7 @@
 
           .dropdownWrapper {
             display: grid;
-            grid-template-columns: repeat(1, 120px);
+            grid-template-columns: repeat(1, 150px);
             // gap: 10px 0px;
 
             @media (max-width: 1275px) {
@@ -335,7 +349,8 @@
                 color: var(--text-primary);
                 height: var(--full);
                 padding: 10px 20px;
-                font-size: 14px;
+                font-size: 16px;
+                font-family: Montserrat-Bold, sans-serif;
 
                 @media (max-width: 1275px) {
                   width: var(--full);
@@ -377,12 +392,12 @@
 
     .dark {
       color: var(--black);
-      font-size: 20px;
+      font-size: 25px;
     }
 
     .iconStyleLight {
       color: var(--white);
-      font-size: 20px;
+      font-size: 25px;
     }
 
     .hasDrop {
@@ -434,14 +449,15 @@
 
           @media screen and (max-width: 900px) {
             font-size: 16px;
+            font-family: Montserrat-Bold, sans-serif;
           }
         }
 
         > span {
           margin-right: 7px;
-          font-size: 14px;
+          font-size: 16px;
           color: var(--black);
-          font-family: NotoSans-Medium, sans-serif;
+          font-family: Montserrat-Bold, sans-serif;
 
           @media (max-width: 905px) {
             font-size: 16px;
@@ -537,9 +553,9 @@
               color: var(--text-primary);
               height: var(--full);
               padding: 10px 20px;
-              font-size: 12px;
+              // font-size: 16px;
               // color: var(--white);
-              font-family: NotoSans-Bold, sans-serif;
+              font-family: Montserrat-Bold, sans-serif;
               text-transform: uppercase;
 
               @media (max-width: 1275px) {
@@ -573,8 +589,8 @@
       div {
         position: absolute;
         background-color: var(--main);
-        height: 20px;
-        width: 20px;
+        height: 25px;
+        width: 25px;
         border-radius: 50%;
         top: -10px;
         right: -10px;
@@ -583,6 +599,7 @@
         justify-content: center;
         color: var(--white);
         font-size: 12px;
+        font-family: Montserrat-Bold, sans-serif;
         font-weight: bolder;
       }
     }
@@ -620,7 +637,7 @@
       flex-shrink: 0;
 
       > a {
-        font-family: NotoSans-Medium, sans-serif;
+        font-family: Montserrat-Bold, sans-serif;
         width: 165px;
         height: 40px;
         display: flex;

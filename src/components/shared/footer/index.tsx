@@ -72,7 +72,7 @@ const Footer: React.FC = () => {
         <div className={`${styles.first}`}>
           <div className={`${styles.logo}`}>
             <Link to="/">
-              BRI<span>GGY</span>
+              BEN<span>KIH</span>
               {/* <img src={logo} alt='' /> */}
             </Link>
           </div>
@@ -171,14 +171,14 @@ const Footer: React.FC = () => {
           <div className="copyright">
             <p>Copyright © 2023 — Benkih Limited. All Rights Reserved.</p>
           </div>
-          <div className={`${styles.policyTerms}`}>
+          {/* <div className={`${styles.policyTerms}`}>
             <div className="policy">
               <Link to="/privacy-policy">— Privacy Policy</Link>
             </div>
             <div className="terms">
               <Link to="/terms-and-conditions">— Terms of Use</Link>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

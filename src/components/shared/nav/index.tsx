@@ -57,7 +57,9 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
         <li>
           <NavLink
             to="/collections"
-            className={`${bgChange ? styles.dark : ""}`}
+            className={`${bgChange ? styles.dark : ""} ${
+              fullPath === "/collections" ? styles.active : ""
+            }`}
           >
             Collections
           </NavLink>
@@ -74,7 +76,7 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
                 bgChange ? styles.dark : ""
               }`}
             >
-              ABOUT
+              About
             </span>
             <FontAwesomeIcon
               icon={faChevronDown}
@@ -93,10 +95,12 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
               <ul className={`${styles.dropdownWrapper}`}>
                 <li>
                   <NavLink
-                    className={`${styles.forDrop}`}
+                    className={`${styles.forDrop} ${
+                      fullPath === "/about/who-we-are" ? styles.activeDrop : ""
+                    }`}
                     to="/about/who-we-are"
                   >
-                    Who we are
+                    Who We Are
                   </NavLink>
                 </li>
                 <li>
@@ -112,7 +116,12 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
           </div>
         </li>
         <li>
-          <NavLink to="/contact" className={`${bgChange ? styles.dark : ""}`}>
+          <NavLink
+            to="/contact"
+            className={`${bgChange ? styles.dark : ""}${
+              fullPath === "/contact" ? styles.active : ""
+            }`}
+          >
             Contact
           </NavLink>
         </li>

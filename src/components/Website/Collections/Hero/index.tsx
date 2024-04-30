@@ -16,10 +16,10 @@ const Hero: React.FC = () => {
               className={`${styles.iconStyle}`}
             />
           </span>
-          <h5>Who We Are</h5>
+          <h5>Collections</h5>
         </div>
 
-        <h2>Who We Are</h2>
+        <h2>Collections</h2>
       </div>
     </div>
   );

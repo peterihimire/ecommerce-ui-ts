@@ -2,6 +2,8 @@ import { RouteObject } from "react-router-dom";
 import WebsiteLayout from "../layouts/website";
 import { Home } from "../pages/home";
 import { About } from "../pages/about";
+import { Contact } from "../pages/contact";
+import { Collections } from "../pages/collections";
 
 export const routes: RouteObject[] = [
   {
@@ -13,8 +15,20 @@ export const routes: RouteObject[] = [
         element: <Home />,
       },
       {
-        path: "/about",
+        path: "/about/who-we-are",
         element: <About />,
+      },
+      {
+        path: "/about/who-we-are",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/collections",
+        element: <Collections />,
       },
     ],
   },
