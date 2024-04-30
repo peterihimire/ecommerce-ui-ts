@@ -115,10 +115,11 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
             </div>
           </div>
         </li>
+
         <li>
           <NavLink
             to="/contact"
-            className={`${bgChange ? styles.dark : ""}${
+            className={`${bgChange ? styles.dark : ""} ${
               fullPath === "/contact" ? styles.active : ""
             }`}
           >
