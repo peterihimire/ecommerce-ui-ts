@@ -16,7 +16,7 @@ const Home: React.FC = () => {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>Home - Benkih</title>
+        <title>home - benkih</title>
       </Helmet>
 
       <HomeHero />

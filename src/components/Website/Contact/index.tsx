@@ -3,19 +3,20 @@ import ContactHero from "./Hero";
 import WhoWeAre from "./WhoWeAre";
 import Choose from "./Choose";
 import Testimonial from "./Testimonial";
-// import { Helmet } from "react-helmet-async";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const Contact: React.FC = () => {
   return (
-    <div className={`homepage`}>
-      {/* <Helmet>
-        <title>Home - Benkih</title>
-      </Helmet> */}
+    <HelmetProvider>
+      <Helmet>
+        <title>contact - benkih</title>
+        <meta name="description" content="Description of my page" />
+      </Helmet>
       <ContactHero />
       {/* <WhoWeAre /> */}
       <Choose />
       {/* <Testimonial /> */}
-    </div>
+    </HelmetProvider>
   );
 };
 
