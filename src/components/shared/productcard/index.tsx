@@ -13,8 +13,8 @@ import styles from "./styles.module.scss";
 
 const ProductCard: React.FC<ProductCardProps> = ({
   id,
-  // addProd,
-  // infoProd,
+  addProd,
+  infoProd,
   // likeProd,
   image,
   title,
@@ -36,20 +36,10 @@ ProductCardProps) => {
         <div>Sale!</div>
       </div>
       {/* <div className={`${styles.circleDiv}`}></div> */}
-      <div className={`${styles.productDiv}`}>
+      <div onClick={infoProd} className={`${styles.productDiv}`}>
         <img src={image} alt="" />
       </div>
-      <ul className={`${styles.productActions}`}>
-        {/* <li onClick={addProd} className={`${styles.productAct}`}>
-            <ShoppingCartOutlined className={`${styles.shopIcon}`} />
-          </li>
-          <li onClick={infoProd} className={`${styles.productAct}`}>
-            <Search className={`${styles.shopIcon}`} />
-          </li>
-          <li onClick={likeProd} className={`${styles.producAct}`}>
-            <FavoriteBorderOutlined className={`${styles.shopIcon}`} />
-          </li> */}
-      </ul>
+
       <div className={`${styles.titlePrice}`}>
         <p>{title}</p>
         <div className={`${styles.price}`}>
@@ -60,7 +50,9 @@ ProductCardProps) => {
         </div>
 
         <div className={`${styles.btnDiv}`}>
-          <button className="btn btn-small btn-block">Add to cart</button>
+          <button onClick={addProd} className="btn btn-small btn-block">
+            Add to cart
+          </button>
         </div>
       </div>
     </div>

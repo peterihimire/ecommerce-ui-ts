@@ -1,10 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import ProductCard from "../../../shared/productcard";
 import { products } from "../../../../data-list";
+import CartNav from "../../../shared/cartNav";
+import Backdrop from "../../../shared/backdrop";
 
 import styles from "./styles.module.scss";
 
 const Sale: React.FC = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const addProductHandler = () => {
+    console.log("Add handler...");
+    setOpen(true);
+    document.documentElement.classList.add("_fixed");
+    document.body.classList.add("_fixed");
+  };
+
+  const openModalHandler = () => {
+    console.log("Modal opened...");
+    setShowModal(true);
+    document.documentElement.classList.add("_fixed");
+    document.body.classList.add("_fixed");
+  };
+
+  const closeModalHandler = () => {
+    console.log("Modal closed...");
+    setShowModal(false);
+    document.documentElement.classList.remove("_fixed");
+    document.body.classList.remove("_fixed");
+  };
   return (
     <section className={`${styles.sale}`}>
       <div className={`${styles.wrapper} wrapper`}>
@@ -22,14 +47,32 @@ const Sale: React.FC = () => {
                 title={product.title}
                 price={product.price}
                 image={product.images[0]}
-                // infoProd={openModalHandler}
-                // addProd={addProductHandler}
+                infoProd={openModalHandler}
+                addProd={addProductHandler}
                 // likeProd={likeProductHandler}
               />
             );
           })}
         </div>
       </div>
+
+      <CartNav
+        isOpen={open}
+        clicked={() => {
+          setOpen(false);
+
+          document.documentElement.classList.remove("_fixed");
+          document.body.classList.remove("_fixed");
+        }}
+      />
+      <Backdrop
+        open={open}
+        clicked={() => {
+          setOpen(false);
+          document.documentElement.classList.remove("_fixed");
+          document.body.classList.remove("_fixed");
+        }}
+      />
     </section>
   );
 };

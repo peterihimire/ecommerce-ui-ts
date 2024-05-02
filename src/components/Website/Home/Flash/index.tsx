@@ -1,10 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import chooseImg from "../../../../assets/images/jeff-tumale-unsplash.jpeg";
 import ProductCard from "../../../shared/productcard";
 import { products } from "../../../../data-list";
 import styles from "./styles.module.scss";
 
 const Flash: React.FC = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const addProductHandler = () => {
+    console.log("Add handler...");
+    setOpen(true);
+    document.documentElement.classList.add("_fixed");
+    document.body.classList.add("_fixed");
+  };
+
+  const openModalHandler = () => {
+    console.log("Modal opened...");
+    setShowModal(true);
+    document.documentElement.classList.add("_fixed");
+    document.body.classList.add("_fixed");
+  };
+
+  const closeModalHandler = () => {
+    console.log("Modal closed...");
+    setShowModal(false);
+    document.documentElement.classList.remove("_fixed");
+    document.body.classList.remove("_fixed");
+  };
+
   return (
     <section className={`${styles.flash}`}>
       <div className={` wrapper`}>
@@ -26,8 +50,8 @@ const Flash: React.FC = () => {
                     title={product.title}
                     price={product.price}
                     image={product.images[0]}
-                    // infoProd={openModalHandler}
-                    // addProd={addProductHandler}
+                    infoProd={openModalHandler}
+                    addProd={addProductHandler}
                     // likeProd={likeProductHandler}
                   />
                 );

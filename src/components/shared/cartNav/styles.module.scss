@@ -1,0 +1,114 @@
+.cartNav {
+  position: fixed;
+  height: 100%;
+
+  top: 0px;
+  // left: -100vw;
+  right: -100vw;
+  z-index: 999;
+  // transition: left 0.4s ease-in-out;
+  transition: right 0.4s ease-in-out;
+
+  background: var(--white);
+  display: initial;
+  justify-content: stretch;
+  align-items: stretch;
+  margin-left: 0;
+  overflow-y: auto;
+  width: 350px;
+
+  &.show {
+    // left: 0;
+    right: 0;
+  }
+
+  &.hidden {
+    overflow: hidden;
+  }
+
+  @media screen and (max-width: 299px) {
+    width: 280px;
+  }
+
+  .cartWrapper {
+    position: relative;
+    height: calc(100% - 101px);
+
+    .cartHeader {
+      background: var(--main);
+      padding: 40px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--white);
+
+      .flexHead {
+        .close {
+          font-size: 25px;
+        }
+      }
+    }
+
+    .cartBody {
+      height: 100%;
+      // top: 101px;
+
+      .cartList {
+        overflow: auto;
+        height: 84%;
+
+        .cartItem {
+          padding: 20px;
+          display: flex;
+          align-items: center;
+          border-bottom: solid 1px var(--black);
+
+          &:last-of-type {
+            border-bottom: none;
+          }
+
+          .cartItemImg {
+            width: 100px;
+            background-color: #f4f2f2;
+            margin-right: 20px;
+            img {
+              width: 100%;
+            }
+          }
+
+          .cartItemText {
+            h5 {
+              margin: 10px 0;
+            }
+            .updateQty {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              padding: 1px;
+              border: solid 1px var(--black);
+              border-radius: var(--radius);
+              width: 80px;
+
+              button {
+                background: none;
+                font-size: 27px;
+              }
+              .qtyTxt {
+                border-radius: var(--radius);
+                font-size: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .cartFooter {
+      position: absolute;
+      width: 100%;
+      bottom: -100px;
+      border-top: solid 1px var(--black);
+      padding: 40px 20px;
+    }
+  }
+}
