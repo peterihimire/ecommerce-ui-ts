@@ -1,0 +1,86 @@
+.collectionInfo {
+  margin: 100px 0;
+  .collectionDetails {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 60px;
+
+    .detailImg {
+      // background-color: rgb(210, 210, 210);
+      // max-width: 500px;
+      max-height: 500px;
+      border: 2px solid var(--lite-grey);
+
+      img {
+        width: 100%;
+      }
+    }
+    .detailTxt {
+      h5 {
+        font-size: 60px;
+        margin-bottom: 20px;
+        font-family: Montserrat-Regular, sans-serif;
+      }
+      p {
+        margin-bottom: 20px;
+      }
+      h4 {
+        font-size: 30px;
+        margin-bottom: 20px;
+      }
+      .detailExtraWrapper {
+        > div {
+          margin-bottom: 20px;
+          display: flex;
+          align-items: center;
+
+          .colorList {
+            display: flex;
+            align-items: center;
+            margin-left: 0px;
+            li {
+              height: 15px;
+              width: 30px;
+              background-color: red;
+              margin-right: 10px;
+              border-radius: 4px;
+            }
+          }
+
+          .detailSelect {
+            width: 90px;
+            margin-left: 10px;
+          }
+
+          .updateQty {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            // width: 70px;
+            padding: 5px;
+            border: solid 1px var(--main-color);
+            margin-left: 10px;
+            border-radius: var(--radius);
+
+            button {
+              background: none;
+              font-size: 27px;
+            }
+            .qtyTxt {
+              // border: solid 1px var(--main-color);
+              padding: 10px 20px;
+              margin: 0px 10px;
+              border-radius: var(--radius);
+              font-size: 20px;
+              // background-color: aqua;
+            }
+          }
+
+          span {
+            width: 60px;
+          }
+        }
+      }
+    }
+  }
+}

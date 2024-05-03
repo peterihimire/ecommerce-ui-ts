@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { NavLink, useLocation, Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { ProductCardProps } from "../../../types/types";
@@ -36,9 +37,12 @@ ProductCardProps) => {
         <div>Sale!</div>
       </div>
       {/* <div className={`${styles.circleDiv}`}></div> */}
-      <div onClick={infoProd} className={`${styles.productDiv}`}>
+      <Link to={`/collections/${infoProd}`} className={`${styles.productDiv}`}>
         <img src={image} alt="" />
-      </div>
+      </Link>
+      {/* <div onClick={infoProd} className={`${styles.productDiv}`}>
+        <img src={image} alt="" />
+      </div> */}
 
       <div className={`${styles.titlePrice}`}>
         <p>{title}</p>

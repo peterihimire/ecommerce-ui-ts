@@ -4,6 +4,11 @@
 }
 
 @font-face {
+  font-family: Montserrat-Medium;
+  src: url("../assets/fonts/Montserrat/Montserrat-Medium.ttf");
+}
+
+@font-face {
   font-family: Montserrat-Bold;
   src: url("../assets/fonts/Montserrat/Montserrat-Bold.ttf");
 }
@@ -864,6 +869,28 @@ input[type="radio"] {
 
     @media screen and (max-width: 600px) {
       width: 190px;
+    }
+  }
+}
+
+.modal-children {
+  display: flex;
+  padding: 40px 20px;
+
+  .modal-img {
+    background: rgb(200, 198, 198);
+    img {
+      width: 150px;
+    }
+  }
+
+  .modal-txt {
+    width: 100%;
+    margin-left: 20px;
+
+    .modal-link {
+      text-decoration: underline;
+      color: var(--txt-light);
     }
   }
 }

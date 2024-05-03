@@ -1,7 +1,8 @@
-.sale {
+.latest {
   padding: 100px 0;
+  background-color: var(--off-white);
 
-  .saleTitle {
+  .latestTitle {
     display: flex;
     // flex-direction: column;
     align-items: center;
@@ -25,26 +26,4 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 33px 33px;
   }
-
-  // .modalChildren {
-  //   display: flex;
-  //   padding: 40px 20px;
-
-  //   .modalImg {
-  //     background: rgb(200, 198, 198);
-  //     img {
-  //       width: 350px;
-  //     }
-  //   }
-
-  //   .modalTxt {
-  //     width: 100%;
-  //     margin-left: 20px;
-
-  //     .modalLink {
-  //       text-decoration: underline;
-  //       color: var(--main);
-  //     }
-  //   }
-  // }
 }

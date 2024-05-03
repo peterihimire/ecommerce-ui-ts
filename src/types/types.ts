@@ -15,7 +15,8 @@ export type CartNavProps = {
 export type ProductCardProps = {
   id: string;
   addProd: () => void;
-  infoProd: () => void;
+  infoProd: string;
+  // infoProd: () => void;
   // likeProd: () => void;
   image: string;
   title: string;
@@ -86,7 +87,7 @@ export type CustomSelectProps = {
   clicked?: () => void;
   password?: boolean;
   innerLabel?: string;
-  labelText: string;
+  labelText?: string;
   optionalText?: string;
   required?: boolean;
   sort?: string;

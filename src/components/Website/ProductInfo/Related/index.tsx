@@ -4,7 +4,7 @@ import { products } from "../../../../data-list";
 
 import styles from "./styles.module.scss";
 
-const Latest: React.FC = () => {
+const Related: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -32,12 +32,12 @@ const Latest: React.FC = () => {
     <section className={`${styles.latest}`}>
       <div className={`${styles.wrapper} wrapper`}>
         <div className={`${styles.latestTitle}`}>
-          <h3>Latest product</h3>
-          <button className="btn btn-medium btn-primary">View more</button>
+          <h3>Related products</h3>
+          {/* <button className="btn btn-medium btn-primary">View more</button> */}
         </div>
 
         <div className={`${styles.productDiv}`}>
-          {products.slice(3, 11).map((product) => {
+          {products.slice(7, 11).map((product) => {
             return (
               <ProductCard
                 key={product.id}
@@ -58,4 +58,4 @@ const Latest: React.FC = () => {
   );
 };
 
-export default Latest;
+export default Related;

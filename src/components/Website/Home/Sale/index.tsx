@@ -3,6 +3,9 @@ import ProductCard from "../../../shared/productcard";
 import { products } from "../../../../data-list";
 import CartNav from "../../../shared/cartNav";
 import Backdrop from "../../../shared/backdrop";
+import Modal from "../../../shared/modal";
+import { Link } from "react-router-dom";
+import product1 from "../../../../assets/images/products/product1.png";
 
 import styles from "./styles.module.scss";
 
@@ -17,11 +20,19 @@ const Sale: React.FC = () => {
     document.body.classList.add("_fixed");
   };
 
+  // const openModalHandler = () => {
+  //   console.log("Modal opened...");
+  //   setShowModal(true);
+  //   document.documentElement.classList.add("_fixed");
+  //   document.body.classList.add("_fixed");
+  // };
+
   const openModalHandler = () => {
-    console.log("Modal opened...");
-    setShowModal(true);
-    document.documentElement.classList.add("_fixed");
-    document.body.classList.add("_fixed");
+    return <Link to="/collections/1"></Link>;
+    // console.log("Modal opened...");
+    // setShowModal(true);
+    // document.documentElement.classList.add("_fixed");
+    // document.body.classList.add("_fixed");
   };
 
   const closeModalHandler = () => {
@@ -47,7 +58,7 @@ const Sale: React.FC = () => {
                 title={product.title}
                 price={product.price}
                 image={product.images[0]}
-                infoProd={openModalHandler}
+                infoProd={product.id}
                 addProd={addProductHandler}
                 // likeProd={likeProductHandler}
               />
@@ -73,8 +84,56 @@ const Sale: React.FC = () => {
           document.body.classList.remove("_fixed");
         }}
       />
+
+      {showModal && (
+        <Modal click={closeModalHandler}>
+          <div className={`modal-children`}>
+            <div className={`modal-img`}>
+              <img src={product1} alt="" />
+            </div>
+            <div className={`modal-txt`}>
+              <h3>iPhone 13 Pro Max</h3>
+              <h6>$1400</h6>
+              <button
+                className="btn-primary btn-block"
+                style={{ height: "40px", marginBottom: "10px" }}
+              >
+                Add to Cart
+              </button>
+              <Link to="/collections/1" className={`modal-link`}>
+                View More Details
+              </Link>
+            </div>
+          </div>
+        </Modal>
+      )}
     </section>
   );
 };
 
 export default Sale;
+
+// {
+//   showModal && (
+//     <Modal click={closeModalHandler}>
+//       <div className={`${styles.modalChildren}`}>
+//         <div className={`${styles.modalImg}`}>
+//           <img src={product1} alt="" />
+//         </div>
+//         <div className={`${styles.modalTxt}`}>
+//           <h3>iPhone 13 Pro Max</h3>
+//           <h6>$1400</h6>
+//           <button
+//             className="btn-primary btn-block"
+//             style={{ height: "40px", marginBottom: "10px" }}
+//           >
+//             Add to Cart
+//           </button>
+//           <Link to="/collections/1" className={`${styles.modalLink}`}>
+//             View More Details
+//           </Link>
+//         </div>
+//       </div>
+//     </Modal>
+//   );
+// }

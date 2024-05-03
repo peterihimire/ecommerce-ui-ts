@@ -58,7 +58,7 @@ const Testimonial: React.FC = () => {
             loop
             autoHeight={true}
             centeredSlides={true}
-            speed={500}
+            speed={3000}
             autoplay={{
               delay: 5000,
               disableOnInteraction: false,

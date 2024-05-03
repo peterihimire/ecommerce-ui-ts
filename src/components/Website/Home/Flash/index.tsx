@@ -50,7 +50,8 @@ const Flash: React.FC = () => {
                     title={product.title}
                     price={product.price}
                     image={product.images[0]}
-                    infoProd={openModalHandler}
+                    infoProd={product.id}
+                    // infoProd={openModalHandler}
                     addProd={addProductHandler}
                     // likeProd={likeProductHandler}
                   />
