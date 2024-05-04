@@ -24,11 +24,20 @@ export type ProductCardProps = {
   // slash: string;
 };
 
-// FOR PRODUCT-CARD
+// FOR ACCORDION-CARD
 export type AccordionProps = {
   title: string;
   content: string;
   focus: number;
+};
+
+// FOR ACCORDION-CARD
+export type CollapsibleProps = {
+  title: string;
+  content: string;
+  focus: number;
+  id: number;
+  index: number;
 };
 
 // FOR INPUT
@@ -39,7 +48,7 @@ export type CustomInputProps = {
   clicked?: () => void;
   password?: boolean;
   innerLabel?: string;
-  labelText: string;
+  labelText?: string;
   optionalText?: string;
   required?: boolean;
   passIcon?: React.ReactNode;

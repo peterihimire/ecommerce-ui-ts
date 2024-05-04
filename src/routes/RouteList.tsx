@@ -8,6 +8,7 @@ import { Collections } from "../pages/collections";
 import { LoginForm } from "../pages/loginform";
 import { RegisterForm } from "../pages/registerform";
 import { ProductInfo } from "../pages/productinfo";
+import { Faq } from "../pages/faq";
 
 export const routes: RouteObject[] = [
   {
@@ -37,6 +38,10 @@ export const routes: RouteObject[] = [
       {
         path: "/collections/:prod_id",
         element: <ProductInfo />,
+      },
+      {
+        path: "/faq",
+        element: <Faq />,
       },
     ],
   },

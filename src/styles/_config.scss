@@ -257,7 +257,7 @@ textarea {
   border: 1px solid #dadada;
   background: var(--white);
   border-radius: 5px !important;
-  height: 55px !important;
+  height: 50px !important;
   transition: all 0.3s ease-in-out;
   padding: 12px;
   color: #65676f;
@@ -274,7 +274,7 @@ select {
 .input-wrapper {
   width: 100%;
   position: relative;
-  height: 56px;
+  height: 51px;
 
   .input-icon {
     position: absolute;
@@ -678,6 +678,57 @@ input[type="radio"] {
 .swiper-button-next {
   @media (min-width: 904px) {
     right: 50px !important;
+  }
+}
+
+.custom-pag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+
+  @media screen and (max-width: 1200px) {
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  @media screen and (max-width: 900px) {
+    justify-content: center;
+    margin-top: 20px;
+  }
+  @media screen and (max-width: 600px) {
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 0px;
+  }
+
+  > span {
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+    margin: 0 3px !important;
+    background-color: #aac4e6;
+
+    &.swiper-pagination-bullet-active {
+      width: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+
+      &::before {
+        content: "";
+        width: 37px !important;
+        height: 10px;
+        background: var(--main) !important;
+        border-top-right-radius: 10px !important;
+        border-bottom-right-radius: 10px !important;
+        border-top-left-radius: 10px !important;
+        border-bottom-left-radius: 10px !important;
+
+        z-index: 2;
+      }
+    }
   }
 }
 

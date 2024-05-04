@@ -34,7 +34,7 @@ SwiperCore.use([
 
 const Testimonial: React.FC = () => {
   const pagination = {
-    el: ".custom-pag1",
+    el: ".custom-pag",
     clickable: true,
     renderBullet: function (index: any, className: any) {
       // return '<span class="' + className + '">' + "</span>";
@@ -135,7 +135,7 @@ const Testimonial: React.FC = () => {
                     width="30px"
                   />
                   <div className={styles.center}>
-                    <h5>Efe Aliu</h5>
+                    <h5>Benedict Johnson</h5>
                     <p>Facebook</p>
                   </div>
                 </div>
@@ -166,6 +166,7 @@ const Testimonial: React.FC = () => {
               </div>
             </SwiperSlide>
           </Swiper>
+          <div className={`custom-pag`}></div>
         </div>
       </div>
     </section>
