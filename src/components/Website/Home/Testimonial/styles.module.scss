@@ -31,6 +31,27 @@
 
       .slideItem {
         .slideTxt {
+          display: inline-block;
+          padding: 10px;
+          // border: 1px solid #ccc;
+          border-radius: 2px;
+          margin-top: 15px;
+          position: relative;
+
+          ::before {
+            content: "";
+            display: block;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-top-color: var(--white);
+            border-bottom: 0px;
+            position: absolute;
+            bottom: -10px;
+            left: 50%; /* Add this line */
+            transform: translateX(-50%); /* Add this line */
+          }
+
           padding: 70px;
           background-color: var(--white);
           line-height: 20px;

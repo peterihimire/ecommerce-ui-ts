@@ -10,7 +10,6 @@ export type CartNavProps = {
   clicked: () => void;
 };
 
-
 // FOR PRODUCT-CARD
 export type ProductCardProps = {
   id: string;
@@ -107,4 +106,29 @@ export type CustomSelectProps = {
   type?: string;
   value?: string;
   defaultValue: string;
+};
+
+// FOR CHECKBOX
+export type CustomCheckboxProps = {
+  checked?: boolean;
+  id?: string;
+  name?: string;
+  reveal?: () => void;
+  clicked?: () => void;
+  password?: boolean;
+  innerLabel?: string;
+  labelText?: string;
+  optionalText?: string;
+  required?: boolean;
+  passIcon?: React.ReactNode;
+  iconSrc?: string;
+  wrapperClass?: string;
+  children?: string;
+  placeholder?: string;
+  type?: string;
+  value?: string;
+  checkText: string;
+  htmlFor: string;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
