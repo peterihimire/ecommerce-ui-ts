@@ -135,6 +135,35 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
               bgChange ? styles.dark : styles.iconStyleLight
             }`}
           />
+          <div className={`${styles.profileContainer}`}>
+            <ul className={`${styles.profileDropdown}`}>
+              <li>
+                <NavLink
+                  className={`${styles.forDrop} ${
+                    fullPath === "/about/who-we-are" ? styles.activeDrop : ""
+                  }`}
+                  to="/user/profile"
+                >
+                  Profile
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className={`${styles.forDrop}`} to="/auth/register">
+                  Register
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className={`${styles.forDrop}`} to="/auth/login">
+                  Login
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className={`${styles.forDrop}`} to="/about/our-vision">
+                  Logout
+                </NavLink>
+              </li>
+            </ul>
+          </div>
         </div>
         <div className={`${styles.searchBtn}`}>
           <Search
