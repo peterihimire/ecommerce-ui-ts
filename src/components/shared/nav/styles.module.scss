@@ -392,10 +392,26 @@
     height: 100%;
 
     .searchBtn {
+      position: relative;
+
       .profileContainer {
+        position: absolute;
+
         .profileDropdown {
           background-color: var(--white);
-          padding: 20px;
+          // padding: 20px;
+
+          li {
+            color: var(--white);
+            font-size: 12px;
+            font-family: Montserrat-Bold, sans-serif;
+            padding: 10px 20px;
+
+            &:hover {
+              background-color: var(--yellow);
+              padding: 10px 20px;
+            }
+          }
         }
       }
     }
