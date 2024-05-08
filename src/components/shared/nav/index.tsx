@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
   ArrowDownward,
@@ -30,7 +30,11 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
   // console.log(darkMode);
 
   const [about, openAbout] = useState(false);
-  const [profile, setProfile] = useState(false);
+  const [open, setOpen] = useState(false);
+  console.log("This is open", open);
+
+  const profileRef = useRef<HTMLDivElement>(null); // Proper initialization
+  const menuRef = useRef<HTMLDivElement>(null); // Proper initialization
 
   useEffect(() => {
     openAbout(false);
@@ -41,6 +45,24 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
       openAbout(false);
     }
   }, [isOpen]);
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      menuRef.current &&
+      !menuRef.current.contains(event.target as Node) &&
+      profileRef.current &&
+      !profileRef.current.contains(event.target as Node)
+    ) {
+      setOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <nav className={`${styles.nav} ${isOpen ? styles.show : ""}`} id="navbar">
@@ -112,6 +134,16 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
                     Our Vision
                   </NavLink>
                 </li>
+                <li>
+                  <NavLink
+                    className={`${styles.forDrop} ${
+                      fullPath === "/faq" ? styles.activeDrop : ""
+                    }`}
+                    to="/faq"
+                  >
+                    FAQ
+                  </NavLink>
+                </li>
               </ul>
             </div>
           </div>
@@ -130,16 +162,22 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
       </ul>
 
       <div className={`${styles.navEnd}`}>
-        <div className={`${styles.searchBtn}`} onClick={() => setProfile(!profile)}>
-          <PersonOutline
-            className={` iconStyle  ${
-              bgChange ? styles.dark : styles.iconStyleLight
-            }`}
-          />
-          {profile && (
-            <div className={`${styles.profileContainer}`}>
+        <div className={`${styles.navProfile}`}>
+          <div
+            className={`${styles.searchBtn}`}
+            onClick={() => setOpen(!open)}
+            ref={profileRef}
+          >
+            <PersonOutline
+              className={` iconStyle  ${
+                bgChange ? styles.dark : styles.iconStyleLight
+              }`}
+            />
+          </div>
+          {open && (
+            <div ref={menuRef} className={`${styles.profileContainer}`}>
               <ul className={`${styles.profileDropdown}`}>
-                <li>
+                <li onClick={() => setOpen(false)}>
                   <NavLink
                     className={`${styles.forDrop} ${
                       fullPath === "/about/who-we-are" ? styles.activeDrop : ""
@@ -149,12 +187,12 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
                     Profile
                   </NavLink>
                 </li>
-                <li>
+                <li onClick={() => setOpen(false)}>
                   <NavLink className={`${styles.forDrop}`} to="/auth/register">
                     Register
                   </NavLink>
                 </li>
-                <li>
+                <li onClick={() => setOpen(false)}>
                   <NavLink className={`${styles.forDrop}`} to="/auth/login">
                     Login
                   </NavLink>
@@ -171,6 +209,7 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
             </div>
           )}
         </div>
+        {/* This is for the second icon */}
         <div className={`${styles.searchBtn}`}>
           <Search
             className={` iconStyle  ${

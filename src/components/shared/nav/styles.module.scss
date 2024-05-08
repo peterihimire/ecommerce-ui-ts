@@ -391,25 +391,47 @@
     justify-content: center;
     height: 100%;
 
-    .searchBtn {
+    .navProfile {
       position: relative;
-
+      .searchBtn {
+      }
       .profileContainer {
         position: absolute;
+        box-shadow: var(--box-shadow);
 
         .profileDropdown {
           background-color: var(--white);
           // padding: 20px;
 
           li {
-            color: var(--white);
-            font-size: 12px;
-            font-family: Montserrat-Bold, sans-serif;
-            padding: 10px 20px;
-
-            &:hover {
-              background-color: var(--yellow);
+            > .forDrop {
+              display: flex;
+              white-space: pre-wrap;
+              color: var(--text-primary);
+              height: var(--full);
               padding: 10px 20px;
+              font-size: 16px;
+              font-family: Montserrat-Bold, sans-serif;
+
+              @media (max-width: 1275px) {
+                width: var(--full);
+                padding: 15px 16px;
+              }
+
+              @media (max-width: 905px) {
+                font-size: 16px;
+              }
+
+              &:hover {
+                background: var(--yellow);
+                color: var(--black);
+                padding: 10px 20px;
+                border-radius: 0px;
+
+                @media (max-width: 905px) {
+                  font-size: 16px;
+                }
+              }
             }
           }
         }
