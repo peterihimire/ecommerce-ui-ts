@@ -1,15 +1,12 @@
 import axios from "axios";
-// import { store } from "../../App";
 
-const baseURL = "http://localhost:4000/";
+const baseURL = "https://ecommerce.benkih.com/api/ecommerce/v1/";
 // console.log(store.getState().user);
 
 const getUser = () => {
   // const user = store.getState().user;
-
   // const token = user?.authenticated ? user?.userData?.token : "";
   // const token = user ? user : "";
-
   // console.log(token);
   // return token || "";
 };
@@ -19,7 +16,8 @@ const config = {
     Accept: "application/json",
     ContentType: "application/json",
     "Access-Control-Allow-Origin": "*",
-    Authorization: "Bearer ",
+    withCredentials: true,
+    // Authorization: "Bearer ",
   },
 };
 

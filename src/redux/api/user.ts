@@ -1,22 +1,24 @@
 import $axios from "./config";
+import { UserPayloadProps } from "../../types/types";
 import axios from "axios";
 // import { store } from "../../App";
 
+console.log("This is axios...", $axios);
 const userAPI = {
-  async registerUser(payload:any) {
-    return $axios.post("/api/v1/auth/register", payload);
+  async registerUser(payload: UserPayloadProps) {
+    return $axios.post("/onboard/register", payload);
   },
-  async verifyUser(payload:any) {
-    return $axios.post(`/api/v1/auth/verify-email/${payload}`);
+  async verifyUser(payload: any) {
+    return $axios.post(`/onboardverify_email/${payload}`);
   },
-  async loginUser(payload:any) {
-    return $axios.post("/api/v1/auth/login", payload);
+  async loginUser(payload: UserPayloadProps) {
+    return $axios.post("/auth/login", payload);
   },
-  async logoutUser(payload:any) {
-    return $axios.post("/api/v1/auth/logout", payload);
+  async logoutUser() {
+    return $axios.post("/auth/logout");
   },
   async getUserInfo() {
-    return $axios.get("/api/v1/users/user");
+    return $axios.get("/users/acct_info");
   },
 };
 export default userAPI;

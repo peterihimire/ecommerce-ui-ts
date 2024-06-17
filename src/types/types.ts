@@ -132,3 +132,13 @@ export type CustomCheckboxProps = {
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
+
+export type UserPayloadProps = {
+  email: string;
+  password: string;
+};
+
+export type UserResponseProps = {
+  acct_id: string;
+  email: string;
+};
