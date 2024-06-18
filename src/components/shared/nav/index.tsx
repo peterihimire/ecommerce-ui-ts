@@ -182,7 +182,7 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
                     className={`${styles.forDrop} ${
                       fullPath === "/about/who-we-are" ? styles.activeDrop : ""
                     }`}
-                    to="/user/profile"
+                    to="/user/profile/3"
                   >
                     Profile
                   </NavLink>

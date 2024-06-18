@@ -1,0 +1,149 @@
+.tabs {
+  width: var(--full);
+  background: transparent;
+  height: auto;
+
+  .tabsHeader {
+    width: var(--full);
+    // height: 50px;
+
+    @media (max-width: 600px) {
+      margin-bottom: 0px;
+    }
+
+    .tabsHeaderList {
+      display: flex;
+      flex-direction: column;
+      height: var(--full);
+      border-bottom: 1px solid var(--card-border);
+      // overflow-x: auto;
+      // overflow-y: hidden;
+      // white-space: nowrap;
+
+      &.horizontalPadding {
+        padding: 0px 80px;
+
+        &::after {
+          content: "";
+          padding-right: 16px;
+        }
+
+        @media (max-width: 600px) {
+          padding: 0px 16px;
+        }
+      }
+
+      > li {
+        height: 100%;
+        position: relative;
+        background: var(--white);
+        color: #65676f;
+        border-radius: 8px;
+        // border: solid grey 1px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        // background: #f2f2f2;
+        border: 1px solid #b6b7b9;
+        // margin: 0 10px;
+
+        @media (max-width: 900px) {
+          height: 80px;
+        }
+
+        @media (max-width: 600px) {
+          height: 80px;
+          margin-bottom: 0px;
+          margin-right: 10px;
+
+          &:last-of-type {
+            margin-right: 0px;
+          }
+        }
+
+        &.active {
+          background: #f2f2f2;
+          border-radius: 8px;
+          font-weight: bold;
+          border: 1px solid #b6b7b9;
+
+          &::after {
+            // content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: var(--full);
+            height: 2px;
+          }
+
+          > button {
+            color: #333131;
+            font-family: Proxima-Medium !important;
+            // display: flex;
+            // align-items: center;
+
+            // width: 100%;
+
+            > .dot {
+              background: var(--orange);
+              display: block;
+              width: 6px;
+              height: 6px;
+              border-radius: 50%;
+              margin-right: 4px;
+            }
+          }
+        }
+
+        > button {
+          // width: fit-content;
+          // width: 100%;
+          margin: 0 auto;
+          height: 100%;
+          padding: 16px 22px;
+          background: transparent;
+          color: #333131;
+
+          // align-items: center;
+          // justify-content: center;
+          font-size: 14px;
+          font-family: Noto-Medium;
+          position: relative;
+          font-family: Proxima-Medium !important;
+          // display: flex;
+
+          > .dot {
+            display: none;
+          }
+
+          // img {
+          //   display: inline-block;
+          //   margin-right: 20px;
+          //   text-align: center;
+
+          // }
+        }
+      }
+      .buttonIcon {
+        display: flex;
+        align-items: center;
+
+        img {
+          margin-right: 20px;
+
+          @media (max-width: 600px) {
+            margin-right: 10px;
+          }
+        }
+      }
+
+      @media (max-width: 600px) {
+        display: flex;
+        flex-direction: row;
+        // justify-content: center;
+        overflow-x: scroll;
+        width: 100%;
+        // flex-wrap: wrap;
+      }
+    }
+  }
+}

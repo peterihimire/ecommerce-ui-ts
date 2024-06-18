@@ -133,6 +133,35 @@ export type CustomCheckboxProps = {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
+// // FOR TEXTAREA
+// export type CustomTabProps = {
+//   // id: string;
+//   // name: string;
+//   clicked?: () => void;
+//   activeTab?: boolean;
+//   passIcon?: React.ReactNode;
+//   dot?: string;
+//   headers?: string;
+//   headersSpaced?: string;
+//   children?: string;
+// };
+
+// Assuming these are the types defined in your types file
+export type TabHeader = {
+  id: number;
+  name: string;
+  icon?: string;
+};
+
+export type CustomTabProps = {
+  children?: React.ReactNode;
+  activeTab?: number;
+  clicked?: (id: number) => void;
+  headers: TabHeader[];
+  headersSpaced?: boolean;
+  dot?: boolean;
+};
+
 export type UserPayloadProps = {
   email: string;
   password: string;

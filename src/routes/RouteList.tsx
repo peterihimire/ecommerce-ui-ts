@@ -9,6 +9,7 @@ import { LoginForm } from "../pages/loginform";
 import { RegisterForm } from "../pages/registerform";
 import { ProductInfo } from "../pages/productinfo";
 import { Faq } from "../pages/faq";
+import { Profile } from "../pages/profile";
 
 export const routes: RouteObject[] = [
   {
@@ -42,6 +43,10 @@ export const routes: RouteObject[] = [
       {
         path: "/faq",
         element: <Faq />,
+      },
+      {
+        path: "/user/profile/:acct_id",
+        element: <Profile />,
       },
     ],
   },
