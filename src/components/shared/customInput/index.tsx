@@ -15,6 +15,10 @@ const Input: React.FC<CustomInputProps> = ({
   password,
   onBlur,
   onChange,
+  placeholder,
+  name,
+  type,
+  value,
   ...props
 }) => {
   return (
@@ -28,7 +32,17 @@ const Input: React.FC<CustomInputProps> = ({
 
       {innerLabel && (
         <div className={`input-wrapper ${wrapperClass ? wrapperClass : ""}`}>
-          <input {...props} id={id} required={required} />
+          <input
+            value={value}
+            name={name}
+            placeholder={placeholder}
+            onChange={onChange}
+            type={type}
+            onBlur={onBlur}
+            {...props}
+            id={id}
+            required={required}
+          />
           <label htmlFor={id} onClick={clicked}>
             {children}
           </label>
@@ -46,7 +60,17 @@ const Input: React.FC<CustomInputProps> = ({
               {passIcon}
             </div>
           )}
-          <input {...props} id={id} required={required} />
+          <input
+            value={value}
+            name={name}
+            placeholder={placeholder}
+            onChange={onChange}
+            type={type}
+            onBlur={onBlur}
+            {...props}
+            id={id}
+            required={required}
+          />
         </div>
       )}
     </>

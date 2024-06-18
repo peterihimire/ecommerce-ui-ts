@@ -6,10 +6,12 @@ import axios from "axios";
 console.log("This is axios...", $axios);
 const userAPI = {
   async registerUser(payload: UserPayloadProps) {
+    console.log("reg payload :", payload);
+
     return $axios.post("/onboard/register", payload);
   },
   async verifyUser(payload: any) {
-    return $axios.post(`/onboardverify_email/${payload}`);
+    return $axios.post(`/onboard/verify_email/${payload}`);
   },
   async loginUser(payload: UserPayloadProps) {
     return $axios.post("/auth/login", payload);

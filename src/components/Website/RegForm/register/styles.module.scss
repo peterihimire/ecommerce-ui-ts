@@ -16,7 +16,8 @@
         rgba(12, 12, 12, 0.82) 46.35%,
         rgba(20, 20, 20, 0.94) 100%
       ),
-      url(../../../../assets/images/pexels-frans-van-heerden-201846-847371.jpeg) no-repeat;
+      url(../../../../assets/images/pexels-frans-van-heerden-201846-847371.jpeg)
+        no-repeat;
     background-size: cover;
     background-position: center;
     color: var(--white);
@@ -46,6 +47,12 @@
         line-height: 21px;
         max-width: 250px;
         margin: 10px 0px;
+      }
+
+      .home {
+        color: var(--white);
+        font-size: 16px;
+        font-weight: bolder;
       }
     }
 

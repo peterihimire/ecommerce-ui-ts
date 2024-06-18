@@ -132,8 +132,8 @@ button {
 
   &:hover {
     border: 1px solid var(--main);
-    background: var(--black);
-    color: var(--btn-color);
+    background: var(--hover);
+    color: var(--black);
     transition: background 0.6s ease-in-out;
   }
   &:disabled {

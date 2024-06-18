@@ -3,9 +3,8 @@ import Input from "../../../shared/customInput";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-// import * as actions from "../../../../redux/actions/userAction";
-// import { login } from "../../../../redux/actions/userAction";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch } from "../../../../hooks/useTypedSelector";
+import { registerUser } from "../../../../redux/features/users/userSlice";
 import { CircularProgress } from "@mui/material";
 import { Visibility } from "@mui/icons-material";
 import { VisibilityOff } from "@mui/icons-material";
@@ -14,30 +13,28 @@ import "react-toastify/dist/ReactToastify.css";
 
 import styles from "./styles.module.scss";
 
+// Define the shape of formError state
+interface FormError {
+  email: string;
+  password: string;
+  confirm_password: string;
+}
+
+// Initial state for formError
+const initialFormError: FormError = {
+  email: "Please enter email field.",
+  password: "Please enter password field.",
+  confirm_password: "Please enter confirm_password.",
+};
+
 const Form: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const location = useLocation();
   const from = location?.state?.from?.pathname;
   console.log(from);
-  // const dispatch = useDispatch();
-  // console.log(dispatch);
-  // console.log(
-  //   dispatch(
-  //     userLogin({ email: "peterihimire@gmail.com", password: "password" })
-  //   )
-  // );
-  // const [showModal, setShowModal] = useState(false);
-
-  const [loginForm, setLoginForm] = useState({
-    email: "",
-    password: "",
-    // checked: true,
-  });
-  // const [showPassword, setShowPassword] = useState(false);
-  const [formError, setFormError] = useState({
-    email: "Please enter email field.",
-    password: "Please enter password field.",
-  });
+  // const [formError, setFormError] = useState();
+  const [formError, setFormError] = useState<FormError>(initialFormError);
   const [logging, setLogging] = useState(false);
   const [error, setError] = useState("");
   const [visible, setVisible] = useState(false);
@@ -56,7 +53,7 @@ const Form: React.FC = () => {
   // });
   // console.log(user);
   console.log(logging);
-  // console.log(formError);
+  console.log(formError);
   // console.log(loginForm);
 
   // const { error, loading } = useSelector((state) => {
@@ -65,80 +62,87 @@ const Form: React.FC = () => {
   //     loading: state.auth.loading,
   //   };
   // });
+  const validationSchema = Yup.object({
+    email: Yup.string().email("Invalid email address").required("Required"),
+    password: Yup.string().required("Required"),
+    confirm_password: Yup.string().required("Required"),
+  });
 
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
+      confirm_password: "",
     },
 
-    validationSchema: Yup.object({
-      email: Yup.string()
-        .email("Invalid email address")
-        .required("Email Required *"),
-      password: Yup.string().required("Password Required *"),
-    }),
+    validationSchema: validationSchema,
 
     onSubmit: async (values) => {
-      console.log(values);
-      // // dispatch(actions.login({ ...values }));
-      // // // dispatch(userLogin({ ...values }));
-      // // // dispatch(actions.login({ ...values, resetForm }));
+      setLogging(true);
+      console.log("This is the register value", values);
+      const { email, password } = values;
+      const payload = {
+        email,
+        password,
+      };
+      console.log("Hey payload...", payload);
+      
+      try {
+        const response = await dispatch(registerUser(payload));
+        console.log("This is user return value", response);
+        if (response.payload.status === "success") {
+          toast.success(`${response.payload.msg}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
 
-      // // setFormError("");
-      // setLogging(true);
-      // try {
-      //   const user = await dispatch(login(values));
-      //   console.log(user);
-      //   navigate("/dashboard", { user });
-      // } catch (err) {
-      //   console.log(err);
-      //   setError(err.data.data);
-      //   // setFormError(err.data.errors);
-      // } finally {
-      //   setLogging(false);
-      // }
+          setLogging(false);
+          setTimeout(() => {
+            navigate("/");
+          }, 3000);
+        } else {
+          toast.error(response.payload.msg, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          setLogging(false);
+        }
+      } catch (err: any) {
+        console.log("Will this error log...", err);
+        setLogging(false);
+        setFormError(err.data.errors);
+      }
     },
   });
 
   // Clears the post verified error
   useEffect(() => {
-    if (error) {
-      setTimeout(() => {
-        setError("");
+    if (formError) {
+      const timer = setTimeout(() => {
+        setFormError({
+          email: "",
+          password: "",
+          confirm_password: "",
+        });
       }, 4000);
+      // Cleanup the timeout if the component is unmounted or formError changes
+      return () => clearTimeout(timer);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [error]);
-
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-  //   setFormError("");
-  //   setLogging(true);
-  //   try {
-  //     const user = await dispatch(login(loginForm));
-  //     console.log(user);
-  //     navigate("/dashboard", { user });
-  //     // navigate(from, { replace: true });
-  //     // const user = await applicantLogin(loginForm);
-  //     // await getApplicantData();
-  //     // if (user.applicant.completed) {
-  //     //   history.push("/applicant/dashboard");
-  //     // } else {
-  //     //   history.push("/applicant/personal-information", {
-  //     //     application_state: user.applicant.application_state,
-  //     //   });
-  //     // }
-  //   } catch (err) {
-  //     console.log(err);
-  //     setFormError(err.data.errors);
-  //   } finally {
-  //     setLogging(false);
-  //   }
-  // };
+  }, [formError]);
 
   return (
-    <div className={`${styles.loginForm}`}>
+    <div className={`${styles.regForm}`}>
       <h2>Register Account</h2>
 
       <form
@@ -151,39 +155,28 @@ const Form: React.FC = () => {
             type="email"
             name="email"
             id="email"
-            required
+            // required
             placeholder="Email"
-            // value={loginForm.email}
-            // onChange={(e) => handleFormChange(e.target)}
-
             value={formik.values.email}
-            // onBlur={(e: FocusEvent<HTMLInputElement>) => formik.handleBlur(e)}
-            // onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            //   formik.handleChange(e)
-            // }
-            // onBlur={(e: FocusEvent<HTMLInputElement>) => formik.handleBlur(e)}
-            // onChange={(e) => formik.handleChange(e)}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
           />
           {formik.touched.email && formik.errors.email ? (
-            <p className={`errorStyle`}>{formik.errors.email}</p>
+            <p className={styles.errorStyle}>{formik.errors.email}</p>
           ) : null}
-
-          {/* {formError.email && (
+          {formError.email && (
             <p className={styles.errorStyle}>{formError.email}</p>
-          )} */}
+          )}
         </div>
+
         <div className={`${styles.formGroup}`}>
           <Input
             labelText="Enter Password"
             type={visible ? "text" : "password"}
             name="password"
             id="password"
-            required
+            // required
             placeholder="Password"
-            // value={loginForm.password}
-            // onChange={(e) => handleFormChange(e.target)}
             password
             reveal={() => toggleVisibility()}
             passIcon={!visible ? <Visibility /> : <VisibilityOff />}
@@ -192,48 +185,46 @@ const Form: React.FC = () => {
             onChange={formik.handleChange}
           />
           {formik.touched.password && formik.errors.password ? (
-            <p className={`errorStyle`}>{formik.errors.password}</p>
+            <p className={`${styles.errorStyle}`}>{formik.errors.password}</p>
           ) : null}
-          {/* {formError.password && (
+          {formError.password && (
             <p className={styles.errorStyle}>{formError.password}</p>
-          )} */}
+          )}
         </div>
-        <div className={`${styles.forgot}`}>
-          {/* <Link href='/forgot-password'>
-            <a className={`linkStyle`}>Forgot Password?</a>
-          </Link> */}
-        </div>
+
         <div className={`${styles.formGroup}`}>
           <Input
             labelText="Confirm Password"
             type={visible ? "text" : "password"}
-            name="password"
-            id="password"
-            required
-            placeholder="Password"
-            // value={loginForm.password}
-            // onChange={(e) => handleFormChange(e.target)}
+            name="confirm_password"
+            id="confirm_password"
+            // required
+            placeholder="Confirm Password"
             password
             reveal={() => toggleVisibility()}
             passIcon={!visible ? <Visibility /> : <VisibilityOff />}
-            value={formik.values.password}
+            value={formik.values.confirm_password}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
           />
-          {formik.touched.password && formik.errors.password ? (
-            <p className={`errorStyle`}>{formik.errors.password}</p>
+          {formik.touched.confirm_password && formik.errors.confirm_password ? (
+            <p className={`${styles.errorStyle}`}>
+              {formik.errors.confirm_password}
+            </p>
           ) : null}
-          {/* {formError.password && (
-            <p className={styles.errorStyle}>{formError.password}</p>
-          )} */}
+          {formError.confirm_password && (
+            <p className={styles.errorStyle}>{formError.confirm_password}</p>
+          )}
         </div>
-        <div className={`${styles.forgot}`}>
-          {/* <Link href='/forgot-password'>
-            <a className={`linkStyle`}>Forgot Password?</a>
-          </Link> */}
-        </div>
+
         <div className={`${styles.btnWithError}`}>
-          {error && <p className={`errorStyle`}>*{error}</p>}
+          {/* {formError && (
+            <p className={styles.errorStyle}>
+              {formError.email ||
+                formError.password ||
+                formError.confirm_password}
+            </p>
+          )} */}
           <div className={`${styles.submitBtn}`}>
             <button
               className="btn-primary  btn-block"
@@ -245,9 +236,6 @@ const Form: React.FC = () => {
                 // router.push("/dashboard");
               }}
             >
-              {/* Send */}
-              {/* {loading && "Loading..."}
-            {!loading && <div>Send</div>} */}
               {logging ? (
                 <CircularProgress size={20} style={{ color: "#fff" }} />
               ) : (
@@ -257,15 +245,14 @@ const Form: React.FC = () => {
           </div>
         </div>
 
-        <div className={`register`}>
+        <div className={styles.loginLink}>
           <span>Have an account? </span>
-          {/* <Link> */}
-          <a href="/auth/login" className={styles.linkStyle}>
+          <Link to="/auth/login" className={styles.linkStyle}>
             Login
-          </a>
-          {/* </Link> */}
+          </Link>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };

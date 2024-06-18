@@ -1,5 +1,6 @@
 import React from "react";
 import Form from "../form";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 
 import styles from "./styles.module.scss";
 // import Link from "next/link";
@@ -10,14 +11,15 @@ const Register: React.FC = () => {
     <div className={`${styles.container}`}>
       <div className={`${styles.left}`}>
         <div className={`${styles.inner}`}>
-          {/* <Link href='/'>
-            <img src='/images/logo-light.svg' alt='' />
-          </Link> */}
-          {/* <h2>Safe Investments</h2>
+          <Link to="/" className={styles.home}>
+            {/* <img src="/images/logo-light.svg" alt="" /> */}
+            Back To Home
+          </Link>
+          <h2>Happy Shopping</h2>
           <p>
             Platform that allows you invest securely, safely with guarantee to
             their investment.
-          </p> */}
+          </p>
           {/* <img src='/images/indicator.svg' alt='' /> */}
         </div>
       </div>

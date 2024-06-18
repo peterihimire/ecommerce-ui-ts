@@ -9,13 +9,16 @@ import * as Yup from "yup";
 import { CircularProgress } from "@mui/material";
 import { Visibility } from "@mui/icons-material";
 import { VisibilityOff } from "@mui/icons-material";
+import { useAppDispatch } from "../../../../hooks/useTypedSelector";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { loginUser } from "../../../../redux/features/users/userSlice";
 
 import styles from "./styles.module.scss";
 
 const Form: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const location = useLocation();
   const from = location?.state?.from?.pathname;
   console.log(from);
@@ -81,61 +84,66 @@ const Form: React.FC = () => {
 
     onSubmit: async (values) => {
       console.log(values);
-      // // dispatch(actions.login({ ...values }));
-      // // // dispatch(userLogin({ ...values }));
-      // // // dispatch(actions.login({ ...values, resetForm }));
+      // dispatch(actions.login({ ...values }));
+      // // dispatch(userLogin({ ...values }));
+      // // dispatch(actions.login({ ...values, resetForm }));
 
-      // // setFormError("");
-      // setLogging(true);
-      // try {
-      //   const user = await dispatch(login(values));
-      //   console.log(user);
-      //   navigate("/dashboard", { user });
-      // } catch (err) {
-      //   console.log(err);
-      //   setError(err.data.data);
-      //   // setFormError(err.data.errors);
-      // } finally {
-      //   setLogging(false);
-      // }
+      // setFormError("");
+      setLogging(true);
+      try {
+        const response = await dispatch(loginUser(values));
+        console.log("This is user login value", response);
+        if (response.payload.status === "success") {
+          toast.success(`${response.payload.msg}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+
+          setLogging(false);
+          setTimeout(() => {
+            navigate("/collections");
+          }, 3000);
+
+          // navigate("/");
+        } else {
+          toast.error(response.payload, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          setLogging(false);
+        }
+      } catch (err) {
+        console.log(err);
+        // setFormError(err.data.errors);
+      } finally {
+        setLogging(false);
+      }
     },
   });
 
   // Clears the post verified error
   useEffect(() => {
-    if (error) {
+    if (formError) {
       setTimeout(() => {
-        setError("");
+        setFormError({
+          email: "",
+          password: "",
+        });
       }, 4000);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [error]);
-
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-  //   setFormError("");
-  //   setLogging(true);
-  //   try {
-  //     const user = await dispatch(login(loginForm));
-  //     console.log(user);
-  //     navigate("/dashboard", { user });
-  //     // navigate(from, { replace: true });
-  //     // const user = await applicantLogin(loginForm);
-  //     // await getApplicantData();
-  //     // if (user.applicant.completed) {
-  //     //   history.push("/applicant/dashboard");
-  //     // } else {
-  //     //   history.push("/applicant/personal-information", {
-  //     //     application_state: user.applicant.application_state,
-  //     //   });
-  //     // }
-  //   } catch (err) {
-  //     console.log(err);
-  //     setFormError(err.data.errors);
-  //   } finally {
-  //     setLogging(false);
-  //   }
-  // };
+  }, [formError]);
 
   return (
     <div className={`${styles.loginForm}`}>
@@ -199,9 +207,9 @@ const Form: React.FC = () => {
           )} */}
         </div>
         <div className={`${styles.forgot}`}>
-          {/* <Link href='/forgot-password'>
-            <a className={`linkStyle`}>Forgot Password?</a>
-          </Link> */}
+          <Link to="/forgot-password" className={styles.linkStyle}>
+            Forgot Password?
+          </Link>
         </div>
         <div className={`${styles.btnWithError}`}>
           {error && <p className={`errorStyle`}>*{error}</p>}
@@ -228,15 +236,14 @@ const Form: React.FC = () => {
           </div>
         </div>
 
-        <div className={`register`}>
+        <div className={styles.register}>
           <span>Don't have an account? </span>
-          {/* <Link> */}
-          <a href="/auth/register" className={styles.linkStyle}>
+          <Link to="/auth/register" className={styles.linkStyle}>
             Register
-          </a>
-          {/* </Link> */}
+          </Link>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };

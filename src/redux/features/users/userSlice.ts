@@ -8,7 +8,7 @@ interface UserData {
   acct_id: string;
   email: string;
 }
-const userDataString = localStorage.getItem("silex_user");
+const userDataString = localStorage.getItem("ecommerce_user");
 const userData: UserData | null = userDataString
   ? JSON.parse(userDataString)
   : null;
@@ -18,6 +18,7 @@ const userData: UserData | null = userDataString
 export const registerUser = createAsyncThunk(
   "users/register",
   async (payload: UserPayloadProps, thunkApi) => {
+    console.log("my reg payload: ", payload);
     try {
       const response = await userAPI.registerUser(payload);
       const data = response.data;
@@ -33,13 +34,15 @@ export const registerUser = createAsyncThunk(
 export const loginUser = createAsyncThunk(
   "users/login",
   async (payload: UserPayloadProps, thunkApi) => {
+    console.log("My login payload: ", payload);
     try {
       const response = await userAPI.loginUser(payload);
       const data = response.data;
       localStorage.setItem("ecommerce_user", JSON.stringify(data.data));
       return data;
     } catch (error: any) {
-      const message = error.message;
+      console.log("Error yeah: ", error.response);
+      const message = error?.response?.data?.message;
       return thunkApi.rejectWithValue(message);
     }
   }

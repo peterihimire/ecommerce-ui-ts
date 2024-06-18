@@ -1,4 +1,4 @@
-.loginForm {
+.regForm {
   max-width: 500px;
   margin: 134px auto 0px auto;
 
@@ -56,9 +56,10 @@
     }
   }
 
-  .register {
+  .loginLink {
     display: flex;
     justify-content: center;
+    align-items: center;
 
     span {
       margin-right: 10px;
