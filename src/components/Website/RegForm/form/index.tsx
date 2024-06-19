@@ -104,7 +104,7 @@ const Form: React.FC = () => {
 
           setLogging(false);
           setTimeout(() => {
-            navigate("/");
+            navigate("/auth/verify_email");
           }, 3000);
         } else {
           toast.error(response.payload.msg, {

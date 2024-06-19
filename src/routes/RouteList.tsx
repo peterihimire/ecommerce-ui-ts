@@ -10,6 +10,7 @@ import { RegisterForm } from "../pages/registerform";
 import { ProductInfo } from "../pages/productinfo";
 import { Faq } from "../pages/faq";
 import { Profile } from "../pages/profile";
+import { VerifyForm } from "../pages/verifyform";
 
 export const routes: RouteObject[] = [
   {
@@ -61,6 +62,10 @@ export const routes: RouteObject[] = [
       {
         path: "/auth/register",
         element: <RegisterForm />,
+      },
+      {
+        path: "/auth/verify_email",
+        element: <VerifyForm />,
       },
     ],
   },

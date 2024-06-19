@@ -11,68 +11,33 @@ import * as Yup from "yup";
 import { CircularProgress } from "@mui/material";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { useAppDispatch } from "../../../../hooks/useTypedSelector";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { addContact } from "../../../../redux/features/contact/contactSlice";
 
 import styles from "./styles.module.scss";
 
-const Form = () => {
+const Form: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const location = useLocation();
   const from = location?.state?.from?.pathname;
   console.log(from);
-  // const dispatch = useDispatch();
-  // console.log(dispatch);
-  // console.log(
-  //   dispatch(
-  //     userLogin({ email: "peterihimire@gmail.com", password: "password" })
-  //   )
-  // );
-  // const [showModal, setShowModal] = useState(false);
 
-  const [loginForm, setLoginForm] = useState({
-    email: "",
-    password: "",
-    // checked: true,
-  });
-  // const [showPassword, setShowPassword] = useState(false);
-  const [formError, setFormError] = useState({
-    email: "Please enter email field.",
-    password: "Please enter password field.",
-  });
   const [logging, setLogging] = useState(false);
   const [error, setError] = useState("");
   const [visible, setVisible] = useState(false);
 
-  const toggleVisibility = () => {
-    setVisible(!visible);
-  };
-
-  // const handleFormChange = ({ name, value }) => {
-  //   setFormError("");
-  //   setLoginForm({ ...loginForm, [name]: value });
-  // };
-
-  // const user = useSelector((state) => {
-  //   return state;
-  // });
-  // console.log(user);
   console.log(logging);
-  // console.log(formError);
-  // console.log(loginForm);
-
-  // const { error, loading } = useSelector((state) => {
-  //   return {
-  //     error: state.auth.error,
-  //     loading: state.auth.loading,
-  //   };
-  // });
 
   const formik = useFormik({
     initialValues: {
-      firstname: "",
-      lastname: "",
+      fullname: "",
+      company: "",
       phone: "",
       email: "",
-      country: "",
+      subject: "",
       message: "",
     },
 
@@ -80,24 +45,49 @@ const Form = () => {
       email: Yup.string()
         .email("Invalid email address")
         .required("Email Required *"),
-      firstname: Yup.string().required("Firstname Required *"),
-      lastname: Yup.string().required("Lastname Required *"),
+      fullname: Yup.string().required("Fullname Required *"),
+      company: Yup.string().required("Company Required *"),
       phone: Yup.string().required("Phone Required *"),
+      subject: Yup.string().required("Subject Required *"),
       message: Yup.string().required("Message Required *"),
     }),
 
     onSubmit: async (values) => {
       console.log(values);
-      // dispatch(actions.login({ ...values }));
-      // // dispatch(userLogin({ ...values }));
-      // // dispatch(actions.login({ ...values, resetForm }));
-
-      // setFormError("");
       setLogging(true);
       try {
-        // const user = await dispatch(login(values));
-        // console.log(user);
-        // navigate("/dashboard", { user });
+        const response = await dispatch(addContact(values));
+        console.log("This is user login value", response);
+        if (response.payload.status === "success") {
+          toast.success(`${response.payload.msg}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+
+          setLogging(false);
+          setTimeout(() => {
+            navigate("/contact");
+          }, 3000);
+
+          // navigate("/");
+        } else {
+          toast.error(response.payload.msg, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          setLogging(false);
+        }
       } catch (err) {
         console.log(err);
         // setError(err.data.data);
@@ -156,21 +146,21 @@ const Form = () => {
             <div className={`${styles.formGrid}`}>
               <div className={`${styles.formGroup}`}>
                 <Input
-                  labelText="First Name"
+                  labelText="Full Name"
                   type="text"
-                  name="firstname"
-                  id="firstname"
-                  required
-                  placeholder="First Name"
+                  name="fullname"
+                  id="fullname"
+                  // required
+                  placeholder="Full Name"
                   // value={loginForm.email}
                   // onChange={(e) => handleFormChange(e.target)}
 
-                  value={formik.values.firstname}
+                  value={formik.values.fullname}
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                 />
-                {formik.touched.firstname && formik.errors.firstname ? (
-                  <p className={`errorStyle`}>{formik.errors.firstname}</p>
+                {formik.touched.fullname && formik.errors.fullname ? (
+                  <p className={`error-msg`}>{formik.errors.fullname}</p>
                 ) : null}
 
                 {/* {formError.email && (
@@ -179,23 +169,23 @@ const Form = () => {
               </div>
               <div className={`${styles.formGroup}`}>
                 <Input
-                  labelText="Last Name"
+                  labelText="Company"
                   type="text"
-                  name="lastname"
-                  id="lastname"
-                  required
-                  placeholder="Last Name"
+                  name="company"
+                  id="company"
+                  // required
+                  placeholder="Company"
                   // value={loginForm.password}
                   // onChange={(e) => handleFormChange(e.target)}
                   // password
                   // reveal={() => toggleVisibility()}
                   // passIcon={!visible ? <Visibility /> : <VisibilityOff />}
-                  value={formik.values.lastname}
+                  value={formik.values.company}
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                 />
-                {formik.touched.lastname && formik.errors.lastname ? (
-                  <p className={`errorStyle`}>{formik.errors.lastname}</p>
+                {formik.touched.company && formik.errors.company ? (
+                  <p className={`error-msg`}>{formik.errors.company}</p>
                 ) : null}
                 {/* {formError.password && (
             <p className={styles.errorStyle}>{formError.password}</p>
@@ -208,7 +198,7 @@ const Form = () => {
                   type="email"
                   name="email"
                   id="email"
-                  required
+                  // required
                   placeholder="Email"
                   // value={loginForm.email}
                   // onChange={(e) => handleFormChange(e.target)}
@@ -218,7 +208,7 @@ const Form = () => {
                   onChange={formik.handleChange}
                 />
                 {formik.touched.email && formik.errors.email ? (
-                  <p className={`errorStyle`}>{formik.errors.email}</p>
+                  <p className={`error-msg`}>{formik.errors.email}</p>
                 ) : null}
 
                 {/* {formError.email && (
@@ -249,7 +239,7 @@ const Form = () => {
                   type="phone"
                   name="phone"
                   id="phone"
-                  required
+                  // required
                   placeholder="Phone"
                   // value={loginForm.email}
                   // onChange={(e) => handleFormChange(e.target)}
@@ -264,6 +254,25 @@ const Form = () => {
               </div>
             </div>
             <div className={`${styles.formGroup}`}>
+              <Input
+                labelText="Subject"
+                type="text"
+                name="subject"
+                id="subject"
+                // required
+                placeholder="Subject"
+                // value={loginForm.email}
+                // onChange={(e) => handleFormChange(e.target)}
+
+                value={formik.values.subject}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+              />
+              {formik.touched.subject && formik.errors.subject ? (
+                <p className="error-msg">{formik.errors.subject}</p>
+              ) : null}
+            </div>
+            {/* <div className={`${styles.formGroup}`}>
               <Select
                 name="country"
                 labelText="Country of Residence"
@@ -281,18 +290,18 @@ const Form = () => {
               {formik.touched.country && formik.errors.country ? (
                 <p className="error-msg">{formik.errors.country}</p>
               ) : null}
-            </div>
+            </div> */}
             <div className={`${styles.textarea}`}>
               <Textarea
                 labelText="Message"
                 id="message"
-                required
+                // required
                 name="message"
                 placeholder="Type your message..."
                 // iconSrc={textPen}
-                onChange={formik.handleChange}
                 value={formik.values.message}
                 onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
               />
               {formik.touched.message && formik.errors.message ? (
                 <p className="error-msg">{formik.errors.message}</p>
@@ -329,6 +338,7 @@ const Form = () => {
               </div>
             </div>
           </form>
+          <ToastContainer />
         </div>
       </div>
     </div>

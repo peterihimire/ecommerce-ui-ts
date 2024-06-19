@@ -11,11 +11,32 @@
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="stylesheet" type="text/css" href="css/cookieconsent.min.css" />
 
     <title>Ecommerce App</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script src="js/cookieconsent.min.js"></script>
+    <script>
+      window.cookieconsent.initialise({
+        container: document.getElementById("content"),
+        palette: {
+          popup: { background: "#fff" },
+          button: { background: "#aa0000" },
+        },
+        revokable: true,
+        onStatusChange: function (status) {
+          console.log(
+            this.hasConsented() ? "enable cookies" : "disable cookies"
+          );
+        },
+        law: {
+          regionalLaw: false,
+        },
+        location: true,
+      });
+    </script>
     <div id="root"></div>
   </body>
 </html>

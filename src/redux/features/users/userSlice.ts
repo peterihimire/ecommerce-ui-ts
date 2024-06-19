@@ -2,7 +2,11 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import userAPI from "../../api/user";
 
-import { UserPayloadProps, UserResponseProps } from "../../../types/types";
+import {
+  UserPayloadProps,
+  UserResponseProps,
+  VerifyPayloadProps,
+} from "../../../types/types";
 interface UserData {
   // Define the structure of your user data here
   acct_id: string;
@@ -21,6 +25,22 @@ export const registerUser = createAsyncThunk(
     console.log("my reg payload: ", payload);
     try {
       const response = await userAPI.registerUser(payload);
+      const data = response.data;
+      return data;
+    } catch (error: any) {
+      console.log("This is error message,lets see...", error);
+      const message = error.response.data;
+      return thunkApi.rejectWithValue(message);
+    }
+  }
+);
+
+export const verifyEmail = createAsyncThunk(
+  "users/verify_email",
+  async (payload: VerifyPayloadProps, thunkApi) => {
+    console.log("my verify payload: ", payload);
+    try {
+      const response = await userAPI.verifyEmail(payload);
       const data = response.data;
       return data;
     } catch (error: any) {

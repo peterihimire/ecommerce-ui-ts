@@ -12,6 +12,10 @@ const Textarea: React.FC<CustomTextareaProps> = ({
   wrapperClass,
   onBlur,
   onChange,
+  placeholder,
+  name,
+  type,
+  value,
   ...props
 }) => {
   return (
@@ -25,7 +29,16 @@ const Textarea: React.FC<CustomTextareaProps> = ({
         <div className="input-icon">
           <img src={iconSrc} alt="" />
         </div>
-        <textarea {...props} id={id} required={required}></textarea>
+        <textarea
+          value={value}
+          name={name}
+          placeholder={placeholder}
+          onChange={onChange}
+          onBlur={onBlur}
+          {...props}
+          id={id}
+          required={required}
+        ></textarea>
       </div>
     </>
   );

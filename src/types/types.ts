@@ -83,8 +83,8 @@ export type CustomTextareaProps = {
   value?: string;
   // onBlur: () => void;
   // onChange: () => void;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
 // FOR SELECT
@@ -170,4 +170,27 @@ export type UserPayloadProps = {
 export type UserResponseProps = {
   acct_id: string;
   email: string;
+};
+
+export type VerifyPayloadProps = {
+  otp: number;
+};
+
+export type VerifyResponseProps = {
+  acct_id: string;
+  email: string;
+};
+
+export type ContactPayloadProps = {
+  fullname: string;
+  company: string;
+  email: string;
+  phone: string;
+  message: string;
+  subject: string;
+};
+
+export type ContactResponseProps = {
+  status: string;
+  msg: string;
 };
