@@ -100,22 +100,9 @@ const Form: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
 
-  // // Clears the post verified error
-  // useEffect(() => {
-  //   if (formError) {
-  //     setTimeout(() => {
-  //       setFormError({
-  //         email: "",
-  //         password: "",
-  //       });
-  //     }, 4000);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [formError]);
-
   return (
     <div className={`${styles.loginForm}`}>
-      <h2>Login your Account</h2>
+      <h2>Forgot Password</h2>
 
       <form
         onSubmit={formik.handleSubmit}
@@ -133,52 +120,14 @@ const Form: React.FC = () => {
             // onChange={(e) => handleFormChange(e.target)}
 
             value={formik.values.email}
-            // onBlur={(e: FocusEvent<HTMLInputElement>) => formik.handleBlur(e)}
-            // onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            //   formik.handleChange(e)
-            // }
-            // onBlur={(e: FocusEvent<HTMLInputElement>) => formik.handleBlur(e)}
-            // onChange={(e) => formik.handleChange(e)}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
           />
           {formik.touched.email && formik.errors.email ? (
             <p className={`error-msg`}>{formik.errors.email}</p>
           ) : null}
+        </div>
 
-          {/* {formError.email && (
-            <p className={styles.errorStyle}>{formError.email}</p>
-          )} */}
-        </div>
-        <div className={`${styles.formGroup}`}>
-          <Input
-            labelText="Password"
-            type={visible ? "text" : "password"}
-            name="password"
-            id="password"
-            required
-            placeholder="Enter Password"
-            // value={loginForm.password}
-            // onChange={(e) => handleFormChange(e.target)}
-            password
-            reveal={() => toggleVisibility()}
-            passIcon={!visible ? <Visibility /> : <VisibilityOff />}
-            value={formik.values.password}
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-          />
-          {formik.touched.password && formik.errors.password ? (
-            <p className={`error-msg`}>{formik.errors.password}</p>
-          ) : null}
-          {/* {formError.password && (
-            <p className={styles.errorStyle}>{formError.password}</p>
-          )} */}
-        </div>
-        <div className={`${styles.forgot}`}>
-          <Link to="/auth/forgot_password" className={styles.linkStyle}>
-            Forgot Password?
-          </Link>
-        </div>
         <div className={`${styles.btnWithError}`}>
           {error && <p className={`error-msg`}>*{error}</p>}
           <div className={`${styles.submitBtn}`}>
@@ -198,16 +147,16 @@ const Form: React.FC = () => {
               {logging ? (
                 <CircularProgress size={20} style={{ color: "#fff" }} />
               ) : (
-                "Login"
+                "Send"
               )}
             </button>
           </div>
         </div>
 
         <div className={styles.register}>
-          <span>Don't have an account? </span>
-          <Link to="/auth/register" className={styles.linkStyle}>
-            Register
+          <span>Have an account? </span>
+          <Link to="/auth/login" className={styles.linkStyle}>
+            Login
           </Link>
         </div>
       </form>

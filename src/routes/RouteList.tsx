@@ -7,6 +7,8 @@ import { Contact } from "../pages/contact";
 import { Collections } from "../pages/collections";
 import { LoginForm } from "../pages/loginform";
 import { RegisterForm } from "../pages/registerform";
+import { ForgotForm } from "../pages/forgotform";
+import { PasswordForm } from "../pages/passwordform";
 import { ProductInfo } from "../pages/productinfo";
 import { Faq } from "../pages/faq";
 import { Profile } from "../pages/profile";
@@ -66,6 +68,14 @@ export const routes: RouteObject[] = [
       {
         path: "/auth/verify_email",
         element: <VerifyForm />,
+      },
+      {
+        path: "/auth/forgot_password",
+        element: <ForgotForm />,
+      },
+      {
+        path: "/auth/change_password",
+        element: <PasswordForm />,
       },
     ],
   },

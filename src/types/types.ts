@@ -48,6 +48,7 @@ export type CustomInputProps = {
   password?: boolean;
   innerLabel?: string;
   labelText?: string;
+  labelClass?: string;
   optionalText?: string;
   required?: boolean;
   passIcon?: React.ReactNode;
@@ -71,7 +72,8 @@ export type CustomTextareaProps = {
   clicked?: () => void;
   password?: boolean;
   innerLabel?: string;
-  labelText: string;
+  labelClass?: string;
+  labelText?: string;
   optionalText?: string;
   required?: boolean;
   passIcon?: React.ReactNode;

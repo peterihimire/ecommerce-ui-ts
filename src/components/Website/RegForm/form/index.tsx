@@ -13,20 +13,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 import styles from "./styles.module.scss";
 
-// Define the shape of formError state
-interface FormError {
-  email: string;
-  password: string;
-  confirm_password: string;
-}
-
-// Initial state for formError
-const initialFormError: FormError = {
-  email: "Please enter email field.",
-  password: "Please enter password field.",
-  confirm_password: "Please enter confirm_password.",
-};
-
 const Form: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -34,38 +20,45 @@ const Form: React.FC = () => {
   const from = location?.state?.from?.pathname;
   console.log(from);
   // const [formError, setFormError] = useState();
-  const [formError, setFormError] = useState<FormError>(initialFormError);
+  // const [formError, setFormError] = useState<FormError>(initialFormError);
   const [logging, setLogging] = useState(false);
   const [error, setError] = useState("");
   const [visible, setVisible] = useState(false);
+  const [visibleSec, setVisibleSec] = useState(false);
 
   const toggleVisibility = () => {
     setVisible(!visible);
   };
 
-  // const handleFormChange = ({ name, value }) => {
-  //   setFormError("");
-  //   setLoginForm({ ...loginForm, [name]: value });
-  // };
+  const toggleVisibilitySec = () => {
+    setVisibleSec(!visibleSec);
+  };
 
-  // const user = useSelector((state) => {
-  //   return state;
-  // });
-  // console.log(user);
-  console.log(logging);
-  console.log(formError);
-  // console.log(loginForm);
-
-  // const { error, loading } = useSelector((state) => {
-  //   return {
-  //     error: state.auth.error,
-  //     loading: state.auth.loading,
-  //   };
-  // });
   const validationSchema = Yup.object({
-    email: Yup.string().email("Invalid email address").required("Required"),
-    password: Yup.string().required("Required"),
-    confirm_password: Yup.string().required("Required"),
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email Required"),
+    password: Yup.string()
+      .min(8, "Password must be at least 8 characters")
+      .matches(
+        /^(?=.*[a-z])/,
+        "Password must contain at least one lowercase letter"
+      )
+      .matches(
+        /^(?=.*[A-Z])/,
+        "Password must contain at least one uppercase letter"
+      )
+      .matches(/^(?=.*\d)/, "Password must contain at least one number")
+      .matches(
+        /^(?=.*[@$!%*?&])/,
+        "Password must contain at least one special character"
+      )
+      .required("Password Required"),
+    confirm_password: Yup.string()
+      .oneOf([Yup.ref("password")], "Passwords must match")
+      .required("Password Required"),
+    // password: Yup.string().required("Required"),
+    // confirm_password: Yup.string().required("Required"),
   });
 
   const formik = useFormik({
@@ -86,7 +79,7 @@ const Form: React.FC = () => {
         password,
       };
       console.log("Hey payload...", payload);
-      
+
       try {
         const response = await dispatch(registerUser(payload));
         console.log("This is user return value", response);
@@ -121,25 +114,22 @@ const Form: React.FC = () => {
       } catch (err: any) {
         console.log("Will this error log...", err);
         setLogging(false);
-        setFormError(err.data.errors);
+        setError(err.data.errors);
+      } finally {
+        setLogging(false);
       }
     },
   });
 
   // Clears the post verified error
   useEffect(() => {
-    if (formError) {
-      const timer = setTimeout(() => {
-        setFormError({
-          email: "",
-          password: "",
-          confirm_password: "",
-        });
+    if (error) {
+      setTimeout(() => {
+        setError("");
       }, 4000);
-      // Cleanup the timeout if the component is unmounted or formError changes
-      return () => clearTimeout(timer);
     }
-  }, [formError]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error]);
 
   return (
     <div className={`${styles.regForm}`}>
@@ -151,32 +141,29 @@ const Form: React.FC = () => {
       >
         <div className={`${styles.formGroup}`}>
           <Input
-            labelText="Enter Email"
+            labelText="Email"
             type="email"
             name="email"
             id="email"
             // required
-            placeholder="Email"
+            placeholder="Enter Email"
             value={formik.values.email}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
           />
           {formik.touched.email && formik.errors.email ? (
-            <p className={styles.errorStyle}>{formik.errors.email}</p>
+            <p className={`error-msg`}>{formik.errors.email}</p>
           ) : null}
-          {formError.email && (
-            <p className={styles.errorStyle}>{formError.email}</p>
-          )}
         </div>
 
         <div className={`${styles.formGroup}`}>
           <Input
-            labelText="Enter Password"
+            labelText="Password"
             type={visible ? "text" : "password"}
             name="password"
             id="password"
             // required
-            placeholder="Password"
+            placeholder="Enter Password"
             password
             reveal={() => toggleVisibility()}
             passIcon={!visible ? <Visibility /> : <VisibilityOff />}
@@ -185,46 +172,31 @@ const Form: React.FC = () => {
             onChange={formik.handleChange}
           />
           {formik.touched.password && formik.errors.password ? (
-            <p className={`${styles.errorStyle}`}>{formik.errors.password}</p>
+            <p className={`error-msg`}>{formik.errors.password}</p>
           ) : null}
-          {formError.password && (
-            <p className={styles.errorStyle}>{formError.password}</p>
-          )}
         </div>
 
         <div className={`${styles.formGroup}`}>
           <Input
             labelText="Confirm Password"
-            type={visible ? "text" : "password"}
+            type={visibleSec ? "text" : "password"}
             name="confirm_password"
             id="confirm_password"
             // required
-            placeholder="Confirm Password"
+            placeholder="Enter Confirm Password"
             password
-            reveal={() => toggleVisibility()}
-            passIcon={!visible ? <Visibility /> : <VisibilityOff />}
+            reveal={() => toggleVisibilitySec()}
+            passIcon={!visibleSec ? <Visibility /> : <VisibilityOff />}
             value={formik.values.confirm_password}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
           />
           {formik.touched.confirm_password && formik.errors.confirm_password ? (
-            <p className={`${styles.errorStyle}`}>
-              {formik.errors.confirm_password}
-            </p>
+            <p className={`error-msg`}>{formik.errors.confirm_password}</p>
           ) : null}
-          {formError.confirm_password && (
-            <p className={styles.errorStyle}>{formError.confirm_password}</p>
-          )}
         </div>
 
         <div className={`${styles.btnWithError}`}>
-          {/* {formError && (
-            <p className={styles.errorStyle}>
-              {formError.email ||
-                formError.password ||
-                formError.confirm_password}
-            </p>
-          )} */}
           <div className={`${styles.submitBtn}`}>
             <button
               className="btn-primary  btn-block"

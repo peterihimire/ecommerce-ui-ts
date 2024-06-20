@@ -52,7 +52,7 @@ const Form: React.FC = () => {
       message: Yup.string().required("Message Required *"),
     }),
 
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm }) => {
       console.log(values);
       setLogging(true);
       try {
@@ -71,6 +71,7 @@ const Form: React.FC = () => {
           });
 
           setLogging(false);
+          resetForm();
           setTimeout(() => {
             navigate("/contact");
           }, 3000);
@@ -88,9 +89,9 @@ const Form: React.FC = () => {
           });
           setLogging(false);
         }
-      } catch (err) {
+      } catch (err: any) {
         console.log(err);
-        // setError(err.data.data);
+        setError(err.data.data);
         // setFormError(err.data.errors);
       } finally {
         setLogging(false);

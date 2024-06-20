@@ -32,7 +32,13 @@ const Form: React.FC = () => {
     },
 
     validationSchema: Yup.object({
-      otp: Yup.number().required("OTP Required *"),
+      otp: Yup.string()
+        .length(4, "OTP code must be exactly 4 characters")
+        .matches(/^\d{4}$/, "OTP code must contain only numbers")
+        .required("OTP Required *"),
+      // otp: Yup.number()
+      //   .max(4, "OTP code must be at least 4 characters")
+      //   .required("OTP Required *"),
     }),
 
     onSubmit: async (values) => {
@@ -97,7 +103,7 @@ const Form: React.FC = () => {
 
   return (
     <div className={`${styles.loginForm}`}>
-      <h2>Verify Email</h2>
+      <h2>Verify Your Email</h2>
 
       <form
         onSubmit={formik.handleSubmit}
@@ -105,12 +111,12 @@ const Form: React.FC = () => {
       >
         <div className={`${styles.formGroup}`}>
           <Input
-            labelText="Enter OTP"
-            type="text"
+            labelText="OTP Code"
+            type="number"
             name="otp"
             id="otp"
             // required
-            placeholder="OTP"
+            placeholder="Enter OTP"
             value={formik.values.otp}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
@@ -119,7 +125,7 @@ const Form: React.FC = () => {
             // }
           />
           {formik.touched.otp && formik.errors.otp ? (
-            <p className={`errorStyle`}>{formik.errors.otp}</p>
+            <p className={`error-msg`}>{formik.errors.otp}</p>
           ) : null}
 
           {/* {formError.email && (

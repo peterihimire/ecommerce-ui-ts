@@ -3,6 +3,7 @@ import { CustomTextareaProps } from "../../../types/types";
 
 const Textarea: React.FC<CustomTextareaProps> = ({
   labelText,
+  labelClass,
   children,
   id,
   required,
@@ -21,7 +22,10 @@ const Textarea: React.FC<CustomTextareaProps> = ({
   return (
     <>
       {labelText && (
-        <label htmlFor={id}>
+        <label
+          className={`label-wrapper ${labelClass ? labelClass : ""}`}
+          htmlFor={id}
+        >
           {labelText} {required && <span>*</span>}
         </label>
       )}

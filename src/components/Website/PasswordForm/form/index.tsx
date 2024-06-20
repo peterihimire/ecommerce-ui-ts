@@ -3,16 +3,13 @@ import Input from "../../../shared/customInput";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-// import * as actions from "../../../../redux/actions/userAction";
-// import { login } from "../../../../redux/actions/userAction";
-// import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch } from "../../../../hooks/useTypedSelector";
+import { registerUser } from "../../../../redux/features/users/userSlice";
 import { CircularProgress } from "@mui/material";
 import { Visibility } from "@mui/icons-material";
 import { VisibilityOff } from "@mui/icons-material";
-import { useAppDispatch } from "../../../../hooks/useTypedSelector";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { loginUser } from "../../../../redux/features/users/userSlice";
 
 import styles from "./styles.module.scss";
 
@@ -22,35 +19,67 @@ const Form: React.FC = () => {
   const location = useLocation();
   const from = location?.state?.from?.pathname;
   console.log(from);
-
+  // const [formError, setFormError] = useState();
+  // const [formError, setFormError] = useState<FormError>(initialFormError);
   const [logging, setLogging] = useState(false);
   const [error, setError] = useState("");
   const [visible, setVisible] = useState(false);
+  const [visibleSec, setVisibleSec] = useState(false);
 
   const toggleVisibility = () => {
     setVisible(!visible);
   };
 
+  const toggleVisibilitySec = () => {
+    setVisibleSec(!visibleSec);
+  };
+
+  const validationSchema = Yup.object({
+    password: Yup.string()
+      .min(8, "Password must be at least 8 characters")
+      .matches(
+        /^(?=.*[a-z])/,
+        "Password must contain at least one lowercase letter"
+      )
+      .matches(
+        /^(?=.*[A-Z])/,
+        "Password must contain at least one uppercase letter"
+      )
+      .matches(/^(?=.*\d)/, "Password must contain at least one number")
+      .matches(
+        /^(?=.*[@$!%*?&])/,
+        "Password must contain at least one special character"
+      )
+      .required("Password Required"),
+    confirm_password: Yup.string()
+      .oneOf([Yup.ref("password")], "Passwords must match")
+      .required("Password Required"),
+    // password: Yup.string().required("Required"),
+    // confirm_password: Yup.string().required("Required"),
+  });
+
   const formik = useFormik({
     initialValues: {
-      email: "",
       password: "",
+      confirm_password: "",
     },
 
-    validationSchema: Yup.object({
-      email: Yup.string()
-        .email("Invalid email address")
-        .required("Email Required *"),
-      password: Yup.string().required("Password Required *"),
-    }),
+    validationSchema: validationSchema,
 
     onSubmit: async (values) => {
-      console.log(values);
-
       setLogging(true);
+      console.log("This is the register value", values);
+      const { password } = values;
+      const email = "";
+      const payload = {
+        email,
+        password,
+      };
+      console.log("Hey payload...", payload);
+
       try {
-        const response = await dispatch(loginUser(values));
-        console.log("This is user login value", response);
+        const response = await dispatch(registerUser(payload));
+        console.log("This is user return value", response);
         if (response.payload.status === "success") {
           toast.success(`${response.payload.msg}`, {
             position: "top-right",
@@ -65,12 +94,10 @@ const Form: React.FC = () => {
 
           setLogging(false);
           setTimeout(() => {
-            navigate("/collections");
+            navigate("/auth/verify_email");
           }, 3000);
-
-          // navigate("/");
         } else {
-          toast.error(response.payload, {
+          toast.error(response.payload.msg, {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -81,9 +108,10 @@ const Form: React.FC = () => {
           });
           setLogging(false);
         }
-      } catch (err) {
-        console.log(err);
-        // setFormError(err.data.errors);
+      } catch (err: any) {
+        console.log("Will this error log...", err);
+        setLogging(false);
+        setError(err.data.errors);
       } finally {
         setLogging(false);
       }
@@ -100,22 +128,9 @@ const Form: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
 
-  // // Clears the post verified error
-  // useEffect(() => {
-  //   if (formError) {
-  //     setTimeout(() => {
-  //       setFormError({
-  //         email: "",
-  //         password: "",
-  //       });
-  //     }, 4000);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [formError]);
-
   return (
-    <div className={`${styles.loginForm}`}>
-      <h2>Login your Account</h2>
+    <div className={`${styles.regForm}`}>
+      <h2>Change Password</h2>
 
       <form
         onSubmit={formik.handleSubmit}
@@ -123,43 +138,12 @@ const Form: React.FC = () => {
       >
         <div className={`${styles.formGroup}`}>
           <Input
-            labelText="Email"
-            type="email"
-            name="email"
-            id="email"
-            required
-            placeholder="Enter Email"
-            // value={loginForm.email}
-            // onChange={(e) => handleFormChange(e.target)}
-
-            value={formik.values.email}
-            // onBlur={(e: FocusEvent<HTMLInputElement>) => formik.handleBlur(e)}
-            // onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            //   formik.handleChange(e)
-            // }
-            // onBlur={(e: FocusEvent<HTMLInputElement>) => formik.handleBlur(e)}
-            // onChange={(e) => formik.handleChange(e)}
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-          />
-          {formik.touched.email && formik.errors.email ? (
-            <p className={`error-msg`}>{formik.errors.email}</p>
-          ) : null}
-
-          {/* {formError.email && (
-            <p className={styles.errorStyle}>{formError.email}</p>
-          )} */}
-        </div>
-        <div className={`${styles.formGroup}`}>
-          <Input
             labelText="Password"
             type={visible ? "text" : "password"}
             name="password"
             id="password"
-            required
+            // required
             placeholder="Enter Password"
-            // value={loginForm.password}
-            // onChange={(e) => handleFormChange(e.target)}
             password
             reveal={() => toggleVisibility()}
             passIcon={!visible ? <Visibility /> : <VisibilityOff />}
@@ -170,17 +154,29 @@ const Form: React.FC = () => {
           {formik.touched.password && formik.errors.password ? (
             <p className={`error-msg`}>{formik.errors.password}</p>
           ) : null}
-          {/* {formError.password && (
-            <p className={styles.errorStyle}>{formError.password}</p>
-          )} */}
         </div>
-        <div className={`${styles.forgot}`}>
-          <Link to="/auth/forgot_password" className={styles.linkStyle}>
-            Forgot Password?
-          </Link>
+
+        <div className={`${styles.formGroup}`}>
+          <Input
+            labelText="Confirm Password"
+            type={visibleSec ? "text" : "password"}
+            name="confirm_password"
+            id="confirm_password"
+            // required
+            placeholder="Enter Confirm Password"
+            password
+            reveal={() => toggleVisibilitySec()}
+            passIcon={!visibleSec ? <Visibility /> : <VisibilityOff />}
+            value={formik.values.confirm_password}
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+          />
+          {formik.touched.confirm_password && formik.errors.confirm_password ? (
+            <p className={`error-msg`}>{formik.errors.confirm_password}</p>
+          ) : null}
         </div>
+
         <div className={`${styles.btnWithError}`}>
-          {error && <p className={`error-msg`}>*{error}</p>}
           <div className={`${styles.submitBtn}`}>
             <button
               className="btn-primary  btn-block"
@@ -192,23 +188,13 @@ const Form: React.FC = () => {
                 // router.push("/dashboard");
               }}
             >
-              {/* Send */}
-              {/* {loading && "Loading..."}
-            {!loading && <div>Send</div>} */}
               {logging ? (
                 <CircularProgress size={20} style={{ color: "#fff" }} />
               ) : (
-                "Login"
+                "Send"
               )}
             </button>
           </div>
-        </div>
-
-        <div className={styles.register}>
-          <span>Don't have an account? </span>
-          <Link to="/auth/register" className={styles.linkStyle}>
-            Register
-          </Link>
         </div>
       </form>
       <ToastContainer />

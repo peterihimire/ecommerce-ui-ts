@@ -4,6 +4,7 @@ const Input: React.FC<CustomInputProps> = ({
   id,
   innerLabel,
   wrapperClass,
+  labelClass,
   labelText,
   optionalText,
   children,
@@ -24,7 +25,10 @@ const Input: React.FC<CustomInputProps> = ({
   return (
     <>
       {labelText && (
-        <label htmlFor={id}>
+        <label
+          className={`label-wrapper ${labelClass ? labelClass : ""}`}
+          htmlFor={id}
+        >
           {labelText}
           {required && <span>*</span>}
         </label>
