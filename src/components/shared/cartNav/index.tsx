@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
+import ReactDOM from "react-dom";
 import { NavLink, useLocation, Link } from "react-router-dom";
 // import useDarkMode from "use-dark-mode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,14 +22,49 @@ const CartNav: React.FC<CartNavProps> = ({ isOpen, clicked }) => {
   console.log(openSlider);
   console.log(isOpen);
 
-  // const closeCartHandler = (isOpen) => {
-  //   console.log("Clicked the x button", isOpen);
-  // };
+  useEffect(() => {
+    setOpenSlider(isOpen);
+  }, [isOpen]);
 
-  return (
-    <nav className={`${styles.cartNav} ${isOpen ? styles.show : ""}`}>
+  const backdropRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleBackdropClick = (event: MouseEvent) => {
+      if (
+        backdropRef.current &&
+        backdropRef.current.contains(event.target as Node)
+      ) {
+        clicked();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleBackdropClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleBackdropClick);
+    };
+  }, [isOpen, clicked]);
+
+  return ReactDOM.createPortal(
+    <div
+      className={`${styles.cartNav} ${
+        openSlider ? styles.show : styles.hidden
+      }`}
+    >
       <div className={`${styles.cartWrapper}`}>
         <div className={`${styles.cartHeader}`}>
+          <div className={`${styles.shoppingCart}`}>
+            <p className={`${styles.text}`}>shopping cart</p>
+            <div
+              className={`${styles.cartCount}`}
+              style={{ background: "none" }}
+            >
+              <div>3</div>
+            </div>
+          </div>
+
           <button
             className={`${styles.flexHead}`}
             onClick={clicked}
@@ -39,11 +75,6 @@ const CartNav: React.FC<CartNavProps> = ({ isOpen, clicked }) => {
               className={`${styles.close}`}
             />
           </button>
-          <p className={`${styles.flexHead}`}>MY CART</p>
-          <button
-            className={`${styles.flexHead}`}
-            style={{ background: "none" }}
-          ></button>
         </div>
 
         <div className={`${styles.cartBody}`}>
@@ -66,10 +97,12 @@ const CartNav: React.FC<CartNavProps> = ({ isOpen, clicked }) => {
         </div>
 
         <div className={`${styles.cartFooter}`}>
-          <button className="btn-block btn-primary">View Cart</button>
+          <button className="btn-block btn-medium">View Cart</button>{" "}
+          <button className="btn-block btn-medium-sec">Checkout</button>
         </div>
       </div>
-    </nav>
+    </div>,
+    document.body
   );
 };
 

@@ -35,8 +35,8 @@ const App: React.FC = (): JSX.Element => {
           console.log("Cookie set: ", document.cookie);
         }}
         debug={true}
-        enableDeclineButton
-        flipButtons
+        // enableDeclineButton
+        // flipButtons
       >
         This website uses cookies to enhance the user experience.{" "}
         {/* <span style={{ fontSize: "10px" }}>This bit of text is smaller :O</span> */}

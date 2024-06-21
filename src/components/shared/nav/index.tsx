@@ -11,6 +11,8 @@ import { NavProps } from "../../../types/NavProps.type";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import CartNav from "../../shared/cartNav";
+import BackdropCart from "../../shared/backdropcart";
 // import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 // import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 // import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -35,6 +37,14 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
 
   const profileRef = useRef<HTMLDivElement>(null); // Proper initialization
   const menuRef = useRef<HTMLDivElement>(null); // Proper initialization
+  const [cartOpen, setCartOpen] = useState(false);
+
+  const addProductHandler = () => {
+    console.log("Add handler...");
+    setCartOpen(true);
+    document.documentElement.classList.add("_fixed");
+    document.body.classList.add("_fixed");
+  };
 
   useEffect(() => {
     openAbout(false);
@@ -217,7 +227,10 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
             }`}
           />
         </div>
-        <div className={`${styles.cartCount}`}>
+        <div
+          className={`${styles.cartCount}`}
+          onClick={() => addProductHandler()}
+        >
           <div>21</div>
           <ShoppingCartOutlined
             className={` iconStyle  ${
@@ -226,6 +239,23 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
           />
         </div>
       </div>
+
+      <CartNav
+        isOpen={cartOpen}
+        clicked={() => {
+          setCartOpen(false);
+          document.documentElement.classList.remove("_fixed");
+          document.body.classList.remove("_fixed");
+        }}
+      />
+      <BackdropCart
+        open={cartOpen}
+        clicked={() => {
+          setCartOpen(false);
+          document.documentElement.classList.remove("_fixed");
+          document.body.classList.remove("_fixed");
+        }}
+      />
     </nav>
   );
 };

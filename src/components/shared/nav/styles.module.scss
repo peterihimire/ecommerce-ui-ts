@@ -6,6 +6,7 @@
   justify-content: space-between;
   // justify-content: flex-end;
   margin-left: 200px;
+  // z-index: 0;
 
   // 2.5K
   @media (max-width: 2560px) {
@@ -33,7 +34,7 @@
     top: 70px;
     left: -100vw;
     // right: -100vw;
-    z-index: 250;
+    // z-index: 199;
     transition: left 0.4s ease-in-out;
     // transition: right 0.4s ease-in-out;
     background: var(--white);
@@ -266,7 +267,7 @@
           position: absolute;
           // width: auto;
           width: 150px; // note here was 120px
-          z-index: 21;
+          // z-index: 21;
           padding-top: 8px;
           top: 100%;
           left: 0px;
@@ -291,7 +292,7 @@
             margin-top: 16px;
             max-height: 0;
             overflow: hidden;
-            z-index: 0;
+            // z-index: 0;
             top: 0;
             left: 0;
             visibility: visible;
