@@ -24,17 +24,17 @@ const App: React.FC = (): JSX.Element => {
       <CookieConsent
         location="bottom"
         buttonText="Accept Cookie"
-        cookieName="AwesomeCookieName"
-        cookieValue="abidoshaker-12394-kje9"
+        cookieName="benkih-ecommerce"
+        // cookieValue="abidoshaker-12394-kje9"
         style={{ background: "#2B373B" }}
         buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
         expires={150}
-        onAccept={() => {
-          console.log("User accepted cookies!");
-          // Check if the cookie is set
-          console.log("Cookie set: ", document.cookie);
-        }}
-        debug={true}
+        // onAccept={() => {
+        //   console.log("User accepted cookies!");
+        //   // Check if the cookie is set
+        //   console.log("Cookie set: ", document.cookie);
+        // }}
+        // debug={true}
         // enableDeclineButton
         // flipButtons
       >

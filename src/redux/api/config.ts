@@ -14,6 +14,7 @@ let $axios = axios.create({
   // ...config,
   baseURL,
   headers: config.headers,
+  withCredentials: config.withCredentials, // Add withCredentials to the Axios instance
 });
 
 export default $axios;
