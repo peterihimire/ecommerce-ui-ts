@@ -5,6 +5,7 @@ import {
   DarkModeOutlined,
   Search,
   PersonOutline,
+  ShoppingBagOutlined,
   ShoppingCartOutlined,
 } from "@mui/icons-material";
 import { NavProps } from "../../../types/NavProps.type";

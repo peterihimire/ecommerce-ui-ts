@@ -11,7 +11,7 @@ const Banner: React.FC = () => {
       <div className={`${styles.wrapper}`}>
         <div className={`${styles.errorContent}`}>
           <FontAwesomeIcon icon={faBoxOpen} className={`${styles.box}`} />
-          <h5>Error 404</h5>
+          <h5>Page Not Found</h5>
           <p>
             The page you’re looking for isn’t available. Try to search again or
             use the go back button below.

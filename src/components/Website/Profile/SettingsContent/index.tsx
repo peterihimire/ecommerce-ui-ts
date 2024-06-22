@@ -53,11 +53,11 @@ const SettingsContent = () => {
       icon: "/images/lock.svg",
       id: 5,
     },
-    {
-      name: "2FA Settings",
-      icon: "/images/shield.svg",
-      id: 6,
-    },
+    // {
+    //   name: "2FA Settings",
+    //   icon: "/images/shield.svg",
+    //   id: 6,
+    // },
   ];
 
   return (
@@ -81,24 +81,31 @@ const SettingsContent = () => {
                 <h3>Profile settings</h3>
 
                 <form>
-                  {/* <div className={styles.formGroup}>
+                  <div className={styles.formGroup}>
                     <Input
-                      children={<BlueEye />}
-                      innerLabel='First Name'
+                      id="first_name"
+                      name="first name"
+                      labelText="First Name"
+                      // children={<BlueEye />}
+                      innerLabel="First Name"
                       clicked={() => {
                         console.log("Hello inner-label clicked");
                       }}
                     />
-                  </div> */}
-                  {/* <div className={styles.formGroup}>
+                  </div>
+                  <div className={styles.formGroup}>
                     <Input
-                      labelText="Full Name"
-                      placeholder="Full Name"
+                      id="last_name"
+                      name="last name"
+                      labelText="Last Name"
+                      placeholder="Last Name"
                       // value='Peter Ihimire'
                     />
                   </div>
                   <div className={styles.formGroup}>
                     <Input
+                      id="email"
+                      name="email"
                       labelText="Email"
                       placeholder="Email"
                       // value='Peter Ihimire'
@@ -106,6 +113,8 @@ const SettingsContent = () => {
                   </div>
                   <div className={styles.formGroup}>
                     <Input
+                      id="phone_number"
+                      name="phone number"
                       labelText="Phone Number"
                       placeholder="Phone Number"
                       // value='Peter Ihimire'
@@ -113,6 +122,8 @@ const SettingsContent = () => {
                   </div>
                   <div className={styles.formGroup}>
                     <Input
+                      id="old_password"
+                      name="old password"
                       labelText="Confirm New Password"
                       placeholder="Confirm New Password"
                       // value='Peter Ihimire'
@@ -127,7 +138,7 @@ const SettingsContent = () => {
                     >
                       Update
                     </button>
-                  </div> */}
+                  </div>
                 </form>
               </div>
             )}
@@ -255,9 +266,11 @@ const SettingsContent = () => {
               <div className={styles.content}>
                 <h3>Change Password</h3>
 
-                {/* <form>
+                <form>
                   <div className={styles.formGroup}>
                     <Input
+                      id="old_password"
+                      name="old password"
                       labelText="Old Password"
                       placeholder="Old Password"
                       // value='Peter Ihimire'
@@ -265,6 +278,8 @@ const SettingsContent = () => {
                   </div>
                   <div className={styles.formGroup}>
                     <Input
+                      id="old_password"
+                      name="old password"
                       labelText="New Password"
                       placeholder="New Password"
                       // value='Peter Ihimire'
@@ -272,6 +287,8 @@ const SettingsContent = () => {
                   </div>
                   <div className={styles.formGroup}>
                     <Input
+                      id="old_password"
+                      name="old password"
                       labelText="Confirm New Password"
                       placeholder="Confirm New Password"
                       // value='Peter Ihimire'
@@ -287,14 +304,14 @@ const SettingsContent = () => {
                       Update
                     </button>
                   </div>
-                </form> */}
+                </form>
               </div>
             )}
-            {activeTab === 6 && (
+            {/* {activeTab === 6 && (
               <div className={styles.content}>
                 <h3>2FA Settings</h3>
 
-                {/* <form>
+                <form>
                   <div className={styles.formGroup}>
                     <Input
                       labelText="Set Security Question"
@@ -326,9 +343,9 @@ const SettingsContent = () => {
                       Update
                     </button>
                   </div>
-                </form> */}
+                </form>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>

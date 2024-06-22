@@ -6,8 +6,10 @@
   top: 0;
   left: 0;
   z-index: 80 !important;
-  background: transparent;
-  border-bottom: 1px solid var(--grey);
+  // background-color: var(--black);
+  // background: transparent;
+      background: rgba(0, 0, 0, 0.28);
+  border-bottom: 1px solid var(--black);
   transition: background 0.4s ease-in-out;
 
   &.bgDark {
