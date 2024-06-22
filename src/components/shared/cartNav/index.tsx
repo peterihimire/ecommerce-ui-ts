@@ -97,8 +97,16 @@ const CartNav: React.FC<CartNavProps> = ({ isOpen, clicked }) => {
         </div>
 
         <div className={`${styles.cartFooter}`}>
-          <button className="btn-block btn-medium">View Cart</button>{" "}
-          <button className="btn-block btn-medium-sec">Checkout</button>
+          <Link to="/cart" className="btn-block btn-medium-sec">
+            View Cart
+            {/* <button className="btn-block btn-medium-sec">View Cart</button> */}
+          </Link>
+          <Link to="/checkout" className="btn-block btn-medium">
+            Checkout
+            {/* <button className="btn-block btn-medium">Checkout</button> */}
+          </Link>
+          {/* <button className="btn-block btn-medium">View Cart</button>
+          <button className="btn-block btn-medium-sec">Checkout</button> */}
         </div>
       </div>
     </div>,

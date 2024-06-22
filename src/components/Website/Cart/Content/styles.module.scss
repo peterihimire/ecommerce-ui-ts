@@ -1,0 +1,190 @@
+.latest {
+  padding: 100px 0;
+
+  .latestTitle {
+    display: flex;
+    // flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    margin-bottom: 50px;
+
+    h3 {
+      font-size: 40px;
+      text-transform: capitalize;
+    }
+    p {
+      font-size: 16px;
+      line-height: 23px;
+      margin-top: 25px;
+      max-width: 700px;
+    }
+  }
+
+  .wrapper {
+    .collectionDiv {
+      display: grid;
+      grid-template-columns: 4fr 2fr;
+      gap: 40px;
+
+      .tableWrapper {
+        .table {
+          width: 100%;
+          /* height: 200px; */
+          text-align: left;
+
+          border-collapse: collapse !important;
+          background-color: white;
+
+          /* added this now */
+          overflow: scroll;
+
+          .tr {
+            .th {
+              text-align: left;
+              padding: 30px 20px;
+              margin-bottom: 10px;
+              border-bottom: 1px solid var(--black);
+              font-weight: 500;
+              font-size: 14px;
+              line-height: 100%;
+              color: var(--black);
+              font-weight: bolder;
+              font-family: Montserrat-Bold, sans-serif;
+            }
+          }
+        }
+
+        .tbody {
+          .td {
+            padding: 15px 20px;
+            border-bottom: 1px solid #f4f4f4;
+
+            .productImg {
+              border: 1px solid var(--lite-grey);
+              background-color: var(--off-white);
+            }
+
+            .title {
+              button {
+                text-decoration: underline;
+                margin-bottom: 15px;
+                text-transform: capitalize;
+                color: var(--main);
+                background: none;
+                padding: 0;
+                margin: 0;
+              }
+              p {
+                text-decoration: none !important;
+                margin-bottom: 15px;
+                text-transform: uppercase;
+              }
+            }
+          }
+          .amt {
+            font-weight: bolder;
+            font-size: 16px;
+            font-family: Montserrat-Bold, sans-serif;
+          }
+        }
+
+        .tableActions {
+          display: flex;
+          justify-content: flex-end;
+          margin-top: 20px;
+        }
+      }
+
+      .cartTotalDiv {
+        .cartTotalContainer {
+          padding: 30px 30px;
+          // box-shadow: var(--box-shadow);
+          border: 1px solid var(--main);
+          background-color: var(--off-white);
+
+          .cartTotalHeader {
+            h4 {
+              font-size: 18px;
+              font-weight: bolder;
+              font-family: Montserrat-Bold, sans-serif;
+              margin-bottom: 30px;
+              text-transform: uppercase;
+            }
+          }
+          .cartTotalPrice {
+            //
+            .cartSubtotal {
+              display: flex;
+              align-items: center;
+              padding: 20px 0;
+              border-bottom: 1px solid var(--lite-grey);
+
+              p {
+                width: 100px;
+                // font-weight: bolder;
+                font-size: 16px;
+                font-family: Montserrat-Medium, sans-serif;
+              }
+              h6 {
+                font-weight: bolder;
+                font-size: 14px;
+                font-family: Montserrat-Bold, sans-serif;
+              }
+            }
+
+            .cartTotal {
+              display: flex;
+              align-items: center;
+              padding: 20px 0;
+              margin-bottom: 20px;
+              // border-bottom: 1px solid var(--lite-grey);
+
+              p {
+                width: 100px;
+                // font-weight: bolder;
+                font-size: 16px;
+                font-family: Montserrat-Medium, sans-serif;
+              }
+              h6 {
+                font-weight: bolder;
+                font-size: 16px;
+                font-family: Montserrat-Bold, sans-serif;
+              }
+            }
+          }
+
+          // h5 {
+          //   font-size: 14px;
+          //   font-family: Montserrat-Medium, sans-serif;
+          //   margin-bottom: 30px;
+          // }
+
+          // h6 {
+          //   font-size: 14px;
+          //   font-family: Montserrat-Medium, sans-serif;
+          //   margin-bottom: 10px;
+          // }
+
+          // .checkboxGroup {
+          //   margin-bottom: 15px;
+          // }
+
+          // .filterBtnGroup {
+          //   display: flex;
+          //   align-items: center;
+          //   margin-top: 50px;
+
+          //   button {
+          //     margin-right: 20px;
+
+          //     &:last-of-type {
+          //       margin-right: 0px;
+          //     }
+          //   }
+          // }
+        }
+      }
+    }
+  }
+}

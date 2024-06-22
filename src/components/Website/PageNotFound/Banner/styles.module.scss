@@ -1,0 +1,95 @@
+.errorPage {
+  // width: 100%;
+  padding: 200px 0;
+  background: url("../../../../assets/images/vecteezy_abstract-white-fluid-wave-background_7075692.jpg");
+  background: linear-gradient(
+      180deg,
+      rgba(140, 138, 138, 0.29) -14.99%,
+      rgba(9, 9, 9, 0.52) 118.32%
+    ),
+    url("../../../../assets/images/vecteezy_abstract-white-fluid-wave-background_7075692.jpg");
+
+  // background: url("../../../../assets/images/vecteezy_abstract-white-fluid-wave-background_7075692.jpg");
+  // background: url("../../../../assets/images/vecteezy_abstract-white-fluid-wave-background_7075692.jpg"),
+  //   linear-gradient(
+  //     180deg,
+  //     rgba(249, 249, 249, 0.29) -14.99%,
+  //     rgba(85, 202, 255, 0.52) 118.32%
+  //   );
+
+  @media (max-width: 1200px) {
+    padding: 200px 0px 100px;
+  }
+
+  @media (max-width: 900px) {
+  }
+
+  @media (max-width: 600px) {
+    padding: 100px 0px 100px;
+  }
+
+  .wrapper {
+    width: 65%;
+    margin: 0 auto;
+
+    @media (max-width: 1387px) {
+      width: 90%;
+    }
+
+    @media (max-width: 1315px) {
+      width: 95%;
+    }
+
+    .errorContent {
+      // padding: 100px;
+      // background: linear-gradient(
+      //   180deg,
+      //   rgba(249, 249, 249, 0.29) -14.99%,
+      //   rgba(85, 202, 255, 0.52) 118.32%
+      // );
+      // text-align: center;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 4px;
+
+      @media (max-width: 600px) {
+        padding: 60px 10px;
+      }
+      .box {
+        // width: 100px;
+        font-size: 60px;
+        color: var(--main);
+        padding: 20px;
+        background-color: var(--white);
+      }
+      h2 {
+        font-size: 180px;
+        line-height: 180px;
+        color: var(--main);
+
+        @media (max-width: 600px) {
+          font-size: 80px;
+          line-height: 80px;
+        }
+      }
+
+      h5 {
+        font-size: 20px;
+        line-height: 22px;
+        color: var(--main);
+      }
+      p {
+        // color: var(--main);
+        width: 500px;
+        text-align: center;
+        margin: 20px 0;
+
+        @media (max-width: 600px) {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

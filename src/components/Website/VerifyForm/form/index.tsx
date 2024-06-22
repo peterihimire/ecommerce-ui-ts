@@ -64,7 +64,7 @@ const Form: React.FC = () => {
 
           setLogging(false);
           setTimeout(() => {
-            navigate("/login");
+            navigate("/auth/login");
           }, 3000);
 
           // navigate("/");

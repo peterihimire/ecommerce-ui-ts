@@ -5,6 +5,7 @@ import { Home } from "../pages/home";
 import { About } from "../pages/about";
 import { Contact } from "../pages/contact";
 import { Collections } from "../pages/collections";
+import { Cart } from "../pages/cart";
 import { LoginForm } from "../pages/loginform";
 import { RegisterForm } from "../pages/registerform";
 import { ForgotForm } from "../pages/forgotform";
@@ -13,6 +14,7 @@ import { ProductInfo } from "../pages/productinfo";
 import { Faq } from "../pages/faq";
 import { Profile } from "../pages/profile";
 import { VerifyForm } from "../pages/verifyform";
+import { PageNotFound } from "../pages/pageNotFound";
 
 export const routes: RouteObject[] = [
   {
@@ -48,6 +50,10 @@ export const routes: RouteObject[] = [
         element: <Faq />,
       },
       {
+        path: "/cart",
+        element: <Cart />,
+      },
+      {
         path: "/user/profile/:acct_id",
         element: <Profile />,
       },
@@ -80,5 +86,14 @@ export const routes: RouteObject[] = [
     ],
   },
 
-  { path: "*", element: <h2>error 404</h2> },
+  {
+    path: "*",
+    element: <WebsiteLayout />,
+    children: [
+      {
+        path: "*",
+        element: <PageNotFound />,
+      },
+    ],
+  },
 ];
