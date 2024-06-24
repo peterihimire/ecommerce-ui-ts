@@ -136,6 +136,43 @@
       }
     }
 
+    .cartSubtotal {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: absolute;
+      width: 100%;
+      bottom: -10px;
+      // border-top: solid 1px var(--lite-grey);
+      // margin: 20px 0px;
+      padding: 20px 0 0 0;
+      color: var(--grey);
+      font-weight: bolder;
+      text-transform: uppercase;
+      // font-size: 10px !important;
+
+      p {
+        font-family: Montserrat-Bold, sans-serif;
+        color: var(--grey);
+        font-weight: bolder;
+        text-transform: uppercase;
+        font-size: 14px !important;
+      }
+      span {
+        font-family: Montserrat-Bold, sans-serif;
+        color: var(--grey);
+        font-weight: bolder;
+        text-transform: uppercase;
+        font-size: 14px !important;
+      }
+
+      // a {
+      //   &:last-of-type {
+      //     margin-left: 20px;
+      //   }
+      // }
+    }
+
     .cartFooter {
       display: flex;
       justify-content: space-between;

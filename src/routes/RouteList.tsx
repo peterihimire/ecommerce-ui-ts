@@ -6,6 +6,7 @@ import { About } from "../pages/about";
 import { Contact } from "../pages/contact";
 import { Collections } from "../pages/collections";
 import { Cart } from "../pages/cart";
+import { Checkout } from "../pages/checkout";
 import { LoginForm } from "../pages/loginform";
 import { RegisterForm } from "../pages/registerform";
 import { ForgotForm } from "../pages/forgotform";
@@ -52,6 +53,10 @@ export const routes: RouteObject[] = [
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/checkout",
+        element: <Checkout />,
       },
       {
         path: "/user/profile/:acct_id",

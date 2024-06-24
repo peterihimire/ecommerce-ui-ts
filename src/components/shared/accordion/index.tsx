@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { KeyboardArrowDown, KeyboardArrowRight } from "@mui/icons-material";
+import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 import { AccordionProps } from "../../../types/types";
 import styles from "./styles.module.scss";
 
@@ -28,9 +28,9 @@ const Accordion: React.FC<AccordionProps> = ({ title, content, focus }) => {
         </div>
         <div className={`${styles.rotate}`}>
           {clicked.focus === focus ? (
-            <KeyboardArrowDown />
+            <KeyboardArrowUp />
           ) : (
-            <KeyboardArrowRight />
+            <KeyboardArrowDown />
           )}
         </div>
       </button>
@@ -40,7 +40,8 @@ const Accordion: React.FC<AccordionProps> = ({ title, content, focus }) => {
           clicked.focus === focus && styles.show
         }`}
       >
-        <div className={`${styles.subHead}`}>{content}</div>
+        {content}
+        {/* <div className={`${styles.subHead}`}>{content}</div> */}
       </div>
     </li>
   );

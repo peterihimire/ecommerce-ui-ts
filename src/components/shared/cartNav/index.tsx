@@ -96,6 +96,11 @@ const CartNav: React.FC<CartNavProps> = ({ isOpen, clicked }) => {
           </div>
         </div>
 
+        <div className={`${styles.cartSubtotal}`}>
+          <p>subtotal :</p>
+          <span>$200.99</span>
+        </div>
+
         <div className={`${styles.cartFooter}`}>
           <Link
             onClick={() => {

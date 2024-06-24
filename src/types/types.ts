@@ -26,7 +26,7 @@ export type ProductCardProps = {
 // FOR ACCORDION-CARD
 export type AccordionProps = {
   title: string;
-  content: string;
+  content: string | React.ReactNode;
   focus: number;
 };
 
@@ -97,6 +97,7 @@ export type CustomSelectProps = {
   clicked?: () => void;
   password?: boolean;
   innerLabel?: string;
+  labelClass?: string;
   labelText?: string;
   optionalText?: string;
   required?: boolean;

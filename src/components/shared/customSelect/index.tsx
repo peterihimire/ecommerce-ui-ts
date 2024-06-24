@@ -7,14 +7,19 @@ const Select: React.FC<CustomSelectProps> = ({
   id,
   required,
   wrapClass,
+  labelClass,
   sort,
   ...props
 }) => {
   return (
     <>
       {labelText && (
-        <label htmlFor={id}>
-          {labelText} {required && <span>*</span>}
+        <label
+          className={`label-wrapper ${labelClass ? labelClass : ""}`}
+          htmlFor={id}
+        >
+          {labelText}
+          {required && <span>*</span>}
         </label>
       )}
       <div

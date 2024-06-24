@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ProductCard from "../../../shared/productcard";
 import Checkbox from "../../../shared/customCheckbox";
+import Accordion from "../../../shared/accordion";
 import { products } from "../../../../data-list";
 import Slider from "@mui/material/Slider";
 
@@ -189,13 +190,136 @@ const Latest: React.FC = () => {
           <button className="btn btn-medium btn-primary">View more</button>
         </div> */}
 
+        {/* <Accordion title={"My title"} content={"Hello mr"} focus={1} />
+        <Accordion
+          title={"My title"}
+          content={
+            <Slider
+              aria-label="Temperature"
+              // defaultValue will not work because, this is a controlled component in the sense that it is controlled by react . it's value is stored in a [state]
+              defaultValue={100}
+              step={1}
+              // marks={budget}
+              valueLabelDisplay="on"
+              // valueLabelDisplay="auto"
+              // Added this with the new scaling
+              // value={budgetValue}
+              value={value}
+              min={0}
+              max={100}
+              valueLabelFormat={numFormatter}
+              scale={scale}
+              // onChange={handleBudgetChange}
+            />
+          }
+          focus={1}
+        /> */}
+
         <div className={`${styles.collectionDiv}`}>
           <div className={`${styles.filterDiv}`}>
             <div className={`${styles.filterContainer}`}>
-              <div className={`${styles.filterHeading}`}>
+              {/* <div className={`${styles.filterHeading}`}>
                 <h4>Filter Products</h4>
-              </div>
-              <h5>Price</h5>
+              </div> */}
+
+              <Accordion
+                title={"Category"}
+                content={
+                  <div className={`${styles.filterCategory}`}>
+                    <div className={`${styles.checkboxGroup}`}>
+                      <Checkbox
+                        checkText={"Non Smart tv"}
+                        htmlFor="tv"
+                        name="non-smart"
+                        // onChange={handleCheckChange}
+                      />
+                    </div>
+                    <div className={`${styles.checkboxGroup}`}>
+                      <Checkbox
+                        checkText={"Smart tv"}
+                        htmlFor="tv"
+                        name="smart tv"
+                        // onChange={handleCheckChange}
+                      />
+                    </div>
+                  </div>
+                }
+                focus={1}
+              />
+              <Accordion
+                title={"Price"}
+                content={
+                  <Slider
+                    aria-label="Temperature"
+                    // defaultValue will not work because, this is a controlled component in the sense that it is controlled by react . it's value is stored in a [state]
+                    defaultValue={100}
+                    step={1}
+                    // marks={budget}
+                    valueLabelDisplay="on"
+                    // valueLabelDisplay="auto"
+                    // Added this with the new scaling
+                    // value={budgetValue}
+                    value={value}
+                    min={0}
+                    max={100}
+                    valueLabelFormat={numFormatter}
+                    scale={scale}
+                    // onChange={handleBudgetChange}
+                  />
+                }
+                focus={1}
+              />
+
+              <Accordion
+                title={"Color"}
+                content={
+                  <div>
+                    <div className={`${styles.checkboxGroup}`}>
+                      <Checkbox
+                        checkText={"Black"}
+                        htmlFor="color"
+                        name="black"
+                        // onChange={handleCheckChange}
+                      />
+                    </div>
+                    <div className={`${styles.checkboxGroup}`}>
+                      <Checkbox
+                        checkText={"Silver"}
+                        htmlFor="color"
+                        name="silver"
+                        // onChange={handleCheckChange}
+                      />
+                    </div>
+                  </div>
+                }
+                focus={1}
+              />
+
+              <Accordion
+                title={"Size"}
+                content={
+                  <div>
+                    <div className={`${styles.checkboxGroup}`}>
+                      <Checkbox
+                        checkText={"32 inches"}
+                        htmlFor="size"
+                        name="32"
+                        // onChange={handleCheckChange}
+                      />
+                    </div>
+                    <div className={`${styles.checkboxGroup}`}>
+                      <Checkbox
+                        checkText={"43 inches"}
+                        htmlFor="size"
+                        name="43"
+                        // onChange={handleCheckChange}
+                      />
+                    </div>
+                  </div>
+                }
+                focus={1}
+              />
+              {/* <h5>Price</h5>
               <Slider
                 aria-label="Temperature"
                 // defaultValue will not work because, this is a controlled component in the sense that it is controlled by react . it's value is stored in a [state]
@@ -281,14 +405,14 @@ const Latest: React.FC = () => {
                   name="silver"
                   // onChange={handleCheckChange}
                 />
-              </div>
+              </div> */}
 
-              <div className={`${styles.filterBtnGroup}`}>
+              {/* <div className={`${styles.filterBtnGroup}`}>
                 <button className="btn-block btn-small">Apply Filter</button>
                 <button className="btn-block btn-small-sec ">
                   Reset Filter
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className={`${styles.productDiv}`}>
