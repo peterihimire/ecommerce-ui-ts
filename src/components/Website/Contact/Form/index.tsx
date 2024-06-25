@@ -137,94 +137,92 @@ const Form: React.FC = () => {
 
   return (
     <div className={`${styles.contactForm}`}>
-      {/* <h2>Log into your Account</h2> */}
-      <div className="wrapper">
-        <div className={`${styles.formContainer}`}>
-          <form
-            onSubmit={formik.handleSubmit}
-            // onSubmit={(e) => handleLogin(e)}
-          >
-            <div className={`${styles.formGrid}`}>
-              <div className={`${styles.formGroup}`}>
-                <Input
-                  labelText="Full Name"
-                  type="text"
-                  name="fullname"
-                  id="fullname"
-                  // required
-                  placeholder="Full Name"
-                  // value={loginForm.email}
-                  // onChange={(e) => handleFormChange(e.target)}
+      <div className={`${styles.formContainer}`}>
+        <form
+          onSubmit={formik.handleSubmit}
+          // onSubmit={(e) => handleLogin(e)}
+        >
+          <div className={`${styles.formGrid}`}>
+            <div className={`${styles.formGroup}`}>
+              <Input
+                labelText="Full Name"
+                type="text"
+                name="fullname"
+                id="fullname"
+                // required
+                placeholder="Full Name"
+                // value={loginForm.email}
+                // onChange={(e) => handleFormChange(e.target)}
 
-                  value={formik.values.fullname}
-                  onBlur={formik.handleBlur}
-                  onChange={formik.handleChange}
-                />
-                {formik.touched.fullname && formik.errors.fullname ? (
-                  <p className={`error-msg`}>{formik.errors.fullname}</p>
-                ) : null}
+                value={formik.values.fullname}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+              />
+              {formik.touched.fullname && formik.errors.fullname ? (
+                <p className={`error-msg`}>{formik.errors.fullname}</p>
+              ) : null}
 
-                {/* {formError.email && (
+              {/* {formError.email && (
             <p className={styles.errorStyle}>{formError.email}</p>
           )} */}
-              </div>
-              <div className={`${styles.formGroup}`}>
-                <Input
-                  labelText="Company"
-                  type="text"
-                  name="company"
-                  id="company"
-                  // required
-                  placeholder="Company"
-                  // value={loginForm.password}
-                  // onChange={(e) => handleFormChange(e.target)}
-                  // password
-                  // reveal={() => toggleVisibility()}
-                  // passIcon={!visible ? <Visibility /> : <VisibilityOff />}
-                  value={formik.values.company}
-                  onBlur={formik.handleBlur}
-                  onChange={formik.handleChange}
-                />
-                {formik.touched.company && formik.errors.company ? (
-                  <p className={`error-msg`}>{formik.errors.company}</p>
-                ) : null}
-                {/* {formError.password && (
+            </div>
+            <div className={`${styles.formGroup}`}>
+              <Input
+                labelText="Company"
+                type="text"
+                name="company"
+                id="company"
+                // required
+                placeholder="Company"
+                // value={loginForm.password}
+                // onChange={(e) => handleFormChange(e.target)}
+                // password
+                // reveal={() => toggleVisibility()}
+                // passIcon={!visible ? <Visibility /> : <VisibilityOff />}
+                value={formik.values.company}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+              />
+              {formik.touched.company && formik.errors.company ? (
+                <p className={`error-msg`}>{formik.errors.company}</p>
+              ) : null}
+              {/* {formError.password && (
             <p className={styles.errorStyle}>{formError.password}</p>
           )} */}
-              </div>
+            </div>
 
-              <div className={`${styles.formGroup}`}>
-                <Input
-                  labelText="Email"
-                  type="email"
-                  name="email"
-                  id="email"
-                  // required
-                  placeholder="Email"
-                  // value={loginForm.email}
-                  // onChange={(e) => handleFormChange(e.target)}
+            <div className={`${styles.formGroup}`}>
+              <Input
+                labelText="Email"
+                type="email"
+                name="email"
+                id="email"
+                // required
+                placeholder="Email"
+                // value={loginForm.email}
+                // onChange={(e) => handleFormChange(e.target)}
 
-                  value={formik.values.email}
-                  onBlur={formik.handleBlur}
-                  onChange={formik.handleChange}
-                />
-                {formik.touched.email && formik.errors.email ? (
-                  <p className={`error-msg`}>{formik.errors.email}</p>
-                ) : null}
+                value={formik.values.email}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+              />
+              {formik.touched.email && formik.errors.email ? (
+                <p className={`error-msg`}>{formik.errors.email}</p>
+              ) : null}
 
-                {/* {formError.email && (
+              {/* {formError.email && (
             <p className={styles.errorStyle}>{formError.email}</p>
           )} */}
-              </div>
+            </div>
 
-              <div className={`${styles.formGroup}`}>
-                {/* <div className={`phone-label-wrapper`}>
+            <div className={`${styles.formGroup}`}>
+              {/* <div className={`phone-label-wrapper`}>
                 <label htmlFor="phone">
                   Phone Number<span>*</span>
                 </label>
               </div> */}
 
-                {/* <PhoneInput
+              {/* <PhoneInput
                 country={"us"}
                 // value={this.state.phone}
                 // onChange={(phone) => this.setState({ phone })}
@@ -235,45 +233,45 @@ const Form: React.FC = () => {
                 inputProps={{ id: "phone", name: "phone_number" }}
                 containerClass="phone-input-wrapper"
               /> */}
-                <Input
-                  labelText="Phone"
-                  type="phone"
-                  name="phone"
-                  id="phone"
-                  // required
-                  placeholder="Phone"
-                  // value={loginForm.email}
-                  // onChange={(e) => handleFormChange(e.target)}
-
-                  value={formik.values.phone}
-                  onBlur={formik.handleBlur}
-                  onChange={formik.handleChange}
-                />
-                {formik.touched.phone && formik.errors.phone ? (
-                  <p className="error-msg">{formik.errors.phone}</p>
-                ) : null}
-              </div>
-            </div>
-            <div className={`${styles.formGroup}`}>
               <Input
-                labelText="Subject"
-                type="text"
-                name="subject"
-                id="subject"
+                labelText="Phone"
+                type="phone"
+                name="phone"
+                id="phone"
                 // required
-                placeholder="Subject"
+                placeholder="Phone"
                 // value={loginForm.email}
                 // onChange={(e) => handleFormChange(e.target)}
 
-                value={formik.values.subject}
+                value={formik.values.phone}
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
               />
-              {formik.touched.subject && formik.errors.subject ? (
-                <p className="error-msg">{formik.errors.subject}</p>
+              {formik.touched.phone && formik.errors.phone ? (
+                <p className="error-msg">{formik.errors.phone}</p>
               ) : null}
             </div>
-            {/* <div className={`${styles.formGroup}`}>
+          </div>
+          <div className={`${styles.formGroup}`}>
+            <Input
+              labelText="Subject"
+              type="text"
+              name="subject"
+              id="subject"
+              // required
+              placeholder="Subject"
+              // value={loginForm.email}
+              // onChange={(e) => handleFormChange(e.target)}
+
+              value={formik.values.subject}
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+            />
+            {formik.touched.subject && formik.errors.subject ? (
+              <p className="error-msg">{formik.errors.subject}</p>
+            ) : null}
+          </div>
+          {/* <div className={`${styles.formGroup}`}>
               <Select
                 name="country"
                 labelText="Country of Residence"
@@ -292,55 +290,54 @@ const Form: React.FC = () => {
                 <p className="error-msg">{formik.errors.country}</p>
               ) : null}
             </div> */}
-            <div className={`${styles.textarea}`}>
-              <Textarea
-                labelText="Message"
-                id="message"
-                // required
-                name="message"
-                placeholder="Type your message..."
-                // iconSrc={textPen}
-                value={formik.values.message}
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-              />
-              {formik.touched.message && formik.errors.message ? (
-                <p className="error-msg">{formik.errors.message}</p>
-              ) : null}
-            </div>
+          <div className={`${styles.textarea}`}>
+            <Textarea
+              labelText="Message"
+              id="message"
+              // required
+              name="message"
+              placeholder="Type your message..."
+              // iconSrc={textPen}
+              value={formik.values.message}
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+            />
+            {formik.touched.message && formik.errors.message ? (
+              <p className="error-msg">{formik.errors.message}</p>
+            ) : null}
+          </div>
 
-            <div className={`forgot`}>
-              {/* <Link href='/forgot-password'>
+          <div className={`forgot`}>
+            {/* <Link href='/forgot-password'>
             <a className={styles.linkStyle}>Forgot Password?</a>
           </Link> */}
-            </div>
-            <div className={`btnWithError`}>
-              {error && <p className={`errorStyle`}>*{error}</p>}
-              <div className={`submitBtn`}>
-                <button
-                  className="btn-primary  btn-block"
-                  type="submit"
-                  disabled={logging}
-                  onClick={(e) => {
-                    // e.preventDefault();
-                    // console.log("Clicked");
-                    // router.push("/dashboard");
-                  }}
-                >
-                  {/* Send */}
-                  {/* {loading && "Loading..."}
+          </div>
+          <div className={`btnWithError`}>
+            {error && <p className={`errorStyle`}>*{error}</p>}
+            <div className={`submitBtn`}>
+              <button
+                className="btn-primary  btn-block"
+                type="submit"
+                disabled={logging}
+                onClick={(e) => {
+                  // e.preventDefault();
+                  // console.log("Clicked");
+                  // router.push("/dashboard");
+                }}
+              >
+                {/* Send */}
+                {/* {loading && "Loading..."}
             {!loading && <div>Send</div>} */}
-                  {logging ? (
-                    <CircularProgress size={20} style={{ color: "#fff" }} />
-                  ) : (
-                    "Send"
-                  )}
-                </button>
-              </div>
+                {logging ? (
+                  <CircularProgress size={20} style={{ color: "#fff" }} />
+                ) : (
+                  "Send"
+                )}
+              </button>
             </div>
-          </form>
-          <ToastContainer />
-        </div>
+          </div>
+        </form>
+        <ToastContainer />
       </div>
     </div>
   );

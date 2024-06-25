@@ -57,7 +57,22 @@
         }
 
         .content {
-          width: 60%;
+          // width: 60%;
+
+          .profilePix {
+            width: 200px;
+            height: 200px;
+            border-radius: 2px;
+            margin-bottom: 20px;
+            border: 1px solid var(--lite-grey);
+            padding: 10px;
+
+            .userIcon {
+              width: 100%;
+              height: 100%;
+              color: var(--lite-grey);
+            }
+          }
 
           @media (max-width: 900px) {
             width: 100%;
@@ -75,8 +90,21 @@
           }
 
           form {
-            .formGroup {
-              margin-bottom: 20px;
+            .formGrid {
+              grid-column-gap: 20px;
+              grid-row-gap: 8px;
+              align-items: center;
+              -webkit-column-gap: 20px;
+              column-gap: 20px;
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              justify-content: center;
+              row-gap: 0px;
+              width: var(--full);
+
+              .formGroup {
+                margin-bottom: 20px;
+              }
             }
 
             .submitBtn {

@@ -1,7 +1,7 @@
 import React from "react";
 import ContactHero from "./Hero";
 // import WhoWeAre from "./WhoWeAre";
-// import Choose from "./Choose";
+import Choose from "./Choose";
 import Form from "./Form";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
@@ -13,8 +13,8 @@ const Contact: React.FC = () => {
         <meta name="description" content="Description of my page" />
       </Helmet>
       <ContactHero />
-      <Form />
-      {/* <Choose /> */}
+      {/* <Form /> */}
+      <Choose />
       {/* <Testimonial /> */}
     </HelmetProvider>
   );

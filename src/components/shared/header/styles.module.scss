@@ -8,7 +8,7 @@
   z-index: 80 !important;
   // background-color: var(--black);
   // background: transparent;
-      background: rgba(0, 0, 0, 0.28);
+  background: rgba(0, 0, 0, 0.28);
   border-bottom: 1px solid var(--black);
   transition: background 0.4s ease-in-out;
 
@@ -37,6 +37,18 @@
       align-items: center;
       height: 100%;
       max-width: var(--wrapper-max-width);
+
+      @media (max-width: 1387px) {
+        width: 90%;
+      }
+
+      @media (max-width: 1315px) {
+        width: 95%;
+      }
+
+      @media (max-width: 1264px) {
+        justify-content: space-between;
+      }
 
       .items {
         font-size: 14px;

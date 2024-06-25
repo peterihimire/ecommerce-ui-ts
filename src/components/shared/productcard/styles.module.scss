@@ -1,5 +1,5 @@
 .productCard {
-  background: var(--lite-grey);
+  background: var(--prod-bg);
   // box-shadow: var(--box-shadow);
   // margin: auto 0;
   display: flex;
@@ -8,7 +8,7 @@
   align-items: center;
   // box-shadow: 0.1rem 0.1rem 0.8rem 0.1rem rgb(199 197 197 / 85%);
   // box-shadow: 0.1rem 0.1rem 0.8rem 0.1rem rgba(199, 197, 197, 0.849);
-  // border: 1px solid #e7e9eb;
+  border: 1px solid var(--lite-grey);
   border-radius: 2px;
   // padding: 30px;
   position: relative;
@@ -56,6 +56,7 @@
     img {
       height: 250px;
       width: 250px;
+      // background-color: var(--off-white);
       // position: absolute;
       text-align: center;
       // top: 30%;

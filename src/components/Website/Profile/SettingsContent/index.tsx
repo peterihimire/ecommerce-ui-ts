@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import CustomTabs from "../../../shared/customTab";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 // import Select from "../../ui/customSelect";
 // import Switch from "../../ui/switch";
 import Input from "../../../shared/customInput";
@@ -34,17 +36,17 @@ const SettingsContent = () => {
       id: 1,
     },
     {
-      name: "Card Settings",
+      name: "Orders",
       icon: "/images/credit-card.svg",
       id: 2,
     },
     {
-      name: "Bank Settings",
+      name: "Order Tracking",
       icon: "/images/bank.svg",
       id: 3,
     },
     {
-      name: "Notifications",
+      name: "Wishlist",
       icon: "/images/bell.svg",
       id: 4,
     },
@@ -80,57 +82,79 @@ const SettingsContent = () => {
               <div className={styles.content}>
                 <h3>Profile settings</h3>
 
-                <form>
-                  <div className={styles.formGroup}>
-                    <Input
-                      id="first_name"
-                      name="first name"
-                      labelText="First Name"
-                      // children={<BlueEye />}
-                      innerLabel="First Name"
-                      clicked={() => {
-                        console.log("Hello inner-label clicked");
-                      }}
-                    />
-                  </div>
-                  <div className={styles.formGroup}>
-                    <Input
-                      id="last_name"
-                      name="last name"
-                      labelText="Last Name"
-                      placeholder="Last Name"
-                      // value='Peter Ihimire'
-                    />
-                  </div>
-                  <div className={styles.formGroup}>
-                    <Input
-                      id="email"
-                      name="email"
-                      labelText="Email"
-                      placeholder="Email"
-                      // value='Peter Ihimire'
-                    />
-                  </div>
-                  <div className={styles.formGroup}>
-                    <Input
-                      id="phone_number"
-                      name="phone number"
-                      labelText="Phone Number"
-                      placeholder="Phone Number"
-                      // value='Peter Ihimire'
-                    />
-                  </div>
-                  <div className={styles.formGroup}>
-                    <Input
-                      id="old_password"
-                      name="old password"
-                      labelText="Confirm New Password"
-                      placeholder="Confirm New Password"
-                      // value='Peter Ihimire'
-                    />
-                  </div>
+                <div className={`${styles.profilePix}`}>
+                  <FontAwesomeIcon
+                    icon={faUser}
+                    className={`${styles.userIcon}`}
+                  />
+                </div>
 
-                  <div className={styles.submitBtn}>
+                <form>
+                  <div className={`${styles.formGrid}`}>
+                    <div className={styles.formGroup}>
+                      <Input
+                        id="title"
+                        name="title"
+                        labelText="Title"
+                        placeholder="Title"
+                        // children={<BlueEye />}
+                        innerLabel="Title"
+                        clicked={() => {
+                          console.log("Hello inner-label clicked");
+                        }}
+                      />
+                    </div>
+                    <div className={styles.formGroup}>
+                      <Input
+                        id="first_name"
+                        name="first name"
+                        labelText="First Name"
+                        placeholder="First Name"
+                        // children={<BlueEye />}
+                        innerLabel="First Name"
+                        clicked={() => {
+                          console.log("Hello inner-label clicked");
+                        }}
+                      />
+                    </div>
+                    <div className={styles.formGroup}>
+                      <Input
+                        id="last_name"
+                        name="last name"
+                        labelText="Last Name"
+                        placeholder="Last Name"
+                        // value='Peter Ihimire'
+                      />
+                    </div>
+
+                    <div className={styles.formGroup}>
+                      <Input
+                        id="acct_id"
+                        name="acct_id"
+                        labelText="Account ID"
+                        placeholder="Account ID"
+                        // value='Peter Ihimire'
+                      />
+                    </div>
+                    <div className={styles.formGroup}>
+                      <Input
+                        id="email"
+                        name="email"
+                        labelText="Email"
+                        placeholder="Email"
+                        // value='Peter Ihimire'
+                      />
+                    </div>
+                    <div className={styles.formGroup}>
+                      <Input
+                        id="phone_number"
+                        name="phone number"
+                        labelText="Phone Number"
+                        placeholder="Phone Number"
+                        // value='Peter Ihimire'
+                      />
+                    </div>
+
                     <button
                       className="btn-primary btn-block"
                       // onClick={stepHandler}
@@ -139,6 +163,9 @@ const SettingsContent = () => {
                       Update
                     </button>
                   </div>
+
+                  {/* <div className={`${styles.formGrid}`}></div>
+                  <div className={styles.formGrid}></div> */}
                 </form>
               </div>
             )}
@@ -267,35 +294,35 @@ const SettingsContent = () => {
                 <h3>Change Password</h3>
 
                 <form>
-                  <div className={styles.formGroup}>
-                    <Input
-                      id="old_password"
-                      name="old password"
-                      labelText="Old Password"
-                      placeholder="Old Password"
-                      // value='Peter Ihimire'
-                    />
-                  </div>
-                  <div className={styles.formGroup}>
-                    <Input
-                      id="old_password"
-                      name="old password"
-                      labelText="New Password"
-                      placeholder="New Password"
-                      // value='Peter Ihimire'
-                    />
-                  </div>
-                  <div className={styles.formGroup}>
-                    <Input
-                      id="old_password"
-                      name="old password"
-                      labelText="Confirm New Password"
-                      placeholder="Confirm New Password"
-                      // value='Peter Ihimire'
-                    />
-                  </div>
+                  <div className={`${styles.formGrid}`}>
+                    <div className={styles.formGroup}>
+                      <Input
+                        id="old_password"
+                        name="old password"
+                        labelText="Old Password"
+                        placeholder="Old Password"
+                        // value='Peter Ihimire'
+                      />
+                    </div>
+                    <div className={styles.formGroup}>
+                      <Input
+                        id="old_password"
+                        name="old password"
+                        labelText="New Password"
+                        placeholder="New Password"
+                        // value='Peter Ihimire'
+                      />
+                    </div>
+                    <div className={styles.formGroup}>
+                      <Input
+                        id="old_password"
+                        name="old password"
+                        labelText="Confirm New Password"
+                        placeholder="Confirm New Password"
+                        // value='Peter Ihimire'
+                      />
+                    </div>
 
-                  <div className={styles.submitBtn}>
                     <button
                       className="btn-primary btn-block"
                       // onClick={stepHandler}

@@ -137,14 +137,14 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
                     Who We Are
                   </NavLink>
                 </li>
-                <li>
+                {/* <li>
                   <NavLink
                     className={`${styles.forDrop}`}
                     to="/about/our-vision"
                   >
                     Our Vision
                   </NavLink>
-                </li>
+                </li> */}
                 <li>
                   <NavLink
                     className={`${styles.forDrop} ${

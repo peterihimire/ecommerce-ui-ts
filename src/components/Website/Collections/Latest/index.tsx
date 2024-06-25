@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ProductCard from "../../../shared/productcard";
 import Checkbox from "../../../shared/customCheckbox";
 import Accordion from "../../../shared/accordion";
 import { products } from "../../../../data-list";
 import Slider from "@mui/material/Slider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { ArrowDownward, PersonOutline } from "@mui/icons-material";
+import { NavLink, useLocation } from "react-router-dom";
 
 // import { Slider } from "@material-ui/core";
 
@@ -141,6 +145,9 @@ const Latest: React.FC = () => {
     setValue(newValue as number[]);
   };
 
+  const profileRef = useRef<HTMLDivElement>(null); // Proper initialization
+  const menuRef = useRef<HTMLDivElement>(null); // Proper initialization
+
   const addProductHandler = () => {
     console.log("Add handler...");
     setOpen(true);
@@ -182,6 +189,24 @@ const Latest: React.FC = () => {
   //     [name]: checked,
   //   });
   // };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      menuRef.current &&
+      !menuRef.current.contains(event.target as Node) &&
+      profileRef.current &&
+      !profileRef.current.contains(event.target as Node)
+    ) {
+      setOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
   return (
     <section className={`${styles.latest}`}>
       <div className={`${styles.wrapper} wrapper`}>
@@ -416,21 +441,76 @@ const Latest: React.FC = () => {
             </div>
           </div>
           <div className={`${styles.productDiv}`}>
-            {products.slice(3, 11).map((product) => {
-              return (
-                <ProductCard
-                  key={product.id}
-                  id={product.id}
-                  title={product.title}
-                  price={product.price}
-                  image={product.images[0]}
-                  infoProd={product.id}
-                  // infoProd={openModalHandler}
-                  addProd={addProductHandler}
-                  // likeProd={likeProductHandler}
-                />
-              );
-            })}
+            <div className={`${styles.sortBar}`}>
+              <div
+                className={`${styles.dropdown}`}
+                onClick={() => setOpen(!open)}
+                ref={profileRef}
+              >
+                <p>default sorting</p>
+                {open ? (
+                  <span>
+                    <FontAwesomeIcon
+                      icon={faChevronUp}
+                      className={`${styles.chevdown}`}
+                    />
+                  </span>
+                ) : (
+                  <span>
+                    <FontAwesomeIcon
+                      icon={faChevronDown}
+                      className={`${styles.chevdown}`}
+                    />
+                  </span>
+                )}
+              </div>
+              {open && (
+                <div ref={menuRef} className={`${styles.profileContainer}`}>
+                  <ul className={`${styles.profileDropdown}`}>
+                    <li onClick={() => setOpen(false)}>
+                      <div className={`${styles.forDrop}`}>
+                        sort by popularity
+                      </div>
+                    </li>
+                    <li onClick={() => setOpen(false)}>
+                      <div className={`${styles.forDrop}`}>
+                        sort by average rating
+                      </div>
+                    </li>
+                    <li onClick={() => setOpen(false)}>
+                      <div className={`${styles.forDrop}`}>sort by latest</div>
+                    </li>
+                    <li onClick={() => setOpen(false)}>
+                      <div className={`${styles.forDrop}`}>
+                        sort by price: low to high
+                      </div>
+                    </li>
+                    <li>
+                      <div className={`${styles.forDrop}`}>
+                        sort by price: high to low
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
+            <div className={`${styles.productList}`}>
+              {products.slice(3, 11).map((product) => {
+                return (
+                  <ProductCard
+                    key={product.id}
+                    id={product.id}
+                    title={product.title}
+                    price={product.price}
+                    image={product.images[0]}
+                    infoProd={product.id}
+                    // infoProd={openModalHandler}
+                    addProd={addProductHandler}
+                    // likeProd={likeProductHandler}
+                  />
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

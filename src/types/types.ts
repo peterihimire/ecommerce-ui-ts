@@ -165,6 +165,15 @@ export type CustomTabProps = {
   dot?: boolean;
 };
 
+export type CustomTabProdProps = {
+  children?: React.ReactNode;
+  activeTab?: number;
+  clicked?: (id: number) => void;
+  headers: TabHeader[];
+  headersSpaced?: boolean;
+  dot?: boolean;
+};
+
 export type UserPayloadProps = {
   email: string;
   password: string;

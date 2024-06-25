@@ -1,11 +1,12 @@
 .collectionInfo {
   padding: 100px 0;
+  background-color: var(--off-white);
 
   .collectionDetails {
-    // display: grid;
-    // grid-template-columns: 2fr 3fr;
-    // gap: 60px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 60px;
+    // display: flex;
     .detailImg {
       // background-color: rgb(210, 210, 210);
       max-width: 500px;
@@ -16,8 +17,8 @@
 
       img {
         width: 100%;
-        border: 2px solid var(--lite-grey);
-        max-height: 350px;
+        border: 1px solid var(--lite-grey);
+        max-height: 400px;
       }
 
       .imgBox {
@@ -30,7 +31,7 @@
         img {
           width: 100%;
           // max-height: 500px;
-          border: 2px solid var(--lite-grey);
+          border: 1px solid var(--lite-grey);
         }
       }
     }
