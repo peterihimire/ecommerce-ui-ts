@@ -49,19 +49,40 @@ const DesAddRev: React.FC = () => {
       <div className={`wrapper`}>
         {activeTab === 1 && (
           <div className={styles.content}>
-            <h3>Description</h3>
+            <h6>Description</h6>
+
+            <div>
+              <p>
+                Eleifend cursus facilisi sapien platea integer class. Commodo
+                efficitur auctor augue nulla mus ornare. Sem congue senectus
+                posuere nullam potenti eleifend cubilia dapibus. Mollis vel
+                posuere duis tempor sagittis eu. Laoreet arcu eros id posuere
+                porta viverra. Dui letius dis ipsum felis per viverra tortor.
+                Aliquam diam ac eget justo tempus amet. Scelerisque ultricies
+                porttitor porta mollis id metus quis dictumst.
+              </p>
+              <p>
+                Eleifend cursus facilisi sapien platea integer class. Commodo
+                efficitur auctor augue nulla mus ornare. Sem congue senectus
+                posuere nullam potenti eleifend cubilia dapibus. Mollis vel
+                posuere duis tempor sagittis eu. Laoreet arcu eros id posuere
+                porta viverra. Dui letius dis ipsum felis per viverra tortor.
+                Aliquam diam ac eget justo tempus amet. Scelerisque ultricies
+                porttitor porta mollis id metus quis dictumst.
+              </p>
+            </div>
           </div>
         )}
 
         {activeTab === 2 && (
           <div className={styles.content}>
-            <h3>Additional Information</h3>
+            <h6>Additional Information</h6>
           </div>
         )}
 
         {activeTab === 3 && (
           <div className={styles.content}>
-            <h3>Reviews (0)</h3>
+            <h6>Reviews (0)</h6>
           </div>
         )}
       </div>
