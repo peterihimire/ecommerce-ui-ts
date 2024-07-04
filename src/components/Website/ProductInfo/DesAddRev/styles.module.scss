@@ -1,41 +1,64 @@
-.latest {
+.desAddRev {
   padding: 100px 0;
   background-color: var(--white);
 
   .content {
     h6 {
       font-size: 40px;
-      margin-top: 30px;
+      margin: 30px 0 20px 0px;
       font-family: Montesrrat-Regular, sans-serif;
     }
 
-    p{
-      margin-top: 20px;
+    p {
+      margin-bottom: 20px;
+    }
+
+    .tableWrapper {
+      border-right: 1px solid var(--grey);
+      // border-left: 1px solid var(--grey);
+      table {
+        text-align: left;
+        width: 100%;
+        border-collapse: collapse !important;
+        background-color: white;
+
+        tbody {
+          // border-right: 1px solid var(--grey);
+          tr {
+            padding: 15px 20px;
+            border-bottom: 1px solid #f4f4f4;
+            // border-right: 1px solid var(--grey);
+
+            &:first-of-type {
+              border-top: 1px solid #f4f4f4;
+            }
+
+            th {
+              text-align: center;
+              border-right: 1px solid var(--grey);
+              border-left: 1px solid var(--grey);
+              padding: 15px 20px;
+            }
+
+            &:nth-of-type(odd) {
+              background-color: var(--lite-grey);
+            }
+
+            &:nth-of-type(even) {
+              background-color: var(--prod-bg);
+            }
+          }
+
+          td {
+            h6 {
+              font-size: 14px;
+              font-weight: bolder;
+              font-family: Montesrrat-Medium, sans-serif;
+              // text-align: center;
+            }
+          }
+        }
+      }
     }
   }
-
-  // .latestTitle {
-  //   display: flex;
-  //   // flex-direction: column;
-  //   align-items: center;
-  //   justify-content: space-between;
-  //   text-align: center;
-  //   margin-bottom: 50px;
-
-  //   h3 {
-  //     font-size: 40px;
-  //     text-transform: capitalize;
-  //   }
-  //   p {
-  //     font-size: 16px;
-  //     line-height: 23px;
-  //     margin-top: 25px;
-  //     max-width: 700px;
-  //   }
-  // }
-  // .productDiv {
-  //   display: grid;
-  //   grid-template-columns: repeat(4, 1fr);
-  //   gap: 33px 33px;
-  // }
 }

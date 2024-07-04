@@ -18,11 +18,6 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictNullChecks": true
-    // "baseUrl": "./",
-    // "paths": {
-    //   "swiper": ["./node_modules/swiper"],
-    //   "swiper/modules/pagination": ["node_modules/swiper/modules/pagination"]
-    // }
   },
   "include": ["src"]
 }

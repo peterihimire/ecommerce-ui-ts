@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CustomTab from "../../../shared/customTabProd";
-import ProductCard from "../../../shared/productcard";
 import { products } from "../../../../data-list";
+import Form from "../Form";
 
 import styles from "./styles.module.scss";
 
@@ -34,7 +34,7 @@ const DesAddRev: React.FC = () => {
   ];
 
   return (
-    <section className={`${styles.latest}`}>
+    <section className={`${styles.desAddRev}`}>
       <div className={`wrapper`}>
         <CustomTab
           activeTab={activeTab}
@@ -77,12 +77,34 @@ const DesAddRev: React.FC = () => {
         {activeTab === 2 && (
           <div className={styles.content}>
             <h6>Additional Information</h6>
+            <div className={`${styles.tableWrapper}`}>
+              <table className={`${styles.table}`}>
+                <tbody className={`${styles.tbody}`}>
+                  {products.slice(7, 11).map((product, index) => {
+                    return (
+                      <tr key={index}>
+                        <th className={`${styles.td}`} style={{ width: "10%" }}>
+                          Samsung Smart TV
+                        </th>
+                        <td
+                          className={`${styles.td} `}
+                          style={{ width: "65%" }}
+                        >
+                          $128
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           </div>
         )}
 
         {activeTab === 3 && (
           <div className={styles.content}>
-            <h6>Reviews (0)</h6>
+            <h6>Reviews</h6>
+            <Form />
           </div>
         )}
       </div>
