@@ -113,35 +113,10 @@ const Form: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
 
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-  //   setFormError("");
-  //   setLogging(true);
-  //   try {
-  //     const user = await dispatch(login(loginForm));
-  //     console.log(user);
-  //     navigate("/dashboard", { user });
-  //     // navigate(from, { replace: true });
-  //     // const user = await applicantLogin(loginForm);
-  //     // await getApplicantData();
-  //     // if (user.applicant.completed) {
-  //     //   history.push("/applicant/dashboard");
-  //     // } else {
-  //     //   history.push("/applicant/personal-information", {
-  //     //     application_state: user.applicant.application_state,
-  //     //   });
-  //     // }
-  //   } catch (err) {
-  //     console.log(err);
-  //     setFormError(err.data.errors);
-  //   } finally {
-  //     setLogging(false);
-  //   }
-  // };
-
   return (
     <div className={`${styles.reviewForm}`}>
       <div>
+        <p>Your rating</p>
         <StarRating />
       </div>
       <div className={`${styles.formContainer}`}>
