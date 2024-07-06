@@ -1,76 +1,68 @@
-// import React, { useContext } from "react";
-// import Navbar from "../components/navbar/Navbar";
-// import LeftBar from "../components/leftBar/LeftBar";
-// import RightBar from "../components/rightBar/RightBar";
-// import { useAppSelector } from "../hooks/useTypedSelector";
-// import { RootState } from "../redux/store";
-// import {
-//   DarkModeContext,
-//   DarkModeContextProps,
-// } from "../context/darkModeContext";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { RootState } from "../redux/store";
+import { useAppSelector } from "../hooks/useTypedSelector";
+import WebsiteLayout from "../layouts/website";
+import AuthLayout from "../layouts/auth";
+import { Home } from "../pages/home";
+import { About } from "../pages/about";
+import { Contact } from "../pages/contact";
+import { Collections } from "../pages/collections";
+import { Cart } from "../pages/cart";
+import { Checkout } from "../pages/checkout";
+import { LoginForm } from "../pages/loginform";
+import { RegisterForm } from "../pages/registerform";
+import { ForgotForm } from "../pages/forgotform";
+import { PasswordForm } from "../pages/passwordform";
+import { ProductInfo } from "../pages/productinfo";
+import { Faq } from "../pages/faq";
+import { Profile } from "../pages/profile";
+import { VerifyForm } from "../pages/verifyform";
+import { PageNotFound } from "../pages/pageNotFound";
+import ProtectedRoutes from "../hoc/ProtectedRoutes";
 
-// import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
-// import Home from "../pages/home/Home";
-// import Profile from "../pages/profile/Profile";
-// import Login from "../pages/login/Login";
-// import Register from "../pages/register/Register";
-// import ProtectedRoutes from "../hoc/ProtectedRoutes";
+const AllRoutes = () => {
+  const currentUser = useAppSelector((state: RootState) => state.auth);
 
-// const Layout = () => {
-//   const darkModeContext = useContext<DarkModeContextProps | undefined>(
-//     DarkModeContext
-//   );
-//   if (!darkModeContext) {
-//     throw new Error(
-//       "DarkModeContext must be used within a DarkModeContextProvider"
-//     );
-//   }
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route element={<WebsiteLayout />}>
+          <Route path="/" index={true} element={<Home />} />
+          <Route path="/about/who-we-are" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/collections" element={<Collections />} />
+          <Route path="/collections/:prod_id" element={<ProductInfo />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/cart" element={<Cart />} />
 
-//   const { darkMode } = darkModeContext;
+          <Route
+            path="/checkout"
+            element={
+              <ProtectedRoutes isAllowed={!!currentUser.authenticated}>
+                <Checkout />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/user/profile/:acct_id"
+            element={
+              <ProtectedRoutes isAllowed={!!currentUser.authenticated}>
+                <Profile />
+              </ProtectedRoutes>
+            }
+          />
+          <Route path="*" element={<PageNotFound />} />
+        </Route>
+        <Route element={<AuthLayout />}>
+          <Route path="/auth/login" element={<LoginForm />} />
+          <Route path="/auth/register" element={<RegisterForm />} />
+          <Route path="/auth/verify_email" element={<VerifyForm />} />
+          <Route path="/auth/forgot_password" element={<ForgotForm />} />
+          <Route path="/auth/change_password" element={<PasswordForm />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
-//   return (
-//     <div className={`theme-${darkMode ? "dark" : "light"}`}>
-//       <Navbar />
-//       <div style={{ display: "flex" }}>
-//         <LeftBar />
-//         <div style={{ flex: 6 }}>
-//           <Outlet />
-//         </div>
-//         <RightBar />
-//       </div>
-//     </div>
-//   );
-// };
-
-// const AllRoutes = () => {
-//   const currentUser = useAppSelector((state: RootState) => state.auth);
-
-//   return (
-//     <BrowserRouter>
-//       <Routes>
-//         <Route element={<Layout />}>
-//           <Route
-//             path="/"
-//             element={
-//               <ProtectedRoutes isAllowed={!!currentUser.authenticated}>
-//                 <Home />
-//               </ProtectedRoutes>
-//             }
-//           />
-//           <Route
-//             path="/profile/:id"
-//             element={
-//               <ProtectedRoutes isAllowed={!!currentUser.authenticated}>
-//                 <Profile />
-//               </ProtectedRoutes>
-//             }
-//           />
-//         </Route>
-//         <Route path="/login" element={<Login />} />
-//         <Route path="/register" element={<Register />} />
-//       </Routes>
-//     </BrowserRouter>
-//   );
-// };
-
-// export default AllRoutes;
+export default AllRoutes;

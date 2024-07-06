@@ -15,6 +15,13 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import CartNav from "../../shared/cartNav";
 import Input from "../../shared/customInput";
 import BackdropCart from "../../shared/backdropcart";
+import { logoutUser } from "../../../redux/features/auth/authSlice";
+import { RootState } from "../../../redux/store";
+import {
+  useAppSelector,
+  useAppDispatch,
+} from "../../../hooks/useTypedSelector";
+import { useNavigate } from "react-router-dom";
 // import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 // import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 // import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -25,6 +32,10 @@ import styles from "./styles.module.scss";
 const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
   const location = useLocation();
   console.log(location);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const currentUser = useAppSelector((state: RootState) => state.user);
+  console.log("This is current user ...", currentUser);
   console.log(location.pathname.split("/")[1]);
   const fullPath = location.pathname;
   let pathUrl = location.pathname.split("/")[1];
@@ -98,6 +109,16 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
     };
   }, []);
 
+  const handleLogout = async () => {
+    try {
+      await dispatch(logoutUser());
+      navigate("/auth/login"); // Navigate to login page after logout
+    } catch (error) {
+      console.error("Logout error:", error);
+      // Handle error if needed
+    }
+  };
+
   return (
     <nav className={`${styles.nav} ${isOpen ? styles.show : ""}`} id="navbar">
       <ul className={`${styles.navLinks}`}>
@@ -160,14 +181,7 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
                     Who We Are
                   </NavLink>
                 </li>
-                {/* <li>
-                  <NavLink
-                    className={`${styles.forDrop}`}
-                    to="/about/our-vision"
-                  >
-                    Our Vision
-                  </NavLink>
-                </li> */}
+
                 <li>
                   <NavLink
                     className={`${styles.forDrop} ${
@@ -211,34 +225,47 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
           {open && (
             <div ref={menuRef} className={`${styles.profileContainer}`}>
               <ul className={`${styles.profileDropdown}`}>
-                <li onClick={() => setOpen(false)}>
-                  <NavLink
-                    className={`${styles.forDrop} ${
-                      fullPath === "/about/who-we-are" ? styles.activeDrop : ""
-                    }`}
-                    to="/user/profile/3"
-                  >
-                    Profile
-                  </NavLink>
-                </li>
-                <li onClick={() => setOpen(false)}>
-                  <NavLink className={`${styles.forDrop}`} to="/auth/register">
-                    Register
-                  </NavLink>
-                </li>
-                <li onClick={() => setOpen(false)}>
-                  <NavLink className={`${styles.forDrop}`} to="/auth/login">
-                    Login
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    className={`${styles.forDrop}`}
-                    to="/about/our-vision"
-                  >
-                    Logout
-                  </NavLink>
-                </li>
+                {currentUser.authenticated && (
+                  <li onClick={() => setOpen(false)}>
+                    <NavLink
+                      className={`${styles.forDrop} ${
+                        fullPath === "/about/who-we-are"
+                          ? styles.activeDrop
+                          : ""
+                      }`}
+                      to="/user/profile/3"
+                    >
+                      Profile
+                    </NavLink>
+                  </li>
+                )}
+                {!currentUser.authenticated && (
+                  <li onClick={() => setOpen(false)}>
+                    <NavLink
+                      className={`${styles.forDrop}`}
+                      to="/auth/register"
+                    >
+                      Register
+                    </NavLink>
+                  </li>
+                )}
+                {!currentUser.authenticated && (
+                  <li onClick={() => setOpen(false)}>
+                    <NavLink className={`${styles.forDrop}`} to="/auth/login">
+                      Login
+                    </NavLink>
+                  </li>
+                )}
+                {currentUser.authenticated && (
+                  <li>
+                    <div
+                      className={`${styles.forDrop}`}
+                      onClick={() => handleLogout()}
+                    >
+                      Logout
+                    </div>
+                  </li>
+                )}
               </ul>
             </div>
           )}
