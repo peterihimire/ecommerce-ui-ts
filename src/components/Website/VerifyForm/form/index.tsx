@@ -7,7 +7,7 @@ import { CircularProgress } from "@mui/material";
 import { useAppDispatch } from "../../../../hooks/useTypedSelector";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { verifyEmail } from "../../../../redux/features/users/userSlice";
+import { verifyEmail } from "../../../../redux/features/auth/authSlice";
 
 import styles from "./styles.module.scss";
 

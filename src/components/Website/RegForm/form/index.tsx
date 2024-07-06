@@ -4,7 +4,7 @@ import { useLocation, Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useAppDispatch } from "../../../../hooks/useTypedSelector";
-import { registerUser } from "../../../../redux/features/users/userSlice";
+import { registerUser } from "../../../../redux/features/auth/authSlice";
 import { CircularProgress } from "@mui/material";
 import { Visibility } from "@mui/icons-material";
 import { VisibilityOff } from "@mui/icons-material";

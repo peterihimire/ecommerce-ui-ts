@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseURL = "https://ecommerce.benkih.com/api/ecommerce/v1/";
+// const baseURL = "https://ecommerce.benkih.com/api/ecommerce/v1/";
+const baseURL = "http://localhost:4040/api/ecommerce/v1/";
 
 const config = {
   headers: {
@@ -11,7 +12,6 @@ const config = {
 };
 
 let $axios = axios.create({
-  // ...config,
   baseURL,
   headers: config.headers,
   withCredentials: config.withCredentials, // Add withCredentials to the Axios instance

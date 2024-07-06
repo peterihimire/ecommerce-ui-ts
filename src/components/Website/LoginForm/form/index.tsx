@@ -13,7 +13,7 @@ import { VisibilityOff } from "@mui/icons-material";
 import { useAppDispatch } from "../../../../hooks/useTypedSelector";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { loginUser } from "../../../../redux/features/users/userSlice";
+import { loginUser } from "../../../../redux/features/auth/authSlice";
 
 import styles from "./styles.module.scss";
 
