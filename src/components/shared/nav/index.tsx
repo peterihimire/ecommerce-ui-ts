@@ -13,6 +13,7 @@ import { NavProps } from "../../../types/NavProps.type";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import CartNav from "../../shared/cartNav";
+import Input from "../../shared/customInput";
 import BackdropCart from "../../shared/backdropcart";
 // import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 // import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
@@ -34,10 +35,14 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
 
   const [about, openAbout] = useState(false);
   const [open, setOpen] = useState(false);
+  const [openBar, setOpenBar] = useState(false);
   console.log("This is open", open);
 
   const profileRef = useRef<HTMLDivElement>(null); // Proper initialization
   const menuRef = useRef<HTMLDivElement>(null); // Proper initialization
+
+  const searchRef = useRef<HTMLDivElement>(null); // Proper initialization
+  const barRef = useRef<HTMLDivElement>(null); // Proper initialization
   const [cartOpen, setCartOpen] = useState(false);
 
   const addProductHandler = () => {
@@ -68,10 +73,28 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
     }
   };
 
+  const handleOutsideClick = (event: MouseEvent) => {
+    if (
+      barRef.current &&
+      !barRef.current.contains(event.target as Node) &&
+      searchRef.current &&
+      !searchRef.current.contains(event.target as Node)
+    ) {
+      setOpenBar(false);
+    }
+  };
+
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
     return () => {
       document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("click", handleOutsideClick);
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
     };
   }, []);
 
@@ -221,19 +244,46 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
           )}
         </div>
         {/* This is for the second icon */}
-        <div className={`${styles.searchBtn}`}>
-          <Search
-            className={` iconStyle  ${
-              bgChange ? styles.dark : styles.iconStyleLight
-            }`}
-          />
+        <div className={`${styles.navSearch}`}>
+          <div
+            className={`${styles.searchBtn}`}
+            onClick={() => setOpenBar(!openBar)}
+            ref={searchRef}
+          >
+            <Search
+              className={` iconStyle  ${
+                bgChange ? styles.dark : styles.iconStyleLight
+              }`}
+            />
+          </div>
+          {openBar && (
+            <div ref={barRef} className={`${styles.barContainer}`}>
+              <div className={`${styles.bar}`}>
+                <Input
+                  // labelText="Search"
+                  type="text"
+                  name="search"
+                  id="search"
+                  // required
+                  placeholder="Search"
+                  // value={loginForm.email}
+                  // onChange={(e) => handleFormChange(e.target)}
+
+                  // value={formik.values.email}
+                  // onBlur={formik.handleBlur}
+                  // onChange={formik.handleChange}
+                />
+              </div>
+            </div>
+          )}
         </div>
+
         <div
           className={`${styles.cartCount}`}
           onClick={() => addProductHandler()}
         >
           <div>21</div>
-          <ShoppingCartOutlined
+          <ShoppingBagOutlined
             className={` iconStyle  ${
               bgChange ? styles.dark : styles.iconStyleLight
             }`}

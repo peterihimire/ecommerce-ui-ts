@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Input from "../../../shared/customInput";
+import Checkbox from "../../../shared/customCheckbox";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -173,6 +174,15 @@ const Form: React.FC = () => {
           {/* {formError.password && (
             <p className={styles.errorStyle}>{formError.password}</p>
           )} */}
+        </div>
+        <div className={`${styles.checkboxGroup}`}>
+          <Checkbox
+            // checkText={"Silver"}
+            htmlFor="save"
+            name="save"
+            // onChange={handleCheckChange}
+          />
+          <p>Remember me</p>
         </div>
         <div className={`${styles.forgot}`}>
           <Link to="/auth/forgot_password" className={styles.linkStyle}>

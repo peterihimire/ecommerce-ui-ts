@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Input from "../../../shared/customInput";
 import Textarea from "../../../shared/customTextarea";
+import Checkbox from "../../../shared/customCheckbox";
 import Select from "../../../shared/customSelect";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
@@ -15,7 +16,7 @@ import { useAppDispatch } from "../../../../hooks/useTypedSelector";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { addContact } from "../../../../redux/features/contact/contactSlice";
-import StarRating from "../../../shared/starRate";
+import StarRate from "../../../shared/starRate";
 
 import styles from "./styles.module.scss";
 
@@ -28,15 +29,18 @@ const Form: React.FC = () => {
 
   const [logging, setLogging] = useState(false);
   const [error, setError] = useState("");
+  const [rating, setRating] = useState<number | null>(null);
   const [visible, setVisible] = useState(false);
 
   console.log(logging);
+  console.log("Yeah, rating buddy...:", rating);
 
   const formik = useFormik({
     initialValues: {
       fullname: "",
       email: "",
       review: "",
+      rating: "",
     },
 
     validationSchema: Yup.object({
@@ -45,6 +49,7 @@ const Form: React.FC = () => {
         .required("Email Required *"),
       fullname: Yup.string().required("Fullname Required *"),
       review: Yup.string().required("Review Required *"),
+      rating: Yup.number().required("Rating Required *"),
     }),
 
     onSubmit: async (values, { resetForm }) => {
@@ -57,6 +62,7 @@ const Form: React.FC = () => {
         email: "",
         subject: "",
         message: "",
+        rating: rating,
       };
       setLogging(true);
       try {
@@ -113,11 +119,27 @@ const Form: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
 
+  const handleRatingChange = (newRating: number) => {
+    setRating(newRating);
+  };
+
   return (
     <div className={`${styles.reviewForm}`}>
-      <div>
-        <p>Your rating</p>
-        <StarRating />
+      <div className={`${styles.initial}`}>
+        <p className={styles.small}>There are no reviews yet.</p>
+        <p className={styles.big}>Be the first to review “RAYBAN SHADES”</p>
+        <p className={styles.small}>
+          Your email address will not be published.
+        </p>
+      </div>
+      <div className={`${styles.starRate}`}>
+        <div className={`${styles.content}`}>
+          <p>Your rating</p>
+          <StarRate onRatingChange={handleRatingChange} />
+        </div>
+        {rating === null && formik.errors.rating ? (
+          <p className="error-msg">{formik.errors.rating}</p>
+        ) : null}
       </div>
       <div className={`${styles.formContainer}`}>
         <form
@@ -187,6 +209,19 @@ const Form: React.FC = () => {
             <p className={styles.errorStyle}>{formError.email}</p>
           )} */}
             </div>
+          </div>
+
+          <div className={`${styles.checkboxGroup}`}>
+            <Checkbox
+              // checkText={"Silver"}
+              htmlFor="save"
+              name="save"
+              // onChange={handleCheckChange}
+            />
+            <p>
+              Save my name, email, and website in this browser for the next time
+              I comment.
+            </p>
           </div>
 
           <div className={`btnWithError`}>

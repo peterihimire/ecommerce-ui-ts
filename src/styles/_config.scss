@@ -1,4 +1,9 @@
 @font-face {
+  font-family: Montserrat-Thin;
+  src: url("../assets/fonts/Montserrat/Montserrat-Thin.ttf");
+}
+
+@font-face {
   font-family: Montserrat-Regular;
   src: url("../assets/fonts/Montserrat/Montserrat-Regular.ttf");
 }
@@ -126,8 +131,9 @@ button {
   border-radius: 4px;
   color: var(--white);
   font-family: Montserrat-Regular, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
+  text-transform: uppercase;
   transition: background 0.6s ease-in-out;
 
   &:hover {
@@ -150,8 +156,9 @@ button {
   border-radius: 4px;
   color: var(--btn-color);
   font-family: Montserrat-Regular, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
+  text-transform: uppercase;
   transition: background 0.6s ease-in-out;
 
   &:hover {
@@ -176,6 +183,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-transform: uppercase;
 }
 
 .btn-large {
@@ -186,6 +194,7 @@ button {
   border-radius: 2px;
   align-items: center;
   justify-content: center;
+  text-transform: uppercase;
 
   @media screen and (max-width: 600px) {
     width: 290px;
@@ -196,11 +205,11 @@ button {
   width: 200px;
   height: 50px;
   max-width: 100%;
-  // border-radius: 100px;
+  font-size: 13px;
   display: flex;
   align-items: center;
   justify-content: center;
-
+  text-transform: uppercase;
   background: var(--main);
   color: var(--white);
 }
@@ -209,11 +218,11 @@ button {
   width: 200px;
   height: 50px;
   max-width: 100%;
-  // border-radius: 100px;
+  font-size: 13px;
   display: flex;
   align-items: center;
   justify-content: center;
-
+  text-transform: uppercase;
   background: var(--white);
   color: var(--main);
   border: 1px solid var(--main);
@@ -225,11 +234,9 @@ button {
   max-width: 100%;
   // display: flex;
   border-radius: 2px;
-  // align-items: center;
-  // justify-content: center;
-  // text-transform: capitalize;
   font-size: 12px;
   font-weight: 700;
+  text-transform: uppercase;
   background: var(--main);
   color: var(--white);
 }
@@ -240,9 +247,7 @@ button {
   max-width: 100%;
   // display: flex;
   border-radius: 2px;
-  // align-items: center;
-  // justify-content: center;
-  // text-transform: capitalize;
+  text-transform: uppercase;
   font-size: 12px;
   font-weight: 700;
   background: var(--white);
@@ -281,10 +286,10 @@ img {
   // }
 
   span {
-    font-size: 22px;
-    height: 20px;
+    // font-size: 22px;
+    // height: 20px;
     margin-left: 2px;
-    color: var(--red);
+    // color: var(--red);
     // width: 20px;
   }
 }
@@ -346,6 +351,33 @@ select {
 
   input {
     padding: 12px 38px 12px 48px !important;
+  }
+}
+
+.input-qty-wrapper {
+  max-width: 51px;
+  position: relative;
+  height: 51px;
+  // border: solid 1px var(--black);
+
+  input {
+    text-align: center;
+    padding: 0px !important;
+    font-weight: bolder;
+    font-size: 18px;
+    font-family: Montserrat-Bold, sans-serif;
+
+    border: 1px solid #0a0a0a;
+    background: var(--white);
+    border-radius: 0px !important;
+    // height: 50px !important;
+    transition: all 0.3s ease-in-out;
+    padding: 12px;
+    color: var(--black);
+
+    &:focus {
+      border: 1px solid var(--main);
+    }
   }
 }
 

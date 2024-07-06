@@ -6,6 +6,12 @@ import { CheckBox } from "@mui/icons-material";
 import Select from "../../../shared/customSelect";
 import customInput from "../../../shared/customInput";
 import Input from "../../../shared/customInput";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCaretRight,
+  faMinus,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
 import product10 from "../../../../assets/images/products/product10.png";
 
 import styles from "./styles.module.scss";
@@ -60,8 +66,23 @@ const Product = () => {
             </div>
             <div className={`${styles.qtyAdd}`}>
               <div className={`${styles.qtyInput}`}>
+                <div className={`${styles.updateQty}`}>
+                  <button className={styles.dsc}>
+                    <FontAwesomeIcon
+                      icon={faMinus}
+                      className={`${styles.close}`}
+                    />
+                  </button>
+                  <div className={`${styles.qtyTxt}`}>2</div>
+                  <button className={styles.asc}>
+                    <FontAwesomeIcon
+                      icon={faPlus}
+                      className={`${styles.close}`}
+                    />
+                  </button>
+                </div>
                 {/* <div>Qty:</div>1 */}
-                <Input
+                {/* <Input
                   // labelText="Enter Email"
                   type="number"
                   name="number"
@@ -80,7 +101,7 @@ const Product = () => {
                   // onChange={(e) => formik.handleChange(e)}
                   // onBlur={formik.handleBlur}
                   // onChange={formik.handleChange}
-                />
+                /> */}
               </div>
               <button className="btn-block btn-small">Add to Cart</button>
             </div>

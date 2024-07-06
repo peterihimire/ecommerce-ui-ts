@@ -1,9 +1,26 @@
 .reviewForm {
-  // padding: 70px 0;
-  // background: url("../../../../assets/images/vecteezy_abstract-white-fluid-wave-background_7075692.jpg");
-
   @media screen and (max-width: 700px) {
     margin-left: 0px;
+  }
+
+  .initial{
+    .big{
+      font-size: 20px;
+    }
+  }
+
+  .starRate {
+    margin-bottom: 10px;
+    .content {
+      p {
+        margin-bottom: 3px !important;
+        line-height: 16px;
+        color: var(--black);
+        font-family: Montserrat-Medium, sans-serif;
+        font-size: 12px;
+        font-weight: bolder;
+      }
+    }
   }
 
   h2 {
@@ -14,17 +31,6 @@
   }
   .formContainer {
     max-width: 700px;
-    // margin: 0px auto;
-    // background: var(--white);
-    // border: var(--border-box);
-    // border: 1px solid var(--main);
-    // box-shadow: var(--box-shadow);
-    // border: solid 1px var(--lite-grey);
-    // padding: 50px;
-
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
 
     .formGrid {
       grid-column-gap: 20px;
@@ -79,10 +85,22 @@
         }
       }
     }
-    .formGroup {
-      height: 90px;
-      margin-bottom: 8px;
+
+    .checkboxGroup {
+      display: flex;
+      align-items: center;
+      margin-bottom: 28px;
+
+      p {
+        // font-size: 14px;
+        font-weight: bolder;
+        margin-bottom: 0;
+      }
     }
+    // .formGroup {
+    //   height: 90px;
+    //   margin-bottom: 8px;
+    // }
     .textarea {
       margin-bottom: 8px;
     }

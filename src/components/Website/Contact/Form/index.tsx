@@ -331,7 +331,7 @@ const Form: React.FC = () => {
                 {logging ? (
                   <CircularProgress size={20} style={{ color: "#fff" }} />
                 ) : (
-                  "Send"
+                  "Submit"
                 )}
               </button>
             </div>

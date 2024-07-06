@@ -109,11 +109,40 @@
 
         .qtyInput {
           width: 130px;
+
+          .updateQty {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1px;
+            border: solid 2px var(--lite-grey);
+            border-radius: var(--radius);
+            height: 45px;
+            margin-right: 10px;
+
+            button {
+              background: none;
+              font-size: 27px;
+            }
+            .dsc {
+              font-size: 18px;
+              font-family: Montserrat-Thin, sans-serif;
+            }
+            .asc {
+              font-size: 18px;
+              font-family: Montserrat-Thin, sans-serif;
+            }
+            .qtyTxt {
+              // border-radius: var(--radius);
+              font-size: 20px;
+              font-family: Montserrat-Regular, sans-serif;
+            }
+          }
         }
 
-        button {
-          margin-left: 10px;
-        }
+        // button {
+        //   margin-left: 10px;
+        // }
       }
     }
   }

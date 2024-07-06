@@ -130,7 +130,7 @@ export type CustomCheckboxProps = {
   placeholder?: string;
   type?: string;
   value?: string;
-  checkText: string;
+  checkText?: string;
   htmlFor: string;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;

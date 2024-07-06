@@ -32,6 +32,16 @@
       padding: 1px 0 0 5px;
     }
   }
+  .checkboxGroup {
+    display: flex;
+    align-items: center;
+
+    p {
+      font-family: Montserrat-Medium, sans-serif;
+      font-size: 12px;
+      font-weight: bolder;
+    }
+  }
   .forgot {
     display: flex;
     justify-content: flex-end;

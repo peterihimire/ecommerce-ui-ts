@@ -3,7 +3,11 @@ import ReactDOM from "react-dom";
 import { NavLink, useLocation, Link } from "react-router-dom";
 // import useDarkMode from "use-dark-mode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCaretRight,
+  faMinus,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
 import product7 from "../../../assets/images/products/product12.png";
 import { CartNavProps } from "../../../types/types";
 
@@ -84,13 +88,10 @@ const CartNav: React.FC<CartNavProps> = ({ isOpen, clicked }) => {
                 <img src={product7} alt="" />
               </div>
               <div className={`${styles.cartItemText}`}>
-                <p>Hisense A7GQ 50"</p>
-                <h5>$ 1200</h5>
-                <div className={`${styles.updateQty}`}>
-                  <button className={``}>-</button>
-                  <div className={`${styles.qtyTxt}`}>2</div>
-                  <button className={``}>+</button>
-                </div>
+                <h5>Hisense A7GQ 50</h5>
+                <p>
+                  2 <span>x</span> $1200
+                </p>
               </div>
             </div>
           </div>

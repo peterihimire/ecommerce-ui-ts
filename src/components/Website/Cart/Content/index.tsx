@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ProductCard from "../../../shared/productcard";
+import Input from "../../../shared/qtyInput";
 import Checkbox from "../../../shared/customCheckbox";
 import { products } from "../../../../data-list";
 import Slider from "@mui/material/Slider";
@@ -71,7 +71,21 @@ const Content: React.FC = () => {
                             ? "First Semester"
                             : "Second Semester"
                         }`}</p> */}
-                        4
+
+                        <Input
+                          labelText="Full Name"
+                          type="text"
+                          name="fullname"
+                          id="fullname"
+                          // required
+
+                          value="20"
+                          // value={loginForm.email}
+                          // onChange={(e) => handleFormChange(e.target)}
+                          // value={formik.values.fullname}
+                          // onBlur={formik.handleBlur}
+                          // onChange={formik.handleChange}
+                        />
                       </td>
                       <td
                         className={`${styles.td}   ${styles.amt}`}

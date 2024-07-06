@@ -97,7 +97,7 @@ const Content: React.FC = () => {
               </div>
 
               <div className={`${styles.tableActions} `}>
-                <button className="btn-block btn-small">place order</button>
+                <button className="btn-block btn-small">Place Order</button>
               </div>
             </div>
           </div>

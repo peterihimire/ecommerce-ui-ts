@@ -1,5 +1,6 @@
 .latest {
   padding: 100px 0;
+  background-color: var(--off-white);
 
   .latestTitle {
     display: flex;
@@ -34,7 +35,7 @@
           text-align: left;
 
           border-collapse: collapse !important;
-          background-color: white;
+          // background-color: white;
 
           /* added this now */
           overflow: scroll;
@@ -70,7 +71,7 @@
                 text-decoration: underline;
                 margin-bottom: 15px;
                 text-transform: capitalize;
-                color: var(--main);
+                color: var(--black);
                 background: none;
                 padding: 0;
                 margin: 0;
@@ -100,7 +101,7 @@
         .cartTotalContainer {
           padding: 30px 30px;
           // box-shadow: var(--box-shadow);
-          border: 1px solid var(--main);
+          border: 1px solid var(--black);
           // background-color: var(--off-white);
 
           .cartTotalHeader {
