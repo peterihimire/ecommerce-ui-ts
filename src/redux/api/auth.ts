@@ -4,7 +4,7 @@ import axios from "axios";
 // import { store } from "../../App";
 
 console.log("This is axios...", $axios);
-const userAPI = {
+const authAPI = {
   async registerUser(payload: UserPayloadProps) {
     console.log("reg payload :", payload);
 
@@ -19,8 +19,8 @@ const userAPI = {
   async logoutUser() {
     return $axios.post("/auth/logout");
   },
-  async getUserInfo() {
-    return $axios.get("/users/acct_info");
-  },
+  // async getUserInfo() {
+  //   return $axios.get("/users/acct_info");
+  // },
 };
-export default userAPI;
+export default authAPI;

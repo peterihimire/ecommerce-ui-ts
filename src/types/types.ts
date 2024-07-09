@@ -206,3 +206,7 @@ export type ContactResponseProps = {
   status: string;
   msg: string;
 };
+
+export type ProductPayloadProps = {
+  prod_id: string;
+};

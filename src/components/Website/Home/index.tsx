@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-
 import HomeHero from "./Hero";
 import Categories from "./Categories";
 import Popular from "./Popular";
@@ -11,22 +10,67 @@ import Sale from "./Sale";
 import Flash from "./Flash";
 import Discount from "./Discount";
 import Testimonials from "./Testimonial";
+import { RootState } from "../../../redux/store";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../../hooks/useTypedSelector";
+import { getProducts } from "../../../redux/features/products/productSlice";
 
-// import CookieConsent, {
-//   Cookies,
-//   getCookieConsentValue,
-//   resetCookieConsentValue,
-// } from "react-cookie-consent";
+// src/utils/localStorage.js
+export const saveToLocalStorage = (key: any, value: any) => {
+  localStorage.setItem(key, JSON.stringify(value));
+};
+
+export const loadFromLocalStorage = (key: any) => {
+  const value = localStorage.getItem(key);
+  return value ? JSON.parse(value) : null;
+};
 
 const Home: React.FC = () => {
-  // console.log(getCookieConsentValue("AwesomeCookieName"));
-  // console.log("This is reset bro...", resetCookieConsentValue());
-  // console.log("This is the cookies yoh bro...", Cookies);
+  const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(false);
+  const [products, setProducts] = useState(false);
+  const [error, setError] = useState("");
 
+  // const { items, loading, error } = useAppSelector((state) => state.products);
+  const productsList = useAppSelector(
+    (state: RootState) => state.product.items
+  );
+  console.log("This is current product listings ...", productsList);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        // const response = await axios.get("/api/products");
+        const response = await dispatch(getProducts());
+        console.log("THis is response data...", response);
+        saveToLocalStorage("ecommerce_products", response);
+        // setProducts(response);
+      } catch (error: any) {
+        console.log("This error from products...", error);
+        setError(error.message);
+      } finally {
+        // dispatch(setLoading(false));
+        setLoading(false);
+      }
+    };
+
+    const localProducts = loadFromLocalStorage("products");
+    if (localProducts) {
+      setProducts(localProducts);
+    } else {
+      fetchProducts();
+    }
+  }, [dispatch]);
+
+  // const memoizedItems = useMemo(() => items, [items]);
+  console.log("This is the loading...", loading);
   return (
     <HelmetProvider>
       <Helmet>
-        <title>home - benkih</title>
+        <title>benkih - home</title>
       </Helmet>
 
       <HomeHero />
@@ -39,30 +83,6 @@ const Home: React.FC = () => {
       <Sale />
       <Discount />
       <Testimonials />
-      {/* <CookieConsent
-        location="bottom"
-        buttonText="Accept Cookie"
-        cookieName="AwesomeCookieName"
-        style={{ background: "#2B373B" }}
-        buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
-        expires={150}
-        onAccept={(acceptedByScrolling) => {
-          if (acceptedByScrolling) {
-            // triggered if user scrolls past threshold
-            alert("Accept was triggered by user scrolling");
-          } else {
-            alert("Accept was triggered by clicking the Accept button");
-          }
-        }}
-        acceptOnScroll={true}
-        acceptOnScrollPercentage={20}
-        // onAccept={(byScroll) => {
-        //   alert(`consent given. \n\n By scrolling? ${byScroll}`);
-        // }}
-        debug={true}
-      >
-        This website uses cookies to enhance the user experience.{" "}
-      </CookieConsent> */}
     </HelmetProvider>
   );
 };

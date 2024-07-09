@@ -1,30 +1,43 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import userAPI from "../../api/user";
+import productAPI from "../../api/product";
 
 import {
   UserPayloadProps,
   UserResponseProps,
   VerifyPayloadProps,
+  ProductPayloadProps,
 } from "../../../types/types";
-interface UserData {
-  // Define the structure of your user data here
-  acct_id: string;
-  email: string;
+interface ProductData {
+  price: number;
+  oldPrice: number;
+  title: string;
+  slug: string;
+  images: string[];
+  color: string;
+  categories: string[];
+  flashSale: boolean;
+  featured: boolean;
+  popular: boolean;
+  brand: string;
+  countInStock: number;
+  desc: string;
+  size: string;
+  uuid: string;
 }
-const userDataString = localStorage.getItem("ecommerce_user");
-const userData: UserData | null = userDataString
-  ? JSON.parse(userDataString)
+const productDataString = localStorage.getItem("ecommerce_products");
+const productData: ProductData | null = productDataString
+  ? JSON.parse(productDataString)
   : null;
 
 // import Post from "../../models/postModel";
 
-export const registerUser = createAsyncThunk(
-  "users/register",
-  async (payload: UserPayloadProps, thunkApi) => {
+export const getProduct = createAsyncThunk(
+  "products/get_product",
+  async (payload: ProductPayloadProps, thunkApi) => {
     console.log("my reg payload: ", payload);
     try {
-      const response = await userAPI.registerUser(payload);
+      const response = await productAPI.getProduct(payload);
       const data = response.data;
       return data;
     } catch (error: any) {
@@ -35,13 +48,16 @@ export const registerUser = createAsyncThunk(
   }
 );
 
-export const verifyEmail = createAsyncThunk(
-  "users/verify_email",
-  async (payload: VerifyPayloadProps, thunkApi) => {
-    console.log("my verify payload: ", payload);
+export const getProducts = createAsyncThunk(
+  "products/get_products",
+  async (_, thunkApi) => {
+    // console.log("my verify payload: ", payload);
     try {
-      const response = await userAPI.verifyEmail(payload);
+      const response = await productAPI.getProducts();
+      localStorage.setItem("ecommerce_products", JSON.stringify(response.data));
       const data = response.data;
+      // console.log("This is data that i see...", data);
+
       return data;
     } catch (error: any) {
       console.log("This is error message,lets see...", error);
@@ -51,49 +67,19 @@ export const verifyEmail = createAsyncThunk(
   }
 );
 
-export const loginUser = createAsyncThunk(
-  "users/login",
-  async (payload: UserPayloadProps, thunkApi) => {
+export const getProductsFilter = createAsyncThunk(
+  "products/filter",
+  async (payload: any, thunkApi) => {
     console.log("My login payload: ", payload);
     try {
-      const response = await userAPI.loginUser(payload);
+      const response = await productAPI.getProductsFilter(payload);
       const data = response.data;
-      localStorage.setItem("ecommerce_user", JSON.stringify(data.data));
+      localStorage.setItem("ecommerce_products", JSON.stringify(data.data));
       return data;
     } catch (error: any) {
       console.log("Error yeah: ", error.response);
       const message = error?.response?.data?.message;
       return thunkApi.rejectWithValue(message);
-    }
-  }
-);
-
-export const getUserInfo = createAsyncThunk(
-  "users/user_info",
-  async (payload: string, thunkApi) => {
-    try {
-      const response = await userAPI.getUserInfo();
-      const data = response.data;
-      return data;
-    } catch (error: any) {
-      const message = error.message;
-      return thunkApi.rejectWithValue(message);
-    }
-  }
-);
-
-export const logoutUser = createAsyncThunk(
-  "users/login",
-  async (payload, thunkApi) => {
-    try {
-      const response = await userAPI.logoutUser();
-      const data = response.data;
-      return data;
-    } catch (error: any) {
-      const message = error.message;
-      return thunkApi.rejectWithValue(message);
-    } finally {
-      localStorage.removeItem("ecommerce_user");
     }
   }
 );
@@ -113,22 +99,21 @@ export const getPosts = createAsyncThunk(
   }
 );
 
-interface UserState {
+interface ProductState {
   loading: boolean;
   error: string | null;
-  data: UserResponseProps | null;
-  dashboard: any | null;
-  authenticated: boolean;
-  userData: UserData;
+  items: ProductData[];
+  searchedItems: ProductData[];
+  productData: ProductData;
 }
 
 const initialState = {
   loading: false,
   error: null,
-  data: null,
-  dashboard: null,
-  authenticated: !!userData,
-} as UserState;
+  items: [] || null,
+  searchedItems: [] || null,
+  productData: productData || null,
+} as ProductState;
 
 const userSlice = createSlice({
   name: "product",
@@ -136,43 +121,46 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(registerUser.pending, (state, action) => {
+      .addCase(getProducts.pending, (state, action) => {
         state.loading = true;
       })
-      .addCase(registerUser.fulfilled, (state, action) => {
+      .addCase(getProducts.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        state.items = action.payload;
       })
-      .addCase(registerUser.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(getProducts.rejected, (state, action: PayloadAction<any>) => {
         state.loading = false;
         state.error = action.payload;
       })
 
-      .addCase(loginUser.pending, (state, action) => {
+      .addCase(getProduct.pending, (state, action) => {
         state.loading = true;
       })
-      .addCase(loginUser.fulfilled, (state, action) => {
+      .addCase(getProduct.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
-        state.authenticated = true;
-      })
-      .addCase(loginUser.rejected, (state, action: PayloadAction<any>) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-
-      .addCase(getUserInfo.pending, (state, action) => {
-        state.loading = true;
-      })
-      .addCase(getUserInfo.fulfilled, (state, action) => {
-        state.loading = false;
-        state.data = action.payload;
+        state.productData = action.payload;
         // state.authenticated = true;
       })
-      .addCase(getUserInfo.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(getProduct.rejected, (state, action: PayloadAction<any>) => {
         state.loading = false;
         state.error = action.payload;
-      });
+      })
+
+      .addCase(getProductsFilter.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(getProductsFilter.fulfilled, (state, action) => {
+        state.loading = false;
+        state.searchedItems = action.payload;
+        // state.authenticated = true;
+      })
+      .addCase(
+        getProductsFilter.rejected,
+        (state, action: PayloadAction<any>) => {
+          state.loading = false;
+          state.error = action.payload;
+        }
+      );
   },
 });
 

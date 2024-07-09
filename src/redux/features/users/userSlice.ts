@@ -51,7 +51,7 @@ const initialState = {
   loading: false,
   error: null,
   authenticated: !!userData,
-  userData: userData,
+  userData: userData || null,
 } as UserState;
 
 const userSlice = createSlice({

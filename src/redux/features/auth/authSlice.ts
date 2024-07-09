@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import userAPI from "../../api/user";
+import authAPI from "../../api/auth";
 import { getUserInfo } from "../users/userSlice";
 
 import {
@@ -25,7 +25,7 @@ export const registerUser = createAsyncThunk(
   async (payload: UserPayloadProps, thunkApi) => {
     console.log("my reg payload: ", payload);
     try {
-      const response = await userAPI.registerUser(payload);
+      const response = await authAPI.registerUser(payload);
       const data = response.data;
       return data;
     } catch (error: any) {
@@ -41,7 +41,7 @@ export const verifyEmail = createAsyncThunk(
   async (payload: VerifyPayloadProps, thunkApi) => {
     console.log("my verify payload: ", payload);
     try {
-      const response = await userAPI.verifyEmail(payload);
+      const response = await authAPI.verifyEmail(payload);
       const data = response.data;
       return data;
     } catch (error: any) {
@@ -57,7 +57,7 @@ export const loginUser = createAsyncThunk(
   async (payload: UserPayloadProps, thunkApi) => {
     console.log("My login payload: ", payload);
     try {
-      const response = await userAPI.loginUser(payload);
+      const response = await authAPI.loginUser(payload);
       const data = response.data;
       localStorage.setItem("ecommerce_user", JSON.stringify(data.data));
       await thunkApi.dispatch(getUserInfo());
@@ -74,7 +74,7 @@ export const logoutUser = createAsyncThunk(
   "users/logout",
   async (payload, thunkApi) => {
     try {
-      const response = await userAPI.logoutUser();
+      const response = await authAPI.logoutUser();
       const data = response.data;
       return data;
     } catch (error: any) {
