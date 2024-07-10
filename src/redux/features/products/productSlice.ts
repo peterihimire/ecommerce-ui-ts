@@ -15,6 +15,7 @@ interface ProductData {
   slug: string;
   images: string[];
   color: string;
+  reviews?: string[];
   categories: string[];
   flashSale: boolean;
   featured: boolean;
@@ -25,10 +26,24 @@ interface ProductData {
   size: string;
   uuid: string;
 }
+
+// // src/utils/localStorage.js
+// export const saveToLocalStorage = (key: any, value: any) => {
+//   localStorage.setItem(key, JSON.stringify(value));
+// };
+
+// export const loadFromLocalStorage = (key: any) => {
+//   const value = localStorage.getItem(key);
+//   return value ? JSON.parse(value) : null;
+// };
+
 const productDataString = localStorage.getItem("ecommerce_products");
-const productData: ProductData | null = productDataString
+const productData: ProductData[] = productDataString
   ? JSON.parse(productDataString)
-  : null;
+  : [];
+// const productData: ProductData | null = productDataString
+//   ? JSON.parse(productDataString)
+//   : null;
 
 // import Post from "../../models/postModel";
 
@@ -38,7 +53,8 @@ export const getProduct = createAsyncThunk(
     console.log("my reg payload: ", payload);
     try {
       const response = await productAPI.getProduct(payload);
-      const data = response.data;
+        console.log("This singyyfrom products...", response.data.data);
+      const data = response.data.data;
       return data;
     } catch (error: any) {
       console.log("This is error message,lets see...", error);
@@ -54,8 +70,12 @@ export const getProducts = createAsyncThunk(
     // console.log("my verify payload: ", payload);
     try {
       const response = await productAPI.getProducts();
-      localStorage.setItem("ecommerce_products", JSON.stringify(response.data));
-      const data = response.data;
+      console.log("This res from main call from products...", response.data);
+      // localStorage.setItem(
+      //   "ecommerce_products",
+      //   JSON.stringify(response.data.data)
+      // );
+      const data = response.data.data;
       // console.log("This is data that i see...", data);
 
       return data;
@@ -104,15 +124,15 @@ interface ProductState {
   error: string | null;
   items: ProductData[];
   searchedItems: ProductData[];
-  productData: ProductData;
+  productData: ProductData | null;
 }
 
 const initialState = {
   loading: false,
   error: null,
-  items: [] || null,
-  searchedItems: [] || null,
-  productData: productData || null,
+  items: productData || [],
+  searchedItems: [],
+  productData: null,
 } as ProductState;
 
 const userSlice = createSlice({

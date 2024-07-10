@@ -2,9 +2,18 @@ import React, { useCallback, useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { RootState } from "../../../../redux/store";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../../../hooks/useTypedSelector";
 import styles from "./styles.module.scss";
 
 const Hero: React.FC = () => {
+  const productInfo = useAppSelector(
+    (state: RootState) => state.product.productData
+  );
+  console.log("This is current product data ...", productInfo);
   return (
     <div className={`${styles.aboutHero}`}>
       <div className={`${styles.aboutContainer} wrapper`}>
@@ -19,7 +28,7 @@ const Hero: React.FC = () => {
           <h5>Product</h5> */}
         </div>
 
-        <h2>Rayban Shades</h2>
+        <h2>{productInfo?.title}</h2>
       </div>
     </div>
   );

@@ -12,7 +12,11 @@ import * as Yup from "yup";
 import { CircularProgress } from "@mui/material";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { useAppDispatch } from "../../../../hooks/useTypedSelector";
+import { RootState } from "../../../../redux/store";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../../../hooks/useTypedSelector";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { addContact } from "../../../../redux/features/contact/contactSlice";
@@ -31,6 +35,11 @@ const Form: React.FC = () => {
   const [error, setError] = useState("");
   const [rating, setRating] = useState<number | null>(null);
   const [visible, setVisible] = useState(false);
+
+  const productReview = useAppSelector(
+    (state: RootState) => state.product.productData
+  );
+  console.log("This is current product review ...", productReview);
 
   console.log(logging);
   console.log("Yeah, rating buddy...:", rating);
@@ -126,8 +135,12 @@ const Form: React.FC = () => {
   return (
     <div className={`${styles.reviewForm}`}>
       <div className={`${styles.initial}`}>
-        <p className={styles.small}>There are no reviews yet.</p>
-        <p className={styles.big}>Be the first to review “RAYBAN SHADES”</p>
+        {productReview?.reviews?.length === 0 && (
+          <p className={styles.small}>There are no reviews yet.</p>
+        )}
+        {productReview?.reviews?.length === 0 && (
+          <p className={styles.big}>Be the first to review “RAYBAN SHADES”</p>
+        )}
         <p className={styles.small}>
           Your email address will not be published.
         </p>

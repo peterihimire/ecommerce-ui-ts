@@ -4,7 +4,7 @@ import { ProductPayloadProps, VerifyPayloadProps } from "../../types/types";
 console.log("This is axios...", $axios);
 const productAPI = {
   async getProduct(payload: ProductPayloadProps) {
-    return $axios.get(`/products/get_product/${payload}`);
+    return $axios.get(`/products/get_product/${payload.prod_id}`);
   },
   async getProducts() {
     return $axios.get("/products/get_products");

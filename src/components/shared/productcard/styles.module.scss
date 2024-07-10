@@ -43,10 +43,7 @@
 
   &::after {
     content: "";
-    /* Set the element as full-size */
-    // position: absolute;
-    // left: 0;
-    // top: 0;
+
     width: 100%;
     height: 100%;
     /* Set bg and hide the element + animation */
@@ -57,54 +54,52 @@
   }
 
   .productDiv {
+    width: 100%;
+    height: 220px;
     margin-bottom: 30px;
     cursor: pointer;
+
     img {
-      height: 250px;
-      width: 250px;
-      // background-color: var(--off-white);
-      // position: absolute;
-      text-align: center;
-      // top: 30%;
-      // left: 50%;
-      // transform: translate(-50%, -50%) scale(1); /* 7. Add this. */
+      height: 100%;
+      width: 100%;
+      object-fit: fill; /* we also have cover, fill, */
+      // text-align: center;
       transition: all 0.5s ease;
     }
   }
 
   .titlePrice {
-    // position: absolute;
     text-align: center;
-    // bottom: 60px;
-    // left: 50%;
-    // transform: translateX(-50%);
-
-    p {
-      margin-bottom: 10px;
-    }
-
-    p {
-      span {
-      }
-    }
 
     .price {
       display: flex;
+      justify-content: center;
       align-items: center;
-      margin-bottom: 20px;
+      text-align: center;
+      margin: 10px 0 20px 0;
 
       p {
         color: grey;
-        margin-left: 7px;
-        // font-size: smaller;
+        margin-right: 7px;
+      }
+
+      .linethrough {
         text-decoration: line-through !important;
-        // text-decoration: none !important;
       }
 
       span {
         p {
           color: var(--main);
-          text-decoration: underline !important;
+
+          &:last-of-type {
+            margin-right: 0px;
+          }
+        }
+        .underline {
+          text-decoration: underline;
+        }
+        .none {
+          text-decoration: none !important;
         }
       }
     }

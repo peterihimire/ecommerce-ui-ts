@@ -44,9 +44,9 @@ const Home: React.FC = () => {
       setLoading(true);
       try {
         // const response = await axios.get("/api/products");
-        const response = await dispatch(getProducts());
-        console.log("THis is response data...", response);
-        saveToLocalStorage("ecommerce_products", response);
+        const response = await dispatch(getProducts()).unwrap();
+        console.log("This res from home call from products...", response.data);
+        // saveToLocalStorage("ecommerce_products", response.data);
         // setProducts(response);
       } catch (error: any) {
         console.log("This error from products...", error);
@@ -57,7 +57,8 @@ const Home: React.FC = () => {
       }
     };
 
-    const localProducts = loadFromLocalStorage("products");
+    const localProducts = loadFromLocalStorage("ecommerce_products");
+    console.log("This local products...", localProducts);
     if (localProducts) {
       setProducts(localProducts);
     } else {
@@ -67,6 +68,7 @@ const Home: React.FC = () => {
 
   // const memoizedItems = useMemo(() => items, [items]);
   console.log("This is the loading...", loading);
+
   return (
     <HelmetProvider>
       <Helmet>

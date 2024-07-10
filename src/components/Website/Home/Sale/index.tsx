@@ -6,12 +6,22 @@ import Backdrop from "../../../shared/backdrop";
 import Modal from "../../../shared/modal";
 import { Link } from "react-router-dom";
 import product1 from "../../../../assets/images/products/product1.png";
+import { RootState } from "../../../../redux/store";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../../../hooks/useTypedSelector";
 
 import styles from "./styles.module.scss";
 
 const Sale: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const productsList = useAppSelector(
+    (state: RootState) => state.product.items
+  );
+  console.log("This is current product listings ...", productsList);
 
   const addProductHandler = () => {
     console.log("Add handler...");
@@ -50,15 +60,16 @@ const Sale: React.FC = () => {
         </div>
 
         <div className={`${styles.productDiv}`}>
-          {products.slice(1, 9).map((product) => {
+          {productsList.slice(0, 9).map((product) => {
             return (
               <ProductCard
-                key={product.id}
-                id={product.id}
+                key={product.uuid}
+                id={product.uuid}
                 title={product.title}
                 price={product.price}
-                image={product.images[0]}
-                infoProd={product.id}
+                oldPrice={product.oldPrice}
+                image={`http://localhost:4040/${product.images[0]}`}
+                infoProd={product.uuid}
                 addProd={addProductHandler}
                 // likeProd={likeProductHandler}
               />

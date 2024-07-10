@@ -20,6 +20,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   image,
   title,
   price,
+  oldPrice,
 }: // slash,
 ProductCardProps) => {
   useEffect(() => {
@@ -34,22 +35,30 @@ ProductCardProps) => {
       key={id}
     >
       <div className={`${styles.sale}`}>
-        <div>Sale!</div>
+        {oldPrice !== undefined && oldPrice > 0 && <div>Sale!</div>}
       </div>
-      {/* <div className={`${styles.circleDiv}`}></div> */}
-      <Link to={`/collections/${infoProd}`} className={`${styles.productDiv}`}>
-        <img src={image} alt="" />
-      </Link>
-      {/* <div onClick={infoProd} className={`${styles.productDiv}`}>
-        <img src={image} alt="" />
-      </div> */}
+
+      {/* <Link to={`/collections/${infoProd}`}>
+        <div className={`${styles.productDiv}`}>
+          <img src={image} alt="" />
+        </div>
+      </Link> */}
+
+      <div className={`${styles.productDiv}`}>
+        <Link to={`/collections/${infoProd}`}>
+          <img src={image} alt="" />
+        </Link>
+      </div>
 
       <div className={`${styles.titlePrice}`}>
         <p>{title}</p>
+
         <div className={`${styles.price}`}>
-          <p>${price}</p>
+          {oldPrice !== undefined && oldPrice > 0 && (
+            <p className={styles.linethrough}>${oldPrice}</p>
+          )}
           <span>
-            <p>${price}</p>
+            <p className={oldPrice ? styles.underline : ""}>${price}</p>
           </span>
         </div>
 

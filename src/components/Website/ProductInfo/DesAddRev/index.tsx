@@ -2,12 +2,23 @@ import React, { useState } from "react";
 import CustomTab from "../../../shared/customTabProd";
 import { products } from "../../../../data-list";
 import Form from "../Form";
+import { RootState } from "../../../../redux/store";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../../../hooks/useTypedSelector";
+import StarRate from "../../../shared/starRate";
 
 import styles from "./styles.module.scss";
 
 const DesAddRev: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const productReviews = useAppSelector(
+    (state: RootState) => state.product.productData
+  );
+  console.log("This is current product review ...", productReviews?.reviews);
 
   const [activeTab, setActiveTab] = useState(1);
 
@@ -27,7 +38,7 @@ const DesAddRev: React.FC = () => {
       id: 2,
     },
     {
-      name: "Reviews (0)",
+      name: `Reviews (${productReviews?.reviews?.length})`,
       icon: "/images/bank.svg",
       id: 3,
     },
@@ -105,6 +116,31 @@ const DesAddRev: React.FC = () => {
           <div className={styles.content}>
             <h6>Reviews</h6>
             <Form />
+            <ul className={`${styles.reviewList}`}>
+              {productReviews?.reviews?.map((review: any) => {
+                return (
+                  <li className={`${styles.reviewItem}`}>
+                    <div className={`${styles.reviewTitle}`}>
+                      <div>
+                        <StarRate
+                          initialValue={review.rating}
+                          readOnly={true}
+                        />
+                      </div>
+                      <div>
+                        <p>{review.title}</p>
+                      </div>
+                    </div>
+                    <div className={`${styles.reveiwBody}`}>
+                      <p>{review.review}</p>
+                    </div>
+                    <div className={`${styles.reviewFooter}`}>
+                      <p>{review.name}</p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         )}
       </div>
