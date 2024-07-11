@@ -1,13 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import productAPI from "../../api/product";
-
-import {
-  UserPayloadProps,
-  UserResponseProps,
-  VerifyPayloadProps,
-  ProductPayloadProps,
-} from "../../../types/types";
+import { UserResponseProps, ProductPayloadProps } from "../../../types/types";
 interface ProductData {
   price: number;
   oldPrice: number;
@@ -27,25 +21,18 @@ interface ProductData {
   uuid: string;
 }
 
-// // src/utils/localStorage.js
-// export const saveToLocalStorage = (key: any, value: any) => {
-//   localStorage.setItem(key, JSON.stringify(value));
-// };
-
-// export const loadFromLocalStorage = (key: any) => {
-//   const value = localStorage.getItem(key);
-//   return value ? JSON.parse(value) : null;
-// };
+interface ProductState {
+  loading: boolean;
+  error: string | null;
+  items: ProductData[];
+  searchedItems: ProductData[];
+  productData: ProductData | null;
+}
 
 const productDataString = localStorage.getItem("ecommerce_products");
 const productData: ProductData[] = productDataString
   ? JSON.parse(productDataString)
   : [];
-// const productData: ProductData | null = productDataString
-//   ? JSON.parse(productDataString)
-//   : null;
-
-// import Post from "../../models/postModel";
 
 export const getProduct = createAsyncThunk(
   "products/get_product",
@@ -53,7 +40,7 @@ export const getProduct = createAsyncThunk(
     console.log("my reg payload: ", payload);
     try {
       const response = await productAPI.getProduct(payload);
-        console.log("This singyyfrom products...", response.data.data);
+      console.log("This singyyfrom products...", response.data.data);
       const data = response.data.data;
       return data;
     } catch (error: any) {
@@ -67,16 +54,11 @@ export const getProduct = createAsyncThunk(
 export const getProducts = createAsyncThunk(
   "products/get_products",
   async (_, thunkApi) => {
-    // console.log("my verify payload: ", payload);
     try {
       const response = await productAPI.getProducts();
       console.log("This res from main call from products...", response.data);
-      // localStorage.setItem(
-      //   "ecommerce_products",
-      //   JSON.stringify(response.data.data)
-      // );
+
       const data = response.data.data;
-      // console.log("This is data that i see...", data);
 
       return data;
     } catch (error: any) {
@@ -119,14 +101,6 @@ export const getPosts = createAsyncThunk(
   }
 );
 
-interface ProductState {
-  loading: boolean;
-  error: string | null;
-  items: ProductData[];
-  searchedItems: ProductData[];
-  productData: ProductData | null;
-}
-
 const initialState = {
   loading: false,
   error: null,
@@ -159,7 +133,6 @@ const userSlice = createSlice({
       .addCase(getProduct.fulfilled, (state, action) => {
         state.loading = false;
         state.productData = action.payload;
-        // state.authenticated = true;
       })
       .addCase(getProduct.rejected, (state, action: PayloadAction<any>) => {
         state.loading = false;
@@ -172,7 +145,6 @@ const userSlice = createSlice({
       .addCase(getProductsFilter.fulfilled, (state, action) => {
         state.loading = false;
         state.searchedItems = action.payload;
-        // state.authenticated = true;
       })
       .addCase(
         getProductsFilter.rejected,

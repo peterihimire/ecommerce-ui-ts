@@ -63,24 +63,8 @@ const DesAddRev: React.FC = () => {
             <h6>Description</h6>
 
             <div>
-              <p>
-                Eleifend cursus facilisi sapien platea integer class. Commodo
-                efficitur auctor augue nulla mus ornare. Sem congue senectus
-                posuere nullam potenti eleifend cubilia dapibus. Mollis vel
-                posuere duis tempor sagittis eu. Laoreet arcu eros id posuere
-                porta viverra. Dui letius dis ipsum felis per viverra tortor.
-                Aliquam diam ac eget justo tempus amet. Scelerisque ultricies
-                porttitor porta mollis id metus quis dictumst.
-              </p>
-              <p>
-                Eleifend cursus facilisi sapien platea integer class. Commodo
-                efficitur auctor augue nulla mus ornare. Sem congue senectus
-                posuere nullam potenti eleifend cubilia dapibus. Mollis vel
-                posuere duis tempor sagittis eu. Laoreet arcu eros id posuere
-                porta viverra. Dui letius dis ipsum felis per viverra tortor.
-                Aliquam diam ac eget justo tempus amet. Scelerisque ultricies
-                porttitor porta mollis id metus quis dictumst.
-              </p>
+              <p>{productReviews?.desc}</p>
+              <p>{productReviews?.desc}</p>
             </div>
           </div>
         )}
@@ -91,21 +75,38 @@ const DesAddRev: React.FC = () => {
             <div className={`${styles.tableWrapper}`}>
               <table className={`${styles.table}`}>
                 <tbody className={`${styles.tbody}`}>
-                  {products.slice(7, 11).map((product, index) => {
-                    return (
-                      <tr key={index}>
-                        <th className={`${styles.td}`} style={{ width: "10%" }}>
-                          Samsung Smart TV
-                        </th>
-                        <td
-                          className={`${styles.td} `}
-                          style={{ width: "65%" }}
-                        >
-                          $128
-                        </td>
-                      </tr>
-                    );
-                  })}
+                  <tr>
+                    <th className={`${styles.td}`} style={{ width: "10%" }}>
+                      Weight
+                    </th>
+                    <td className={`${styles.td} `} style={{ width: "65%" }}>
+                      Nil
+                    </td>
+                  </tr>
+                  <tr>
+                    <th className={`${styles.td}`} style={{ width: "10%" }}>
+                      Dimension
+                    </th>
+                    <td className={`${styles.td} `} style={{ width: "65%" }}>
+                      Nil
+                    </td>
+                  </tr>
+                  <tr>
+                    <th className={`${styles.td}`} style={{ width: "10%" }}>
+                      Size
+                    </th>
+                    <td className={`${styles.td} `} style={{ width: "65%" }}>
+                      {productReviews?.size}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th className={`${styles.td}`} style={{ width: "10%" }}>
+                      Color
+                    </th>
+                    <td className={`${styles.td} `} style={{ width: "65%" }}>
+                      {productReviews?.color}
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>

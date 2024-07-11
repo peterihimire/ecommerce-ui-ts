@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ProductCard from "../../../shared/productcard";
-import { products } from "../../../../data-list";
 import CartNav from "../../../shared/cartNav";
 import Backdrop from "../../../shared/backdrop";
 import Modal from "../../../shared/modal";
@@ -37,13 +36,13 @@ const Sale: React.FC = () => {
   //   document.body.classList.add("_fixed");
   // };
 
-  const openModalHandler = () => {
-    return <Link to="/collections/1"></Link>;
-    // console.log("Modal opened...");
-    // setShowModal(true);
-    // document.documentElement.classList.add("_fixed");
-    // document.body.classList.add("_fixed");
-  };
+  // const openModalHandler = () => {
+  //   // return <Link to="/collections/1"></Link>;
+  //   console.log("Modal opened...");
+  //   setShowModal(true);
+  //   document.documentElement.classList.add("_fixed");
+  //   document.body.classList.add("_fixed");
+  // };
 
   const closeModalHandler = () => {
     console.log("Modal closed...");

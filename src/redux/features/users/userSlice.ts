@@ -8,6 +8,14 @@ interface UserData {
   orders: [];
   profile: {};
 }
+
+interface UserState {
+  loading: boolean;
+  error: string | null;
+  authenticated: boolean;
+  userData: UserData;
+}
+
 const userDataString = localStorage.getItem("ecommerce_user");
 const userData: UserData | null = userDataString
   ? JSON.parse(userDataString)
@@ -39,13 +47,6 @@ export const getUserInfo = createAsyncThunk(
     }
   }
 );
-
-interface UserState {
-  loading: boolean;
-  error: string | null;
-  authenticated: boolean;
-  userData: UserData;
-}
 
 const initialState = {
   loading: false,

@@ -2,7 +2,11 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import authAPI from "../../api/auth";
 import { getUserInfo } from "../users/userSlice";
-
+import {
+  saveToLocalStorage,
+  loadFromLocalStorage,
+  removeFromLocalStorage,
+} from "../../../utils/localstorage";
 import {
   UserPayloadProps,
   UserResponseProps,
@@ -13,12 +17,20 @@ interface UserData {
   acct_id: string;
   email: string;
 }
+
+interface UserState {
+  loading: boolean;
+  error: string | null;
+  authenticated: boolean;
+  userData: UserData;
+}
+
 const userDataString = localStorage.getItem("ecommerce_user");
+// const userDataString = loadFromLocalStorage("ecommerce_user");
+
 const userData: UserData | null = userDataString
   ? JSON.parse(userDataString)
   : null;
-
-// import Post from "../../models/postModel";
 
 export const registerUser = createAsyncThunk(
   "auth/register",
@@ -59,7 +71,10 @@ export const loginUser = createAsyncThunk(
     try {
       const response = await authAPI.loginUser(payload);
       const data = response.data;
-      localStorage.setItem("ecommerce_user", JSON.stringify(data.data));
+
+      // localStorage.setItem("ecommerce_user", JSON.stringify(data.data));
+      saveToLocalStorage("ecommerce_user", data.data);
+
       await thunkApi.dispatch(getUserInfo());
       return data;
     } catch (error: any) {
@@ -81,7 +96,8 @@ export const logoutUser = createAsyncThunk(
       const message = error.message;
       return thunkApi.rejectWithValue(message);
     } finally {
-      localStorage.removeItem("ecommerce_user");
+      // localStorage.removeItem("ecommerce_user");
+      removeFromLocalStorage("ecommerce_user");
     }
   }
 );
@@ -100,13 +116,6 @@ export const getPosts = createAsyncThunk(
     }
   }
 );
-
-interface UserState {
-  loading: boolean;
-  error: string | null;
-  authenticated: boolean;
-  userData: UserData;
-}
 
 const initialState = {
   loading: false,

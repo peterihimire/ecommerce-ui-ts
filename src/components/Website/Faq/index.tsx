@@ -1,6 +1,5 @@
 import React from "react";
 import Hero from "./Hero";
-// import WhoWeAre from "./WhoWeAre";
 import FaqData from "./FaqData";
 import Explore from "./Explore";
 
@@ -10,7 +9,7 @@ const Faq: React.FC = () => {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>contact - benkih</title>
+        <title>benkih - faq</title>
         <meta name="description" content="Description of my page" />
       </Helmet>
       <Hero />

@@ -1,12 +1,22 @@
 import React, { useState } from "react";
 import ProductCard from "../../../shared/productcard";
 import { products } from "../../../../data-list";
+import { RootState } from "../../../../redux/store";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../../../hooks/useTypedSelector";
 
 import styles from "./styles.module.scss";
 
 const Popular: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const productsList = useAppSelector(
+    (state: RootState) => state.product.items
+  );
+  console.log("This is current product listings ...", productsList);
 
   const addProductHandler = () => {
     console.log("Add handler...");
@@ -41,18 +51,19 @@ const Popular: React.FC = () => {
         </div>
 
         <div className={`${styles.productDiv}`}>
-          {products.slice(0, 4).map((product) => {
+          {productsList.slice(0, 4).map((product) => {
             return (
               <ProductCard
-                key={product.id}
-                id={product.id}
+                key={product.uuid}
+                id={product.uuid}
                 title={product.title}
                 price={product.price}
-                image={product.images[0]}
-                infoProd={product.id}
-                // infoProd={openModalHandler}
+                oldPrice={product.oldPrice}
+                image={`http://localhost:4040/${product.images[0]}`}
+                infoProd={product.uuid}
                 addProd={addProductHandler}
                 // likeProd={likeProductHandler}
+                // infoProd={openModalHandler}
               />
             );
           })}

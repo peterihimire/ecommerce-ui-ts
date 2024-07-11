@@ -3,8 +3,8 @@
     margin-left: 0px;
   }
 
-  .initial{
-    .big{
+  .initial {
+    .big {
       font-size: 20px;
     }
   }
@@ -31,6 +31,10 @@
   }
   .formContainer {
     max-width: 700px;
+
+    .formGroup {
+      margin-bottom: 8px;
+    }
 
     .formGrid {
       grid-column-gap: 20px;

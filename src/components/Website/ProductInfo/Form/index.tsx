@@ -49,6 +49,7 @@ const Form: React.FC = () => {
       fullname: "",
       email: "",
       review: "",
+      title: "",
       rating: "",
     },
 
@@ -58,6 +59,7 @@ const Form: React.FC = () => {
         .required("Email Required *"),
       fullname: Yup.string().required("Fullname Required *"),
       review: Yup.string().required("Review Required *"),
+      title: Yup.string().required("Title Required *"),
       rating: Yup.number().required("Rating Required *"),
     }),
 
@@ -139,7 +141,9 @@ const Form: React.FC = () => {
           <p className={styles.small}>There are no reviews yet.</p>
         )}
         {productReview?.reviews?.length === 0 && (
-          <p className={styles.big}>Be the first to review “RAYBAN SHADES”</p>
+          <p className={styles.big}>
+            Be the first to review {productReview?.title}
+          </p>
         )}
         <p className={styles.small}>
           Your email address will not be published.
@@ -159,6 +163,29 @@ const Form: React.FC = () => {
           onSubmit={formik.handleSubmit}
           // onSubmit={(e) => handleLogin(e)}
         >
+          <div className={`${styles.formGroup}`}>
+            <Input
+              labelText="Title"
+              type="text"
+              name="title"
+              id="title"
+              // required
+              placeholder="Title"
+              // value={loginForm.email}
+              // onChange={(e) => handleFormChange(e.target)}
+
+              value={formik.values.title}
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+            />
+            {formik.touched.title && formik.errors.title ? (
+              <p className={`error-msg`}>{formik.errors.title}</p>
+            ) : null}
+
+            {/* {formError.email && (
+            <p className={styles.errorStyle}>{formError.email}</p>
+          )} */}
+          </div>
           <div className={`${styles.textarea}`}>
             <Textarea
               labelText="Your review"

@@ -1,6 +1,6 @@
 .productCard {
-  background: var(--prod-bg);
-  // box-shadow: var(--box-shadow);
+  background: var(--white);
+  box-shadow: var(--box-shadow);
   // margin: auto 0;
   display: flex;
   flex-direction: column;
@@ -8,14 +8,14 @@
   align-items: center;
   // box-shadow: 0.1rem 0.1rem 0.8rem 0.1rem rgb(199 197 197 / 85%);
   // box-shadow: 0.1rem 0.1rem 0.8rem 0.1rem rgba(199, 197, 197, 0.849);
-  border: 1px solid var(--lite-grey);
+  // border: 1px solid var(--lite-grey);
   border-radius: 2px;
   // padding: 30px;
   position: relative;
   height: 450px;
 
   &:hover {
-    background-color: rgba(181, 170, 170, 0.414);
+    background-color: rgba(227, 227, 227, 0.593);
     transition: all 0.5s ease;
     // transform: scale(1.01);
   }
@@ -57,12 +57,13 @@
     width: 100%;
     height: 220px;
     margin-bottom: 30px;
+    background-color: var(--lite-grey);
     cursor: pointer;
 
     img {
       height: 100%;
       width: 100%;
-      object-fit: fill; /* we also have cover, fill, */
+      object-fit: contain; /* we also have cover, fill, */
       // text-align: center;
       transition: all 0.5s ease;
     }

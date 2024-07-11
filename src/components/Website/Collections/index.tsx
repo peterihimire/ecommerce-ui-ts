@@ -1,22 +1,20 @@
 import React from "react";
 import ContactHero from "./Hero";
-import WhoWeAre from "./WhoWeAre";
-import Choose from "./Choose";
 import Latest from "./Latest";
-import Testimonial from "./Testimonial";
-// import { Helmet } from "react-helmet-async";
+
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const Collections: React.FC = () => {
   return (
-    <div className={`homepage`}>
-      {/* <Helmet>
-        <title>Home - Benkih</title>
-      </Helmet> */}
+    <HelmetProvider>
+      <Helmet>
+        <title>benkih - collections</title>
+        <meta name="description" content="Description of my page" />
+      </Helmet>
+
       <ContactHero />
-      {/* <WhoWeAre /> */}
       <Latest />
-      {/* <Testimonial /> */}
-    </div>
+    </HelmetProvider>
   );
 };
 

@@ -8,6 +8,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { ArrowDownward, PersonOutline } from "@mui/icons-material";
 import { NavLink, useLocation } from "react-router-dom";
+import { RootState } from "../../../../redux/store";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../../../hooks/useTypedSelector";
 
 // import { Slider } from "@material-ui/core";
 
@@ -200,6 +205,11 @@ const Latest: React.FC = () => {
       setOpen(false);
     }
   };
+
+  const productsList = useAppSelector(
+    (state: RootState) => state.product.items
+  );
+  console.log("This is current product listings ...", productsList);
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
@@ -495,18 +505,19 @@ const Latest: React.FC = () => {
               )}
             </div>
             <div className={`${styles.productList}`}>
-              {products.slice(3, 11).map((product) => {
+              {productsList.slice(0, 11).map((product) => {
                 return (
                   <ProductCard
-                    key={product.id}
-                    id={product.id}
+                    key={product.uuid}
+                    id={product.uuid}
                     title={product.title}
                     price={product.price}
-                    image={product.images[0]}
-                    infoProd={product.id}
-                    // infoProd={openModalHandler}
+                    oldPrice={product.oldPrice}
+                    image={`http://localhost:4040/${product.images[0]}`}
+                    infoProd={product.uuid}
                     addProd={addProductHandler}
                     // likeProd={likeProductHandler}
+                    // infoProd={openModalHandler}
                   />
                 );
               })}
