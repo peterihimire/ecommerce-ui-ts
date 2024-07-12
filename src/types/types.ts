@@ -211,3 +211,10 @@ export type ContactResponseProps = {
 export type ProductPayloadProps = {
   prod_id: string;
 };
+
+// FOR PAGINATION
+export type PaginationProps = {
+  page: number;
+  pages: number;
+  changePage: (page: number) => void;
+};

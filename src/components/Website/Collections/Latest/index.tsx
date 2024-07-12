@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import ProductCard from "../../../shared/productcard";
 import Checkbox from "../../../shared/customCheckbox";
 import Accordion from "../../../shared/accordion";
-import { products } from "../../../../data-list";
+import Pagination from "../../../shared/pagination";
 import Slider from "@mui/material/Slider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
@@ -13,10 +13,23 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "../../../../hooks/useTypedSelector";
-
-// import { Slider } from "@material-ui/core";
+import { getProductsFilter } from "../../../../redux/features/products/productSlice";
 
 import styles from "./styles.module.scss";
+
+interface GetProductsFilterArg {
+  page?: number;
+  limit?: number;
+  filter?: {
+    brand?: string;
+    size?: string;
+    price?: string;
+    categories?: string[];
+    color?: string;
+    minPrice?: number;
+    maxPrice?: number;
+  };
+}
 
 const timeline = [
   {
@@ -129,7 +142,11 @@ function numFormatter2(num: number) {
 const Latest: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [open, setOpen] = useState(false);
-
+  const [page, setPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalItems, setTotalItems] = useState(0);
+  const [prodList, setProdList] = useState<any[]>([]); // Initialize as an empty array
   const [budgetValue, setBudgetValue] = React.useState(0);
   const [budgetForm, setBudgetForm] = React.useState("");
   const [timelineValue, setTimelineValue] = React.useState(0);
@@ -137,7 +154,6 @@ const Latest: React.FC = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [doc, setDoc] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [checks, setChecks] = useState({
     frontend: false,
@@ -145,6 +161,13 @@ const Latest: React.FC = () => {
     uiux: false,
   });
   const [value, setValue] = React.useState<number[]>([20, 37]);
+  const dispatch = useAppDispatch();
+  const [error, setError] = useState("");
+  const changePage = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  console.log("Hello this sis current page: ", currentPage);
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
@@ -206,10 +229,13 @@ const Latest: React.FC = () => {
     }
   };
 
-  const productsList = useAppSelector(
-    (state: RootState) => state.product.items
+  const searchedProds = useAppSelector(
+    (state: RootState) => state.product.searchedItems
   );
-  console.log("This is current product listings ...", productsList);
+  console.log(" searched ...", searchedProds);
+  // const prodList = searchedProds?.productRecords;
+  const totalItemsCount = searchedProds?.totalItems;
+  console.log("Product list ...", prodList);
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
@@ -217,46 +243,64 @@ const Latest: React.FC = () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
+
+  const fetchProducts = useCallback(
+    async (page: number) => {
+      setLoading(true);
+      try {
+        const params: GetProductsFilterArg = { page };
+        const response = await dispatch(getProductsFilter(params)).unwrap();
+        setCurrentPage(response.currentPage);
+        setTotalPages(response.totalPages);
+        setTotalItems(response.totalItems);
+        setProdList(response.productRecords);
+      } catch (error: any) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [dispatch]
+  );
+
+  // const fetchProducts = async (page: number) => {
+  //   setLoading(true);
+  //   try {
+  //     const params: GetProductsFilterArg = { page };
+  //     const response = await dispatch(getProductsFilter(params)).unwrap();
+  //     setCurrentPage(response.currentPage);
+  //     setTotalPages(response.totalPages);
+  //     setTotalItems(response.totalItems);
+  //     setProdList(response.productRecords);
+  //   } catch (error: any) {
+  //     setError(error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  useEffect(() => {
+    fetchProducts(currentPage);
+  }, [fetchProducts, currentPage]);
+
+  // Calculate start and end indices for the displayed products
+  const startIdx = (currentPage - 1) * (prodList?.length ?? 0) + 1;
+  const endIdx = Math.min(
+    currentPage * (prodList?.length ?? 0),
+    totalItems ?? 0
+  );
+
+  // const startIdx = (currentPage - 1) * (prodList?.length ?? 0) + 1;
+  // const endIdx = Math.min(startIdx + prodList.length - 1, totalItems);
+
+  // const endIdx = startIdx + (prodList?.length ?? 0) - 1;
+
   return (
     <section className={`${styles.latest}`}>
       <div className={`${styles.wrapper} wrapper`}>
-        {/* <div className={`${styles.latestTitle}`}>
-          <h3>Latest product</h3>
-          <button className="btn btn-medium btn-primary">View more</button>
-        </div> */}
-
-        {/* <Accordion title={"My title"} content={"Hello mr"} focus={1} />
-        <Accordion
-          title={"My title"}
-          content={
-            <Slider
-              aria-label="Temperature"
-              // defaultValue will not work because, this is a controlled component in the sense that it is controlled by react . it's value is stored in a [state]
-              defaultValue={100}
-              step={1}
-              // marks={budget}
-              valueLabelDisplay="on"
-              // valueLabelDisplay="auto"
-              // Added this with the new scaling
-              // value={budgetValue}
-              value={value}
-              min={0}
-              max={100}
-              valueLabelFormat={numFormatter}
-              scale={scale}
-              // onChange={handleBudgetChange}
-            />
-          }
-          focus={1}
-        /> */}
-
         <div className={`${styles.collectionDiv}`}>
           <div className={`${styles.filterDiv}`}>
             <div className={`${styles.filterContainer}`}>
-              {/* <div className={`${styles.filterHeading}`}>
-                <h4>Filter Products</h4>
-              </div> */}
-
               <Accordion
                 title={"Category"}
                 content={
@@ -354,104 +398,22 @@ const Latest: React.FC = () => {
                 }
                 focus={1}
               />
-              {/* <h5>Price</h5>
-              <Slider
-                aria-label="Temperature"
-                // defaultValue will not work because, this is a controlled component in the sense that it is controlled by react . it's value is stored in a [state]
-                defaultValue={100}
-                step={1}
-                // marks={budget}
-                valueLabelDisplay="on"
-                // valueLabelDisplay="auto"
-                // Added this with the new scaling
-                // value={budgetValue}
-                value={value}
-                min={0}
-                max={100}
-                valueLabelFormat={numFormatter}
-                scale={scale}
-                // onChange={handleBudgetChange}
-              />
-              <h6>Brand</h6>
-              <div className={`${styles.checkboxGroup}`}>
-                <Checkbox
-                  checkText={"Samsung"}
-                  htmlFor="brand"
-                  name="samsung"
-                  checked={true}
-                  // onChange={handleCheckChange}
-                />
-              </div>
-              <div className={`${styles.checkboxGroup}`}>
-                <Checkbox
-                  checkText={"LG"}
-                  htmlFor="brand"
-                  name="lg"
-                  // onChange={handleCheckChange}
-                />
-              </div>
-              <h6>Size</h6>
-              <div className={`${styles.checkboxGroup}`}>
-                <Checkbox
-                  checkText={"32 inches"}
-                  htmlFor="size"
-                  name="32"
-                  // onChange={handleCheckChange}
-                />
-              </div>
-              <div className={`${styles.checkboxGroup}`}>
-                <Checkbox
-                  checkText={"43 inches"}
-                  htmlFor="size"
-                  name="43"
-                  // onChange={handleCheckChange}
-                />
-              </div>
-              <h6>Category</h6>
-              <div className={`${styles.checkboxGroup}`}>
-                <Checkbox
-                  checkText={"Non Smart tv"}
-                  htmlFor="tv"
-                  name="non-smart"
-                  // onChange={handleCheckChange}
-                />
-              </div>
-              <div className={`${styles.checkboxGroup}`}>
-                <Checkbox
-                  checkText={"Smart tv"}
-                  htmlFor="tv"
-                  name="smart tv"
-                  // onChange={handleCheckChange}
-                />
-              </div>
-              <h6>Color</h6>
-              <div className={`${styles.checkboxGroup}`}>
-                <Checkbox
-                  checkText={"Black"}
-                  htmlFor="color"
-                  name="black"
-                  // onChange={handleCheckChange}
-                />
-              </div>
-              <div className={`${styles.checkboxGroup}`}>
-                <Checkbox
-                  checkText={"Silver"}
-                  htmlFor="color"
-                  name="silver"
-                  // onChange={handleCheckChange}
-                />
-              </div> */}
 
-              {/* <div className={`${styles.filterBtnGroup}`}>
+              <div className={`${styles.filterBtnGroup}`}>
                 <button className="btn-block btn-small">Apply Filter</button>
                 <button className="btn-block btn-small-sec ">
                   Reset Filter
                 </button>
-              </div> */}
+              </div>
             </div>
           </div>
           <div className={`${styles.productDiv}`}>
             <div className={`${styles.sortBar}`}>
+              <div>
+                <p>{`Showing ${startIdx} - ${endIdx} of ${
+                  totalItems ?? 0
+                } results`}</p>
+              </div>
               <div
                 className={`${styles.dropdown}`}
                 onClick={() => setOpen(!open)}
@@ -477,6 +439,9 @@ const Latest: React.FC = () => {
               {open && (
                 <div ref={menuRef} className={`${styles.profileContainer}`}>
                   <ul className={`${styles.profileDropdown}`}>
+                    <li onClick={() => setOpen(false)}>
+                      <div className={`${styles.forDrop}`}>default sorting</div>
+                    </li>
                     <li onClick={() => setOpen(false)}>
                       <div className={`${styles.forDrop}`}>
                         sort by popularity
@@ -505,7 +470,7 @@ const Latest: React.FC = () => {
               )}
             </div>
             <div className={`${styles.productList}`}>
-              {productsList.slice(0, 11).map((product) => {
+              {prodList?.slice(0, 11).map((product) => {
                 return (
                   <ProductCard
                     key={product.uuid}
@@ -522,6 +487,11 @@ const Latest: React.FC = () => {
                 );
               })}
             </div>
+            <Pagination
+              page={currentPage}
+              pages={totalPages}
+              changePage={changePage}
+            />
           </div>
         </div>
       </div>

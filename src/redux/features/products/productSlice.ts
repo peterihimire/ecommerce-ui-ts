@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import productAPI from "../../api/product";
 import { UserResponseProps, ProductPayloadProps } from "../../../types/types";
+import qs from "qs";
 interface ProductData {
   price: number;
   oldPrice: number;
@@ -21,12 +22,33 @@ interface ProductData {
   uuid: string;
 }
 
+interface SearchedData {
+  currentPage: number;
+  totalPage: number;
+  totalItems: number;
+  productRecords: ProductData[] | null;
+}
+
 interface ProductState {
   loading: boolean;
   error: string | null;
   items: ProductData[];
-  searchedItems: ProductData[];
+  searchedItems: SearchedData | null;
   productData: ProductData | null;
+}
+
+interface GetProductsFilterArg {
+  page?: number;
+  limit?: number;
+  filter?: {
+    brand?: string;
+    size?: string;
+    price?: string;
+    categories?: string[];
+    color?: string;
+    minPrice?: number;
+    maxPrice?: number;
+  };
 }
 
 const productDataString = localStorage.getItem("ecommerce_products");
@@ -71,12 +93,29 @@ export const getProducts = createAsyncThunk(
 
 export const getProductsFilter = createAsyncThunk(
   "products/filter",
-  async (payload: any, thunkApi) => {
-    console.log("My login payload: ", payload);
+  async (params: GetProductsFilterArg = {}, thunkApi) => {
+    console.log("My filter params: ", params);
+
+    const { page, limit, filter } = params;
+    const pageNum = page ?? 1;
+    const pageSize = limit ?? 3;
+
+    const queryParams: Record<string, string> = {
+      page: pageNum.toString(),
+      limit: pageSize.toString(),
+      ...Object.entries(filter || {}).reduce((acc, [key, value]) => {
+        acc[key] = String(value);
+        return acc;
+      }, {} as Record<string, string>),
+    };
+
+    const query = new URLSearchParams(queryParams).toString();
+
     try {
-      const response = await productAPI.getProductsFilter(payload);
-      const data = response.data;
-      localStorage.setItem("ecommerce_products", JSON.stringify(data.data));
+      const response = await productAPI.getProductsFilter(query);
+      console.log("This res from filter mann...", response.data.data);
+      const data = response.data.data;
+      // localStorage.setItem("ecommerce_products", JSON.stringify(data.data));
       return data;
     } catch (error: any) {
       console.log("Error yeah: ", error.response);
@@ -105,7 +144,7 @@ const initialState = {
   loading: false,
   error: null,
   items: productData || [],
-  searchedItems: [],
+  searchedItems: null,
   productData: null,
 } as ProductState;
 

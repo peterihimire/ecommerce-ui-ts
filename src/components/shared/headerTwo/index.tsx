@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Nav from "../nav";
+import Nav from "../navTwo";
 import { useLocation } from "react-router-dom";
 import { HeaderProps } from "../../../types/HeaderProps.type";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -54,6 +54,45 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
       }`}
     >
       <div>
+        <div className={`${styles.wrapper}`}>
+          {bgChangee ? (
+            <div className={`${styles.logo}`}>
+              <Link to="/">
+                BEN<span>KIH</span>
+              </Link>
+            </div>
+          ) : (
+            <div className={`${styles.logo}`}>
+              <Link to="/" className={`${styles.dark}`}>
+                BEN<span>KIH</span>
+              </Link>
+            </div>
+          )}
+
+          <Nav
+            bgChange={bgChangee}
+            isDrop={isDropOpen}
+            isOpen={isOpen}
+            clicked={(payload: boolean) => dropHandler(payload)}
+          />
+
+          <div className={`${styles.hamburgerBtn}`}>
+            <button
+              type="button"
+              aria-label="navigation button"
+              onClick={clicked}
+              className={`hamburger hamburger--spin ${
+                isOpen ? "is-active" : ""
+              }`}
+            >
+              <span className="hamburger-box">
+                <span
+                  className={`${"hamburger-inner hamburger-inner-dark"}`}
+                ></span>
+              </span>
+            </button>
+          </div>
+        </div>
         <div className={`${styles.firstWrapperDiv}`}>
           <div className={`${styles.firstWrapper}`}>
             <div className={`${styles.items}`}>+(234)80-3049-6069</div>
@@ -76,7 +115,6 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
                 rel="noreferrer"
                 className={`${styles.socialLink}`}
               >
-                {/* <Youtube width="17px" /> */}
                 <FontAwesomeIcon icon={faFacebookSquare} />
               </a>
               <a
@@ -86,7 +124,6 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
                 className={`${styles.socialLink}`}
               >
                 <FontAwesomeIcon icon={faTwitterSquare} />
-                {/* <Twitter width="17px" /> */}
               </a>
               <a
                 href="https://www.instagram.com/"
@@ -94,50 +131,9 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
                 rel="noreferrer"
                 className={`${styles.socialLink}`}
               >
-                {/* <Instagram width="17px" /> */}
                 <FontAwesomeIcon icon={faLinkedin} />
               </a>
             </div>
-          </div>
-        </div>
-
-        <div className={`${styles.wrapper}`}>
-          {bgChangee ? (
-            <div className={`${styles.logo}`}>
-              <Link to="/">
-                BEN<span>KIH</span>
-              </Link>
-            </div>
-          ) : (
-            <div className={`${styles.logo}`}>
-              <Link to="/" className={`${styles.dark}`}>
-                BEN<span>KIH</span>
-              </Link>
-            </div>
-          )}
-
-          {/* <Nav
-            bgChange={bgChangee}
-            isDrop={isDropOpen}
-            isOpen={isOpen}
-            clicked={(payload: boolean) => dropHandler(payload)}
-          /> */}
-
-          <div className={`${styles.hamburgerBtn}`}>
-            <button
-              type="button"
-              aria-label="navigation button"
-              onClick={clicked}
-              className={`hamburger hamburger--spin ${
-                isOpen ? "is-active" : ""
-              }`}
-            >
-              <span className="hamburger-box">
-                <span
-                  className={`${"hamburger-inner hamburger-inner-dark"}`}
-                ></span>
-              </span>
-            </button>
           </div>
         </div>
       </div>

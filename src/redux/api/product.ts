@@ -1,5 +1,5 @@
 import $axios from "./config";
-import { ProductPayloadProps } from "../../types/types";
+import { ProductPayloadProps, } from "../../types/types";
 
 console.log("This is axios...", $axios);
 const productAPI = {
@@ -11,8 +11,7 @@ const productAPI = {
     return $axios.get("/products/get_products");
   },
 
-  async getProductsFilter(filters: any) {
-    const query = new URLSearchParams(filters).toString();
+  async getProductsFilter(query: string) {
     return $axios.get(`/products/get_products_filter?${query}`);
   },
 };

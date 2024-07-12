@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import Header from "../../components/shared/header";
-import Header from "../../components/shared/header";
+import Header from "../../components/shared/headerTwo";
 import Backdrop from "../../components/shared/backdrop";
 import { useLocation } from "react-router-dom";
 import Footer from "../../components/shared/footer";

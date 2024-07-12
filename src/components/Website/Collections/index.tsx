@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import ContactHero from "./Hero";
 import Latest from "./Latest";
-
 import { Helmet, HelmetProvider } from "react-helmet-async";
+
 
 const Collections: React.FC = () => {
   return (
