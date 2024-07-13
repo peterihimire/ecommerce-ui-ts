@@ -12,6 +12,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "../../../../hooks/useTypedSelector";
+import ImageLightBox from "../../../shared/imageLightbox";
 
 import styles from "./styles.module.scss";
 
@@ -24,6 +25,8 @@ const Product: React.FC = () => {
   const productInfo = useAppSelector(
     (state: RootState) => state.product.productData
   );
+  // Ensure productImages is always defined
+  const productImages: string[] = productInfo?.images || [];
   console.log("This is current product data ...", productInfo);
 
   const { prod_id } = params;
@@ -32,16 +35,22 @@ const Product: React.FC = () => {
     <section className={`${styles.collectionInfo}`}>
       <div className="wrapper">
         <div className={`${styles.collectionDetails}`}>
-          <div className={`${styles.detailImg}`}>
+          {/* IMAGE BOX STARTS HERE */}
+          {/* <div className={`${styles.detailImg}`}>
             <img
               src={`http://localhost:4040/${productInfo?.images[0]}`}
               alt=""
             />
             <div className={`${styles.imgBox}`}>
-              <img src={product10} alt="" /> <img src={product10} alt="" />{" "}
-              <img src={product10} alt="" /> <img src={product10} alt="" />
+              {productInfo?.images.map((img) => {
+                return <img src={`http://localhost:4040/${img}`} alt="" />;
+              })}
             </div>
-          </div>
+          </div> */}
+
+          <ImageLightBox images={productImages} />
+
+          {/* IMAGE BOX ENDS HERE */}
           <div className={`${styles.detailTxt}`}>
             <h5>{productInfo?.title}</h5>
 

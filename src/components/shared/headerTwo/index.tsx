@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import Nav from "../navTwo";
-import { useLocation } from "react-router-dom";
 import { HeaderProps } from "../../../types/HeaderProps.type";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 import { faSquareInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faTwitterSquare } from "@fortawesome/free-brands-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./styles.module.scss";
 
@@ -16,6 +16,7 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
 
   const [isDropOpen, setDropOpen] = useState(false);
   const [bgChangee, setBgChangee] = useState(false);
+  const [showCategories, setShowCategories] = useState(false);
 
   const dropHandler = (payload: boolean) => {
     setDropOpen(payload);
@@ -51,7 +52,8 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
     <header
       className={`${styles.header}   ${
         bgChangee || isOpen ? styles.bgHeader : ""
-      }`}
+      }
+      `}
     >
       <div>
         <div className={`${styles.wrapper}`}>
@@ -95,45 +97,151 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
         </div>
         <div className={`${styles.firstWrapperDiv}`}>
           <div className={`${styles.firstWrapper}`}>
-            <div className={`${styles.items}`}>+(234)80-3049-6069</div>
-            <div className={`${styles.items}`}>
-              Express delivery and free returns within 30 days
+            <div className={`${styles.categories}`}>
+              <button
+                className={styles.hasDropdownBtn}
+                onClick={() => {
+                  setShowCategories(!showCategories);
+                }}
+              >
+                all categories
+                <span>
+                  <FontAwesomeIcon icon={faBars} className={styles.iconStyle} />
+                </span>
+              </button>
+
+              <div
+                className={`${styles.dropdownMenu} ${
+                  showCategories ? styles.show : ""
+                }`}
+              >
+                <div className={styles.dropdownContainer}>
+                  <ul className={styles.dropdownWrapper}>
+                    <li>
+                      <Link to="/overview">
+                        <div className={styles.dropIcon}>
+                          {/* <img src="/images/overview.svg" /> */}
+                        </div>
+                        <div className={styles.dropText}>
+                          <span className={styles.dropTextHead}>Overview</span>
+                          <span className={styles.dropDesc}>
+                            Take a closer look at our platform and how well we
+                            can get you the result you desire
+                          </span>
+                        </div>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/">
+                        <div className={styles.dropIcon}>
+                          {/* <img src="/images/learning.svg" /> */}
+                        </div>
+                        <div className={styles.dropText}>
+                          <span className={styles.dropTextHead}>
+                            Learning Path
+                          </span>
+                          <span className={styles.dropDesc}>
+                            Customized learning programs based on the needs of
+                            teams
+                          </span>
+                        </div>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/hands-on-learning">
+                        <div className={styles.dropIcon}>
+                          {/* <img src="/images/bulb brain 1.svg" /> */}
+                        </div>
+                        <div className={styles.dropText}>
+                          <span className={styles.dropTextHead}>
+                            Hands-on Labs
+                          </span>
+                          <span className={styles.dropDesc}>
+                            Simulators of real-world cloud difficulties are
+                            easily accessible.
+                          </span>
+                        </div>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/skills-assessment">
+                        <div className={styles.dropIcon}>
+                          {/* <img src="/images/skills.svg" /> */}
+                        </div>
+                        <div className={styles.dropText}>
+                          <span className={styles.dropTextHead}>
+                            Skills Assessment
+                          </span>
+                          <span className={styles.dropDesc}>
+                            Quickly and simply map your company's cloud talent.
+                          </span>
+                        </div>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/">
+                        <div className={styles.dropIcon}>
+                          {/* <img src="/images/rocket 1.svg" /> */}
+                        </div>
+                        <div className={styles.dropText}>
+                          <span className={styles.dropTextHead}>
+                            Accelerator Program
+                          </span>
+                          <span className={styles.dropDesc}>
+                            Raise teams' cloud knowledge to a common level in a
+                            short amount of time
+                          </span>
+                        </div>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/">
+                        <div className={styles.dropIcon}>
+                          {/* <img src="/images/cloud-computing 1.svg" /> */}
+                        </div>
+                        <div className={styles.dropText}>
+                          <span className={styles.dropTextHead}>
+                            Cloud Playground
+                          </span>
+                          <span className={styles.dropDesc}>
+                            Try our risk-free cloud sandboxes for AWS, GCP and
+                            Azure
+                          </span>
+                        </div>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div className={`${styles.items} ${styles.socialList}`}>
-              {" "}
-              <a
-                href="https://www.facebook.com"
-                target="_blank"
-                rel="noreferrer"
-                className={`${styles.socialLink}`}
-              >
-                <FontAwesomeIcon icon={faSquareInstagram} />
-              </a>
-              <a
-                href="https://www.linkedin.com"
-                target="_blank"
-                rel="noreferrer"
-                className={`${styles.socialLink}`}
-              >
-                <FontAwesomeIcon icon={faFacebookSquare} />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noreferrer"
-                className={`${styles.socialLink}`}
-              >
-                <FontAwesomeIcon icon={faTwitterSquare} />
-              </a>
-              <a
-                href="https://www.instagram.com/"
-                target="_blank"
-                rel="noreferrer"
-                className={`${styles.socialLink}`}
-              >
-                <FontAwesomeIcon icon={faLinkedin} />
-              </a>
-            </div>
+
+            <ul className={`${styles.items} ${styles.navLinks}`}>
+              <li>
+                <NavLink to="/" className={styles.dark}>
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/" className={styles.dark}>
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/" className={styles.dark}>
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/" className={styles.dark}>
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/" className={styles.dark}>
+                  Home
+                </NavLink>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

@@ -218,3 +218,7 @@ export type PaginationProps = {
   pages: number;
   changePage: (page: number) => void;
 };
+
+export type LightboxProps = {
+  images: string[];
+};

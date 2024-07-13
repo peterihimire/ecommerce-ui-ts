@@ -130,10 +130,16 @@ const Footer: React.FC = () => {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/products-services">About Us</Link>
+                <Link to="/collections">Collections</Link>
               </li>
               <li>
-                <Link to="/our-process">Our Process</Link>
+                <Link to="/faq">FAQ</Link>
+              </li>
+              <li>
+                <Link to="/about">About Us</Link>
+              </li>
+              <li>
+                <Link to="/contact">Contact Us</Link>
               </li>
             </ul>
           </div>
@@ -142,7 +148,10 @@ const Footer: React.FC = () => {
             <h3>Legal</h3>
             <ul className={`${styles.quickLinks}`}>
               <li>
-                <Link to="/">Privacy Policy</Link>
+                <Link to="/privacy-policy">Privacy Policy</Link>
+              </li>
+              <li>
+                <Link to="/cook-policy">Cookie Policy</Link>
               </li>
               <li>
                 <Link to="/products-services">Terms of Use</Link>

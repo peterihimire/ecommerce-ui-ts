@@ -6,6 +6,8 @@ import {
   Search,
   PersonOutline,
   ShoppingBagOutlined,
+  FavoriteBorder,
+  AccountCircleOutlined,
   PersonOutlineRounded,
   ShoppingCartOutlined,
 } from "@mui/icons-material";
@@ -147,7 +149,7 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
             onClick={() => setOpen(!open)}
             ref={profileRef}
           >
-            <PersonOutline
+            <AccountCircleOutlined
               className={` iconStyle  ${
                 bgChange ? styles.dark : styles.iconStyleLight
               }`}
@@ -203,37 +205,13 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
         </div>
         {/* This is for the second icon */}
         <div className={`${styles.navSearch}`}>
-          <div
-            className={`${styles.searchBtn}`}
-            onClick={() => setOpenBar(!openBar)}
-            ref={searchRef}
-          >
-            <Search
+          <div className={`${styles.searchBtn}`}>
+            <FavoriteBorder
               className={` iconStyle  ${
                 bgChange ? styles.dark : styles.iconStyleLight
               }`}
             />
           </div>
-          {openBar && (
-            <div ref={barRef} className={`${styles.barContainer}`}>
-              <div className={`${styles.bar}`}>
-                <Input
-                  // labelText="Search"
-                  type="text"
-                  name="search"
-                  id="search"
-                  // required
-                  placeholder="Search"
-                  // value={loginForm.email}
-                  // onChange={(e) => handleFormChange(e.target)}
-
-                  // value={formik.values.email}
-                  // onBlur={formik.handleBlur}
-                  // onChange={formik.handleChange}
-                />
-              </div>
-            </div>
-          )}
         </div>
 
         <div

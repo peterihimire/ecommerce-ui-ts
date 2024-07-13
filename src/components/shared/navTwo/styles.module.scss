@@ -488,7 +488,7 @@
     }
 
     .iconStyleLight {
-      color: var(--white);
+      // color: var(--white);
       font-size: 25px;
     }
 
@@ -501,8 +501,8 @@
         height: 22px;
         width: 22px;
         border-radius: 50%;
-        top: -13px;
-        right: -13px;
+        top: -8px;
+        right: -15px;
         display: flex;
         align-items: center;
         justify-content: center;
