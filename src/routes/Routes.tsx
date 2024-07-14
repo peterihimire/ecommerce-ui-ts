@@ -19,12 +19,14 @@ import { Profile } from "../pages/profile";
 import { VerifyForm } from "../pages/verifyform";
 import { PageNotFound } from "../pages/pageNotFound";
 import ProtectedRoutes from "../hoc/ProtectedRoutes";
+import RenderTop from "../utils/RenderTop";
 
 const AllRoutes = () => {
   const currentUser = useAppSelector((state: RootState) => state.auth);
 
   return (
     <BrowserRouter>
+      <RenderTop />
       <Routes>
         <Route element={<WebsiteLayout />}>
           <Route path="/" index={true} element={<Home />} />

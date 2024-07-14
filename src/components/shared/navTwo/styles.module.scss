@@ -62,6 +62,20 @@
 
   .searchBar {
     width: 700px;
+    display: flex;
+    align-items: center;
+
+    button {
+      background-color: var(--main);
+      color: var(--white);
+      height: 40px;
+      width: 150px;
+      border-top: 2px solid var(--main);
+      border-bottom: 2px solid var(--main);
+      border-right: 2px solid var(--main);
+      border-left: none !important;
+      border-radius: 0px 2px 2px 0px !important;
+    }
     .searchStyle {
       // padding: 8px 28px 8px 28px !important;
       height: 40px;
@@ -76,9 +90,12 @@
       color: inherit;
       width: 100%;
       font-family: inherit;
-      border: 2px solid var(--grey);
+      border-top: 2px solid var(--main);
+      border-bottom: 2px solid var(--main);
+      border-left: 2px solid var(--main);
+      border-right: none !important;
       background: var(--white);
-      border-radius: 2px !important;
+      border-radius: 2px 0px 0px 2px !important;
       height: 40px !important;
       transition: all 0.3s ease-in-out;
       // padding: 8px 28px 8px 28px !important;

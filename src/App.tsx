@@ -11,6 +11,7 @@ const App: React.FC = (): JSX.Element => {
       {/* <BrowserRouter>
         <AllRoutes />
       </BrowserRouter> */}
+
       <AllRoutes />
       <CookieConsent
         location="bottom"

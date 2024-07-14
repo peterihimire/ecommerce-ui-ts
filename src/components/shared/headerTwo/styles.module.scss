@@ -121,6 +121,8 @@
         .dropdownMenu {
           position: absolute;
           width: auto;
+          // position: relative;
+          // width: var(--full);
           z-index: 21;
           padding-top: 32px;
           top: 21%;
@@ -239,7 +241,7 @@
                 }
 
                 &:hover {
-                  background: var(--main);
+                  background: var(--grey);
                   color: var(--white);
                 }
 

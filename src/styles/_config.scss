@@ -28,7 +28,7 @@
 
 html {
   -webkit-text-size-adjust: var(--full);
-  scroll-behavior: smooth;
+  scroll-behavior: auto; //smooth
   font-family: Montserrat-Regular, sans-serif;
 }
 

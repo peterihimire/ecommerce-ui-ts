@@ -131,7 +131,7 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
           name="search"
           id="search"
           // required
-          placeholder="Search"
+          placeholder="Search products and categories"
           // value={loginForm.email}
           // onChange={(e) => handleFormChange(e.target)}
 
@@ -140,6 +140,7 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
           // onChange={formik.handleChange}
           wrapperClass={styles.searchStyle}
         />
+        <button>Search</button>
       </div>
 
       <div className={`${styles.navEnd}`}>

@@ -6,7 +6,7 @@ import {
   saveToLocalStorage,
   loadFromLocalStorage,
   removeFromLocalStorage,
-} from "../../../utils/localstorage";
+} from "../../../utils/LocalStorage";
 import {
   UserPayloadProps,
   UserResponseProps,
