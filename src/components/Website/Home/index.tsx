@@ -16,7 +16,7 @@ import {
   useAppSelector,
 } from "../../../hooks/useTypedSelector";
 import { getProducts } from "../../../redux/features/products/productSlice";
-
+import { getCart } from "../../../redux/features/cart/cartSlice";
 // src/utils/localStorage.js
 export const saveToLocalStorage = (key: any, value: any) => {
   localStorage.setItem(key, JSON.stringify(value));
@@ -45,7 +45,10 @@ const Home: React.FC = () => {
       try {
         // const response = await axios.get("/api/products");
         const response = await dispatch(getProducts()).unwrap();
+        const cartresponse = await dispatch(getCart()).unwrap();
         console.log("This res from home call from products...", response.data);
+        console.log("This res from home cart...", cartresponse.data);
+
         // saveToLocalStorage("ecommerce_products", response.data);
         // setProducts(response);
       } catch (error: any) {

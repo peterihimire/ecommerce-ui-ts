@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProductCard from "../../../shared/productcard";
 import CartNav from "../../../shared/cartNav";
 import Backdrop from "../../../shared/backdrop";
@@ -10,20 +10,36 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "../../../../hooks/useTypedSelector";
+import { CartPayloadProps, CartDataProps } from "../../../../types/types";
+import { addToCart, getCart } from "../../../../redux/features/cart/cartSlice";
 
 import styles from "./styles.module.scss";
 
 const Sale: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [open, setOpen] = useState(false);
+  const [error, setError] = useState("");
+  const [selectedProduct, setSelectedProduct] = useState<CartDataProps | null>(
+    null
+  );
 
   const productsList = useAppSelector(
     (state: RootState) => state.product.items
   );
+  const cartInfo = useAppSelector((state: RootState) => state.cart.cartData);
+  console.log("This is cart information...", cartInfo);
+
   console.log("This is current product listings ...", productsList);
 
-  const addProductHandler = () => {
+  const addProductHandler = async (uuid: string) => {
     console.log("Add handler...");
+
+    const response = await dispatch(addToCart({ prod_id: uuid }));
+    // const cartresponse = await dispatch(getCart());
+
+    console.log("This caart response in elite... ", response);
     setOpen(true);
     document.documentElement.classList.add("_fixed");
     document.body.classList.add("_fixed");
@@ -43,6 +59,26 @@ const Sale: React.FC = () => {
   //   document.documentElement.classList.add("_fixed");
   //   document.body.classList.add("_fixed");
   // };
+
+  useEffect(() => {
+    const fetchCart = async () => {
+      setLoading(true);
+      try {
+        // const response = await axios.get("/api/products");
+        const response = await dispatch(getCart()).unwrap();
+        console.log("This is cart data here...", response.data);
+        // saveToLocalStorage("ecommerce_products", response.data);
+      } catch (error: any) {
+        console.log("This error from products...", error);
+        setError(error.message);
+      } finally {
+        // dispatch(setLoading(false));
+        setLoading(false);
+      }
+    };
+
+    fetchCart();
+  }, [dispatch]);
 
   const closeModalHandler = () => {
     console.log("Modal closed...");
@@ -69,7 +105,7 @@ const Sale: React.FC = () => {
                 oldPrice={product.oldPrice}
                 image={`http://localhost:4040/${product.images[0]}`}
                 infoProd={product.uuid}
-                addProd={addProductHandler}
+                addProd={() => addProductHandler(product.uuid)}
                 // likeProd={likeProductHandler}
               />
             );

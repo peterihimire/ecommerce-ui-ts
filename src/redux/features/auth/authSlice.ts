@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import axios from "axios";
 import authAPI from "../../api/auth";
 import { getUserInfo } from "../users/userSlice";
 import {
@@ -98,21 +97,6 @@ export const logoutUser = createAsyncThunk(
     } finally {
       // localStorage.removeItem("ecommerce_user");
       removeFromLocalStorage("ecommerce_user");
-    }
-  }
-);
-
-export const getPosts = createAsyncThunk(
-  "posts/getPosts",
-  async (data, thunkApi) => {
-    try {
-      const response = await axios.get<UserResponseProps>(
-        "https://jsonplaceholder.typicode.com/posts?_limit=10"
-      );
-      return response.data;
-    } catch (error: any) {
-      const message = error.message;
-      return thunkApi.rejectWithValue(message);
     }
   }
 );

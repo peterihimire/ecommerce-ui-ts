@@ -14,7 +14,7 @@ import {
 import { NavProps } from "../../../types/NavProps.type";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import CartNav from "../../shared/cartNav";
 import Input from "../../shared/customInput";
 import BackdropCart from "../../shared/backdropcart";
@@ -140,7 +140,12 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
           // onChange={formik.handleChange}
           wrapperClass={styles.searchStyle}
         />
-        <button>Search</button>
+        <button>
+          <FontAwesomeIcon
+            icon={faSearch}
+            className={`${styles.icon} ${styles.iconUp}`}
+          />
+        </button>
       </div>
 
       <div className={`${styles.navEnd}`}>

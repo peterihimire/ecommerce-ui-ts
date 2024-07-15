@@ -93,7 +93,7 @@
           text-transform: capitalize;
 
           span {
-            margin-left: 5px;
+            margin-left: 7px;
 
             .iconStyle {
               font-size: 15px;
@@ -109,9 +109,9 @@
             color: var(--orange);
           }
 
-          > span {
-            margin-right: 10px;
-          }
+          // > span {
+          //   // margin-right: 10px;
+          // }
 
           i {
             font-size: 13px;
@@ -121,8 +121,6 @@
         .dropdownMenu {
           position: absolute;
           width: auto;
-          // position: relative;
-          // width: var(--full);
           z-index: 21;
           padding-top: 32px;
           top: 21%;
@@ -241,7 +239,7 @@
                 }
 
                 &:hover {
-                  background: var(--grey);
+                  background: var(--black);
                   color: var(--white);
                 }
 

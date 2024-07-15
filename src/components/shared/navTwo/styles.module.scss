@@ -66,13 +66,13 @@
     align-items: center;
 
     button {
-      background-color: var(--main);
+      background-color: var(--black);
       color: var(--white);
       height: 40px;
-      width: 150px;
-      border-top: 2px solid var(--main);
-      border-bottom: 2px solid var(--main);
-      border-right: 2px solid var(--main);
+      width: 50px;
+      border-top: 2px solid var(--black);
+      border-bottom: 2px solid var(--black);
+      border-right: 2px solid var(--black);
       border-left: none !important;
       border-radius: 0px 2px 2px 0px !important;
     }
@@ -90,10 +90,11 @@
       color: inherit;
       width: 100%;
       font-family: inherit;
-      border-top: 2px solid var(--main);
-      border-bottom: 2px solid var(--main);
-      border-left: 2px solid var(--main);
+      border-top: 2px solid var(--black);
+      border-bottom: 2px solid var(--black);
+      border-left: 2px solid var(--black);
       border-right: none !important;
+      // border-right: 2px solid var(--grey);
       background: var(--white);
       border-radius: 2px 0px 0px 2px !important;
       height: 40px !important;

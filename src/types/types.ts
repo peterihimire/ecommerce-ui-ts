@@ -219,6 +219,24 @@ export type PaginationProps = {
   changePage: (page: number) => void;
 };
 
+// LIGHTBOX PROP
 export type LightboxProps = {
   images: string[];
+};
+
+// CART PROS
+export type CartPayloadProps = {
+  prod_id: string;
+};
+
+export type CartDataProps = {
+  id: number;
+  price: number;
+  cartId: number;
+  productId: number;
+  quantity: number;
+  addedBy: string;
+  uuid: string;
+  addedAt: string;
+  title: string;
 };
