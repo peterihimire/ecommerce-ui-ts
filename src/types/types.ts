@@ -240,3 +240,18 @@ export type CartDataProps = {
   addedAt: string;
   title: string;
 };
+
+export type ProductProps = {
+  image: string;
+  prod_uuid: string;
+  price: number;
+  title: string;
+  quantity: number;
+};
+
+export type CartProps = {
+  cart_uuid: string;
+  products: ProductProps[];
+  total_qty: number;
+  total_price: number;
+};

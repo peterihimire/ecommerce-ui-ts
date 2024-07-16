@@ -132,7 +132,6 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
           id="search"
           // required
           placeholder="Search products and categories"
-          // value={loginForm.email}
           // onChange={(e) => handleFormChange(e.target)}
 
           // value={formik.values.email}

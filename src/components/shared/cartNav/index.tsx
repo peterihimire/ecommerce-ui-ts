@@ -2,19 +2,27 @@ import React, { useRef, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { NavLink, useLocation, Link } from "react-router-dom";
 // import useDarkMode from "use-dark-mode";
+import {
+  useAppSelector,
+  useAppDispatch,
+} from "../../../hooks/useTypedSelector";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCaretRight,
+  faImage,
   faMinus,
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import product7 from "../../../assets/images/products/product12.png";
+import { getCart } from "../../../redux/features/cart/cartSlice";
 import { CartNavProps } from "../../../types/types";
 
 import styles from "./styles.module.scss";
 
 const CartNav: React.FC<CartNavProps> = ({ isOpen, clicked }) => {
   const location = useLocation();
+  const dispatch = useAppDispatch();
+  const cart = useAppSelector((state) => state.cart.cartData);
   console.log(location);
   console.log(location.pathname.split("/")[1]);
   const fullPath = location.pathname;
@@ -25,10 +33,20 @@ const CartNav: React.FC<CartNavProps> = ({ isOpen, clicked }) => {
   const [openSlider, setOpenSlider] = useState(isOpen);
   console.log(openSlider);
   console.log(isOpen);
+  console.log(
+    `Hello this is cart data with all the products...`,
+    cart?.products
+  );
 
   useEffect(() => {
     setOpenSlider(isOpen);
   }, [isOpen]);
+
+  useEffect(() => {
+    if (isOpen) {
+      dispatch(getCart());
+    }
+  }, [isOpen, dispatch]);
 
   const backdropRef = useRef<HTMLDivElement>(null);
 
@@ -82,24 +100,35 @@ const CartNav: React.FC<CartNavProps> = ({ isOpen, clicked }) => {
         </div>
 
         <div className={`${styles.cartBody}`}>
-          <div className={`${styles.cartList}`}>
-            <div className={`${styles.cartItem}`}>
-              <div className={`${styles.cartItemImg}`}>
-                <img src={product7} alt="" />
-              </div>
-              <div className={`${styles.cartItemText}`}>
-                <h5>Hisense A7GQ 50</h5>
-                <p>
-                  2 <span>x</span> $1200
-                </p>
-              </div>
-            </div>
-          </div>
+          <ul className={`${styles.cartList}`}>
+            {cart?.products.map((prod) => {
+              return (
+                <li className={`${styles.cartItem}`}>
+                  <div className={`${styles.cartItemImg}`}>
+                    {prod.image ? (
+                      <img src={prod.image} alt="" />
+                    ) : (
+                      <FontAwesomeIcon
+                        icon={faImage}
+                        className={`${styles.imgIcon}`}
+                      />
+                    )}
+                  </div>
+                  <div className={`${styles.cartItemText}`}>
+                    <h5>{prod.title}</h5>
+                    <p>
+                      {prod.quantity} <span>x</span> ${prod.price}
+                    </p>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
         </div>
 
         <div className={`${styles.cartSubtotal}`}>
           <p>subtotal :</p>
-          <span>$200.99</span>
+          <span>${cart?.total_price}</span>
         </div>
 
         <div className={`${styles.cartFooter}`}>

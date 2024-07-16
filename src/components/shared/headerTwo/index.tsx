@@ -123,7 +123,7 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
                           {/* <img src="/images/overview.svg" /> */}
                         </div>
                         <div className={styles.dropText}>
-                          <span className={styles.dropTextHead}>Overview</span>
+                          <span className={styles.dropTextHead}>Fashion</span>
                           <span className={styles.dropDesc}>
                             Take a closer look at our platform and how well we
                             can get you the result you desire
@@ -138,7 +138,7 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
                         </div>
                         <div className={styles.dropText}>
                           <span className={styles.dropTextHead}>
-                            Learning Path
+                            Electronics
                           </span>
                           <span className={styles.dropDesc}>
                             Customized learning programs based on the needs of
@@ -154,7 +154,7 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
                         </div>
                         <div className={styles.dropText}>
                           <span className={styles.dropTextHead}>
-                            Hands-on Labs
+                            Home/Office OEM
                           </span>
                           <span className={styles.dropDesc}>
                             Simulators of real-world cloud difficulties are
@@ -170,7 +170,7 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
                         </div>
                         <div className={styles.dropText}>
                           <span className={styles.dropTextHead}>
-                            Skills Assessment
+                            Tech Attire
                           </span>
                           <span className={styles.dropDesc}>
                             Quickly and simply map your company's cloud talent.
@@ -185,7 +185,7 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
                         </div>
                         <div className={styles.dropText}>
                           <span className={styles.dropTextHead}>
-                            Accelerator Program
+                            Toys & Hobbies
                           </span>
                           <span className={styles.dropDesc}>
                             Raise teams' cloud knowledge to a common level in a
@@ -200,9 +200,7 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
                           {/* <img src="/images/cloud-computing 1.svg" /> */}
                         </div>
                         <div className={styles.dropText}>
-                          <span className={styles.dropTextHead}>
-                            Cloud Playground
-                          </span>
+                          <span className={styles.dropTextHead}>Blog</span>
                           <span className={styles.dropDesc}>
                             Try our risk-free cloud sandboxes for AWS, GCP and
                             Azure
@@ -218,27 +216,27 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
             <ul className={`${styles.items} ${styles.navLinks}`}>
               <li>
                 <NavLink to="/" className={styles.dark}>
-                  Home
+                  Fashion
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/" className={styles.dark}>
-                  Home
+                  Electronics
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/" className={styles.dark}>
-                  Home
+                  Home/Office OEM
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/" className={styles.dark}>
-                  Home
+                  Toy & Hobbies
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/" className={styles.dark}>
-                  Home
+                  Others
                 </NavLink>
               </li>
             </ul>

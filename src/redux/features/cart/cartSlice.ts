@@ -1,6 +1,10 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import cartAPI from "../../api/cart";
-import { CartPayloadProps, CartDataProps } from "../../../types/types";
+import {
+  CartPayloadProps,
+  CartDataProps,
+  CartProps,
+} from "../../../types/types";
 
 interface UserData {
   // Define the structure of your user data here
@@ -18,7 +22,7 @@ interface CartState {
   loading: boolean;
   error: string | null;
   authenticated: boolean;
-  cartData: CartDataProps | null;
+  cartData: CartProps | null;
 }
 
 export const addToCart = createAsyncThunk(
@@ -40,7 +44,7 @@ export const addToCart = createAsyncThunk(
 export const getCart = createAsyncThunk("cart/getCart", async (_, thunkApi) => {
   try {
     const response = await cartAPI.getCart();
-    const data = response.data;
+    const data = response.data.data;
     return data;
   } catch (error: any) {
     console.log("This is error message,lets see...", error);

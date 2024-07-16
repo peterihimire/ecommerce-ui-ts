@@ -30,19 +30,26 @@ const Sale: React.FC = () => {
   );
   const cartInfo = useAppSelector((state: RootState) => state.cart.cartData);
   console.log("This is cart information...", cartInfo);
-
   console.log("This is current product listings ...", productsList);
 
   const addProductHandler = async (uuid: string) => {
     console.log("Add handler...");
+    setLoading(true);
+    try {
+      const response = await dispatch(addToCart({ prod_id: uuid }));
+      console.log("This add cart response... ", response);
+      const cartresponse = await dispatch(getCart());
+      console.log("Cart products...", cartresponse);
 
-    const response = await dispatch(addToCart({ prod_id: uuid }));
-    // const cartresponse = await dispatch(getCart());
-
-    console.log("This caart response in elite... ", response);
-    setOpen(true);
-    document.documentElement.classList.add("_fixed");
-    document.body.classList.add("_fixed");
+      setOpen(true);
+      document.documentElement.classList.add("_fixed");
+      document.body.classList.add("_fixed");
+    } catch (error: any) {
+      console.error("Failed to load cart:", error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   // const openModalHandler = () => {
@@ -60,25 +67,24 @@ const Sale: React.FC = () => {
   //   document.body.classList.add("_fixed");
   // };
 
-  useEffect(() => {
-    const fetchCart = async () => {
-      setLoading(true);
-      try {
-        // const response = await axios.get("/api/products");
-        const response = await dispatch(getCart()).unwrap();
-        console.log("This is cart data here...", response.data);
-        // saveToLocalStorage("ecommerce_products", response.data);
-      } catch (error: any) {
-        console.log("This error from products...", error);
-        setError(error.message);
-      } finally {
-        // dispatch(setLoading(false));
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const loadCart = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const response = await dispatch(getCart());
+  //       console.log("Cart products...", response);
+  //     } catch (error: any) {
+  //       console.error("Failed to load cart:", error);
+  //       setError(error.message);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchCart();
-  }, [dispatch]);
+  //   if (open) {
+  //     loadCart();
+  //   }
+  // }, [open, dispatch]);
 
   const closeModalHandler = () => {
     console.log("Modal closed...");
@@ -131,7 +137,7 @@ const Sale: React.FC = () => {
         }}
       />
 
-      {showModal && (
+      {/* {showModal && (
         <Modal click={closeModalHandler}>
           <div className={`modal-children`}>
             <div className={`modal-img`}>
@@ -152,34 +158,9 @@ const Sale: React.FC = () => {
             </div>
           </div>
         </Modal>
-      )}
+      )} */}
     </section>
   );
 };
 
 export default Sale;
-
-// {
-//   showModal && (
-//     <Modal click={closeModalHandler}>
-//       <div className={`${styles.modalChildren}`}>
-//         <div className={`${styles.modalImg}`}>
-//           <img src={product1} alt="" />
-//         </div>
-//         <div className={`${styles.modalTxt}`}>
-//           <h3>iPhone 13 Pro Max</h3>
-//           <h6>$1400</h6>
-//           <button
-//             className="btn-primary btn-block"
-//             style={{ height: "40px", marginBottom: "10px" }}
-//           >
-//             Add to Cart
-//           </button>
-//           <Link to="/collections/1" className={`${styles.modalLink}`}>
-//             View More Details
-//           </Link>
-//         </div>
-//       </div>
-//     </Modal>
-//   );
-// }
