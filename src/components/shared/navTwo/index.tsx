@@ -46,6 +46,7 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
 
   // const darkMode = useDarkMode(false);
   // console.log(darkMode);
+  const cart = useAppSelector((state) => state.cart.cartData);
 
   const [about, openAbout] = useState(false);
   const [open, setOpen] = useState(false);
@@ -54,7 +55,6 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
 
   const profileRef = useRef<HTMLDivElement>(null); // Proper initialization
   const menuRef = useRef<HTMLDivElement>(null); // Proper initialization
-
   const searchRef = useRef<HTMLDivElement>(null); // Proper initialization
   const barRef = useRef<HTMLDivElement>(null); // Proper initialization
   const [cartOpen, setCartOpen] = useState(false);
@@ -140,10 +140,7 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
           wrapperClass={styles.searchStyle}
         />
         <button>
-          <FontAwesomeIcon
-            icon={faSearch}
-            className={`${styles.icon} ${styles.iconUp}`}
-          />
+          <FontAwesomeIcon icon={faSearch} className={`${styles.icon}`} />
         </button>
       </div>
 
@@ -154,11 +151,20 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
             onClick={() => setOpen(!open)}
             ref={profileRef}
           >
-            <AccountCircleOutlined
-              className={` iconStyle  ${
-                bgChange ? styles.dark : styles.iconStyleLight
-              }`}
-            />
+            {currentUser?.userData?.profile?.picture ? (
+              <div className={`${styles.pixStyle}`}>
+                <img
+                  src={`http://localhost:4040/${currentUser?.userData?.profile?.picture}`}
+                  alt=""
+                />
+              </div>
+            ) : (
+              <AccountCircleOutlined
+                className={` iconStyle  ${
+                  bgChange ? styles.dark : styles.iconStyleLight
+                }`}
+              />
+            )}
           </div>
           {open && (
             <div ref={menuRef} className={`${styles.profileContainer}`}>
@@ -223,7 +229,7 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
           className={`${styles.cartCount}`}
           onClick={() => addProductHandler()}
         >
-          <div>21</div>
+          <div>{cart?.total_qty ? cart?.total_qty : 0}</div>
           <ShoppingBagOutlined
             className={` iconStyle  ${
               bgChange ? styles.dark : styles.iconStyleLight

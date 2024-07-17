@@ -1,4 +1,5 @@
 .settings {
+  background-color: var(--off-white);
   width: 100%;
   padding: 100px 0;
 
@@ -33,7 +34,7 @@
       }
 
       .left {
-        background-color: var(--white);
+        // background-color: var(--white);
         // height: 75vh;
         border-radius: 16px;
         // padding: 40px;
@@ -45,7 +46,7 @@
         }
       }
       .right {
-        background-color: #fff;
+        // background-color: #fff;
         // height: 100%;
         // height: 75vh;
         border-radius: 16px;
@@ -63,14 +64,24 @@
             width: 200px;
             height: 200px;
             border-radius: 2px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             border: 1px solid var(--lite-grey);
+            background-color: var(--white);
             padding: 10px;
 
             .userIcon {
               width: 100%;
               height: 100%;
               color: var(--lite-grey);
+            }
+          }
+
+          .profileBtnUpload {
+            width: 200px;
+            margin-bottom: 20px;
+            button {
+              width: 100%;
+              border: 1px solid var(--lite-grey);
             }
           }
 

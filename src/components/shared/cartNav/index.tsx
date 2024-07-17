@@ -33,10 +33,7 @@ const CartNav: React.FC<CartNavProps> = ({ isOpen, clicked }) => {
   const [openSlider, setOpenSlider] = useState(isOpen);
   console.log(openSlider);
   console.log(isOpen);
-  console.log(
-    `Hello this is cart data with all the products...`,
-    cart?.products
-  );
+  console.log(`Hello this is cart data with all the products...`, cart);
 
   useEffect(() => {
     setOpenSlider(isOpen);
@@ -83,7 +80,7 @@ const CartNav: React.FC<CartNavProps> = ({ isOpen, clicked }) => {
               className={`${styles.cartCount}`}
               style={{ background: "none" }}
             >
-              <div>3</div>
+              <div>{cart?.total_qty ? cart?.total_qty : 0}</div>
             </div>
           </div>
 
@@ -101,9 +98,9 @@ const CartNav: React.FC<CartNavProps> = ({ isOpen, clicked }) => {
 
         <div className={`${styles.cartBody}`}>
           <ul className={`${styles.cartList}`}>
-            {cart?.products.map((prod) => {
+            {cart?.products.map((prod, index) => {
               return (
-                <li className={`${styles.cartItem}`}>
+                <li key={index} className={`${styles.cartItem}`}>
                   <div className={`${styles.cartItemImg}`}>
                     {prod.image ? (
                       <img src={prod.image} alt="" />

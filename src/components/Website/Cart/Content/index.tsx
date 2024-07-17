@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import Input from "../../../shared/qtyInput";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faImage } from "@fortawesome/free-solid-svg-icons";
 import Checkbox from "../../../shared/customCheckbox";
 import { products } from "../../../../data-list";
 import Slider from "@mui/material/Slider";
-
 // import { Slider } from "@material-ui/core";
+import { useAppSelector } from "../../../../hooks/useTypedSelector";
 
 import styles from "./styles.module.scss";
 
 const Content: React.FC = () => {
+  const cart = useAppSelector((state) => state.cart.cartData);
   return (
     <section className={`${styles.latest}`}>
       <div className={`${styles.wrapper} wrapper`}>
@@ -38,21 +41,28 @@ const Content: React.FC = () => {
                 </tr>
               </thead>
               <tbody className={`${styles.tbody}`}>
-                {products.slice(7, 11).map((product, index) => {
+                {cart?.products.map((product, index) => {
                   return (
                     <tr key={index}>
                       <td className={`${styles.td}`} style={{ width: "10%" }}>
-                        <img
-                          src={product.images[0]}
-                          alt="product"
-                          className={`${styles.productImg}`}
-                          width="100"
-                          height="100"
-                        />
+                        {product.image ? (
+                          <img
+                            src={product.image}
+                            alt="product"
+                            className={`${styles.productImg}`}
+                            width="100"
+                            height="100"
+                          />
+                        ) : (
+                          <FontAwesomeIcon
+                            icon={faImage}
+                            className={`${styles.imgIcon}`}
+                          />
+                        )}
                       </td>
                       <td className={`${styles.td}`} style={{ width: "45%" }}>
                         <div className={`${styles.title}`}>
-                          <p> Samsung Smart TV</p>
+                          <p> {product.title}</p>
                           <button>remove</button>
                         </div>
 
@@ -62,7 +72,7 @@ const Content: React.FC = () => {
                         className={`${styles.td} ${styles.amt}`}
                         style={{ width: "15%" }}
                       >
-                        $150
+                        ${product.price}
                       </td>
 
                       <td className={`${styles.td}  `} style={{ width: "15%" }}>
@@ -73,13 +83,13 @@ const Content: React.FC = () => {
                         }`}</p> */}
 
                         <Input
-                          labelText="Full Name"
+                          // labelText="Full Name"
                           type="text"
                           name="fullname"
                           id="fullname"
                           // required
 
-                          value="20"
+                          value={String(product.quantity)}
                           // value={loginForm.email}
                           // onChange={(e) => handleFormChange(e.target)}
                           // value={formik.values.fullname}
@@ -91,7 +101,7 @@ const Content: React.FC = () => {
                         className={`${styles.td}   ${styles.amt}`}
                         style={{ width: "15%" }}
                       >
-                        $300
+                        ${product.price * product.quantity}
                       </td>
                     </tr>
                   );
@@ -126,11 +136,11 @@ const Content: React.FC = () => {
               <div className={`${styles.cartTotalPrice}`}>
                 <div className={`${styles.cartSubtotal}`}>
                   <p>Subtotal</p>
-                  <h6>$399.99</h6>
+                  <h6>${cart?.total_price}</h6>
                 </div>
                 <div className={`${styles.cartTotal}`}>
                   <p>Total</p>
-                  <h6>$399.99</h6>
+                  <h6>${cart?.total_price}</h6>
                 </div>
               </div>
               <div className={`${styles.filterBtnGroup}`}>

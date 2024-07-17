@@ -4,6 +4,10 @@ import { NavLink, useLocation } from "react-router-dom";
 import Nav from "../navTwo";
 import { HeaderProps } from "../../../types/HeaderProps.type";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  useAppSelector,
+  useAppDispatch,
+} from "../../../hooks/useTypedSelector";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 import { faSquareInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
@@ -47,6 +51,15 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
       window.removeEventListener("scroll", changeHeaderBg);
     };
   }, []);
+
+  const cart = useAppSelector((state) => state.cart.cartData);
+
+  // const darkMode = useDarkMode(false);
+  // console.log(darkMode);
+  const [openSlider, setOpenSlider] = useState(isOpen);
+  console.log(openSlider);
+  console.log(isOpen);
+  console.log(`Hello this is cart data with all the products...`, cart);
 
   return (
     <header

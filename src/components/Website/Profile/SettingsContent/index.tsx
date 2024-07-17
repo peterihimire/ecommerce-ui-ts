@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import CustomTabs from "../../../shared/customTab";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  useAppSelector,
+  useAppDispatch,
+} from "../../../../hooks/useTypedSelector";
 // import Select from "../../ui/customSelect";
 // import Switch from "../../ui/switch";
 import Input from "../../../shared/customInput";
@@ -17,17 +21,56 @@ import styles from "./styles.module.scss";
 // import Person from "../../../public/images/person.svg";
 // import Shield from "../../../public/images/shield.svg";
 
-const SettingsContent = () => {
+const SettingsContent: React.FC = () => {
+  const user = useAppSelector((state) => state.user.userData);
+  console.log("Definitely user data...", user);
+  const imageInput = useRef<HTMLInputElement>(null);
   const [tabIndex, setTabIndex] = useState(1);
-
   const tabIndexHandler = (index: number) => {
     setTabIndex(index);
   };
   const [activeTab, setActiveTab] = useState(1);
+  const [processing, setProcessing] = useState(false);
+  const [disabledInput, setDisabledInput] = useState(true);
+  const [image, setImage] = useState("");
 
   const handleTabClick = (id: number) => {
     setActiveTab(id);
   };
+
+  const uploadProfilePicture = async (target: any) => {
+    const file = target.files[0];
+    console.log(file);
+    if (file) {
+      if (
+        file.size / 1000 < 500 &&
+        (file.type === "image/png" ||
+          file.type === "image/jpeg" ||
+          file.type === "image/jpg")
+      ) {
+        setProcessing(true);
+        try {
+          var formData = new FormData();
+          formData.append("picture", file);
+          // await studentApi.updateProfilePicture(formData);
+          // await getStudentData();
+        } catch (err) {
+          console.log(err);
+        } finally {
+          setProcessing(false);
+        }
+      } else {
+        // setOpenModal2(true);
+        setProcessing(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    // if (student?.studentData?.student?.profile_picture) {
+    //   setImage(student?.studentData?.student.profile_picture);
+    // }
+  }, []);
 
   const tabHeaders = [
     {
@@ -83,10 +126,67 @@ const SettingsContent = () => {
                 <h3>Profile settings</h3>
 
                 <div className={`${styles.profilePix}`}>
-                  <FontAwesomeIcon
+                  {/* <FontAwesomeIcon
                     icon={faUser}
                     className={`${styles.userIcon}`}
+                  /> */}
+                  {/* <div
+                    // style={{
+                    //   backgroundColor: "rgba(52, 52, 52, 0.2)",
+                    //   width: "100%",
+                    //   // height: "100%",
+                    //   height: "200px",
+                    //   borderRadius: "2%",
+                    //   margin: "0 auto 10px",
+                    //   display: "flex",
+                    //   justifyContent: "center",
+                    //   alignItems: "center",
+                    // }}
+                  > */}
+                  {user.profile.picture ? (
+                    <img
+                      width="100%"
+                      style={{ borderRadius: "2%", objectFit: "cover" }}
+                      height="100%"
+                      src={`http://localhost:4040/${user.profile.picture}`}
+                      alt=""
+                    />
+                  ) : (
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      className={`${styles.userIcon}`}
+                    />
+                  )}
+                  <input
+                    hidden
+                    ref={imageInput}
+                    type="file"
+                    accept=".jpeg, .png, .jpg"
+                    onChange={(e) => uploadProfilePicture(e.target)}
                   />
+                  {/* </div> */}
+                </div>
+                <div className={`${styles.profileBtnUpload}`}>
+                  <button
+                    // variant="contained"
+                    // fullWidth
+                    // color="primary"
+                    style={{
+                      boxShadow: "none",
+                      marginBottom: "10px",
+                      height: "50px",
+                    }}
+                    onClick={() => imageInput.current?.click()}
+                  >
+                    {/* {processing ? (
+                      <CircularProgress size={20} color={"#FFF"} />
+                    ) : studentData?.student?.profile_picture ? (
+                      "Update Photo"
+                    ) : (
+                      "Upload Photo"
+                    )} */}
+                    {user.profile.picture ? "Update Photo" : "Upload Photo"}
+                  </button>
                 </div>
 
                 <form>
@@ -102,6 +202,7 @@ const SettingsContent = () => {
                         clicked={() => {
                           console.log("Hello inner-label clicked");
                         }}
+                        value={user.profile.title ? user.profile.title : ""}
                       />
                     </div>
                     <div className={styles.formGroup}>
@@ -115,6 +216,9 @@ const SettingsContent = () => {
                         clicked={() => {
                           console.log("Hello inner-label clicked");
                         }}
+                        value={
+                          user.profile.first_name ? user.profile.first_name : ""
+                        }
                       />
                     </div>
                     <div className={styles.formGroup}>
@@ -123,7 +227,9 @@ const SettingsContent = () => {
                         name="last name"
                         labelText="Last Name"
                         placeholder="Last Name"
-                        // value='Peter Ihimire'
+                        value={
+                          user.profile.last_name ? user.profile.last_name : ""
+                        }
                       />
                     </div>
 
@@ -133,7 +239,7 @@ const SettingsContent = () => {
                         name="acct_id"
                         labelText="Account ID"
                         placeholder="Account ID"
-                        // value='Peter Ihimire'
+                        value={user.acct_id}
                       />
                     </div>
                     <div className={styles.formGroup}>
@@ -142,7 +248,7 @@ const SettingsContent = () => {
                         name="email"
                         labelText="Email"
                         placeholder="Email"
-                        // value='Peter Ihimire'
+                        value={user.email}
                       />
                     </div>
                     <div className={styles.formGroup}>
@@ -151,7 +257,7 @@ const SettingsContent = () => {
                         name="phone number"
                         labelText="Phone Number"
                         placeholder="Phone Number"
-                        // value='Peter Ihimire'
+                        value={user.profile.phone ? user.profile.phone : ""}
                       />
                     </div>
 

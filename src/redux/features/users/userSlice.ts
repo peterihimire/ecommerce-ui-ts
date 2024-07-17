@@ -1,12 +1,23 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import userAPI from "../../api/user";
 
+interface ProfileData {
+  acct_id: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+  is_verified: string;
+  gender: string;
+  phone: string;
+  picture: string;
+  title: string;
+}
 interface UserData {
   acct_id: string;
   email: string;
   cart: {};
   orders: [];
-  profile: {};
+  profile: ProfileData;
 }
 
 interface UserState {

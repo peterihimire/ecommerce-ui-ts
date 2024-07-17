@@ -66,15 +66,20 @@
     align-items: center;
 
     button {
-      background-color: var(--black);
-      color: var(--white);
+      background-color: var(--prod-bg);
+      color: var(--black);
       height: 40px;
-      width: 50px;
-      border-top: 2px solid var(--black);
-      border-bottom: 2px solid var(--black);
-      border-right: 2px solid var(--black);
-      border-left: none !important;
-      border-radius: 0px 2px 2px 0px !important;
+      width: 70px;
+      border-top: 1px solid var(--med-grey);
+      border-bottom: 1px solid var(--med-grey);
+      border-right: 1px solid var(--med-grey);
+      border-left: 1px solid var(--med-grey);
+      // border-left: none !important;
+      border-radius: 0px 4px 4px 0px !important;
+
+      .icon {
+        font-size: 18px;
+      }
     }
     .searchStyle {
       // padding: 8px 28px 8px 28px !important;
@@ -90,13 +95,13 @@
       color: inherit;
       width: 100%;
       font-family: inherit;
-      border-top: 2px solid var(--black);
-      border-bottom: 2px solid var(--black);
-      border-left: 2px solid var(--black);
+      border-top: 1px solid var(--med-grey);
+      border-bottom: 1px solid var(--med-grey);
+      border-left: 1px solid var(--med-grey);
       border-right: none !important;
       // border-right: 2px solid var(--grey);
       background: var(--white);
-      border-radius: 2px 0px 0px 2px !important;
+      border-radius: 4px 0px 0px 4px !important;
       height: 40px !important;
       transition: all 0.3s ease-in-out;
       // padding: 8px 28px 8px 28px !important;
@@ -155,7 +160,7 @@
             position: absolute;
             content: "";
             height: 2px !important;
-            bottom: -5px;
+            bottom: px;
             // top: 20px;
             margin: 0 auto;
             left: 0;
@@ -180,7 +185,7 @@
           position: absolute;
           content: "";
           height: 2px !important;
-          bottom: -5px;
+          bottom: px;
           // top: 20px;
           margin: 0 auto;
           left: 0;
@@ -206,7 +211,7 @@
         top: 0px;
         margin-bottom: 25px;
         color: var(--white);
-        // line-height: 18.5px;
+        // line-height: 18px;
 
         @media (min-width: 1276px) {
           margin-bottom: 0px;
@@ -218,7 +223,7 @@
               position: absolute;
               content: "";
               height: 2px !important;
-              bottom: -5px;
+              bottom: px;
               margin: 0 auto;
               left: 0;
               right: 0;
@@ -361,7 +366,7 @@
               flex-direction: column;
               box-shadow: none;
               border-radius: 0;
-              background-color: var(--grey);
+              back5round-color: var(--grey);
             }
           }
 
@@ -438,6 +443,12 @@
     .navProfile {
       position: relative;
       .searchBtn {
+        .pixStyle {
+          img {
+            width: 40px;
+            height: 40px;
+          }
+        }
       }
       .profileContainer {
         position: absolute;

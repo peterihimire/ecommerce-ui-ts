@@ -23,11 +23,11 @@
     color: var(--black);
   }
   .firstWrapperDiv {
-    // padding: 10px 0px;
-    background-color: var(--yellow);
+     background-color: var(--prod-bg);
+    // background-color: var(--yellow);
     color: var(--black);
-    border-bottom: 1px solid var(--yellow);
-    border-top: 1px solid var(--yellow);
+    border-bottom: 1px solid var(--med-grey);
+    border-top: 1px solid var(--med-grey);
 
     .firstWrapper {
       // width: 67%;
