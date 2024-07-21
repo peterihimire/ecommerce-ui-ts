@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import authAPI from "../../api/auth";
 import { getUserInfo } from "../users/userSlice";
+import { getCart } from "../cart/cartSlice";
+import { resetUser } from "../users/userSlice";
+import { resetCart } from "../cart/cartSlice";
 import {
   saveToLocalStorage,
   loadFromLocalStorage,
@@ -75,6 +78,8 @@ export const loginUser = createAsyncThunk(
       saveToLocalStorage("ecommerce_user", data.data);
 
       await thunkApi.dispatch(getUserInfo());
+      await thunkApi.dispatch(getCart());
+
       return data;
     } catch (error: any) {
       console.log("Error yeah: ", error.response);
@@ -90,13 +95,17 @@ export const logoutUser = createAsyncThunk(
     try {
       const response = await authAPI.logoutUser();
       const data = response.data;
+
+    await  thunkApi.dispatch(resetUser());
+    await  thunkApi.dispatch(resetCart());
+
       return data;
     } catch (error: any) {
       const message = error.message;
       return thunkApi.rejectWithValue(message);
     } finally {
-      // localStorage.removeItem("ecommerce_user");
-      removeFromLocalStorage("ecommerce_user");
+      localStorage.removeItem("ecommerce_user");
+      // removeFromLocalStorage("ecommerce_user");
     }
   }
 );

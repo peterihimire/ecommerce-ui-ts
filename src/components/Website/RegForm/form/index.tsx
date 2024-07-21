@@ -3,6 +3,7 @@ import Input from "../../../shared/customInput";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import googleGLogo from "../../../../assets/images/google-g-logo.svg";
 import { useAppDispatch } from "../../../../hooks/useTypedSelector";
 import { registerUser } from "../../../../redux/features/auth/authSlice";
 import { CircularProgress } from "@mui/material";
@@ -133,7 +134,10 @@ const Form: React.FC = () => {
 
   return (
     <div className={`${styles.regForm}`}>
-      <h2>Register Account</h2>
+      <div className={`${styles.formHeading}`}>
+        <h2>Register Account</h2>
+        <p>Register to your benkih account to access wide range of services </p>
+      </div>
 
       <form
         onSubmit={formik.handleSubmit}
@@ -166,7 +170,7 @@ const Form: React.FC = () => {
             placeholder="Enter Password"
             password
             reveal={() => toggleVisibility()}
-            passIcon={!visible ? <Visibility /> : <VisibilityOff />}
+            passIcon={!visible ? <VisibilityOff /> : <Visibility />}
             value={formik.values.password}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
@@ -186,7 +190,7 @@ const Form: React.FC = () => {
             placeholder="Enter Confirm Password"
             password
             reveal={() => toggleVisibilitySec()}
-            passIcon={!visibleSec ? <Visibility /> : <VisibilityOff />}
+            passIcon={!visibleSec ? <VisibilityOff /> : <Visibility />}
             value={formik.values.confirm_password}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
@@ -222,6 +226,27 @@ const Form: React.FC = () => {
           <Link to="/auth/login" className={styles.linkStyle}>
             Login
           </Link>
+        </div>
+
+        <div className={styles.continueWrapper}>
+          <div
+            className={styles.continue}
+            onClick={() => {
+              console.log("Hello");
+            }}
+          >
+            <span>
+              <img src={googleGLogo} alt="" />
+            </span>
+            Register with Google
+          </div>
+
+          {/* <div className={styles.continue}>
+            <span>
+              <Facebook />
+            </span>
+            Continue with Facebook
+          </div> */}
         </div>
       </form>
       <ToastContainer />

@@ -146,7 +146,7 @@ const Form: React.FC = () => {
             placeholder="Enter Password"
             password
             reveal={() => toggleVisibility()}
-            passIcon={!visible ? <Visibility /> : <VisibilityOff />}
+            passIcon={!visible ? <VisibilityOff /> : <Visibility />}
             value={formik.values.password}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
@@ -166,7 +166,7 @@ const Form: React.FC = () => {
             placeholder="Enter Confirm Password"
             password
             reveal={() => toggleVisibilitySec()}
-            passIcon={!visibleSec ? <Visibility /> : <VisibilityOff />}
+            passIcon={!visibleSec ? <VisibilityOff /> : <Visibility />}
             value={formik.values.confirm_password}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}

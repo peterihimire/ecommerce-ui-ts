@@ -6,9 +6,14 @@ import {
   useAppSelector,
   useAppDispatch,
 } from "../../../../hooks/useTypedSelector";
+import { CircularProgress } from "@mui/material";
 // import Select from "../../ui/customSelect";
 // import Switch from "../../ui/switch";
 import Input from "../../../shared/customInput";
+import {
+  uploadProfilePic,
+  getUserInfo,
+} from "../../../../redux/features/users/userSlice";
 
 import styles from "./styles.module.scss";
 // import DashboardCard from "../../ui/cards/dashboardCard";
@@ -22,8 +27,9 @@ import styles from "./styles.module.scss";
 // import Shield from "../../../public/images/shield.svg";
 
 const SettingsContent: React.FC = () => {
-  const user = useAppSelector((state) => state.user.userData);
-  console.log("Definitely user data...", user);
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.user?.userData);
+  console.log("Definitely user? data...", user);
   const imageInput = useRef<HTMLInputElement>(null);
   const [tabIndex, setTabIndex] = useState(1);
   const tabIndexHandler = (index: number) => {
@@ -33,14 +39,21 @@ const SettingsContent: React.FC = () => {
   const [processing, setProcessing] = useState(false);
   const [disabledInput, setDisabledInput] = useState(true);
   const [image, setImage] = useState("");
+  // const [file, setFile] = useState<File | null>(null);
+
+  // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files && e.target.files[0]) {
+  //     setFile(e.target.files[0]);
+  //   }
+  // };
 
   const handleTabClick = (id: number) => {
     setActiveTab(id);
   };
 
-  const uploadProfilePicture = async (target: any) => {
-    const file = target.files[0];
-    console.log(file);
+  const uploadProfilePicture = async (target: HTMLInputElement) => {
+    const file = target.files?.[0];
+    console.log("File is here, looo...", file);
     if (file) {
       if (
         file.size / 1000 < 500 &&
@@ -50,10 +63,10 @@ const SettingsContent: React.FC = () => {
       ) {
         setProcessing(true);
         try {
-          var formData = new FormData();
+          const formData = new FormData();
           formData.append("picture", file);
-          // await studentApi.updateProfilePicture(formData);
-          // await getStudentData();
+          await dispatch(uploadProfilePic(formData)).unwrap();
+          await dispatch(getUserInfo());
         } catch (err) {
           console.log(err);
         } finally {
@@ -67,10 +80,10 @@ const SettingsContent: React.FC = () => {
   };
 
   useEffect(() => {
-    // if (student?.studentData?.student?.profile_picture) {
-    //   setImage(student?.studentData?.student.profile_picture);
-    // }
-  }, []);
+    if (user?.profile?.picture) {
+      setImage(user?.profile.picture);
+    }
+  }, [user]);
 
   const tabHeaders = [
     {
@@ -126,29 +139,12 @@ const SettingsContent: React.FC = () => {
                 <h3>Profile settings</h3>
 
                 <div className={`${styles.profilePix}`}>
-                  {/* <FontAwesomeIcon
-                    icon={faUser}
-                    className={`${styles.userIcon}`}
-                  /> */}
-                  {/* <div
-                    // style={{
-                    //   backgroundColor: "rgba(52, 52, 52, 0.2)",
-                    //   width: "100%",
-                    //   // height: "100%",
-                    //   height: "200px",
-                    //   borderRadius: "2%",
-                    //   margin: "0 auto 10px",
-                    //   display: "flex",
-                    //   justifyContent: "center",
-                    //   alignItems: "center",
-                    // }}
-                  > */}
-                  {user.profile.picture ? (
+                  {user?.profile.picture ? (
                     <img
                       width="100%"
                       style={{ borderRadius: "2%", objectFit: "cover" }}
                       height="100%"
-                      src={`http://localhost:4040/${user.profile.picture}`}
+                      src={`http://localhost:4040/${image}`}
                       alt=""
                     />
                   ) : (
@@ -162,6 +158,7 @@ const SettingsContent: React.FC = () => {
                     ref={imageInput}
                     type="file"
                     accept=".jpeg, .png, .jpg"
+                    // onChange={uploadProfilePicture}
                     onChange={(e) => uploadProfilePicture(e.target)}
                   />
                   {/* </div> */}
@@ -178,14 +175,14 @@ const SettingsContent: React.FC = () => {
                     }}
                     onClick={() => imageInput.current?.click()}
                   >
-                    {/* {processing ? (
-                      <CircularProgress size={20} color={"#FFF"} />
-                    ) : studentData?.student?.profile_picture ? (
+                    {processing ? (
+                      <CircularProgress size={20} style={{ color: "#fff" }} />
+                    ) : user?.profile.picture ? (
                       "Update Photo"
                     ) : (
                       "Upload Photo"
-                    )} */}
-                    {user.profile.picture ? "Update Photo" : "Upload Photo"}
+                    )}
+                    {/* {user?.profile.picture ? "Update Photo" : "Upload Photo"} */}
                   </button>
                 </div>
 
@@ -202,7 +199,7 @@ const SettingsContent: React.FC = () => {
                         clicked={() => {
                           console.log("Hello inner-label clicked");
                         }}
-                        value={user.profile.title ? user.profile.title : ""}
+                        value={user?.profile.title ? user?.profile.title : ""}
                       />
                     </div>
                     <div className={styles.formGroup}>
@@ -217,7 +214,9 @@ const SettingsContent: React.FC = () => {
                           console.log("Hello inner-label clicked");
                         }}
                         value={
-                          user.profile.first_name ? user.profile.first_name : ""
+                          user?.profile.first_name
+                            ? user?.profile.first_name
+                            : ""
                         }
                       />
                     </div>
@@ -228,7 +227,7 @@ const SettingsContent: React.FC = () => {
                         labelText="Last Name"
                         placeholder="Last Name"
                         value={
-                          user.profile.last_name ? user.profile.last_name : ""
+                          user?.profile.last_name ? user?.profile.last_name : ""
                         }
                       />
                     </div>
@@ -239,7 +238,7 @@ const SettingsContent: React.FC = () => {
                         name="acct_id"
                         labelText="Account ID"
                         placeholder="Account ID"
-                        value={user.acct_id}
+                        value={user?.acct_id}
                       />
                     </div>
                     <div className={styles.formGroup}>
@@ -248,7 +247,7 @@ const SettingsContent: React.FC = () => {
                         name="email"
                         labelText="Email"
                         placeholder="Email"
-                        value={user.email}
+                        value={user?.email}
                       />
                     </div>
                     <div className={styles.formGroup}>
@@ -257,7 +256,7 @@ const SettingsContent: React.FC = () => {
                         name="phone number"
                         labelText="Phone Number"
                         placeholder="Phone Number"
-                        value={user.profile.phone ? user.profile.phone : ""}
+                        value={user?.profile.phone ? user?.profile.phone : ""}
                       />
                     </div>
 

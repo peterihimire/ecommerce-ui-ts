@@ -1,4 +1,9 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  createAsyncThunk,
+  PayloadAction,
+  createAction,
+} from "@reduxjs/toolkit";
 import cartAPI from "../../api/cart";
 import {
   CartPayloadProps,
@@ -85,6 +90,10 @@ export const deleteCart = createAsyncThunk(
   }
 );
 
+export const resetCart = createAsyncThunk("cart/resetCart", async () => {
+  return null;
+});
+
 const initialState: CartState = {
   loading: false,
   error: null,
@@ -132,6 +141,9 @@ const cartSlice = createSlice({
       .addCase(updateCart.rejected, (state, action: PayloadAction<any>) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(resetCart.fulfilled, (state) => {
+        state.cartData = null;
       });
   },
 });

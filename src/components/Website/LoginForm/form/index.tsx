@@ -7,9 +7,12 @@ import * as Yup from "yup";
 // import * as actions from "../../../../redux/actions/userAction";
 // import { login } from "../../../../redux/actions/userAction";
 // import { useSelector, useDispatch } from "react-redux";
+import googleGLogo from "../../../../assets/images/google-g-logo.svg";
 import { CircularProgress } from "@mui/material";
 import { Visibility } from "@mui/icons-material";
 import { VisibilityOff } from "@mui/icons-material";
+import { Google } from "@mui/icons-material";
+import { Facebook } from "@mui/icons-material";
 import { useAppDispatch } from "../../../../hooks/useTypedSelector";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -116,7 +119,10 @@ const Form: React.FC = () => {
 
   return (
     <div className={`${styles.loginForm}`}>
-      <h2>Login your Account</h2>
+      <div className={`${styles.formHeading}`}>
+        <h2>welcome back !</h2>
+        <p>Login to your benkih account to access wide range of services </p>
+      </div>
 
       <form
         onSubmit={formik.handleSubmit}
@@ -128,7 +134,7 @@ const Form: React.FC = () => {
             type="email"
             name="email"
             id="email"
-            required
+            // required
             placeholder="Enter Email"
             // value={loginForm.email}
             // onChange={(e) => handleFormChange(e.target)}
@@ -157,13 +163,13 @@ const Form: React.FC = () => {
             type={visible ? "text" : "password"}
             name="password"
             id="password"
-            required
+            // required
             placeholder="Enter Password"
             // value={loginForm.password}
             // onChange={(e) => handleFormChange(e.target)}
             password
             reveal={() => toggleVisibility()}
-            passIcon={!visible ? <Visibility /> : <VisibilityOff />}
+            passIcon={!visible ? <VisibilityOff /> : <Visibility />}
             value={formik.values.password}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
@@ -208,17 +214,40 @@ const Form: React.FC = () => {
               {logging ? (
                 <CircularProgress size={20} style={{ color: "#fff" }} />
               ) : (
-                "Login"
+                "Log in"
               )}
             </button>
           </div>
         </div>
 
         <div className={styles.register}>
-          <span>Don't have an account? </span>
+          <span>New to Benkih?</span>
           <Link to="/auth/register" className={styles.linkStyle}>
-            Register
+            Create Account
           </Link>
+        </div>
+        {/* <div className={styles.orStyle}>
+          <span>OR</span>
+        </div> */}
+        <div className={styles.continueWrapper}>
+          <div
+            className={styles.continue}
+            onClick={() => {
+              console.log("Hello");
+            }}
+          >
+            <span>
+              <img src={googleGLogo} alt="" />
+            </span>
+            Continue with Google
+          </div>
+
+          {/* <div className={styles.continue}>
+            <span>
+              <Facebook />
+            </span>
+            Continue with Facebook
+          </div> */}
         </div>
       </form>
       <ToastContainer />

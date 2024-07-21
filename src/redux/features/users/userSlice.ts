@@ -1,4 +1,9 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  createAsyncThunk,
+  PayloadAction,
+  createAction,
+} from "@reduxjs/toolkit";
 import userAPI from "../../api/user";
 
 interface ProfileData {
@@ -12,6 +17,10 @@ interface ProfileData {
   picture: string;
   title: string;
 }
+
+interface ProfilePicProps {
+  picture: File;
+}
 interface UserData {
   acct_id: string;
   email: string;
@@ -24,7 +33,7 @@ interface UserState {
   loading: boolean;
   error: string | null;
   authenticated: boolean;
-  userData: UserData;
+  userData: UserData | null;
 }
 
 const userDataString = localStorage.getItem("ecommerce_user");
@@ -59,6 +68,28 @@ export const getUserInfo = createAsyncThunk(
   }
 );
 
+export const uploadProfilePic = createAsyncThunk(
+  "users/upload/profile_picture",
+  async (payload: FormData, thunkApi) => {
+    console.log("my profile pics payload: ", payload);
+    try {
+      const response = await userAPI.uploadProfilePic(payload);
+      const data = response.data;
+
+      console.log("my profile pics response : ", data);
+      return data;
+    } catch (error: any) {
+      console.log("This is error message,lets see...", error);
+      const message = error.response.data;
+      return thunkApi.rejectWithValue(message);
+    }
+  }
+);
+
+export const resetUser = createAsyncThunk("users/resetUser", async () => {
+  return null;
+});
+
 const initialState = {
   loading: false,
   error: null,
@@ -83,6 +114,10 @@ const userSlice = createSlice({
       .addCase(getUserInfo.rejected, (state, action: PayloadAction<any>) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(resetUser.fulfilled, (state) => {
+        state.userData = null;
+        state.authenticated = false;
       });
   },
 });

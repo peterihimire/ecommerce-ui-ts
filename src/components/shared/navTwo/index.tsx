@@ -37,8 +37,11 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
   console.log(location);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
   const currentUser = useAppSelector((state: RootState) => state.user);
-  console.log("This is current user ...", currentUser);
+  const cart = useAppSelector((state: RootState) => state.cart.cartData);
+
+  console.log("This is current user data ...", currentUser.userData);
   console.log(location.pathname.split("/")[1]);
   const fullPath = location.pathname;
   let pathUrl = location.pathname.split("/")[1];
@@ -46,7 +49,6 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
 
   // const darkMode = useDarkMode(false);
   // console.log(darkMode);
-  const cart = useAppSelector((state) => state.cart.cartData);
 
   const [about, openAbout] = useState(false);
   const [open, setOpen] = useState(false);
@@ -115,7 +117,7 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
   const handleLogout = async () => {
     try {
       await dispatch(logoutUser());
-      navigate("/auth/login"); // Navigate to login page after logout
+      // navigate("/auth/login");
     } catch (error) {
       console.error("Logout error:", error);
       // Handle error if needed
@@ -133,7 +135,6 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
           // required
           placeholder="Search products and categories"
           // onChange={(e) => handleFormChange(e.target)}
-
           // value={formik.values.email}
           // onBlur={formik.handleBlur}
           // onChange={formik.handleChange}
@@ -151,7 +152,8 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
             onClick={() => setOpen(!open)}
             ref={profileRef}
           >
-            {currentUser?.userData?.profile?.picture ? (
+            {currentUser.authenticated &&
+            currentUser?.userData?.profile?.picture ? (
               <div className={`${styles.pixStyle}`}>
                 <img
                   src={`http://localhost:4040/${currentUser?.userData?.profile?.picture}`}
