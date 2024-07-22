@@ -16,7 +16,10 @@ import { Facebook } from "@mui/icons-material";
 import { useAppDispatch } from "../../../../hooks/useTypedSelector";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { loginUser } from "../../../../redux/features/auth/authSlice";
+import {
+  loginUser,
+  authGoogle,
+} from "../../../../redux/features/auth/authSlice";
 
 import styles from "./styles.module.scss";
 
@@ -25,14 +28,30 @@ const Form: React.FC = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
   const from = location?.state?.from?.pathname;
+
   console.log(from);
 
-  const [logging, setLogging] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [visible, setVisible] = useState(false);
 
   const toggleVisibility = () => {
     setVisible(!visible);
+  };
+
+  // const handleGoogleAuth = async () => {
+  //   setLoading(false);
+  //   try {
+  //     await dispatch(authGoogle());
+  //   } catch (error) {
+  //     console.log(error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  const handleGoogleLogin = () => {
+    window.location.href = "http://localhost:4040/api/ecommerce/v1/auth/google";
   };
 
   const formik = useFormik({
@@ -51,7 +70,7 @@ const Form: React.FC = () => {
     onSubmit: async (values) => {
       console.log(values);
 
-      setLogging(true);
+      setLoading(true);
       try {
         const response = await dispatch(loginUser(values));
         console.log("This is user login value", response);
@@ -67,7 +86,7 @@ const Form: React.FC = () => {
             theme: "light",
           });
 
-          setLogging(false);
+          setLoading(false);
           setTimeout(() => {
             navigate("/collections");
           }, 3000);
@@ -83,13 +102,13 @@ const Form: React.FC = () => {
             draggable: true,
             progress: undefined,
           });
-          setLogging(false);
+          setLoading(false);
         }
       } catch (err) {
         console.log(err);
         // setFormError(err.data.errors);
       } finally {
-        setLogging(false);
+        setLoading(false);
       }
     },
   });
@@ -103,6 +122,39 @@ const Form: React.FC = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
+
+  // useEffect(() => {
+  //   const handleGoogleAuth = async () => {
+  //     const queryParams = new URLSearchParams(location.search);
+  //     const userParam = queryParams.get("user");
+
+  //     console.log("This is user params...", userParam);
+
+  //     if (userParam) {
+  //       try {
+  //         const user = JSON.parse(decodeURIComponent(userParam));
+
+  //         console.log("This is user from google ...", user);
+
+  //         localStorage.setItem("ecommerce_user", JSON.stringify(user));
+  //         const resultAction = await dispatch(authGoogle());
+
+  //         if (authGoogle.fulfilled.match(resultAction)) {
+  //           console.log("Google Auth successful:", resultAction.payload);
+  //           navigate("/users/profile/3");
+  //         } else {
+  //           console.log("Google Auth failed:", resultAction.payload);
+  //           navigate("/login");
+  //         }
+  //       } catch (error) {
+  //         console.error("Error during Google Auth dispatch:", error);
+  //         navigate("/login");
+  //       }
+  //     }
+  //   };
+
+  //   handleGoogleAuth();
+  // }, [dispatch, location, navigate]);
 
   // // Clears the post verified error
   // useEffect(() => {
@@ -201,7 +253,7 @@ const Form: React.FC = () => {
             <button
               className="btn-primary  btn-block"
               type="submit"
-              disabled={logging}
+              disabled={loading}
               onClick={(e) => {
                 // e.preventDefault();
                 // console.log("Clicked");
@@ -211,7 +263,7 @@ const Form: React.FC = () => {
               {/* Send */}
               {/* {loading && "Loading..."}
             {!loading && <div>Send</div>} */}
-              {logging ? (
+              {loading ? (
                 <CircularProgress size={20} style={{ color: "#fff" }} />
               ) : (
                 "Log in"
@@ -230,12 +282,7 @@ const Form: React.FC = () => {
           <span>OR</span>
         </div> */}
         <div className={styles.continueWrapper}>
-          <div
-            className={styles.continue}
-            onClick={() => {
-              console.log("Hello");
-            }}
-          >
+          <div className={styles.continue} onClick={handleGoogleLogin}>
             <span>
               <img src={googleGLogo} alt="" />
             </span>
@@ -256,3 +303,4 @@ const Form: React.FC = () => {
 };
 
 export default Form;
+// http://127.0.0.1:4040/api/ecommerce/v1/auth/google/callback/?code=4%2F0AcvDMrDl17qK6YW0a6j6QNV-yvsp6gHigwCJ-Z8oFz4tOkHL9uNaGYDzUD8z74eaS5wasQ&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=none

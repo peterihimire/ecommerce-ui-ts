@@ -7,7 +7,7 @@ import Explore from "./Explore";
 import Latest from "./Latest";
 import Choose from "./Choose";
 import Sale from "./Sale";
-import Flash from "./Flash";
+// import Flash from "./Flash";
 import Discount from "./Discount";
 import Testimonials from "./Testimonial";
 import { RootState } from "../../../redux/store";
@@ -84,7 +84,7 @@ const Home: React.FC = () => {
       <Explore />
       <Latest />
       <Choose />
-      <Flash />
+      {/* <Flash /> */}
       <Sale />
       <Discount />
       <Testimonials />

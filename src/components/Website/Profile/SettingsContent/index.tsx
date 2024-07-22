@@ -139,7 +139,7 @@ const SettingsContent: React.FC = () => {
                 <h3>Profile settings</h3>
 
                 <div className={`${styles.profilePix}`}>
-                  {user?.profile.picture ? (
+                  {user?.profile?.picture ? (
                     <img
                       width="100%"
                       style={{ borderRadius: "2%", objectFit: "cover" }}
@@ -177,7 +177,7 @@ const SettingsContent: React.FC = () => {
                   >
                     {processing ? (
                       <CircularProgress size={20} style={{ color: "#fff" }} />
-                    ) : user?.profile.picture ? (
+                    ) : user?.profile?.picture ? (
                       "Update Photo"
                     ) : (
                       "Upload Photo"

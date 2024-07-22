@@ -50,8 +50,39 @@ export const registerUser = createAsyncThunk(
   }
 );
 
+export const authGoogle = createAsyncThunk(
+  "auth/google-auth",
+  async (user: any, thunkApi) => {
+    try {
+      // Directly use the received user data
+      console.log("This should be user response...", user);
+
+      // Save user data to local storage
+      saveToLocalStorage("ecommerce_user", user);
+
+      // const user = JSON.parse(localStorage.getItem("ecommerce_user") || "{}");
+      // const response = await authAPI.googleAuth(user); // Pass user if needed
+      // const data = response.data;
+      // const response = await authAPI.authGoogle(); // This should be the API call for Google authentication
+      // const data = response.data;
+      // console.log("This should be user response...", user);
+      // saveToLocalStorage("ecommerce_user", user);
+
+      await thunkApi.dispatch(getUserInfo());
+      await thunkApi.dispatch(getCart());
+
+      console.log("my google auth resopsen: ", user);
+
+      return user;
+    } catch (error: any) {
+      const message = error?.response?.data?.message;
+      return thunkApi.rejectWithValue(message);
+    }
+  }
+);
+
 export const verifyEmail = createAsyncThunk(
-  "auth/verify_email",
+  "auth/verify-email",
   async (payload: VerifyPayloadProps, thunkApi) => {
     console.log("my verify payload: ", payload);
     try {
@@ -91,13 +122,13 @@ export const loginUser = createAsyncThunk(
 
 export const logoutUser = createAsyncThunk(
   "users/logout",
-  async (payload, thunkApi) => {
+  async (_, thunkApi) => {
     try {
       const response = await authAPI.logoutUser();
       const data = response.data;
 
-    await  thunkApi.dispatch(resetUser());
-    await  thunkApi.dispatch(resetCart());
+      await thunkApi.dispatch(resetUser());
+      await thunkApi.dispatch(resetCart());
 
       return data;
     } catch (error: any) {
@@ -141,6 +172,19 @@ const authSlice = createSlice({
         state.authenticated = true;
       })
       .addCase(loginUser.rejected, (state, action: PayloadAction<any>) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(authGoogle.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(authGoogle.fulfilled, (state, action) => {
+        state.loading = false;
+        state.authenticated = true;
+        // state.user = action.payload.data;
+      })
+      .addCase(authGoogle.rejected, (state, action: PayloadAction<any>) => {
         state.loading = false;
         state.error = action.payload;
       })

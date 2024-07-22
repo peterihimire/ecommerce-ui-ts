@@ -17,6 +17,7 @@ import { ProductInfo } from "../pages/productinfo";
 import { Faq } from "../pages/faq";
 import { Profile } from "../pages/profile";
 import { VerifyForm } from "../pages/verifyform";
+import { GoogleAuth } from "../pages/googleAuth";
 import { PageNotFound } from "../pages/pageNotFound";
 import ProtectedRoutes from "../hoc/ProtectedRoutes";
 import RenderTop from "../utils/RenderTop";
@@ -36,6 +37,7 @@ const AllRoutes = () => {
           <Route path="/collections/:prod_id" element={<ProductInfo />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/auth/google/callback" element={<GoogleAuth />} />
 
           <Route
             path="/checkout"

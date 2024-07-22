@@ -6,6 +6,14 @@ const authAPI = {
     return $axios.post("/onboard/register", payload);
   },
 
+  // async googleAuth(user: any) {
+  //   return $axios.get(`/auth/google/callback`, {
+  //     params: {
+  //       user: JSON.stringify(user),
+  //     },
+  //   });
+  // },
+
   async verifyEmail(payload: VerifyPayloadProps) {
     return $axios.post(`/onboard/verify_email`, payload);
   },
