@@ -2,13 +2,27 @@ import React from "react";
 import { CustomSelectProps } from "../../../types/types";
 
 const Select: React.FC<CustomSelectProps> = ({
-  labelText,
-  children,
-  id,
-  required,
-  wrapClass,
-  labelClass,
   sort,
+
+  id,
+  innerLabel,
+  wrapperClass,
+  labelClass,
+  labelText,
+  optionalText,
+  children,
+  required,
+  clicked,
+  reveal,
+  iconSrc,
+
+  password,
+  onBlur,
+  onChange,
+  placeholder,
+  name,
+  type,
+  value,
   ...props
 }) => {
   return (
@@ -23,7 +37,7 @@ const Select: React.FC<CustomSelectProps> = ({
         </label>
       )}
       <div
-        className={`select-wrapper ${wrapClass ? wrapClass : ""} ${
+        className={`select-wrapper ${wrapperClass ? wrapperClass : ""} ${
           sort ? "sort" : ""
         }`}
       >

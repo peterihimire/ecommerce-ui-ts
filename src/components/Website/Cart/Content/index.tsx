@@ -5,12 +5,28 @@ import { faImage } from "@fortawesome/free-solid-svg-icons";
 import Checkbox from "../../../shared/customCheckbox";
 import { products } from "../../../../data-list";
 import Slider from "@mui/material/Slider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import { Slider } from "@material-ui/core";
-import { useAppSelector } from "../../../../hooks/useTypedSelector";
+import {
+  useAppSelector,
+  useAppDispatch,
+} from "../../../../hooks/useTypedSelector";
+import {
+  deleteCart,
+  updateCart,
+} from "../../../../redux/features/cart/cartSlice";
 
 import styles from "./styles.module.scss";
 
 const Content: React.FC = () => {
+  const dispatch = useAppDispatch;
+
+  const deleteProdhandler = async (id: string) => {
+    console.log("Delete clicked");
+    await dispatch(deleteCart({ id }));
+  };
+
   const cart = useAppSelector((state) => state.cart.cartData);
   return (
     <section className={`${styles.latest}`}>
@@ -63,7 +79,11 @@ const Content: React.FC = () => {
                       <td className={`${styles.td}`} style={{ width: "45%" }}>
                         <div className={`${styles.title}`}>
                           <p> {product.title}</p>
-                          <button>remove</button>
+                          <button
+                            onClick={() => deleteProdhandler(product.prod_uuid)}
+                          >
+                            remove
+                          </button>
                         </div>
 
                         {/* <p>{`${document?.programme?.abbr}`}</p> */}

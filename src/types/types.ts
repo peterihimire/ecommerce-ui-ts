@@ -59,6 +59,7 @@ export type CustomInputProps = {
   placeholder?: string;
   type?: string;
   value?: string;
+  disabled?: boolean;
   // onBlur: () => void;
   // onChange: () => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
@@ -84,6 +85,7 @@ export type CustomTextareaProps = {
   placeholder?: string;
   type?: string;
   value?: string;
+  disabled?: boolean;
   // onBlur: () => void;
   // onChange: () => void;
   onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
@@ -104,12 +106,15 @@ export type CustomSelectProps = {
   required?: boolean;
   sort?: string;
   iconSrc?: string;
-  wrapClass?: string;
+  wrapperClass?: string;
   children?: React.ReactNode;
   placeholder?: string;
   type?: string;
   value?: string;
+  disabled?: boolean;
   defaultValue: string;
+  onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
 // FOR CHECKBOX
@@ -131,6 +136,7 @@ export type CustomCheckboxProps = {
   placeholder?: string;
   type?: string;
   value?: string;
+  disabled?: boolean;
   checkText?: string;
   htmlFor: string;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;

@@ -15,5 +15,9 @@ const userAPI = {
       },
     });
   },
+
+  async updateUserInfo(payload: any) {
+    return $axios.patch("/users/update", payload);
+  },
 };
 export default userAPI;

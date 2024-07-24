@@ -7,13 +7,18 @@ import {
   useAppDispatch,
 } from "../../../../hooks/useTypedSelector";
 import { CircularProgress } from "@mui/material";
-// import Select from "../../ui/customSelect";
+import Select from "../../../shared/customSelect";
 // import Switch from "../../ui/switch";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import Input from "../../../shared/customInput";
 import {
   uploadProfilePic,
   getUserInfo,
 } from "../../../../redux/features/users/userSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { updateUserDetails } from "../../../../redux/features/users/userSlice";
 
 import styles from "./styles.module.scss";
 // import DashboardCard from "../../ui/cards/dashboardCard";
@@ -38,6 +43,8 @@ const SettingsContent: React.FC = () => {
   const [activeTab, setActiveTab] = useState(1);
   const [processing, setProcessing] = useState(false);
   const [disabledInput, setDisabledInput] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [image, setImage] = useState("");
   // const [file, setFile] = useState<File | null>(null);
 
@@ -78,6 +85,66 @@ const SettingsContent: React.FC = () => {
       }
     }
   };
+
+  const formik = useFormik({
+    initialValues: {
+      title: "",
+      first_name: "",
+      last_name: "",
+      gender: "",
+      phone: "",
+    },
+
+    validationSchema: Yup.object({
+      title: Yup.string(),
+      first_name: Yup.string(),
+      last_name: Yup.string(),
+      gender: Yup.string(),
+      phone: Yup.string(),
+    }),
+
+    onSubmit: async (values) => {
+      console.log(values);
+
+      setLoading(true);
+      try {
+        const response = await dispatch(updateUserDetails(values));
+        console.log("This is user login value", response);
+        if (response.payload.status === "success") {
+          toast.success(`${response.payload.msg}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+
+          setLoading(false);
+
+          // navigate("/");
+        } else {
+          toast.error(response.payload, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          setLoading(false);
+        }
+      } catch (err) {
+        console.log(err);
+        // setFormError(err.data.errors);
+      } finally {
+        setLoading(false);
+      }
+    },
+  });
 
   useEffect(() => {
     if (user?.profile?.picture) {
@@ -186,7 +253,7 @@ const SettingsContent: React.FC = () => {
                   </button>
                 </div>
 
-                <form>
+                <form onSubmit={formik.handleSubmit}>
                   <div className={`${styles.formGrid}`}>
                     <div className={styles.formGroup}>
                       <Input
@@ -199,13 +266,18 @@ const SettingsContent: React.FC = () => {
                         clicked={() => {
                           console.log("Hello inner-label clicked");
                         }}
-                        value={user?.profile.title ? user?.profile.title : ""}
+                        value={
+                          user?.profile.title
+                            ? user?.profile.title
+                            : formik.values.title
+                        }
+                        onChange={formik.handleChange}
                       />
                     </div>
                     <div className={styles.formGroup}>
                       <Input
                         id="first_name"
-                        name="first name"
+                        name="first_name"
                         labelText="First Name"
                         placeholder="First Name"
                         // children={<BlueEye />}
@@ -216,19 +288,23 @@ const SettingsContent: React.FC = () => {
                         value={
                           user?.profile.first_name
                             ? user?.profile.first_name
-                            : ""
+                            : formik.values.first_name
                         }
+                        onChange={formik.handleChange}
                       />
                     </div>
                     <div className={styles.formGroup}>
                       <Input
                         id="last_name"
-                        name="last name"
+                        name="last_name"
                         labelText="Last Name"
                         placeholder="Last Name"
                         value={
-                          user?.profile.last_name ? user?.profile.last_name : ""
+                          user?.profile.last_name
+                            ? user?.profile.last_name
+                            : formik.values.last_name
                         }
+                        onChange={formik.handleChange}
                       />
                     </div>
 
@@ -239,6 +315,7 @@ const SettingsContent: React.FC = () => {
                         labelText="Account ID"
                         placeholder="Account ID"
                         value={user?.acct_id}
+                        disabled={true}
                       />
                     </div>
                     <div className={styles.formGroup}>
@@ -248,16 +325,63 @@ const SettingsContent: React.FC = () => {
                         labelText="Email"
                         placeholder="Email"
                         value={user?.email}
+                        disabled={true}
                       />
                     </div>
                     <div className={styles.formGroup}>
                       <Input
                         id="phone_number"
-                        name="phone number"
+                        name="phone"
                         labelText="Phone Number"
                         placeholder="Phone Number"
-                        value={user?.profile.phone ? user?.profile.phone : ""}
+                        value={
+                          user?.profile.phone
+                            ? user?.profile.phone
+                            : formik.values.phone
+                        }
+                        onChange={formik.handleChange}
                       />
+                    </div>
+
+                    <div className={`${styles.formGroup}`}>
+                      <Select
+                        name="gender"
+                        labelText="Gender"
+                        // required
+                        id="gender"
+                        defaultValue={
+                          user?.profile.gender
+                            ? user?.profile.gender
+                            : formik.values.gender
+                        }
+                        onChange={formik.handleChange}
+                      >
+                        <option disabled value="">
+                          Select gender
+                        </option>
+                        <option
+                          value={
+                            user?.profile.gender === "male"
+                              ? user?.profile?.gender
+                              : "male"
+                          }
+                        >
+                          male
+                        </option>
+                        <option
+                          value={
+                            user?.profile.gender === "female"
+                              ? user?.profile?.gender
+                              : "female"
+                          }
+                        >
+                          female
+                        </option>
+                        <option value="others">others</option>
+                      </Select>
+                      {/* {formik.touched.state && formik.errors.state ? (
+                <p className="error-msg">{formik.errors.state}</p>
+              ) : null} */}
                     </div>
 
                     <button
@@ -481,6 +605,7 @@ const SettingsContent: React.FC = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </section>
   );
 };

@@ -86,6 +86,24 @@ export const uploadProfilePic = createAsyncThunk(
   }
 );
 
+export const updateUserDetails = createAsyncThunk(
+  "users/upload/profile_picture",
+  async (payload: any, thunkApi) => {
+    console.log("my profile pics payload: ", payload);
+    try {
+      const response = await userAPI.updateUserInfo(payload);
+      const data = response.data;
+
+      console.log("my user detail infe response : ", data);
+      return data;
+    } catch (error: any) {
+      console.log("This is error message,lets see...", error);
+      const message = error.response.data;
+      return thunkApi.rejectWithValue(message);
+    }
+  }
+);
+
 export const resetUser = createAsyncThunk("users/resetUser", async () => {
   return null;
 });
