@@ -7,6 +7,7 @@ import {
 import cartAPI from "../../api/cart";
 import {
   CartPayloadProps,
+  CartUpdateProps,
   CartDataProps,
   CartProps,
 } from "../../../types/types";
@@ -60,7 +61,7 @@ export const getCart = createAsyncThunk("cart/getCart", async (_, thunkApi) => {
 
 export const updateCart = createAsyncThunk(
   "cart/updateCart",
-  async (payload: CartPayloadProps, thunkApi) => {
+  async (payload: CartUpdateProps, thunkApi) => {
     console.log("my add to cart payload: ", payload);
     try {
       const response = await cartAPI.updateCart(payload);
@@ -74,12 +75,13 @@ export const updateCart = createAsyncThunk(
   }
 );
 
-export const deleteCart = createAsyncThunk(
-  "cart/deleteCart",
-  async (payload: CartPayloadProps, thunkApi) => {
+export const deleteCartProduct = createAsyncThunk(
+  "cart/deleteCartProd",
+  async (payload: string, thunkApi) => {
     console.log("my add to cart payload: ", payload);
     try {
       const response = await cartAPI.deleteCartProd(payload);
+      await cartAPI.getCart();
       const data = response.data;
       return data;
     } catch (error: any) {
@@ -142,6 +144,22 @@ const cartSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+
+      .addCase(deleteCartProduct.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(deleteCartProduct.fulfilled, (state) => {
+        state.loading = false;
+        // state.authenticated = false;
+      })
+      .addCase(
+        deleteCartProduct.rejected,
+        (state, action: PayloadAction<any>) => {
+          state.loading = false;
+          state.error = action.payload;
+        }
+      )
+
       .addCase(resetCart.fulfilled, (state) => {
         state.cartData = null;
       });

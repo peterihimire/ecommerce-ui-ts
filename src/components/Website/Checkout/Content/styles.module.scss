@@ -1,5 +1,6 @@
 .latest {
   padding: 100px 0;
+  background-color: var(--off-white);
 
   .latestTitle {
     display: flex;
@@ -175,8 +176,15 @@
                 // }
                 p {
                   text-decoration: none !important;
-                  // margin-bottom: 15px;
                   text-transform: uppercase;
+                  display: flex;
+                  align-items: center;
+
+                  span {
+                    font-size: 8px;
+                    margin: 0 5px;
+                    color: var(--grey);
+                  }
                 }
               }
             }

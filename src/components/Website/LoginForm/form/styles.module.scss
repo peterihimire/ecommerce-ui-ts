@@ -19,8 +19,9 @@
     text-align: center;
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
-    width: 400px;
+    // width: 400px;
 
     h2 {
       font-size: 32px;
@@ -29,6 +30,7 @@
       text-transform: capitalize;
     }
     p {
+      width: 400px;
       // max-width: 200px;
     }
   }
@@ -126,7 +128,8 @@
       }
 
       &:hover {
-        background-color: var(--lite-grey);
+        background-color: var(--off-white);
+        cursor: pointer;
       }
     }
   }

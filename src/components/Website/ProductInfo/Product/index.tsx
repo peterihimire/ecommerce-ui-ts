@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useLocation, Link, useNavigate, useParams } from "react-router-dom";
 import {
@@ -12,6 +12,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "../../../../hooks/useTypedSelector";
+import { addToCart } from "../../../../redux/features/cart/cartSlice";
 import ImageLightBox from "../../../shared/imageLightbox";
 
 import styles from "./styles.module.scss";
@@ -31,26 +32,33 @@ const Product: React.FC = () => {
 
   const { prod_id } = params;
   console.log("Is this the correct stuff...", prod_id);
+
+  const dispatch = useAppDispatch();
+  const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    // Reset quantity when product changes
+    setQuantity(1);
+  }, [prod_id]);
+
+  const handleDecrease = () => {
+    setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+  };
+
+  const handleIncrease = () => {
+    setQuantity((prev) => prev + 1);
+  };
+
+  const handleAddToCart = () => {
+    // dispatch(addToCart({ prod_id: productInfo?.uuid, quantity }));
+  };
+
   return (
     <section className={`${styles.collectionInfo}`}>
       <div className="wrapper">
         <div className={`${styles.collectionDetails}`}>
-          {/* IMAGE BOX STARTS HERE */}
-          {/* <div className={`${styles.detailImg}`}>
-            <img
-              src={`http://localhost:4040/${productInfo?.images[0]}`}
-              alt=""
-            />
-            <div className={`${styles.imgBox}`}>
-              {productInfo?.images.map((img) => {
-                return <img src={`http://localhost:4040/${img}`} alt="" />;
-              })}
-            </div>
-          </div> */}
-
           <ImageLightBox images={productImages} />
 
-          {/* IMAGE BOX ENDS HERE */}
           <div className={`${styles.detailTxt}`}>
             <h5>{productInfo?.title}</h5>
 
@@ -90,43 +98,24 @@ const Product: React.FC = () => {
             <div className={`${styles.qtyAdd}`}>
               <div className={`${styles.qtyInput}`}>
                 <div className={`${styles.updateQty}`}>
-                  <button className={styles.dsc}>
+                  <button className={styles.dsc} onClick={handleDecrease}>
                     <FontAwesomeIcon
                       icon={faMinus}
                       className={`${styles.close}`}
                     />
                   </button>
-                  <div className={`${styles.qtyTxt}`}>2</div>
-                  <button className={styles.asc}>
+                  <div className={`${styles.qtyTxt}`}>{quantity}</div>
+                  <button className={styles.asc} onClick={handleIncrease}>
                     <FontAwesomeIcon
                       icon={faPlus}
                       className={`${styles.close}`}
                     />
                   </button>
                 </div>
-                {/* <div>Qty:</div>1 */}
-                {/* <Input
-                  // labelText="Enter Email"
-                  type="number"
-                  name="number"
-                  id="number"
-                  required
-                  placeholder="Qty"
-                  // value={loginForm.email}
-                  // onChange={(e) => handleFormChange(e.target)}
-
-                  // value={formik.values.email}
-                  // onBlur={(e: FocusEvent<HTMLInputElement>) => formik.handleBlur(e)}
-                  // onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  //   formik.handleChange(e)
-                  // }
-                  // onBlur={(e: FocusEvent<HTMLInputElement>) => formik.handleBlur(e)}
-                  // onChange={(e) => formik.handleChange(e)}
-                  // onBlur={formik.handleBlur}
-                  // onChange={formik.handleChange}
-                /> */}
               </div>
-              <button className="btn-block btn-small">Add to Cart</button>
+              <button className="btn-block btn-small" onClick={handleAddToCart}>
+                Add to Cart
+              </button>
             </div>
           </div>
         </div>

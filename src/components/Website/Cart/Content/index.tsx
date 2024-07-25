@@ -1,41 +1,84 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Input from "../../../shared/qtyInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
-import Checkbox from "../../../shared/customCheckbox";
-import { products } from "../../../../data-list";
-import Slider from "@mui/material/Slider";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import { Slider } from "@material-ui/core";
 import {
   useAppSelector,
   useAppDispatch,
 } from "../../../../hooks/useTypedSelector";
 import {
-  deleteCart,
+  deleteCartProduct,
+  getCart,
   updateCart,
 } from "../../../../redux/features/cart/cartSlice";
 
 import styles from "./styles.module.scss";
 
 const Content: React.FC = () => {
-  const dispatch = useAppDispatch;
-
-  const deleteProdhandler = async (id: string) => {
-    console.log("Delete clicked");
-    await dispatch(deleteCart({ id }));
-  };
+  const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(false);
+  const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
 
   const cart = useAppSelector((state) => state.cart.cartData);
+
+  const handleQtyChange = (prod_uuid: string, qty: number) => {
+    setQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [prod_uuid]: qty,
+    }));
+  };
+
+  console.log("These are quantities...", quantities);
+
+  const updateCartHandler = async () => {
+    try {
+      const updatePromises = Object.keys(quantities).map((prod_uuid) =>
+        dispatch(updateCart({ prod_id: prod_uuid, qty: quantities[prod_uuid] }))
+      );
+      await Promise.all(updatePromises);
+      await dispatch(getCart()).unwrap();
+      toast.success("Cart updated successfully");
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to update cart");
+    }
+  };
+
+  const deleteProdHandler = async (id: string) => {
+    console.log("Delete clicked");
+    const cartPayload = id;
+    console.log("This is cartpayload id...", cartPayload);
+
+    try {
+      const response = dispatch(deleteCartProduct(cartPayload));
+      console.log(response);
+      await dispatch(deleteCartProduct(cartPayload)).unwrap();
+      await dispatch(getCart()).unwrap();
+      toast.success("Product deleted and cart updated successfully");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (cart?.products) {
+      const initialQuantities: { [key: string]: number } = {};
+      cart.products.forEach((product) => {
+        initialQuantities[product.prod_uuid] = product.quantity;
+      });
+      setQuantities(initialQuantities);
+    }
+  }, [cart]);
+
+  useEffect(() => {
+    dispatch(getCart());
+  }, [dispatch]);
+
   return (
     <section className={`${styles.latest}`}>
       <div className={`${styles.wrapper} wrapper`}>
-        {/* <div className={`${styles.latestTitle}`}>
-          <h3>Latest product</h3>
-          <button className="btn btn-medium btn-primary">View more</button>
-        </div> */}
-
         <div className={`${styles.collectionDiv}`}>
           <div className={`${styles.tableWrapper}`}>
             <table className={`${styles.table}`}>
@@ -80,7 +123,9 @@ const Content: React.FC = () => {
                         <div className={`${styles.title}`}>
                           <p> {product.title}</p>
                           <button
-                            onClick={() => deleteProdhandler(product.prod_uuid)}
+                            onClick={() =>
+                              deleteProdHandler(product?.prod_uuid)
+                            }
                           >
                             remove
                           </button>
@@ -105,16 +150,15 @@ const Content: React.FC = () => {
                         <Input
                           // labelText="Full Name"
                           type="text"
-                          name="fullname"
-                          id="fullname"
-                          // required
-
-                          value={String(product.quantity)}
-                          // value={loginForm.email}
-                          // onChange={(e) => handleFormChange(e.target)}
-                          // value={formik.values.fullname}
-                          // onBlur={formik.handleBlur}
-                          // onChange={formik.handleChange}
+                          name="qty"
+                          id="qty"
+                          value={String(quantities[product.prod_uuid])}
+                          onChange={(e) =>
+                            handleQtyChange(
+                              product.prod_uuid,
+                              Number(e.target.value)
+                            )
+                          }
                         />
                       </td>
                       <td
@@ -145,7 +189,12 @@ const Content: React.FC = () => {
               );
             })} */}
             <div className={`${styles.tableActions} `}>
-              <button className="btn-block btn-small-sec">UPDATE CART</button>
+              <button
+                className="btn-block btn-small-sec"
+                onClick={updateCartHandler}
+              >
+                UPDATE CART
+              </button>
             </div>
           </div>
           <div className={`${styles.cartTotalDiv}`}>
@@ -172,6 +221,7 @@ const Content: React.FC = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </section>
   );
 };

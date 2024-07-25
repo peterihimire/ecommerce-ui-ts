@@ -234,6 +234,10 @@ export type LightboxProps = {
 export type CartPayloadProps = {
   prod_id: string;
 };
+export type CartUpdateProps = {
+  prod_id: string;
+  qty: number;
+};
 
 export type CartDataProps = {
   id: number;

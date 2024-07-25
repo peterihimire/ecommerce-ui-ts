@@ -1,8 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProductCard from "../../../shared/productcard";
 import Checkbox from "../../../shared/customCheckbox";
 import { products } from "../../../../data-list";
 import Slider from "@mui/material/Slider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import {
+  useAppSelector,
+  useAppDispatch,
+} from "../../../../hooks/useTypedSelector";
+import {
+  deleteCartProduct,
+  getCart,
+  updateCart,
+} from "../../../../redux/features/cart/cartSlice";
 import Form from "../Form";
 
 // import { Slider } from "@material-ui/core";
@@ -10,6 +21,14 @@ import Form from "../Form";
 import styles from "./styles.module.scss";
 
 const Content: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(false);
+
+  const cart = useAppSelector((state) => state.cart.cartData);
+
+  useEffect(() => {
+    dispatch(getCart());
+  }, [dispatch]);
   return (
     <section className={`${styles.latest}`}>
       <div className={`${styles.wrapper} wrapper`}>
@@ -38,12 +57,15 @@ const Content: React.FC = () => {
                   </tr>
                 </thead>
                 <tbody className={`${styles.tbody}`}>
-                  {products.slice(7, 11).map((product, index) => {
+                  {cart?.products.map((product, index) => {
                     return (
                       <tr key={index}>
                         <td className={`${styles.td}`} style={{ width: "45%" }}>
                           <div className={`${styles.title}`}>
-                            <p> {product.title}</p>
+                            <p>
+                              {product.title} <span>x</span>
+                              {product.quantity}
+                            </p>
                           </div>
                         </td>
 
@@ -51,7 +73,7 @@ const Content: React.FC = () => {
                           className={`${styles.td}   ${styles.amt}`}
                           style={{ width: "15%" }}
                         >
-                          ${product.price}
+                          {product.price}
                         </td>
                       </tr>
                     );
@@ -68,7 +90,7 @@ const Content: React.FC = () => {
                       className={`${styles.td}   ${styles.amt}`}
                       style={{ width: "15%" }}
                     >
-                      $1200.99
+                      ${cart?.total_price}
                     </td>
                   </tr>
                   <tr className={`${styles.total}`}>
@@ -82,7 +104,7 @@ const Content: React.FC = () => {
                       className={`${styles.td}   ${styles.amt}`}
                       style={{ width: "15%" }}
                     >
-                      $1200.99
+                      ${cart?.total_price}
                     </td>
                   </tr>
                 </tbody>

@@ -61,8 +61,8 @@ const ProductLightbox: React.FC<LightboxProps> = ({ images }) => {
             style={{
               cursor: "pointer",
               // margin: "10px",
-              width: "100px",
-              height: "100px",
+              width: "120px",
+              height: "120px",
             }}
           />
         ))}
