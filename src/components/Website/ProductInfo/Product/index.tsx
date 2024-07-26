@@ -12,8 +12,13 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "../../../../hooks/useTypedSelector";
-import { addToCart } from "../../../../redux/features/cart/cartSlice";
+import {
+  addToCartQty,
+  getCart,
+} from "../../../../redux/features/cart/cartSlice";
 import ImageLightBox from "../../../shared/imageLightbox";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import styles from "./styles.module.scss";
 
@@ -49,9 +54,24 @@ const Product: React.FC = () => {
     setQuantity((prev) => prev + 1);
   };
 
-  const handleAddToCart = () => {
-    // dispatch(addToCart({ prod_id: productInfo?.uuid, quantity }));
+  const handleAddToCart = async () => {
+    if (prod_id) {
+      await dispatch(
+        addToCartQty({
+          prod_id,
+          qty: quantity,
+        })
+      ).unwrap();
+      await dispatch(getCart()).unwrap();
+      toast.success("Product added to cart successfully");
+    } else {
+      console.error("Product ID is undefined");
+    }
   };
+
+  useEffect(() => {
+    dispatch(getCart());
+  }, [dispatch]);
 
   return (
     <section className={`${styles.collectionInfo}`}>
@@ -120,6 +140,7 @@ const Product: React.FC = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </section>
   );
 };

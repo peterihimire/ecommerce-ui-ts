@@ -7,6 +7,7 @@ import {
 import cartAPI from "../../api/cart";
 import {
   CartPayloadProps,
+  CartQtyPayloadProps,
   CartUpdateProps,
   CartDataProps,
   CartProps,
@@ -37,6 +38,22 @@ export const addToCart = createAsyncThunk(
     console.log("my add to cart payload: ", payload);
     try {
       const response = await cartAPI.addToCart(payload);
+      const data = response.data;
+      return data;
+    } catch (error: any) {
+      console.log("This is error message,lets see...", error);
+      const message = error.response.data;
+      return thunkApi.rejectWithValue(message);
+    }
+  }
+);
+
+export const addToCartQty = createAsyncThunk(
+  "cart/addToCartQty",
+  async (payload: CartQtyPayloadProps, thunkApi) => {
+    console.log("my add to cart qty payload: ", payload);
+    try {
+      const response = await cartAPI.addToCartQty(payload);
       const data = response.data;
       return data;
     } catch (error: any) {

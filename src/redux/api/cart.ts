@@ -1,6 +1,7 @@
 import $axios from "./config";
 import {
   CartPayloadProps,
+  CartQtyPayloadProps,
   CartUpdateProps,
   VerifyPayloadProps,
 } from "../../types/types";
@@ -10,6 +11,10 @@ const cartAPI = {
     return $axios.post("/carts/add", payload);
   },
 
+  async addToCartQty(payload: CartQtyPayloadProps) {
+    return $axios.post("/carts/add-qty", payload);
+  },
+
   async getCart() {
     return $axios.get("/carts/get_cart");
   },
@@ -17,6 +22,7 @@ const cartAPI = {
   async updateCart(payload: CartUpdateProps) {
     return $axios.patch("/carts/update-cart-product", payload);
   },
+
   async deleteCartProd(payload: string) {
     return $axios.delete(`/carts/delete_cart_prod/${payload}`);
   },
