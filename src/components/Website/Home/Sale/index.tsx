@@ -52,40 +52,6 @@ const Sale: React.FC = () => {
     }
   };
 
-  // const openModalHandler = () => {
-  //   console.log("Modal opened...");
-  //   setShowModal(true);
-  //   document.documentElement.classList.add("_fixed");
-  //   document.body.classList.add("_fixed");
-  // };
-
-  // const openModalHandler = () => {
-  //   // return <Link to="/collections/1"></Link>;
-  //   console.log("Modal opened...");
-  //   setShowModal(true);
-  //   document.documentElement.classList.add("_fixed");
-  //   document.body.classList.add("_fixed");
-  // };
-
-  // useEffect(() => {
-  //   const loadCart = async () => {
-  //     setLoading(true);
-  //     try {
-  //       const response = await dispatch(getCart());
-  //       console.log("Cart products...", response);
-  //     } catch (error: any) {
-  //       console.error("Failed to load cart:", error);
-  //       setError(error.message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   if (open) {
-  //     loadCart();
-  //   }
-  // }, [open, dispatch]);
-
   const closeModalHandler = () => {
     console.log("Modal closed...");
     setShowModal(false);

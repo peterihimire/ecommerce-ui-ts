@@ -1,28 +1,47 @@
 import React, { useState } from "react";
 import ProductCard from "../../../shared/productcard";
-import { products } from "../../../../data-list";
+import CartNav from "../../../shared/cartNav";
+import Backdrop from "../../../shared/backdrop";
 import { RootState } from "../../../../redux/store";
 import {
   useAppDispatch,
   useAppSelector,
 } from "../../../../hooks/useTypedSelector";
+import { CartPayloadProps, CartDataProps } from "../../../../types/types";
+import { addToCart, getCart } from "../../../../redux/features/cart/cartSlice";
 
 import styles from "./styles.module.scss";
 
 const Latest: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [open, setOpen] = useState(false);
+  const [error, setError] = useState("");
 
   const productsList = useAppSelector(
     (state: RootState) => state.product.items
   );
   console.log("This is current product listings ...", productsList);
 
-  const addProductHandler = () => {
+  const addProductHandler = async (uuid: string) => {
     console.log("Add handler...");
-    setOpen(true);
-    document.documentElement.classList.add("_fixed");
-    document.body.classList.add("_fixed");
+    setLoading(true);
+    try {
+      const response = await dispatch(addToCart({ prod_id: uuid }));
+      console.log("This add cart response... ", response);
+      const cartresponse = await dispatch(getCart());
+      console.log("Cart products...", cartresponse);
+
+      setOpen(true);
+      document.documentElement.classList.add("_fixed");
+      document.body.classList.add("_fixed");
+    } catch (error: any) {
+      console.error("Failed to load cart:", error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   // const openModalHandler = () => {
@@ -57,13 +76,31 @@ const Latest: React.FC = () => {
                 oldPrice={product.oldPrice}
                 image={`http://localhost:4040/${product.images[0]}`}
                 infoProd={product.uuid}
-                addProd={addProductHandler}
+                addProd={() => addProductHandler(product.uuid)}
                 // likeProd={likeProductHandler}
               />
             );
           })}
         </div>
       </div>
+
+      <CartNav
+        isOpen={open}
+        clicked={() => {
+          setOpen(false);
+
+          document.documentElement.classList.remove("_fixed");
+          document.body.classList.remove("_fixed");
+        }}
+      />
+      <Backdrop
+        open={open}
+        clicked={() => {
+          setOpen(false);
+          document.documentElement.classList.remove("_fixed");
+          document.body.classList.remove("_fixed");
+        }}
+      />
     </section>
   );
 };
