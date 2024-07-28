@@ -130,6 +130,7 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
                     isOpen ? "is-active" : ""
                   }`}
                 >
+                  {/* <FontAwesomeIcon icon={faBars} className={styles.iconStyle} /> */}
                   <span className="hamburger-box">
                     <span
                       className={`${"hamburger-inner hamburger-inner-dark"}`}
@@ -152,6 +153,7 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
                     isOpen ? "is-active" : ""
                   }`}
                 >
+                  {/* <FontAwesomeIcon icon={faBars} className={styles.iconStyle} /> */}
                   <span className="hamburger-box">
                     <span
                       className={`${"hamburger-inner hamburger-inner-dark"}`}
@@ -267,9 +269,9 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
             <div className={`${styles.navSearch}`}>
               <div className={`${styles.searchBtn}`}>
                 <FavoriteBorder
-                  // className={` iconStyle  ${
-                  //   bgChange ? styles.dark : styles.iconStyleLight
-                  // }`}
+                // className={` iconStyle  ${
+                //   bgChange ? styles.dark : styles.iconStyleLight
+                // }`}
                 />
               </div>
             </div>
@@ -280,9 +282,9 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
             >
               <div>{cart?.total_qty ? cart?.total_qty : 0}</div>
               <ShoppingBagOutlined
-                // className={` iconStyle  ${
-                //   bgChange ? styles.dark : styles.iconStyleLight
-                // }`}
+              // className={` iconStyle  ${
+              //   bgChange ? styles.dark : styles.iconStyleLight
+              // }`}
               />
             </div>
           </div>

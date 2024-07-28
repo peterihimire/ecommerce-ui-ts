@@ -675,7 +675,7 @@ input[type="radio"] {
 .hamburger-inner::after {
   background-color: var(--main);
   width: 28px !important;
-  height: 2.8px !important;
+  height: 2.5px !important;
   margin: 0;
 }
 
@@ -684,7 +684,7 @@ input[type="radio"] {
 .hamburger.is-active .hamburger-inner::after {
   background-color: var(--main);
   width: 28px !important;
-  height: 2.8px !important;
+  height: 2.5px !important;
   margin: 0;
 }
 
