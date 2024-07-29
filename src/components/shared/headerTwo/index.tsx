@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { NavLink, useLocation } from "react-router-dom";
 import Nav from "../navTwo";
+import SideNav from "../sideNav";
 import { HeaderProps } from "../../../types/HeaderProps.type";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -13,6 +14,8 @@ import {
   ArrowDownward,
   DarkModeOutlined,
   Search,
+  SearchOutlined,
+  SearchRounded,
   PersonOutline,
   ShoppingBagOutlined,
   FavoriteBorder,
@@ -53,9 +56,9 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
 
   console.log("This is open", open);
 
-  const dropHandler = (payload: boolean) => {
-    setDropOpen(payload);
-  };
+  // const dropHandler = (payload: boolean) => {
+  //   setDropOpen(payload);
+  // };
 
   useEffect(() => {
     if (!isOpen) {
@@ -130,15 +133,10 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
                     isOpen ? "is-active" : ""
                   }`}
                 >
-                  {/* <FontAwesomeIcon icon={faBars} className={styles.iconStyle} /> */}
-                  <span className="hamburger-box">
-                    <span
-                      className={`${"hamburger-inner hamburger-inner-dark"}`}
-                    ></span>
-                  </span>
+                  <FontAwesomeIcon icon={faBars} className={styles.iconStyle} />
                 </button>
               </div>
-              <Link to="/">
+              <Link to="/" className={`${styles.dark}`}>
                 BEN<span>KIH</span>
               </Link>
             </div>
@@ -153,12 +151,7 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
                     isOpen ? "is-active" : ""
                   }`}
                 >
-                  {/* <FontAwesomeIcon icon={faBars} className={styles.iconStyle} /> */}
-                  <span className="hamburger-box">
-                    <span
-                      className={`${"hamburger-inner hamburger-inner-dark"}`}
-                    ></span>
-                  </span>
+                  <FontAwesomeIcon icon={faBars} className={styles.iconStyle} />
                 </button>
               </div>
               <Link to="/" className={`${styles.dark}`}>
@@ -169,27 +162,10 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
 
           <Nav
             bgChange={bgChangee}
-            isDrop={isDropOpen}
-            isOpen={isOpen}
-            clicked={(payload: boolean) => dropHandler(payload)}
+            // isDrop={isDropOpen}
+            // isOpen={isOpen}
+            // clicked={(payload: boolean) => dropHandler(payload)}
           />
-
-          {/* <div className={`${styles.hamburgerBtn}`}>
-            <button
-              type="button"
-              aria-label="navigation button"
-              onClick={clicked}
-              className={`hamburger hamburger--spin ${
-                isOpen ? "is-active" : ""
-              }`}
-            >
-              <span className="hamburger-box">
-                <span
-                  className={`${"hamburger-inner hamburger-inner-dark"}`}
-                ></span>
-              </span>
-            </button>
-          </div> */}
 
           <div className={`${styles.navEnd}`}>
             <div className={`${styles.navProfile}`}>
@@ -208,9 +184,7 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
                   </div>
                 ) : (
                   <AccountCircleOutlined
-                  // className={` iconStyle  ${
-                  //   bgChange ? styles.dark : styles.iconStyleLight
-                  // }`}
+                    className={` iconStyle  ${styles.iconStyleLight}`}
                   />
                 )}
               </div>
@@ -268,11 +242,7 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
             {/* This is for the second icon */}
             <div className={`${styles.navSearch}`}>
               <div className={`${styles.searchBtn}`}>
-                <FavoriteBorder
-                // className={` iconStyle  ${
-                //   bgChange ? styles.dark : styles.iconStyleLight
-                // }`}
-                />
+                <Search className={` iconStyle  ${styles.iconStyleLight}`} />
               </div>
             </div>
 
@@ -282,9 +252,7 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
             >
               <div>{cart?.total_qty ? cart?.total_qty : 0}</div>
               <ShoppingBagOutlined
-              // className={` iconStyle  ${
-              //   bgChange ? styles.dark : styles.iconStyleLight
-              // }`}
+                className={` iconStyle  ${styles.iconStyleLight}`}
               />
             </div>
           </div>

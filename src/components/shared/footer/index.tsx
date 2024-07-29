@@ -173,6 +173,20 @@ const Footer: React.FC = () => {
               </li>
             </ul>
           </div>
+          <div className={`${styles.locationWrapper}`}>
+            <h3>Platform</h3>
+            <ul className={`${styles.quickLinks}`}>
+              <li>
+                <Link to="/products-services">Help Center</Link>
+              </li>
+              <li>
+                <Link to="/our-process">Site Map</Link>
+              </li>
+              <li>
+                <Link to="/contact-us">IP Whitelist</Link>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <div className={`${styles.outro} `}>
@@ -180,14 +194,6 @@ const Footer: React.FC = () => {
           <div className="copyright">
             <p>Copyright © 2023 — Benkih Limited. All Rights Reserved.</p>
           </div>
-          {/* <div className={`${styles.policyTerms}`}>
-            <div className="policy">
-              <Link to="/privacy-policy">— Privacy Policy</Link>
-            </div>
-            <div className="terms">
-              <Link to="/terms-and-conditions">— Terms of Use</Link>
-            </div>
-          </div> */}
         </div>
       </div>
     </footer>

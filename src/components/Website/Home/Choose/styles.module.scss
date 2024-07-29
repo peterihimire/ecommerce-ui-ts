@@ -40,6 +40,10 @@
         font-size: 60px;
         max-width: 600px;
         margin-bottom: 40px;
+
+        @media screen and (max-width: 600px) {
+          font-size: 30px;
+        }
       }
 
       .leftContent {
@@ -143,5 +147,9 @@
         }
       }
     }
+  }
+
+  @media screen and (max-width: 600px) {
+    padding: 50px 0;
   }
 }

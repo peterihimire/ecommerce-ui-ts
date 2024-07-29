@@ -31,7 +31,7 @@ const AllRoutes = () => {
       <Routes>
         <Route element={<WebsiteLayout />}>
           <Route path="/" index={true} element={<Home />} />
-          <Route path="/about/who-we-are" element={<About />} />
+          <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/collections" element={<Collections />} />
           <Route path="/collections/:prod_id" element={<ProductInfo />} />

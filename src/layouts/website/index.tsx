@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 // import Header from "../../components/shared/header";
 import Header from "../../components/shared/headerTwo";
 import Backdrop from "../../components/shared/backdrop";
+import SideNav from "../../components/shared/sideNav";
 import { useLocation } from "react-router-dom";
 import Footer from "../../components/shared/footer";
 import { Outlet } from "react-router-dom";
@@ -23,6 +24,15 @@ const WebsiteLayout: React.FC = () => {
     <div className={`${styles.landingLayout}`}>
       <Backdrop
         open={open}
+        clicked={() => {
+          setOpen(false);
+          document.documentElement.classList.remove("_fixed");
+          document.body.classList.remove("_fixed");
+        }}
+      />
+
+      <SideNav
+        isOpen={open}
         clicked={() => {
           setOpen(false);
           document.documentElement.classList.remove("_fixed");

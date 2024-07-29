@@ -12,6 +12,10 @@
     h3 {
       font-size: 40px;
       text-transform: capitalize;
+
+      @media screen and (max-width: 600px) {
+        font-size: 30px;
+      }
     }
     p {
       font-size: 16px;
@@ -24,5 +28,14 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 33px 33px;
+
+    @media screen and (max-width: 600px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+   padding: 50px 0;
   }
 }

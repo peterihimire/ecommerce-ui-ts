@@ -23,15 +23,26 @@
           margin-left: 10px;
           color: var(--yellow);
         }
+        @media screen and (max-width: 600px) {
+          font-size: 15px;
+        }
       }
 
       h5 {
         font-size: 20px;
+
+        @media screen and (max-width: 600px) {
+          font-size: 15px;
+        }
       }
     }
 
     h2 {
       font-size: 60px;
+
+      @media screen and (max-width: 600px) {
+        font-size: 40px;
+      }
     }
   }
 }
