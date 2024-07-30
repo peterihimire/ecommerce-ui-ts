@@ -16,6 +16,15 @@
     @media (max-width: 700px) {
       display: flex;
       flex-direction: column;
+
+      .left {
+        order: 2;
+        padding-top: 30px;
+      }
+
+      .right {
+        order: 1;
+      }
     }
 
     .left {
@@ -71,9 +80,14 @@
       }
       @media screen and (max-width: 1200px) {
       }
+
+      @media screen and (max-width: 600px) {
+      }
     }
 
     .right {
+      @media screen and (max-width: 600px) {
+      }
     }
   }
 }

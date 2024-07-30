@@ -1,6 +1,5 @@
 import React from "react";
 import ContactHero from "./Hero";
-// import WhoWeAre from "./WhoWeAre";
 import Choose from "./Choose";
 import Form from "./Form";
 import { Helmet, HelmetProvider } from "react-helmet-async";

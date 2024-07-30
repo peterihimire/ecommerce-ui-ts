@@ -22,6 +22,10 @@
     border: solid 1px var(--lite-grey);
     padding: 50px;
 
+    @media screen and (max-width: 600px) {
+      padding: 20px;
+    }
+
     // display: flex;
     // align-items: center;
     // justify-content: center;

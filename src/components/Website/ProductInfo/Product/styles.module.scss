@@ -7,6 +7,12 @@
     grid-template-columns: 2fr 3fr;
     gap: 60px;
     // display: flex;
+
+    @media screen and (max-width: 600px) {
+      display: flex;
+      flex-direction: column;
+    }
+
     .detailImg {
       // background-color: rgb(210, 210, 210);
       max-width: 500px;
@@ -47,6 +53,10 @@
           margin-right: 7px;
           font-size: 30px;
           font-family: Montserrat-Medium, sans-serif;
+
+          @media screen and (max-width: 600px) {
+            font-size: 20px;
+          }
         }
 
         .linethrough {
@@ -65,6 +75,10 @@
             &:last-of-type {
               margin-right: 0px;
             }
+
+            @media screen and (max-width: 600px) {
+              font-size: 20px;
+            }
           }
 
           .underline {
@@ -80,6 +94,10 @@
         font-size: 60px;
         margin-bottom: 20px;
         font-family: Montserrat-Regular, sans-serif;
+
+        @media screen and (max-width: 600px) {
+          font-size: 30px;
+        }
       }
       p {
         margin-bottom: 20px;
@@ -161,5 +179,9 @@
         // }
       }
     }
+  }
+
+  @media screen and (max-width: 600px) {
+    padding: 50px 0;
   }
 }

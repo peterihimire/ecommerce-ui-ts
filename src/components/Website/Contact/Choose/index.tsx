@@ -1,5 +1,4 @@
 import React from "react";
-// import chooseImg from "../../../../assets/images/birgith-roosipuu-unsplash.jpeg";
 import Form from "../Form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,8 +15,6 @@ const Choose: React.FC = () => {
       <div className={`wrapper`}>
         <div className={`${styles.container}`}>
           <div className={`${styles.left}`}>
-            {/* <p>Why choose us</p>
-            <h3>Get your luxurious elegance with our shoes.</h3> */}
             <div className={`${styles.leftContent}`}>
               <div className={`${styles.item}`}>
                 <div className={`${styles.number}`}>
@@ -62,7 +59,6 @@ const Choose: React.FC = () => {
           </div>
           <div className={`${styles.right}`}>
             <Form />
-            {/* <img src={chooseImg} alt="" /> */}
           </div>
         </div>
       </div>

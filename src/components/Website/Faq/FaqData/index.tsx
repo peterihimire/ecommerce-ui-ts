@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import Collapsible from "../../../shared/collapsible";
 import { products } from "../../../../data-list";
-import { ReactComponent as Plus } from "../../../../assets/images/plus.svg";
-import { ReactComponent as Minus } from "../../../../assets/images/minus.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronRight,
@@ -14,7 +11,6 @@ import {
 import styles from "./styles.module.scss";
 
 const FaqData: React.FC = () => {
-  // const [clicked, setClicked] = useState(1);
   const [clicked, setClicked] = useState<number | null>(7);
   console.log("This is the initial state clicked...", clicked);
 
@@ -28,6 +24,7 @@ const FaqData: React.FC = () => {
       setClicked(index);
     }
   };
+
   return (
     <section className={`${styles.faqData}`}>
       <div className="wrapper">
@@ -41,12 +38,7 @@ const FaqData: React.FC = () => {
                 bunch of them below.
               </p>
             </div>
-            {/* <div>
-              <p>
-                Yes welcome to our frequently asked questions. We have a full
-                bunch of them below.
-              </p>
-            </div> */}
+
             <div className={`${styles.collapsibleContainer}`}>
               <ul className={`${styles.collapsible}`}>
                 {products.slice(5, 11).map((product, index) => {
@@ -58,13 +50,11 @@ const FaqData: React.FC = () => {
                         </div>
                         <div className={`${styles.rotate}`}>
                           {clicked === Number(product.id) ? (
-                            // <Minus className={`${styles.icon}`} />
                             <FontAwesomeIcon
                               icon={faChevronUp}
                               className={`${styles.icon} ${styles.iconUp}`}
                             />
                           ) : (
-                            // <Plus className={`${styles.icon}`} />
                             <FontAwesomeIcon
                               icon={faChevronDown}
                               className={`${styles.icon} ${styles.iconDown}`}
@@ -98,10 +88,10 @@ const FaqData: React.FC = () => {
 
             <div className={`${styles.contactSale}`}>
               {/* <div className={`${styles.icon}`}> */}
-                <FontAwesomeIcon
-                  icon={faPhone}
-                  className={`${styles.icon} ${styles.iconPhone}`}
-                />
+              <FontAwesomeIcon
+                icon={faPhone}
+                className={`${styles.icon} ${styles.iconPhone}`}
+              />
               {/* </div> */}
               <h4>Contact sale</h4>
               <p>Need more information about product or special offer.</p>
@@ -114,35 +104,3 @@ const FaqData: React.FC = () => {
 };
 
 export default FaqData;
-
-// import React from "react";
-// import Collapsible from "../../../shared/collapsible";
-// import { products } from "../../../../data-list";
-// import styles from "./styles.module.scss";
-
-// const FaqData: React.FC = () => {
-//   return (
-//     <section className={`${styles.faqData}`}>
-//       <div className="wrapper">
-//         <div className={`${styles.title}`}>
-//           <h3>About Nigga</h3>
-//         </div>
-//         <div className={`${styles.productDiv}`}>
-//           {products.slice(3, 11).map((product, index) => {
-//             return (
-//               <Collapsible
-//                 content={product.detail}
-//                 focus={Number(product.id)}
-//                 title={product.title}
-//                 id={Number(product.id)}
-//                 index={Number(index)}
-//               />
-//             );
-//           })}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default FaqData;

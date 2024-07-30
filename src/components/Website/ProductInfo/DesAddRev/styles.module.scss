@@ -2,6 +2,152 @@
   padding: 100px 0;
   background-color: var(--white);
 
+  .mobile {
+    .collapsibleContainer {
+      .collapsible {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        > li {
+          border-bottom: 1px solid #eaeaea;
+          border-radius: 0px;
+          padding: 0px 0px;
+          margin-bottom: 0px;
+
+          &:last-of-type {
+            margin-bottom: 0px;
+          }
+
+          > button {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            text-align: left;
+            background-color: var(--off-white);
+            padding: 12px 30px;
+
+            .headInfo {
+              display: flex;
+              flex-direction: column;
+
+              span {
+                font-family: Montserrat-Regular, sans-serif;
+                font-size: var(--font-min-one);
+                font-weight: 900;
+
+                @media screen and (max-width: 1680px) {
+                  font-size: 20px;
+                  line-height: 26px;
+                }
+
+                @media screen and (max-width: 700px) {
+                  font-size: var(--font-min-two);
+                  line-height: 19px;
+                }
+              }
+            }
+
+            .rotate {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 12px;
+              margin-left: auto;
+              flex-shrink: 0;
+
+              .icon {
+                transition: all 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25);
+              }
+
+              .fas fa-caret-down {
+                font-size: 20px;
+                color: var(--main);
+              }
+
+              .iconUp {
+                color: var(--main);
+                font-size: 16px;
+              }
+              .iconDown {
+                color: var(--black);
+                font-size: 16px;
+              }
+            }
+          }
+
+          > .content {
+            margin-top: 0px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25),
+              opacity 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25),
+              visibility 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25),
+              margin 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25),
+              padding 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25);
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            padding: 0px 30px;
+
+            &.show {
+              // max-height: 400px;
+              // overflow-y: auto;
+              max-height: 100%;
+              opacity: 1;
+              visibility: visible;
+              pointer-events: all;
+              margin-top: 12px;
+              padding: 24px 30px;
+
+              @media screen and (max-width: 903px) {
+                max-height: 100%;
+              }
+            }
+
+            .subHead {
+              font-size: 16px;
+              line-height: 22px;
+              font-family: Montserrat-Regular, sans-serif;
+              color: var(--gray);
+
+              @media screen and (max-width: 703px) {
+                font-size: 10px;
+                line-height: 16px;
+              }
+
+              > div {
+                margin-right: 8px;
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                flex-shrink: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(93, 85, 255, 0.2);
+              }
+            }
+          }
+        }
+      }
+    }
+    display: none;
+    @media screen and (max-width: 900px) {
+      display: block;
+    }
+  }
+  .desktop {
+    display: block;
+    @media screen and (max-width: 900px) {
+      display: none;
+    }
+  }
   .content {
     h6 {
       font-size: 40px;

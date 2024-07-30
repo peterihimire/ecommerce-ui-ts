@@ -10,15 +10,23 @@
     right: 0;
     height: 100%;
 
+    @media screen and (max-width: 700px) {
+      display: flex;
+      flex-direction: column;
+    }
+
     .left {
       width: 70%;
       position: relative;
       margin-right: 80px;
 
+      @media screen and (max-width: 700px) {
+        margin-right: 0px;
+        margin-bottom: 20px;
+        width: 100%;
+      }
+
       .title {
-        // width: 45%;
-        // // padding-top: 150px;
-        // color: var(--head-txt);
         position: relative;
 
         span {
@@ -40,33 +48,19 @@
           margin: 20px 0;
           text-transform: capitalize;
           font-family: Montserrat-Medium, sans-serif;
+
+          @media screen and (max-width: 700px) {
+            font-size: 30px;
+            width: 100% !important;
+          }
         }
         p {
           margin-bottom: 60px;
           max-width: 400px;
         }
-        // .writeUp {
-        //   font-family: Montserrat-Regular, sans-serif;
-        //   color: var(--black);
-        //   font-size: 16;
-        //   font-style: normal;
-        //   opacity: 1;
-        //   letter-spacing: -0.7px;
-        //   line-height: 18px;
-
-        //   display: block;
-        //   margin-block-start: 1em;
-        //   margin-block-end: 1em;
-        //   margin-inline-start: 0px;
-        //   margin-inline-end: 0px;
-        //   unicode-bidi: isolate;
-        // }
       }
 
       .collapsibleContainer {
-        // max-width: 830px !important;
-        // margin: 50px auto 0px auto;
-
         .collapsible {
           width: 100%;
           display: flex;
@@ -88,12 +82,10 @@
               align-items: center;
               text-align: left;
               background-color: var(--off-white);
-              // background: transparent;
               padding: 12px 30px;
 
               .headInfo {
                 display: flex;
-                // padding: 0px 20px;
                 flex-direction: column;
 
                 span {
@@ -146,7 +138,6 @@
 
             > .content {
               margin-top: 0px;
-              // border-top: 1px solid rgba(244, 244, 244, 0.5);
               max-height: 0;
               overflow: hidden;
               transition: max-height 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25),
@@ -255,9 +246,3 @@
     }
   }
 }
-
-//7060937125
-//0243698367
-//3020171781
-//yinka
-//firstbank

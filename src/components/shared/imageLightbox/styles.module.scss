@@ -25,6 +25,20 @@
   border: 2px solid #ccc;
   border-radius: 5px;
   transition: transform 0.2s;
-  margin:20px 0;
+  margin: 20px 0;
   cursor: pointer;
+
+  img {
+    width: 500px;
+    height: auto;
+    cursor: pointer;
+
+    @media screen and (max-width: 600px) {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    // flex-direction: column;
+  }
 }

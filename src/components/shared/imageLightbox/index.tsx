@@ -48,7 +48,7 @@ const ProductLightbox: React.FC<LightboxProps> = ({ images }) => {
         <img
           src={`http://localhost:4040/${images[currentImageIndex]}`}
           alt="Product Full"
-          style={{ width: "500px", height: "auto", cursor: "pointer" }}
+          // style={{ width: "500px", height: "auto", cursor: "pointer" }}
         />
       </div>
       <div className={styles.productThumbnails}>
