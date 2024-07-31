@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Input from "../../../shared/qtyInput";
+import { useLocation, Link, useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage } from "@fortawesome/free-solid-svg-icons";
+import { faImage, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   useAppSelector,
   useAppDispatch,
 } from "../../../../hooks/useTypedSelector";
+import { RootState } from "../../../../redux/store";
 import {
   deleteCartProduct,
   getCart,
@@ -22,6 +24,17 @@ const Content: React.FC = () => {
   const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
 
   const cart = useAppSelector((state) => state.cart.cartData);
+
+  const location = useLocation();
+  const params = useParams();
+  const from = location?.state?.from?.pathname;
+  console.log("This is from ....", from);
+
+  const productInfo = useAppSelector(
+    (state: RootState) => state.product.productData
+  );
+
+  const { prod_id } = params;
 
   const handleQtyChange = (prod_uuid: string, qty: number) => {
     setQuantities((prevQuantities) => ({
@@ -61,6 +74,21 @@ const Content: React.FC = () => {
       console.log(error);
     }
   };
+
+  const [quantity, setQuantity] = useState(1);
+
+  // useEffect(() => {
+  //   // Reset quantity when product changes
+  //   setQuantity(1);
+  // }, [prod_id]);
+
+  // const handleDecrease = () => {
+  //   setQuantities((prev) => (prev > 1 ? prev - 1 : 1));
+  // };
+
+  // const handleIncrease = () => {
+  //   setQuantities((prev) => prev + 1);
+  // };
 
   useEffect(() => {
     if (cart?.products) {
@@ -196,6 +224,75 @@ const Content: React.FC = () => {
                 UPDATE CART
               </button>
             </div>
+          </div>
+
+          <div className={`${styles.prodMobileView}`}>
+            <ul>
+              {cart?.products.map((product, index) => {
+                return (
+                  <li key={index} className={`${styles.prodList}`}>
+                    <div>
+                      {product.image ? (
+                        <img
+                          src={product.image}
+                          alt="product"
+                          className={`${styles.productImg}`}
+                          width="100"
+                          height="100"
+                        />
+                      ) : (
+                        <FontAwesomeIcon
+                          icon={faImage}
+                          className={`${styles.imgIcon}`}
+                        />
+                      )}
+                    </div>
+                    <div>
+                      <h6>{product.title}</h6>
+                      <p>${product.price}</p>
+
+                      <button>remove</button>
+                    </div>
+                    <div>
+                      <Input
+                        // labelText="Full Name"
+                        type="text"
+                        name="qty"
+                        id="qty"
+                        value={String(quantities[product.prod_uuid])}
+                        onChange={(e) =>
+                          handleQtyChange(
+                            product.prod_uuid,
+                            Number(e.target.value)
+                          )
+                        }
+                      />
+                    </div>
+
+                    <div>
+                      <p>${product.price * product.quantity}</p>
+                    </div>
+                    {/* <div className={`${styles.updateQty}`}>
+                      <button className={styles.dsc} onClick={handleDecrease}>
+                        <FontAwesomeIcon
+                          icon={faMinus}
+                          className={`${styles.close}`}
+                        />
+                      </button>
+                      <div className={`${styles.qtyTxt}`}>
+                        {String(quantities[product.prod_uuid])}
+                      </div>
+                      <button className={styles.asc} onClick={handleIncrease}>
+                        <FontAwesomeIcon
+                          icon={faPlus}
+                          className={`${styles.close}`}
+                        />
+                      </button>
+                    </div> */}
+                  </li>
+                );
+              })}
+            </ul>
           </div>
           <div className={`${styles.cartTotalDiv}`}>
             <div className={`${styles.cartTotalContainer}`}>

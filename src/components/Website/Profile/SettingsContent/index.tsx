@@ -1,7 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import CustomTabs from "../../../shared/customTab";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUser,
+  faArrowLeft,
+  faArrowRight,
+} from "@fortawesome/free-solid-svg-icons";
 import {
   useAppSelector,
   useAppDispatch,
@@ -567,18 +571,20 @@ const SettingsContent: React.FC = () => {
             />
           </div>
 
-          <div
-            className={styles.mobileSettingsNav}
-            // style={{
-            //   textAlign: "center",
-            //   padding: "20px",
-            //   backgroundColor: "#2F4F4F",
-            //   color: "white",
-            // }}
-          >
-            <button onClick={handlePrev}>‹</button>
-            <span style={{ margin: "0 20px" }}>{currentView}</span>
-            <button onClick={handleNext}>›</button>
+          <div className={styles.mobileSettingsNav}>
+            <button onClick={handlePrev}>
+              <FontAwesomeIcon
+                icon={faArrowLeft}
+                className={`${styles.leftArrow}`}
+              />
+            </button>
+            <span>{currentView}</span>
+            <button onClick={handleNext}>
+              <FontAwesomeIcon
+                icon={faArrowRight}
+                className={`${styles.rightArrow}`}
+              />
+            </button>
           </div>
           <div className={styles.mobile} style={{ marginTop: "20px" }}>
             {getContent(currentView)}

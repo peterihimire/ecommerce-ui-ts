@@ -47,18 +47,40 @@
       }
 
       .mobileSettingsNav {
+        position: relative;
         text-align: center;
         padding: 20px;
-        background-color: var(--main);
-        color: var(--white);
+        background-color: var(--lite-grey);
+        color: var(--black);
+         border: 1px solid #b6b7b9;
+        border-radius: 4px;
         display: none;
 
         @media (max-width: 700px) {
           display: block;
         }
 
+        .leftArrow {
+          position: absolute;
+          left: 30px;
+          top: 22px;
+        }
+
+        .rightArrow {
+          position: absolute;
+          right: 30px;
+          top: 22px;
+        }
+
         button {
-          background-color: var(--main);
+          background-color: transparent;
+        }
+
+        span {
+          font-size: 14px;
+          font-weight: bolder;
+          text-transform: capitalize;
+          font-family: Montserrat-Medium, sans-serif;
         }
       }
       .mobile {

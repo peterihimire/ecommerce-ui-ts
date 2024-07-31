@@ -28,6 +28,12 @@
       grid-template-columns: 3fr 2.2fr;
       gap: 150px;
 
+      @media (max-width: 605px) {
+        display: flex;
+        flex-direction: column;
+         gap: 10px;
+      }
+
       .cartTotalDiv {
         .checkoutHeader {
           font-size: 14px;

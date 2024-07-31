@@ -17,12 +17,20 @@
     background-color: var(--white);
     color: var(--black);
   }
+
+  @media (max-width: 700px) {
+    border-bottom: 1px solid var(--black);
+  }
   .firstWrapperDiv {
     background-color: var(--prod-bg);
     // background-color: var(--yellow);
     color: var(--black);
     border-bottom: 1px solid var(--med-grey);
     border-top: 1px solid var(--med-grey);
+
+    @media (max-width: 700px) {
+      display: none;
+    }
 
     .firstWrapper {
       width: 85%;
@@ -515,7 +523,7 @@
     }
 
     @media (max-width: 600px) {
-      margin: 15px auto 15px auto;
+      margin: 12px auto 12px auto;
     }
 
     .logo {

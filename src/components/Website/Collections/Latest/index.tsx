@@ -5,7 +5,11 @@ import Accordion from "../../../shared/accordion";
 import Pagination from "../../../shared/pagination";
 import Slider from "@mui/material/Slider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronDown,
+  faChevronUp,
+  faSliders,
+} from "@fortawesome/free-solid-svg-icons";
 import { ArrowDownward, PersonOutline } from "@mui/icons-material";
 import { NavLink, useLocation } from "react-router-dom";
 import { RootState } from "../../../../redux/store";
@@ -14,7 +18,8 @@ import {
   useAppSelector,
 } from "../../../../hooks/useTypedSelector";
 import { getProductsFilter } from "../../../../redux/features/products/productSlice";
-
+import FilterNav from "../../../shared/filterNav";
+import BackdropCart from "../../../shared/backdropcart";
 import styles from "./styles.module.scss";
 
 interface GetProductsFilterArg {
@@ -142,6 +147,7 @@ function numFormatter2(num: number) {
 const Latest: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [open, setOpen] = useState(false);
+  const [openFilter, setOpenFilter] = useState(false);
   const [page, setPage] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -155,6 +161,7 @@ const Latest: React.FC = () => {
   const [doc, setDoc] = useState([]);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
+  const [visibility, setVisibility] = useState(false);
   const [checks, setChecks] = useState({
     frontend: false,
     backend: false,
@@ -278,6 +285,31 @@ const Latest: React.FC = () => {
   //     setLoading(false);
   //   }
   // };
+
+  // FOR THE SCROLL TO TOP BUTTON
+  // useEffect(() => {
+  //   const changeVisibility = () => {
+  //     if (window.scrollY >= 540) {
+  //       setVisibility(true);
+  //     } else {
+  //       setVisibility(false);
+  //     }
+  //   };
+
+  //   window.addEventListener("scroll", changeVisibility);
+
+  //   return () => {
+  //     window.removeEventListener("scroll", changeVisibility);
+  //   };
+  // }, []);
+  // console.log(visibility);
+
+  const openFilterHandler = () => {
+    console.log("Add handler...");
+    setOpenFilter(true);
+    document.documentElement.classList.add("_fixed");
+    document.body.classList.add("_fixed");
+  };
 
   useEffect(() => {
     fetchProducts(currentPage);
@@ -495,6 +527,32 @@ const Latest: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {
+        <button
+          onClick={() => openFilterHandler()}
+          className={`${styles.scrollTop} ${styles.topBtn}`}
+        >
+          <FontAwesomeIcon icon={faSliders} className={`${styles.sliders}`} />
+        </button>
+      }
+
+      <FilterNav
+        isOpen={openFilter}
+        clicked={() => {
+          setOpenFilter(false);
+          document.documentElement.classList.remove("_fixed");
+          document.body.classList.remove("_fixed");
+        }}
+      />
+      <BackdropCart
+        open={openFilter}
+        clicked={() => {
+          setOpenFilter(false);
+          document.documentElement.classList.remove("_fixed");
+          document.body.classList.remove("_fixed");
+        }}
+      />
     </section>
   );
 };

@@ -29,6 +29,7 @@ import { faSquareInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import BackdropCart from "../../shared/backdropcart";
+import CartNav from "../../shared/cartNav";
 import { logoutUser } from "../../../redux/features/auth/authSlice";
 
 import styles from "./styles.module.scss";
@@ -405,6 +406,23 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
           </div>
         </div>
       </div>
+
+      <CartNav
+        isOpen={cartOpen}
+        clicked={() => {
+          setCartOpen(false);
+          document.documentElement.classList.remove("_fixed");
+          document.body.classList.remove("_fixed");
+        }}
+      />
+      <BackdropCart
+        open={cartOpen}
+        clicked={() => {
+          setCartOpen(false);
+          document.documentElement.classList.remove("_fixed");
+          document.body.classList.remove("_fixed");
+        }}
+      />
     </header>
   );
 };
