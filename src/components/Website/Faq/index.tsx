@@ -1,5 +1,5 @@
 import React from "react";
-import Hero from "./Hero";
+import Hero from "../../shared/smallHero";
 import FaqData from "./FaqData";
 import Explore from "./Explore";
 
@@ -12,7 +12,7 @@ const Faq: React.FC = () => {
         <title>benkih - faq</title>
         <meta name="description" content="Description of my page" />
       </Helmet>
-      <Hero />
+      <Hero home={`home`} currentLink={`FAQ`} />
 
       <FaqData />
       <Explore />

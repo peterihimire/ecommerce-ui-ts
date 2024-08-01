@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Hero from "./Hero";
+import Hero from "../../shared/smallHero";
 import SettingsContent from "./SettingsContent";
 import { getCart } from "../../../redux/features/cart/cartSlice";
 import { useAppDispatch } from "../../../hooks/useTypedSelector";
@@ -17,7 +17,7 @@ const Profile: React.FC = () => {
         <title>benkih - profile</title>
         <meta name="description" content="Description of my page" />
       </Helmet>
-      <Hero />
+      <Hero home={`home`} currentLink={`profile`} />
 
       <SettingsContent />
     </HelmetProvider>

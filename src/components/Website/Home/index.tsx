@@ -7,6 +7,7 @@ import Explore from "./Explore";
 import Latest from "./Latest";
 import Choose from "./Choose";
 import Sale from "./Sale";
+import Loader from "../../shared/loader";
 // import Flash from "./Flash";
 import Discount from "./Discount";
 import Testimonials from "./Testimonial";
@@ -72,22 +73,23 @@ const Home: React.FC = () => {
   // const memoizedItems = useMemo(() => items, [items]);
   console.log("This is the loading...", loading);
 
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <HelmetProvider>
       <Helmet>
         <title>benkih - home</title>
       </Helmet>
-
-      <HomeHero />
+      <Loader />
+      {/* <HomeHero />
       <Categories />
       <Popular />
       <Explore />
       <Latest />
       <Choose />
-      {/* <Flash /> */}
       <Sale />
       <Discount />
-      <Testimonials />
+      <Testimonials /> */}
     </HelmetProvider>
   );
 };

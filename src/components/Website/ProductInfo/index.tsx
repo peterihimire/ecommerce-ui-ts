@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useLocation, Link, useNavigate, useParams } from "react-router-dom";
 import CollectionInfo from "./Product";
-import Hero from "./Hero";
+import Hero from "../../shared/smallHero";
 import DevAddRev from "./DesAddRev";
 import Related from "./Related";
 import {
   useAppDispatch,
   useAppSelector,
 } from "../../../hooks/useTypedSelector";
+import { RootState } from "../../../redux/store";
 import { getProduct } from "../../../redux/features/products/productSlice";
 
 import { Helmet, HelmetProvider } from "react-helmet-async";
@@ -28,6 +29,9 @@ const CollectionItem: React.FC = () => {
   console.log("Is this the correct stuff...", productId);
 
   // Ensure prod_id is always a string
+  const productInfo = useAppSelector(
+    (state: RootState) => state.product.productData
+  );
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -37,7 +41,10 @@ const CollectionItem: React.FC = () => {
         const response = await dispatch(
           getProduct({ prod_id: productId })
         ).unwrap();
-        console.log("This si single product info call from products...", response.data);
+        console.log(
+          "This si single product info call from products...",
+          response.data
+        );
         // saveToLocalStorage("ecommerce_products", response.data);
         // setProducts(response);
       } catch (error: any) {
@@ -58,7 +65,7 @@ const CollectionItem: React.FC = () => {
         <title>product - benkih</title>
       </Helmet>
 
-      <Hero />
+      <Hero currentLink={productInfo?.title} />
       <CollectionInfo />
       <DevAddRev />
       <Related />

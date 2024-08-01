@@ -57,13 +57,10 @@ const ProductLightbox: React.FC<LightboxProps> = ({ images }) => {
             key={index}
             src={`http://localhost:4040/${image}`}
             alt={`Product Thumbnail ${index + 1}`}
+            className={
+              index === currentImageIndex ? styles.activeThumbnail : ""
+            }
             onClick={() => setCurrentImageIndex(index)}
-            style={{
-              cursor: "pointer",
-              // margin: "10px",
-              width: "120px",
-              height: "120px",
-            }}
           />
         ))}
       </div>

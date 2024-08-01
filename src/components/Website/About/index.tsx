@@ -1,5 +1,5 @@
 import React from "react";
-import AboutHero from "./Hero";
+import Hero from "../../shared/smallHero";
 import WhoWeAre from "./WhoWeAre";
 import Choose from "./Choose";
 import Testimonial from "./Testimonial";
@@ -11,7 +11,7 @@ const About: React.FC = () => {
       {/* <Helmet>
         <title>Home - Benkih</title>
       </Helmet> */}
-      <AboutHero />
+      <Hero home={`home`} currentLink={`about us`} />
       {/* <WhoWeAre /> */}
       <Choose />
       <Testimonial />

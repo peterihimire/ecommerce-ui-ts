@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
                 className={`${styles.customIcon}`}
               />
               <div className={`${styles.customText}`}>
-                <h4>Free Shipping</h4>
+                <h4>30 days warranty</h4>
                 <p>30 days money back guarantee</p>
               </div>
             </div>
@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
                 className={`${styles.customIcon}`}
               />
               <div className={`${styles.customText}`}>
-                <h4>Free Shipping</h4>
+                <h4>Global Shipping</h4>
                 <p>On all orders above N500</p>
               </div>
             </div>
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
                 className={`${styles.customIcon}`}
               />
               <div className={`${styles.customText}`}>
-                <h4>Free Shipping</h4>
+                <h4>100% secure</h4>
                 <p>100% secure checkout</p>
               </div>
             </div>
@@ -123,7 +123,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <div className={`${styles.second}`}>
-          <div className={`${styles.quickLinksWrapper}`}>
+          <div className={`${styles.locationWrapper}`}>
             <h3>Company</h3>
             <ul className={`${styles.quickLinks}`}>
               <li>
@@ -173,25 +173,11 @@ const Footer: React.FC = () => {
               </li>
             </ul>
           </div>
-          <div className={`${styles.locationWrapper}`}>
-            <h3>Platform</h3>
-            <ul className={`${styles.quickLinks}`}>
-              <li>
-                <Link to="/products-services">Help Center</Link>
-              </li>
-              <li>
-                <Link to="/our-process">Site Map</Link>
-              </li>
-              <li>
-                <Link to="/contact-us">IP Whitelist</Link>
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
       <div className={`${styles.outro} `}>
         <div className={` ${styles.wrapper}`}>
-          <div className="copyright">
+          <div className={` ${styles.copyright}`}>
             <p>Copyright © 2023 — Benkih Limited. All Rights Reserved.</p>
           </div>
         </div>

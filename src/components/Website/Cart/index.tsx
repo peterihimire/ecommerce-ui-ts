@@ -1,20 +1,19 @@
 import React from "react";
-import CartHero from "./Hero";
+import Hero from "../../shared/smallHero";
 import Content from "./Content";
 
-// import { Helmet } from "react-helmet-async";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const Collections: React.FC = () => {
   return (
-    <div className={`homepage`}>
-      {/* <Helmet>
-        <title>Home - Benkih</title>
-      </Helmet> */}
-      <CartHero />
-      {/* <WhoWeAre /> */}
+    <HelmetProvider>
+      <Helmet>
+        <title>benkih - cart</title>
+        <meta name="description" content="Description of my page" />
+      </Helmet>
+      <Hero home={`home`} currentLink={`cart`} />
       <Content />
-      {/* <Testimonial /> */}
-    </div>
+    </HelmetProvider>
   );
 };
 

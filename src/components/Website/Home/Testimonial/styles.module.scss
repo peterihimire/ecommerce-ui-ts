@@ -40,7 +40,13 @@
           // border: 1px solid #ccc;
           border-radius: 2px;
           margin-top: 15px;
+          // margin-left: 0px;
+          // margin-right: 0px;
           position: relative;
+          color: var(--grey);
+          padding: 70px;
+          background-color: var(--white);
+          line-height: 20px;
 
           ::before {
             content: "";
@@ -56,16 +62,15 @@
             transform: translateX(-50%); /* Add this line */
           }
 
-          padding: 70px;
-          background-color: var(--white);
-          line-height: 20px;
-
           p {
-            line-height: 25px;
+            line-height: 22px;
+            font-size: 14px;
           }
 
           @media screen and (max-width: 600px) {
             padding: 40px;
+            margin-left: 30px;
+            margin-right: 30px;
           }
         }
         .slideUser {

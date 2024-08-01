@@ -1,5 +1,5 @@
 import React from "react";
-import ContactHero from "./Hero";
+import Hero from "../../shared/smallHero";
 import Choose from "./Choose";
 import Form from "./Form";
 import { Helmet, HelmetProvider } from "react-helmet-async";
@@ -11,7 +11,7 @@ const Contact: React.FC = () => {
         <title>contact - benkih</title>
         <meta name="description" content="Description of my page" />
       </Helmet>
-      <ContactHero />
+      <Hero home={`home`} currentLink={`contact us`} />
       {/* <Form /> */}
       <Choose />
       {/* <Testimonial /> */}

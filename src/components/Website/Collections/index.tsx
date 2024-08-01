@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
-import ContactHero from "./Hero";
+import Hero from "../../shared/smallHero";
 import Latest from "./Latest";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-
 
 const Collections: React.FC = () => {
   return (
@@ -12,7 +11,7 @@ const Collections: React.FC = () => {
         <meta name="description" content="Description of my page" />
       </Helmet>
 
-      <ContactHero />
+      <Hero home={`home`} currentLink={`collections`} />
       <Latest />
     </HelmetProvider>
   );
