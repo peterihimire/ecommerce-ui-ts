@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ProductCard from "../../../shared/productcard";
 import CartNav from "../../../shared/cartNav";
 import Backdrop from "../../../shared/backdrop";
-import { RootState } from "../../../../redux/store";
+import { RootState } from "../../../../redux/store.config";
 import {
   useAppDispatch,
   useAppSelector,

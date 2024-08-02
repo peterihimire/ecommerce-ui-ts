@@ -5,7 +5,7 @@ import Backdrop from "../../../shared/backdrop";
 import Modal from "../../../shared/modal";
 import { Link } from "react-router-dom";
 import product1 from "../../../../assets/images/products/product1.png";
-import { RootState } from "../../../../redux/store";
+import { RootState } from "../../../../redux/store.config";
 import {
   useAppDispatch,
   useAppSelector,

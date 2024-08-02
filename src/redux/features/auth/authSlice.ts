@@ -1,14 +1,17 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { RootState, AppDispatch } from "../../store.config";
 import authAPI from "../../api/auth";
-import { getUserInfo } from "../users/userSlice";
-import { getCart } from "../cart/cartSlice";
-import { resetUser } from "../users/userSlice";
-import { resetCart } from "../cart/cartSlice";
+// import { getUserInfo } from "../users/userSlice";
+// import { getCart } from "../cart/cartSlice";
+// import { resetUser } from "../users/userSlice";
+// import { resetCart } from "../cart/cartSlice";
 import {
   saveToLocalStorage,
   loadFromLocalStorage,
   removeFromLocalStorage,
 } from "../../../utils/LocalStorage";
+import { handleLogout, handleLogin } from "../../features/auth/authService";
+
 import {
   UserPayloadProps,
   UserResponseProps,
@@ -50,36 +53,39 @@ export const registerUser = createAsyncThunk(
   }
 );
 
-export const authGoogle = createAsyncThunk(
-  "auth/google-auth",
-  async (user: any, thunkApi) => {
-    try {
-      // Directly use the received user data
-      console.log("This should be user response...", user);
+export const authGoogle = createAsyncThunk<
+  void, // Return type
+  any, // Argument type (payload)
+  { dispatch: AppDispatch; state: RootState } // ThunkAPI type
+>("auth/google-auth", async (user: any, thunkApi) => {
+  try {
+    // Directly use the received user data
+    console.log("This should be user response...", user);
 
-      // Save user data to local storage
-      saveToLocalStorage("ecommerce_user", user);
+    // Save user data to local storage
+    saveToLocalStorage("ecommerce_user", user);
 
-      // const user = JSON.parse(localStorage.getItem("ecommerce_user") || "{}");
-      // const response = await authAPI.googleAuth(user); // Pass user if needed
-      // const data = response.data;
-      // const response = await authAPI.authGoogle(); // This should be the API call for Google authentication
-      // const data = response.data;
-      // console.log("This should be user response...", user);
-      // saveToLocalStorage("ecommerce_user", user);
+    // const user = JSON.parse(localStorage.getItem("ecommerce_user") || "{}");
+    // const response = await authAPI.googleAuth(user); // Pass user if needed
+    // const data = response.data;
+    // const response = await authAPI.authGoogle(); // This should be the API call for Google authentication
+    // const data = response.data;
+    // console.log("This should be user response...", user);
+    // saveToLocalStorage("ecommerce_user", user);
 
-      await thunkApi.dispatch(getUserInfo());
-      await thunkApi.dispatch(getCart());
+    // await thunkApi.dispatch(getUserInfo());
+    // await thunkApi.dispatch(getCart());
 
-      console.log("my google auth resopsen: ", user);
+    await handleLogin(thunkApi.dispatch);
 
-      return user;
-    } catch (error: any) {
-      const message = error?.response?.data?.message;
-      return thunkApi.rejectWithValue(message);
-    }
+    console.log("my google auth resopsen: ", user);
+
+    return user;
+  } catch (error: any) {
+    const message = error?.response?.data?.message;
+    return thunkApi.rejectWithValue(message);
   }
-);
+});
 
 export const verifyEmail = createAsyncThunk(
   "auth/verify-email",
@@ -97,49 +103,53 @@ export const verifyEmail = createAsyncThunk(
   }
 );
 
-export const loginUser = createAsyncThunk(
-  "auth/login",
-  async (payload: UserPayloadProps, thunkApi) => {
-    console.log("My login payload: ", payload);
-    try {
-      const response = await authAPI.loginUser(payload);
-      const data = response.data;
+export const loginUser = createAsyncThunk<
+  any, // Return type
+  UserPayloadProps, // Argument type
+  { rejectValue: string; state: RootState; dispatch: AppDispatch }
+>("auth/login", async (payload: UserPayloadProps, thunkApi) => {
+  console.log("My login payload: ", payload);
+  try {
+    const response = await authAPI.loginUser(payload);
+    const data = response.data;
 
-      // localStorage.setItem("ecommerce_user", JSON.stringify(data.data));
-      saveToLocalStorage("ecommerce_user", data.data);
+    // localStorage.setItem("ecommerce_user", JSON.stringify(data.data));
+    saveToLocalStorage("ecommerce_user", data.data);
 
-      await thunkApi.dispatch(getUserInfo());
-      await thunkApi.dispatch(getCart());
+    // await thunkApi.dispatch(getUserInfo());
+    // await thunkApi.dispatch(getCart());
+    await handleLogin(thunkApi.dispatch);
 
-      return data;
-    } catch (error: any) {
-      console.log("Error yeah: ", error.response);
-      const message = error?.response?.data?.message;
-      return thunkApi.rejectWithValue(message);
-    }
+    return data;
+  } catch (error: any) {
+    console.log("Error yeah: ", error.response);
+    const message = error?.response?.data?.message || "An error occurred";
+    return thunkApi.rejectWithValue(message);
   }
-);
+});
 
-export const logoutUser = createAsyncThunk(
-  "users/logout",
-  async (_, thunkApi) => {
-    try {
-      const response = await authAPI.logoutUser();
-      const data = response.data;
+export const logoutUser = createAsyncThunk<
+  void, // Return type
+  void, // Argument type (payload)
+  { dispatch: AppDispatch; state: RootState } // ThunkAPI type
+>("users/logout", async (_, thunkApi) => {
+  try {
+    const response = await authAPI.logoutUser();
+    const data = response.data;
 
-      await thunkApi.dispatch(resetUser());
-      await thunkApi.dispatch(resetCart());
+    // await thunkApi.dispatch(resetUser());
+    // await thunkApi.dispatch(resetCart());
+    await handleLogout(thunkApi.dispatch);
 
-      return data;
-    } catch (error: any) {
-      const message = error.message;
-      return thunkApi.rejectWithValue(message);
-    } finally {
-      localStorage.removeItem("ecommerce_user");
-      // removeFromLocalStorage("ecommerce_user");
-    }
+    return data;
+  } catch (error: any) {
+    const message = error.message;
+    return thunkApi.rejectWithValue(message);
+  } finally {
+    localStorage.removeItem("ecommerce_user");
+    // removeFromLocalStorage("ecommerce_user");
   }
-);
+});
 
 const initialState = {
   loading: false,

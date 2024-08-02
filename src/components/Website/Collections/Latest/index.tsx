@@ -12,7 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { ArrowDownward, PersonOutline } from "@mui/icons-material";
 import { NavLink, useLocation } from "react-router-dom";
-import { RootState } from "../../../../redux/store";
+import { RootState } from "../../../../redux/store.config";
 import {
   useAppDispatch,
   useAppSelector,
@@ -322,6 +322,115 @@ const Latest: React.FC = () => {
     totalItems ?? 0
   );
 
+  const filterSlider = (
+    <div className={`${styles.filterDiv}`}>
+      <div className={`${styles.filterContainer}`}>
+        <Accordion
+          title={"Category"}
+          content={
+            <div className={`${styles.filterCategory}`}>
+              <div className={`${styles.checkboxGroup}`}>
+                <Checkbox
+                  checkText={"Non Smart tv"}
+                  htmlFor="tv"
+                  name="non-smart"
+                  // onChange={handleCheckChange}
+                />
+              </div>
+              <div className={`${styles.checkboxGroup}`}>
+                <Checkbox
+                  checkText={"Smart tv"}
+                  htmlFor="tv"
+                  name="smart tv"
+                  // onChange={handleCheckChange}
+                />
+              </div>
+            </div>
+          }
+          focus={1}
+        />
+        <Accordion
+          title={"Price"}
+          content={
+            <Slider
+              aria-label="Temperature"
+              // defaultValue will not work because, this is a controlled component in the sense that it is controlled by react . it's value is stored in a [state]
+              defaultValue={100}
+              step={1}
+              // marks={budget}
+              valueLabelDisplay="on"
+              // valueLabelDisplay="auto"
+              // Added this with the new scaling
+              // value={budgetValue}
+              value={value}
+              min={0}
+              max={100}
+              valueLabelFormat={numFormatter}
+              scale={scale}
+              // onChange={handleBudgetChange}
+            />
+          }
+          focus={1}
+        />
+
+        <Accordion
+          title={"Color"}
+          content={
+            <div>
+              <div className={`${styles.checkboxGroup}`}>
+                <Checkbox
+                  checkText={"Black"}
+                  htmlFor="color"
+                  name="black"
+                  // onChange={handleCheckChange}
+                />
+              </div>
+              <div className={`${styles.checkboxGroup}`}>
+                <Checkbox
+                  checkText={"Silver"}
+                  htmlFor="color"
+                  name="silver"
+                  // onChange={handleCheckChange}
+                />
+              </div>
+            </div>
+          }
+          focus={1}
+        />
+
+        <Accordion
+          title={"Size"}
+          content={
+            <div>
+              <div className={`${styles.checkboxGroup}`}>
+                <Checkbox
+                  checkText={"32 inches"}
+                  htmlFor="size"
+                  name="32"
+                  // onChange={handleCheckChange}
+                />
+              </div>
+              <div className={`${styles.checkboxGroup}`}>
+                <Checkbox
+                  checkText={"43 inches"}
+                  htmlFor="size"
+                  name="43"
+                  // onChange={handleCheckChange}
+                />
+              </div>
+            </div>
+          }
+          focus={1}
+        />
+
+        <div className={`${styles.filterBtnGroup}`}>
+          <button className="btn-block btn-small">Apply Filter</button>
+          <button className="btn-block btn-small-sec ">Reset Filter</button>
+        </div>
+      </div>
+    </div>
+  );
+
   // const startIdx = (currentPage - 1) * (prodList?.length ?? 0) + 1;
   // const endIdx = Math.min(startIdx + prodList.length - 1, totalItems);
 
@@ -331,117 +440,10 @@ const Latest: React.FC = () => {
     <section className={`${styles.latest}`}>
       <div className={`${styles.wrapper} wrapper`}>
         <div className={`${styles.collectionDiv}`}>
-          <div className={`${styles.filterDiv}`}>
-            <div className={`${styles.filterContainer}`}>
-              <Accordion
-                title={"Category"}
-                content={
-                  <div className={`${styles.filterCategory}`}>
-                    <div className={`${styles.checkboxGroup}`}>
-                      <Checkbox
-                        checkText={"Non Smart tv"}
-                        htmlFor="tv"
-                        name="non-smart"
-                        // onChange={handleCheckChange}
-                      />
-                    </div>
-                    <div className={`${styles.checkboxGroup}`}>
-                      <Checkbox
-                        checkText={"Smart tv"}
-                        htmlFor="tv"
-                        name="smart tv"
-                        // onChange={handleCheckChange}
-                      />
-                    </div>
-                  </div>
-                }
-                focus={1}
-              />
-              <Accordion
-                title={"Price"}
-                content={
-                  <Slider
-                    aria-label="Temperature"
-                    // defaultValue will not work because, this is a controlled component in the sense that it is controlled by react . it's value is stored in a [state]
-                    defaultValue={100}
-                    step={1}
-                    // marks={budget}
-                    valueLabelDisplay="on"
-                    // valueLabelDisplay="auto"
-                    // Added this with the new scaling
-                    // value={budgetValue}
-                    value={value}
-                    min={0}
-                    max={100}
-                    valueLabelFormat={numFormatter}
-                    scale={scale}
-                    // onChange={handleBudgetChange}
-                  />
-                }
-                focus={1}
-              />
-
-              <Accordion
-                title={"Color"}
-                content={
-                  <div>
-                    <div className={`${styles.checkboxGroup}`}>
-                      <Checkbox
-                        checkText={"Black"}
-                        htmlFor="color"
-                        name="black"
-                        // onChange={handleCheckChange}
-                      />
-                    </div>
-                    <div className={`${styles.checkboxGroup}`}>
-                      <Checkbox
-                        checkText={"Silver"}
-                        htmlFor="color"
-                        name="silver"
-                        // onChange={handleCheckChange}
-                      />
-                    </div>
-                  </div>
-                }
-                focus={1}
-              />
-
-              <Accordion
-                title={"Size"}
-                content={
-                  <div>
-                    <div className={`${styles.checkboxGroup}`}>
-                      <Checkbox
-                        checkText={"32 inches"}
-                        htmlFor="size"
-                        name="32"
-                        // onChange={handleCheckChange}
-                      />
-                    </div>
-                    <div className={`${styles.checkboxGroup}`}>
-                      <Checkbox
-                        checkText={"43 inches"}
-                        htmlFor="size"
-                        name="43"
-                        // onChange={handleCheckChange}
-                      />
-                    </div>
-                  </div>
-                }
-                focus={1}
-              />
-
-              <div className={`${styles.filterBtnGroup}`}>
-                <button className="btn-block btn-small">Apply Filter</button>
-                <button className="btn-block btn-small-sec ">
-                  Reset Filter
-                </button>
-              </div>
-            </div>
-          </div>
+          {filterSlider}
           <div className={`${styles.productDiv}`}>
             <div className={`${styles.sortBar}`}>
-              <div>
+              <div className={`${styles.showItemNum}`}>
                 <p>{`Showing ${startIdx} - ${endIdx} of ${
                   totalItems ?? 0
                 } results`}</p>
@@ -544,6 +546,7 @@ const Latest: React.FC = () => {
           document.documentElement.classList.remove("_fixed");
           document.body.classList.remove("_fixed");
         }}
+        children={filterSlider}
       />
       <BackdropCart
         open={openFilter}

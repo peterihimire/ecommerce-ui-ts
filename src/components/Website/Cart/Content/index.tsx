@@ -9,7 +9,7 @@ import {
   useAppSelector,
   useAppDispatch,
 } from "../../../../hooks/useTypedSelector";
-import { RootState } from "../../../../redux/store";
+import { RootState } from "../../../../redux/store.config";
 import {
   deleteCartProduct,
   getCart,

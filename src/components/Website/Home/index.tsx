@@ -11,7 +11,7 @@ import Loader from "../../shared/loader";
 // import Flash from "./Flash";
 import Discount from "./Discount";
 import Testimonials from "./Testimonial";
-import { RootState } from "../../../redux/store";
+import { RootState } from "../../../redux/store.config";
 import {
   useAppDispatch,
   useAppSelector,

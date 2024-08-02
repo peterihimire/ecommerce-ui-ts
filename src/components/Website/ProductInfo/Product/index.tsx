@@ -7,7 +7,7 @@ import {
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import product10 from "../../../../assets/images/products/product10.png";
-import { RootState } from "../../../../redux/store";
+import { RootState } from "../../../../redux/store.config";
 import {
   useAppDispatch,
   useAppSelector,

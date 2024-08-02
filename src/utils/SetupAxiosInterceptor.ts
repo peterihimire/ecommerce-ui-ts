@@ -1,20 +1,29 @@
-// src/utils/axiosInterceptors.ts
 import { AxiosInstance } from "axios";
 import { logoutUser } from "../redux/features/auth/authSlice";
-import { AppDispatch } from "../redux/store"; // Import your AppDispatch type
+import { AppDispatch } from "../redux/store.config"; // Import your AppDispatch type
 
 // Utility function to add interceptors
-export function setupAxiosInterceptors(axiosInstance: AxiosInstance) {
+export function setupAxiosInterceptors(
+  axiosInstance: AxiosInstance,
+  dispatch: AppDispatch
+) {
   axiosInstance.interceptors.response.use(
     (response) => response,
     (error) => {
-      if (error.response && error.response.status === 401) {
-        // Token expired or unauthorized, dispatch logout action
-        console.log(
-          "Action reaching here............../////////////............/////////"
-        );
-        const dispatch: AppDispatch = (window as any).__REDUX_STORE__.dispatch;
-        dispatch(logoutUser());
+      if (
+        (error.response && error.response.status === 401) ||
+        error?.response?.data?.message === "Unauthenticated."
+      ) {
+        console.log("Action reaching here...");
+        localStorage.removeItem("ecommerce_user");
+
+        dispatch(logoutUser())
+          .unwrap()
+          .catch((dispatchError) => {
+            console.error("Error dispatching logoutUser:", dispatchError);
+          });
+
+        // window.location.href = "/auth/login";
       }
       return Promise.reject(error);
     }

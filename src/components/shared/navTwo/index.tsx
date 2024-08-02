@@ -19,7 +19,7 @@ import CartNav from "../../shared/cartNav";
 import Input from "../../shared/customInput";
 import BackdropCart from "../../shared/backdropcart";
 import { logoutUser } from "../../../redux/features/auth/authSlice";
-import { RootState } from "../../../redux/store";
+import { RootState } from "../../../redux/store.config";
 import {
   useAppSelector,
   useAppDispatch,

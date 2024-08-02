@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { RootState } from "../redux/store";
+import { RootState } from "../redux/store.config";
 import { useAppSelector } from "../hooks/useTypedSelector";
 import WebsiteLayout from "../layouts/website";
 import AuthLayout from "../layouts/auth";

@@ -4,6 +4,20 @@ import AllRoutes from "./routes/Routes";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import CookieConsent from "react-cookie-consent";
+import { setupAxiosInterceptors } from "./utils/SetupAxiosInterceptor";
+import $axios from "./redux/api/config"; 
+
+// const $axios = axios.create({
+//   baseURL: "http://localhost:4040/api/ecommerce/v1/",
+//   headers: {
+//     Accept: "application/json",
+//     "Content-Type": "application/json",
+//   },
+//   withCredentials: true,
+// });
+
+// Pass the store's dispatch to the interceptor setup
+setupAxiosInterceptors($axios, store.dispatch);
 
 const App: React.FC = (): JSX.Element => {
   return (

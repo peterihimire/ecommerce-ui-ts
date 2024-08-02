@@ -8,7 +8,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "../../../hooks/useTypedSelector";
-import { RootState } from "../../../redux/store";
+import { RootState } from "../../../redux/store.config";
 import { getProduct } from "../../../redux/features/products/productSlice";
 
 import { Helmet, HelmetProvider } from "react-helmet-async";

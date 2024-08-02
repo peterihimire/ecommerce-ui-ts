@@ -12,7 +12,7 @@ import * as Yup from "yup";
 import { CircularProgress } from "@mui/material";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { RootState } from "../../../../redux/store";
+import { RootState } from "../../../../redux/store.config";
 import {
   useAppDispatch,
   useAppSelector,

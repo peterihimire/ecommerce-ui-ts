@@ -10,6 +10,13 @@ export type CartNavProps = {
   clicked: () => void;
 };
 
+// FOR CARTNAV
+export type FilterNavProps = {
+  isOpen: boolean;
+  clicked: () => void;
+  children?: React.ReactNode;
+};
+
 // FOR PRODUCT-CARD
 export type ProductCardProps = {
   id: string;
@@ -187,6 +194,7 @@ export type UserPayloadProps = {
 };
 
 export type UserResponseProps = {
+  status: string;
   acct_id: string;
   email: string;
 };

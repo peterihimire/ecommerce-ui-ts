@@ -23,7 +23,7 @@ import {
   PersonOutlineRounded,
   ShoppingCartOutlined,
 } from "@mui/icons-material";
-import { RootState } from "../../../redux/store";
+import { RootState } from "../../../redux/store.config";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 import { faSquareInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";

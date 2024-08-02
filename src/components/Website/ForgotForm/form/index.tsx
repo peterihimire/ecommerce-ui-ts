@@ -13,6 +13,7 @@ import { useAppDispatch } from "../../../../hooks/useTypedSelector";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { loginUser } from "../../../../redux/features/auth/authSlice";
+import { UserResponseProps } from "../../../../types/types";
 
 import styles from "./styles.module.scss";
 
@@ -51,7 +52,7 @@ const Form: React.FC = () => {
       try {
         const response = await dispatch(loginUser(values));
         console.log("This is user login value", response);
-        if (response.payload.status === "success") {
+        if (response?.payload?.status === "success") {
           toast.success(`${response.payload.msg}`, {
             position: "top-right",
             autoClose: 5000,

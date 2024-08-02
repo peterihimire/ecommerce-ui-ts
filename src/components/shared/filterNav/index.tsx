@@ -15,11 +15,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import product7 from "../../../assets/images/products/product12.png";
 import { getCart } from "../../../redux/features/cart/cartSlice";
-import { CartNavProps } from "../../../types/types";
+import { FilterNavProps } from "../../../types/types";
 
 import styles from "./styles.module.scss";
 
-const FilterNav: React.FC<CartNavProps> = ({ isOpen, clicked }) => {
+const FilterNav: React.FC<FilterNavProps> = ({ isOpen, clicked, children }) => {
   const location = useLocation();
   const dispatch = useAppDispatch();
   const cart = useAppSelector((state) => state.cart.cartData);
@@ -94,7 +94,7 @@ const FilterNav: React.FC<CartNavProps> = ({ isOpen, clicked }) => {
           </button>
         </div>
 
-        <div className={`${styles.cartBody}`}>Body</div>
+        <div className={`${styles.cartBody}`}>{children}</div>
       </div>
     </div>,
     document.body

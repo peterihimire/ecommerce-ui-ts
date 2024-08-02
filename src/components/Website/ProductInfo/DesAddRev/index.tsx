@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CustomTab from "../../../shared/customTabProd";
 import { products } from "../../../../data-list";
 import Form from "../Form";
-import { RootState } from "../../../../redux/store";
+import { RootState } from "../../../../redux/store.config";
 import {
   useAppDispatch,
   useAppSelector,
