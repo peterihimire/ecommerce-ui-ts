@@ -80,8 +80,8 @@ const Home: React.FC = () => {
       <Helmet>
         <title>benkih - home</title>
       </Helmet>
-      <Loader />
-      {/* <HomeHero />
+
+      <HomeHero />
       <Categories />
       <Popular />
       <Explore />
@@ -89,7 +89,7 @@ const Home: React.FC = () => {
       <Choose />
       <Sale />
       <Discount />
-      <Testimonials /> */}
+      <Testimonials />
     </HelmetProvider>
   );
 };
