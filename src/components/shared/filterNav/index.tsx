@@ -16,6 +16,7 @@ import {
 import product7 from "../../../assets/images/products/product12.png";
 import { getCart } from "../../../redux/features/cart/cartSlice";
 import { FilterNavProps } from "../../../types/types";
+// import FilterSlider from "../filterSlider";
 
 import styles from "./styles.module.scss";
 

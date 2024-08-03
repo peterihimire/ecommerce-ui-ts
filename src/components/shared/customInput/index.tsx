@@ -12,6 +12,7 @@ const Input: React.FC<CustomInputProps> = ({
   clicked,
   reveal,
   iconSrc,
+  iconFont,
   passIcon,
   password,
   onBlur,
@@ -56,7 +57,8 @@ const Input: React.FC<CustomInputProps> = ({
       {!innerLabel && (
         <div className={`input-wrapper ${wrapperClass ? wrapperClass : ""}`}>
           <div className="input-icon">
-            <img src={iconSrc} alt="" />
+            {iconSrc && <img src={iconSrc} alt="" />}
+            {iconFont && iconFont}
           </div>
 
           {password && (

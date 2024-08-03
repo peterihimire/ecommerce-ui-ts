@@ -10,7 +10,7 @@ export type CartNavProps = {
   clicked: () => void;
 };
 
-// FOR CARTNAV
+// FOR FILTERNAV
 export type FilterNavProps = {
   isOpen: boolean;
   clicked: () => void;
@@ -61,6 +61,7 @@ export type CustomInputProps = {
   required?: boolean;
   passIcon?: React.ReactNode;
   iconSrc?: string;
+  iconFont?: React.ReactNode;
   wrapperClass?: string;
   children?: string;
   placeholder?: string;
@@ -87,6 +88,7 @@ export type CustomTextareaProps = {
   required?: boolean;
   passIcon?: React.ReactNode;
   iconSrc?: string;
+  iconFont?: React.ReactNode;
   wrapperClass?: string;
   children?: string;
   placeholder?: string;
@@ -113,6 +115,7 @@ export type CustomSelectProps = {
   required?: boolean;
   sort?: string;
   iconSrc?: string;
+  iconFont?: React.ReactNode;
   wrapperClass?: string;
   children?: React.ReactNode;
   placeholder?: string;
@@ -138,6 +141,7 @@ export type CustomCheckboxProps = {
   required?: boolean;
   passIcon?: React.ReactNode;
   iconSrc?: string;
+  iconFont?: React.ReactNode;
   wrapperClass?: string;
   children?: string;
   placeholder?: string;

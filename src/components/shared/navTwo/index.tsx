@@ -139,9 +139,13 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
           // onBlur={formik.handleBlur}
           // onChange={formik.handleChange}
           wrapperClass={styles.searchStyle}
+          iconFont={
+            <FontAwesomeIcon icon={faSearch} className={`${styles.icon}`} />
+          }
         />
         <button>
-          <FontAwesomeIcon icon={faSearch} className={`${styles.icon}`} />
+          {/* <FontAwesomeIcon icon={faSearch} className={`${styles.icon}`} /> */}
+          search
         </button>
       </div>
 
@@ -155,9 +159,15 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
             {currentUser.authenticated &&
             currentUser?.userData?.profile?.picture ? (
               <div className={`${styles.pixStyle}`}>
-                <img
+                {/* <img
                   src={`http://localhost:4040/${currentUser?.userData?.profile?.picture}`}
                   alt=""
+                /> */}
+
+                <AccountCircleOutlined
+                  className={` iconStyle  ${
+                    bgChange ? styles.dark : styles.iconStyleLight
+                  }`}
                 />
               </div>
             ) : (
@@ -167,6 +177,7 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
                 }`}
               />
             )}
+            <p>account</p>
           </div>
           {open && (
             <div ref={menuRef} className={`${styles.profileContainer}`}>
@@ -225,18 +236,21 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
               }`}
             />
           </div>
+          <p>wishlist</p>
         </div>
-
-        <div
-          className={`${styles.cartCount}`}
-          onClick={() => addProductHandler()}
-        >
-          <div>{cart?.total_qty ? cart?.total_qty : 0}</div>
-          <ShoppingBagOutlined
-            className={` iconStyle  ${
-              bgChange ? styles.dark : styles.iconStyleLight
-            }`}
-          />
+        <div className={`${styles.cartNav}`}>
+          <div
+            className={`${styles.cartCount}`}
+            onClick={() => addProductHandler()}
+          >
+            <div>{cart?.total_qty ? cart?.total_qty : 0}</div>
+            <ShoppingBagOutlined
+              className={` iconStyle  ${
+                bgChange ? styles.dark : styles.iconStyleLight
+              }`}
+            />
+          </div>
+          <p>cart</p>
         </div>
       </div>
 

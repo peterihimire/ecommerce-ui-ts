@@ -332,6 +332,8 @@ select {
     position: absolute;
     left: 16px;
     top: 25%;
+    font-size: 15px;
+    color: var(--med-grey);
   }
 
   .pass-icon {
@@ -700,7 +702,7 @@ input[type="radio"] {
 }
 
 .wrapper {
-  width: 85%;
+  width: 70%;
   margin: 0 auto;
   height: 100%;
   max-width: var(--wrapper-max-width);

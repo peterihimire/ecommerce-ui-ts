@@ -177,13 +177,16 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
               >
                 {currentUser.authenticated &&
                 currentUser?.userData?.profile?.picture ? (
-                  <div className={`${styles.pixStyle}`}>
-                    <img
-                      src={`http://localhost:4040/${currentUser?.userData?.profile?.picture}`}
-                      alt=""
-                    />
-                  </div>
+                  <AccountCircleOutlined
+                    className={` iconStyle  ${styles.iconStyleLight}`}
+                  />
                 ) : (
+                  // <div className={`${styles.pixStyle}`}>
+                  //   <img
+                  //     src={`http://localhost:4040/${currentUser?.userData?.profile?.picture}`}
+                  //     alt=""
+                  //   />
+                  // </div>
                   <AccountCircleOutlined
                     className={` iconStyle  ${styles.iconStyleLight}`}
                   />

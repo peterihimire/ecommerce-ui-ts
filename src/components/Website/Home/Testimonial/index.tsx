@@ -59,7 +59,7 @@ const Testimonial: React.FC = () => {
               1200: { slidesPerView: 3 },
               2500: { slidesPerView: 3 },
             }}
-            spaceBetween={100}
+            spaceBetween={50}
             slidesPerView={3}
             pagination={pagination}
             className={`${styles.wrapper}`}
