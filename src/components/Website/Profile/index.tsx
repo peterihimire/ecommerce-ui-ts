@@ -17,7 +17,7 @@ const Profile: React.FC = () => {
         <title>benkih - profile</title>
         <meta name="description" content="Description of my page" />
       </Helmet>
-      <Hero home={`home`} currentLink={`profile`} />
+      {/* <Hero home={`home`} currentLink={`profile`} /> */}
 
       <SettingsContent />
     </HelmetProvider>

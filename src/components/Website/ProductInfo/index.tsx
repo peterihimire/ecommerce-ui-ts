@@ -65,7 +65,7 @@ const CollectionItem: React.FC = () => {
         <title>product - benkih</title>
       </Helmet>
 
-      <Hero currentLink={productInfo?.title} />
+      {/* <Hero currentLink={productInfo?.title} /> */}
       <CollectionInfo />
       <DevAddRev />
       <Related />

@@ -12,7 +12,7 @@ const Faq: React.FC = () => {
         <title>benkih - faq</title>
         <meta name="description" content="Description of my page" />
       </Helmet>
-      <Hero home={`home`} currentLink={`FAQ`} />
+      {/* <Hero home={`home`} currentLink={`FAQ`} /> */}
 
       <FaqData />
       <Explore />

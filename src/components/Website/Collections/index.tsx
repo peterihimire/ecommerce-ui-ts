@@ -11,7 +11,7 @@ const Collections: React.FC = () => {
         <meta name="description" content="Description of my page" />
       </Helmet>
 
-      <Hero home={`home`} currentLink={`collections`} />
+      {/* <Hero home={`home`} currentLink={`collections`} /> */}
       <Latest />
     </HelmetProvider>
   );

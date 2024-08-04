@@ -11,7 +11,7 @@ const Contact: React.FC = () => {
         <title>contact - benkih</title>
         <meta name="description" content="Description of my page" />
       </Helmet>
-      <Hero home={`home`} currentLink={`contact us`} />
+      {/* <Hero home={`home`} currentLink={`contact us`} /> */}
       {/* <Form /> */}
       <Choose />
       {/* <Testimonial /> */}
