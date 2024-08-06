@@ -168,13 +168,17 @@
           // background: linear-gradient(to right, #ef8a25, #c833af);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
-          font-size: 25px;
+          font-size: 35px;
           font-family: Montserrat-Bold, sans-serif;
           font-weight: 300;
 
-          span {
-            font-size: 25px !important;
-            font-weight: 900;
+          // span {
+          //   font-size: 25px !important;
+          //   font-weight: 900;
+          // }
+
+          @media (max-width: 600px) {
+            font-size: 25px;
           }
         }
       }

@@ -8,7 +8,7 @@ const Choose: React.FC = () => {
       <div className={`wrapper`}>
         <div className={`${styles.container}`}>
           <div className={`${styles.left}`}>
-            <p>Why choose us</p>
+            <p>About us</p>
             <h3>Get your luxurious elegance with our shoes.</h3>
             <div className={`${styles.leftContent}`}>
               <div className={`${styles.item}`}>

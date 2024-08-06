@@ -5,8 +5,11 @@
   background-position: center;
   background-repeat: no-repeat;
   background: url("../../../../assets/images/vecteezy_abstract-white-fluid-wave-background_7075692.jpg");
-
   background-color: #f9f9f9;
+
+    @media screen and (max-width: 600px) {
+    padding: 100px 0;
+  }
 
   .container {
     display: grid;

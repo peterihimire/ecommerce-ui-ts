@@ -1,6 +1,10 @@
 .faqData {
   padding: 150px 0;
 
+  @media screen and (max-width: 600px) {
+    padding: 100px 0;
+  }
+
   .container {
     display: flex;
     justify-content: space-between;

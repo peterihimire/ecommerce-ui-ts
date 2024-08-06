@@ -32,13 +32,13 @@
     .cartHeader {
       // background: var(--main);
       // padding: 40px 20px;
-      padding: 20px 0 40px 0;
+      padding: 20px 0;
 
       display: flex;
       align-items: center;
       justify-content: space-between;
       color: var(--black);
-      border-bottom: solid 1px var(--lite-grey);
+      // border-bottom: solid 1px var(--lite-grey);
 
       .shoppingCart {
         display: flex;
@@ -54,8 +54,14 @@
       }
 
       .flexHead {
+        border-radius: 50%;
+        background: none;
+        border: 2px solid var(--grey);
+        height: 30px;
+        width: 30px;
+
         .close {
-          font-size: 15px;
+          font-size: 18px;
         }
       }
 

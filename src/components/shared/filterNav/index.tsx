@@ -9,6 +9,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCaretRight,
+  faClose,
   faImage,
   faMinus,
   faPlus,
@@ -76,22 +77,15 @@ const FilterNav: React.FC<FilterNavProps> = ({ isOpen, clicked, children }) => {
       <div className={`${styles.cartWrapper}`}>
         <div className={`${styles.cartHeader}`}>
           <div className={`${styles.shoppingCart}`}>
-            <p className={`${styles.text}`}>Filter Products</p>
-            <div
-              className={`${styles.cartCount}`}
-              style={{ background: "none" }}
-            ></div>
+            <p className={`${styles.text}`}></p>
           </div>
 
           <button
             className={`${styles.flexHead}`}
             onClick={clicked}
-            style={{ background: "none" }}
+            // style={{ background: "none" }}
           >
-            <FontAwesomeIcon
-              icon={faCaretRight}
-              className={`${styles.close}`}
-            />
+            <FontAwesomeIcon icon={faClose} className={`${styles.close}`} />
           </button>
         </div>
 

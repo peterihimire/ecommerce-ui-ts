@@ -10,7 +10,7 @@ const Loader: React.FC = () => {
       <h4>BENKIH</h4>
       <LinearProgress
         sx={{
-          width: "40%", // Ensure the progress bar fits within the container
+          width: "8%", // Ensure the progress bar fits within the container
           height: 5, // Adjust the height if needed
           "& .MuiLinearProgress-bar": {
             backgroundColor: "#9b2602", // Primary color
@@ -23,6 +23,10 @@ const Loader: React.FC = () => {
           },
           "& .MuiLinearProgress-root": {
             backgroundColor: "#e0e0e0", // Background color (track)
+          },
+          // Media query for small screens
+          "@media (max-width: 600px)": {
+            width: "30%",
           },
         }}
       />

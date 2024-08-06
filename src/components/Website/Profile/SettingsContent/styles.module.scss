@@ -3,6 +3,10 @@
   width: 100%;
   padding: 150px 0 100px;
 
+  @media screen and (max-width: 600px) {
+    padding: 100px 0;
+  }
+
   .wrapper {
     // width: 95%;
     // margin: 0 auto;
@@ -52,7 +56,7 @@
         padding: 20px;
         background-color: var(--lite-grey);
         color: var(--black);
-         border: 1px solid #b6b7b9;
+        border: 1px solid #b6b7b9;
         border-radius: 4px;
         display: none;
 

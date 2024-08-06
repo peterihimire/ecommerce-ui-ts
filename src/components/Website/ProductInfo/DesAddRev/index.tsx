@@ -185,7 +185,7 @@ const DesAddRev: React.FC = () => {
             <li>
               <button onClick={() => toggler(Number(3))}>
                 <div className={`${styles.headInfo}`}>
-                  <span>{`Reviews(${0})`}</span>
+                  <span>{`Reviews(${productReviews?.reviews?.length})`}</span>
                 </div>
                 <div className={`${styles.rotate}`}>
                   {clicked === Number(3) ? (

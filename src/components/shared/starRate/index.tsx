@@ -57,7 +57,7 @@ const StarRate: React.FC<StarRateProps> = ({
               className={`${styles.customIcon}`}
               color={
                 currentRate <= (rateColor ?? rating ?? 0)
-                  ? "#9b2602"
+                  ? "#FFE802"
                   : "#e0e0e0"
               }
               onMouseEnter={() => !readOnly && setRateColor(currentRate)}

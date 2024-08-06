@@ -10,6 +10,18 @@ export type CartNavProps = {
   clicked: () => void;
 };
 
+export interface SidebarItemProps {
+  label: string;
+  link?: string;
+  subItems?: SidebarItemProps[]; // Define subItems directly here
+}
+
+export interface SideNavProps {
+  isOpen: boolean;
+  clicked: () => void;
+  items: SidebarItemProps[]; // Array of SidebarItemProps
+}
+
 // FOR FILTERNAV
 export type FilterNavProps = {
   isOpen: boolean;

@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCaretRight,
   faImage,
+  faClose,
   faMinus,
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
@@ -89,10 +90,7 @@ const CartNav: React.FC<CartNavProps> = ({ isOpen, clicked }) => {
             onClick={clicked}
             style={{ background: "none" }}
           >
-            <FontAwesomeIcon
-              icon={faCaretRight}
-              className={`${styles.close}`}
-            />
+            <FontAwesomeIcon icon={faClose} className={`${styles.close}`} />
           </button>
         </div>
 

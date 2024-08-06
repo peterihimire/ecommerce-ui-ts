@@ -20,6 +20,64 @@ const WebsiteLayout: React.FC = () => {
     document.body.classList.remove("_fixed");
   }, [router.pathname]);
 
+  const sidebarData = [
+    {
+      label: "All Categories",
+      subItems: [
+        {
+          label: "Electronics",
+          subItems: [
+            { label: "Phone", link: "/" },
+            { label: "Tablet", link: "/" },
+          ],
+        },
+        {
+          label: "Fashion",
+          subItems: [
+            { label: "Men", link: "/" },
+            { label: "Women", link: "/" },
+          ],
+        },
+        {
+          label: "Home",
+          subItems: [
+            { label: "Gas cooker", link: "/" },
+            { label: "Cutlery", link: "/" },
+          ],
+        },
+        {
+          label: "Office",
+          subItems: [
+            { label: "Table", link: "/" },
+            { label: "Chair", link: "/" },
+          ],
+        },
+      ],
+    },
+    {
+      label: "Home",
+      link: "/",
+    },
+    {
+      label: "About Us",
+      link: "/about",
+    },
+    {
+      label: "Contact Us",
+      link: "/contact",
+    },
+    {
+      label: "Collections",
+      link: "/collections",
+    },
+    {
+      label: "FAQ",
+      link: "/faq",
+    },
+  ];
+
+  // export default sidebarData;
+
   return (
     <div className={`${styles.landingLayout}`}>
       <Backdrop
@@ -38,6 +96,7 @@ const WebsiteLayout: React.FC = () => {
           document.documentElement.classList.remove("_fixed");
           document.body.classList.remove("_fixed");
         }}
+        items={sidebarData}
       />
 
       <Header

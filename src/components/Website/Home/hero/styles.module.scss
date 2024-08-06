@@ -1,7 +1,7 @@
 .hero {
   width: 100%;
   position: relative;
-  background-color: #b5a85e;
+  // background-color: #b5a85e;
   overflow: hidden;
 
   @keyframes bounce {
@@ -209,7 +209,7 @@
   }
 
   @media only screen and (max-width: 728px) {
-    height: 650px;
+    height: 550px;
   }
 
   .floatingInfo {

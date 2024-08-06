@@ -2,6 +2,10 @@
   padding: 150px 0 100px;
   background-color: var(--off-white);
 
+  @media screen and (max-width: 600px) {
+    padding: 100px 0;
+  }
+
   .latestTitle {
     display: flex;
     // flex-direction: column;
@@ -31,7 +35,7 @@
       @media (max-width: 605px) {
         display: flex;
         flex-direction: column;
-         gap: 10px;
+        gap: 10px;
       }
 
       .cartTotalDiv {
