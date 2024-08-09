@@ -112,7 +112,7 @@ const CartNav: React.FC<CartNavProps> = ({ isOpen, clicked }) => {
                   <div className={`${styles.cartItemText}`}>
                     <h5>{prod.title}</h5>
                     <p>
-                      {prod.quantity} <span>x</span> ${prod.price}
+                      {prod.quantity} <span>x</span> ₦{prod.price}
                     </p>
                   </div>
                 </li>
@@ -123,7 +123,7 @@ const CartNav: React.FC<CartNavProps> = ({ isOpen, clicked }) => {
 
         <div className={`${styles.cartSubtotal}`}>
           <p>subtotal :</p>
-          <span>${cart?.total_price}</span>
+          <span>₦{cart?.total_price}</span>
         </div>
 
         <div className={`${styles.cartFooter}`}>

@@ -1,21 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Hero from "../../shared/smallHero";
 import WhoWeAre from "./WhoWeAre";
 import Choose from "./Choose";
 import Testimonial from "./Testimonial";
-// import { Helmet } from "react-helmet-async";
+import { RootState } from "../../../redux/store.config";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../../hooks/useTypedSelector";
+import { addToCart, getCart } from "../../../redux/features/cart/cartSlice";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const About: React.FC = () => {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getCart());
+  }, [dispatch]);
   return (
-    <div className={`homepage`}>
-      {/* <Helmet>
-        <title>Home - Benkih</title>
-      </Helmet> */}
+    <HelmetProvider>
+      <Helmet>
+        <title>benkih- about us</title>
+        <meta name="description" content="Description of my page" />
+      </Helmet>
       {/* <Hero home={`home`} currentLink={`about us`} /> */}
       {/* <WhoWeAre /> */}
       <Choose />
       <Testimonial />
-    </div>
+    </HelmetProvider>
   );
 };
 

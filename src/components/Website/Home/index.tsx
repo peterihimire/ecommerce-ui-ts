@@ -38,7 +38,7 @@ const Home: React.FC = () => {
   const productsList = useAppSelector(
     (state: RootState) => state.product.items
   );
-  console.log("This is current product listings ...", productsList);
+  // console.log("This is current product listings ...", productsList);
 
   useEffect(() => {
     const fetchProducts = async () => {

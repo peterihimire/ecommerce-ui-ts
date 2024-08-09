@@ -9,9 +9,18 @@ import {
   useAppSelector,
 } from "../../../hooks/useTypedSelector";
 import { RootState } from "../../../redux/store.config";
-import { getProduct } from "../../../redux/features/products/productSlice";
+import {
+  getProduct,
+  getProducts,
+} from "../../../redux/features/products/productSlice";
+import { getCart } from "../../../redux/features/cart/cartSlice";
 
 import { Helmet, HelmetProvider } from "react-helmet-async";
+
+const loadFromLocalStorage = (key: any) => {
+  const value = localStorage.getItem(key);
+  return value ? JSON.parse(value) : null;
+};
 
 const CollectionItem: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -34,7 +43,7 @@ const CollectionItem: React.FC = () => {
   );
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchProduct = async () => {
       setLoading(true);
       try {
         // const response = await axios.get("/api/products");
@@ -56,7 +65,37 @@ const CollectionItem: React.FC = () => {
       }
     };
 
-    fetchProducts();
+    fetchProduct();
+  }, [dispatch]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        // const response = await axios.get("/api/products");
+        const response = await dispatch(getProducts()).unwrap();
+        const cartresponse = await dispatch(getCart()).unwrap();
+        console.log("This res from home call from products...", response.data);
+        console.log("This res from home cart...", cartresponse.data);
+
+        // saveToLocalStorage("ecommerce_products", response.data);
+        // setProducts(response);
+      } catch (error: any) {
+        console.log("This error from products...", error);
+        setError(error.message);
+      } finally {
+        // dispatch(setLoading(false));
+        setLoading(false);
+      }
+    };
+
+    const localProducts = loadFromLocalStorage("ecommerce_products");
+    console.log("This local products...", localProducts);
+    if (localProducts) {
+      setProducts(localProducts);
+    } else {
+      fetchProducts();
+    }
   }, [dispatch]);
 
   return (

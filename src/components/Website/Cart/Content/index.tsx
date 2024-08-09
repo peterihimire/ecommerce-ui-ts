@@ -165,7 +165,7 @@ const Content: React.FC = () => {
                         className={`${styles.td} ${styles.amt}`}
                         style={{ width: "15%" }}
                       >
-                        ${product.price}
+                        ₦{product.price}
                       </td>
 
                       <td className={`${styles.td}  `} style={{ width: "15%" }}>
@@ -193,7 +193,7 @@ const Content: React.FC = () => {
                         className={`${styles.td}   ${styles.amt}`}
                         style={{ width: "15%" }}
                       >
-                        ${product.price * product.quantity}
+                        ₦{product.price * product.quantity}
                       </td>
                     </tr>
                   );
@@ -231,7 +231,7 @@ const Content: React.FC = () => {
               {cart?.products.map((product, index) => {
                 return (
                   <li key={index} className={`${styles.prodList}`}>
-                    <div>
+                    <div className={`${styles.prodPix}`}>
                       {product.image ? (
                         <img
                           src={product.image}
@@ -247,52 +247,49 @@ const Content: React.FC = () => {
                         />
                       )}
                     </div>
-                    <div>
-                      <h6>{product.title}</h6>
-                      <p>${product.price}</p>
-
-                      <button>remove</button>
-                    </div>
-                    <div>
-                      <Input
-                        // labelText="Full Name"
-                        type="text"
-                        name="qty"
-                        id="qty"
-                        value={String(quantities[product.prod_uuid])}
-                        onChange={(e) =>
-                          handleQtyChange(
-                            product.prod_uuid,
-                            Number(e.target.value)
-                          )
-                        }
-                      />
-                    </div>
-
-                    <div>
-                      <p>${product.price * product.quantity}</p>
-                    </div>
-                    {/* <div className={`${styles.updateQty}`}>
-                      <button className={styles.dsc} onClick={handleDecrease}>
-                        <FontAwesomeIcon
-                          icon={faMinus}
-                          className={`${styles.close}`}
-                        />
-                      </button>
-                      <div className={`${styles.qtyTxt}`}>
-                        {String(quantities[product.prod_uuid])}
+                    <div className={`${styles.prodInfo}`}>
+                      <div className={`${styles.title}`}>
+                        <h6>{product.title}</h6>
+                        <p>₦{product.price}</p>
+                        <button
+                          onClick={() => deleteProdHandler(product?.prod_uuid)}
+                        >
+                          remove
+                        </button>
                       </div>
-                      <button className={styles.asc} onClick={handleIncrease}>
-                        <FontAwesomeIcon
-                          icon={faPlus}
-                          className={`${styles.close}`}
+                      <div className={`${styles.input}`}>
+                        <Input
+                          // labelText="Full Name"
+                          type="text"
+                          name="qty"
+                          id="qty"
+                          value={String(quantities[product.prod_uuid])}
+                          onChange={(e) =>
+                            handleQtyChange(
+                              product.prod_uuid,
+                              Number(e.target.value)
+                            )
+                          }
                         />
-                      </button>
-                    </div> */}
+                      </div>
+
+                      <div className={`${styles.subtotal}`}>
+                        <p>₦{product.price * product.quantity}</p>
+                      </div>
+                    </div>
                   </li>
                 );
               })}
             </ul>
+
+            <div className={`${styles.mobActions} `}>
+              <button
+                className="btn-block btn-small-sec"
+                onClick={updateCartHandler}
+              >
+                UPDATE CART
+              </button>
+            </div>
           </div>
           <div className={`${styles.cartTotalDiv}`}>
             <div className={`${styles.cartTotalContainer}`}>
@@ -302,11 +299,11 @@ const Content: React.FC = () => {
               <div className={`${styles.cartTotalPrice}`}>
                 <div className={`${styles.cartSubtotal}`}>
                   <p>Subtotal</p>
-                  <h6>${cart?.total_price}</h6>
+                  <h6>₦{cart?.total_price}</h6>
                 </div>
                 <div className={`${styles.cartTotal}`}>
                   <p>Total</p>
-                  <h6>${cart?.total_price}</h6>
+                  <h6>₦{cart?.total_price}</h6>
                 </div>
               </div>
               <div className={`${styles.filterBtnGroup}`}>

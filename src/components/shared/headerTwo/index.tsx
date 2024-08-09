@@ -114,6 +114,39 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
   console.log(`Hello this is cart data with all the products...`, cart);
   const fullPath = location.pathname;
 
+  const sidebarData = [
+    {
+      label: "Electronics",
+      subItems: [
+        { label: "Phone", link: "/" },
+        { label: "Tablet", link: "/" },
+      ],
+    },
+    {
+      label: "Fashion",
+      subItems: [
+        { label: "Men", link: "/" },
+        { label: "Women", link: "/" },
+        { label: "Kidwaya", link: "/" },
+        { label: "Unisex", link: "/" },
+      ],
+    },
+    {
+      label: "Home",
+      subItems: [
+        { label: "Gas cooker", link: "/" },
+        { label: "Cutlery", link: "/" },
+      ],
+    },
+    {
+      label: "Office",
+      subItems: [
+        { label: "Table", link: "/" },
+        { label: "Chair", link: "/" },
+      ],
+    },
+  ];
+
   return (
     <header
       className={`${styles.header}   ${
@@ -283,97 +316,31 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
               >
                 <div className={styles.dropdownContainer}>
                   <ul className={styles.dropdownWrapper}>
-                    <li>
-                      <Link to="/overview">
-                        <div className={styles.dropIcon}>
-                          {/* <img src="/images/overview.svg" /> */}
-                        </div>
-                        <div className={styles.dropText}>
-                          <span className={styles.dropTextHead}>Fashion</span>
-                          <span className={styles.dropDesc}>
-                            Take a closer look at our platform and how well we
-                            can get you the result you desire
-                          </span>
-                        </div>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/">
-                        <div className={styles.dropIcon}>
-                          {/* <img src="/images/learning.svg" /> */}
-                        </div>
-                        <div className={styles.dropText}>
-                          <span className={styles.dropTextHead}>
-                            Electronics
-                          </span>
-                          <span className={styles.dropDesc}>
-                            Customized learning programs based on the needs of
-                            teams
-                          </span>
-                        </div>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/hands-on-learning">
-                        <div className={styles.dropIcon}>
-                          {/* <img src="/images/bulb brain 1.svg" /> */}
-                        </div>
-                        <div className={styles.dropText}>
-                          <span className={styles.dropTextHead}>
-                            Home/Office OEM
-                          </span>
-                          <span className={styles.dropDesc}>
-                            Simulators of real-world cloud difficulties are
-                            easily accessible.
-                          </span>
-                        </div>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/skills-assessment">
-                        <div className={styles.dropIcon}>
-                          {/* <img src="/images/skills.svg" /> */}
-                        </div>
-                        <div className={styles.dropText}>
-                          <span className={styles.dropTextHead}>
-                            Tech Attire
-                          </span>
-                          <span className={styles.dropDesc}>
-                            Quickly and simply map your company's cloud talent.
-                          </span>
-                        </div>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/">
-                        <div className={styles.dropIcon}>
-                          {/* <img src="/images/rocket 1.svg" /> */}
-                        </div>
-                        <div className={styles.dropText}>
-                          <span className={styles.dropTextHead}>
-                            Toys & Hobbies
-                          </span>
-                          <span className={styles.dropDesc}>
-                            Raise teams' cloud knowledge to a common level in a
-                            short amount of time
-                          </span>
-                        </div>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/">
-                        <div className={styles.dropIcon}>
-                          {/* <img src="/images/cloud-computing 1.svg" /> */}
-                        </div>
-                        <div className={styles.dropText}>
-                          <span className={styles.dropTextHead}>Blog</span>
-                          <span className={styles.dropDesc}>
-                            Try our risk-free cloud sandboxes for AWS, GCP and
-                            Azure
-                          </span>
-                        </div>
-                      </Link>
-                    </li>
+                    {sidebarData.map((item) => {
+                      return (
+                        <li>
+                          <div>
+                            <div className={styles.dropIcon}></div>
+                            <div className={styles.dropText}>
+                              <span className={styles.dropTextHead}>
+                                {item.label}
+                              </span>
+                              <div className={styles.linkDiv}>
+                                {item.subItems.map((link) => {
+                                  return (
+                                    <NavLink to={link.link}>
+                                      <span className={styles.dropDesc}>
+                                        {link.label}
+                                      </span>
+                                    </NavLink>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               </div>
@@ -392,7 +359,7 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
               </li>
               <li>
                 <NavLink to="/" className={styles.dark}>
-                  Home/Office OEM
+                  Office OEM
                 </NavLink>
               </li>
               <li>

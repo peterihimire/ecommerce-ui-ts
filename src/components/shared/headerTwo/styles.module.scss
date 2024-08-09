@@ -219,10 +219,9 @@
                 width: var(--full);
               }
 
-              > a {
+              > div {
                 display: flex;
                 white-space: pre-wrap;
-                color: var(--text-primary);
                 height: var(--full);
                 padding: 25px 32px;
 
@@ -234,6 +233,14 @@
                 &:hover {
                   background: var(--black);
                   color: var(--white);
+
+                  .dropText {
+                    .linkDiv {
+                      .dropDesc {
+                        color: var(--white);
+                      }
+                    }
+                  }
                 }
 
                 .dropIcon {
@@ -241,22 +248,36 @@
                   margin-right: 13px;
                 }
 
-                .dropTextHead {
-                  font-family: Montserrat-Bold, sans-serif;
-                  display: block;
-                  font-size: 17px;
-                }
-
-                .dropDesc {
-                  color: var(--text-secondary);
-                  margin-top: 8px;
-                  font-size: 12px;
-                  line-height: 1.6;
-                  display: block;
-
-                  @media (max-width: 1275px) {
-                    font-size: 14px;
+                .dropText {
+                  .dropTextHead {
+                    font-family: Montserrat-Bold, sans-serif;
+                    display: block;
+                    font-size: 17px;
                   }
+
+                  .linkDiv {
+                    display: grid;
+                    grid-template-columns: repeat(3, 80px);
+                    a {
+                      .dropDesc {
+                        color: var(--black);
+                        margin-top: 8px;
+                        font-size: 14px;
+                        line-height: 1.6;
+                        display: block;
+
+                        @media (max-width: 1275px) {
+                          font-size: 14px;
+                        }
+                      }
+                    }
+                  }
+
+                  // &:hover {
+                  //   .dropDesc {
+                  //     color: red;
+                  //   }
+                  // }
                 }
               }
             }

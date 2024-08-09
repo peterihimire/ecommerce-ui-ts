@@ -90,7 +90,7 @@ const Content: React.FC = () => {
                       className={`${styles.td}   ${styles.amt}`}
                       style={{ width: "15%" }}
                     >
-                      ${cart?.total_price}
+                      ₦{cart?.total_price}
                     </td>
                   </tr>
                   <tr className={`${styles.total}`}>
@@ -104,7 +104,7 @@ const Content: React.FC = () => {
                       className={`${styles.td}   ${styles.amt}`}
                       style={{ width: "15%" }}
                     >
-                      ${cart?.total_price}
+                      ₦{cart?.total_price}
                     </td>
                   </tr>
                 </tbody>

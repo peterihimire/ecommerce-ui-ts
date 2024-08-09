@@ -1,18 +1,45 @@
 import React, { useState } from "react";
 import ProductCard from "../../../shared/productcard";
 import { products } from "../../../../data-list";
+import { RootState } from "../../../../redux/store.config";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../../../hooks/useTypedSelector";
+import { addToCart, getCart } from "../../../../redux/features/cart/cartSlice";
 
 import styles from "./styles.module.scss";
 
 const Related: React.FC = () => {
+    const dispatch = useAppDispatch();
   const [showModal, setShowModal] = useState(false);
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
 
-  const addProductHandler = () => {
+  const productsList = useAppSelector(
+    (state: RootState) => state.product.items
+  );
+  console.log("This is current product listings ...", productsList);
+
+  const addProductHandler = async (uuid: string) => {
     console.log("Add handler...");
-    setOpen(true);
-    document.documentElement.classList.add("_fixed");
-    document.body.classList.add("_fixed");
+    setLoading(true);
+    try {
+      const response = await dispatch(addToCart({ prod_id: uuid }));
+      console.log("This add cart response... ", response);
+      const cartresponse = await dispatch(getCart());
+      console.log("Cart products...", cartresponse);
+
+      setOpen(true);
+      document.documentElement.classList.add("_fixed");
+      document.body.classList.add("_fixed");
+    } catch (error: any) {
+      console.error("Failed to load cart:", error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const openModalHandler = () => {
@@ -37,18 +64,19 @@ const Related: React.FC = () => {
         </div>
 
         <div className={`${styles.productDiv}`}>
-          {products.slice(7, 11).map((product) => {
+          {productsList.slice(0, 4).map((product) => {
             return (
               <ProductCard
-                key={product.id}
-                id={product.id}
+                key={product.uuid}
+                id={product.uuid}
                 title={product.title}
                 price={product.price}
-                image={product.images[0]}
-                infoProd={product.id}
-                // infoProd={openModalHandler}
-                addProd={addProductHandler}
+                oldPrice={product.oldPrice}
+                image={`http://localhost:4040/${product.images[0]}`}
+                infoProd={product.uuid}
+                addProd={() => addProductHandler(product.uuid)}
                 // likeProd={likeProductHandler}
+                // infoProd={openModalHandler}
               />
             );
           })}

@@ -55,10 +55,10 @@ ProductCardProps) => {
 
         <div className={`${styles.price}`}>
           {oldPrice !== undefined && oldPrice > 0 && (
-            <p className={styles.linethrough}>${oldPrice}</p>
+            <p className={styles.linethrough}>₦{oldPrice}</p>
           )}
           <span>
-            <p className={oldPrice ? styles.underline : ""}>${price}</p>
+            <p className={oldPrice ? styles.underline : ""}>₦{price}</p>
           </span>
         </div>
 
