@@ -73,7 +73,7 @@ const Content: React.FC = () => {
                           className={`${styles.td}   ${styles.amt}`}
                           style={{ width: "15%" }}
                         >
-                          {product.price}
+                          ₦{product.price}
                         </td>
                       </tr>
                     );

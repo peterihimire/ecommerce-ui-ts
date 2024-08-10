@@ -256,8 +256,8 @@
                   }
 
                   .linkDiv {
-                    display: grid;
-                    grid-template-columns: repeat(3, 80px);
+                    // display: grid;
+                    // grid-template-columns: repeat(3, 80px);
                     a {
                       .dropDesc {
                         color: var(--black);

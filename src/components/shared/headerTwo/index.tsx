@@ -127,8 +127,8 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
       subItems: [
         { label: "Men", link: "/" },
         { label: "Women", link: "/" },
-        { label: "Kidwaya", link: "/" },
-        { label: "Unisex", link: "/" },
+        // { label: "Kidwaya", link: "/" },
+        // { label: "Unisex", link: "/" },
       ],
     },
     {

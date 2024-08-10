@@ -85,11 +85,11 @@ const Product: React.FC = () => {
             <div className={`${styles.price}`}>
               {productInfo?.oldPrice !== undefined &&
                 productInfo?.oldPrice > 0 && (
-                  <p className={styles.linethrough}>${productInfo?.oldPrice}</p>
+                  <p className={styles.linethrough}>₦{productInfo?.oldPrice}</p>
                 )}
               <span>
                 <p className={productInfo?.oldPrice ? styles.underline : ""}>
-                  ${productInfo?.price}
+                  ₦{productInfo?.price}
                 </p>
               </span>
             </div>
