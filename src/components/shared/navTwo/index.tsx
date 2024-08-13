@@ -238,11 +238,11 @@ const Nav: React.FC<NavProps> = ({ isOpen, bgChange }: NavProps) => {
           </div>
           <p>wishlist</p>
         </div>
-        <div className={`${styles.cartNav}`}>
-          <div
-            className={`${styles.cartCount}`}
-            onClick={() => addProductHandler()}
-          >
+        <div
+          className={`${styles.cartNav}`}
+          onClick={() => addProductHandler()}
+        >
+          <div className={`${styles.cartCount}`}>
             <div>{cart?.total_qty ? cart?.total_qty : 0}</div>
             <ShoppingBagOutlined
               className={` iconStyle  ${

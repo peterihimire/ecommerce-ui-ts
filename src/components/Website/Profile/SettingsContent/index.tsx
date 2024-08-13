@@ -5,6 +5,8 @@ import {
   faUser,
   faArrowLeft,
   faArrowRight,
+  faChevronLeft,
+  faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   useAppSelector,
@@ -262,11 +264,7 @@ const SettingsContent: React.FC = () => {
               labelText="Gender"
               // required
               id="gender"
-              defaultValue={
-                user?.profile.gender
-                  ? user?.profile.gender
-                  : formik.values.gender
-              }
+              value={formik.values.gender || user?.profile.gender || ""}
               onChange={formik.handleChange}
             >
               <option disabled value="">
@@ -574,14 +572,14 @@ const SettingsContent: React.FC = () => {
           <div className={styles.mobileSettingsNav}>
             <button onClick={handlePrev}>
               <FontAwesomeIcon
-                icon={faArrowLeft}
+                icon={faChevronLeft}
                 className={`${styles.leftArrow}`}
               />
             </button>
             <span>{currentView}</span>
             <button onClick={handleNext}>
               <FontAwesomeIcon
-                icon={faArrowRight}
+                icon={faChevronRight}
                 className={`${styles.rightArrow}`}
               />
             </button>

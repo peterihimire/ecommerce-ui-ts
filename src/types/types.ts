@@ -134,7 +134,7 @@ export type CustomSelectProps = {
   type?: string;
   value?: string;
   disabled?: boolean;
-  defaultValue: string;
+  defaultValue?: string;
   onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };

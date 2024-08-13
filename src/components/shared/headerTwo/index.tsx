@@ -27,7 +27,7 @@ import { RootState } from "../../../redux/store.config";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 import { faSquareInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
 import BackdropCart from "../../shared/backdropcart";
 import CartNav from "../../shared/cartNav";
 import { logoutUser } from "../../../redux/features/auth/authSlice";
@@ -120,6 +120,8 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
       subItems: [
         { label: "Phone", link: "/" },
         { label: "Tablet", link: "/" },
+        { label: "Smart watch", link: "/" },
+        { label: "Laptop", link: "/" },
       ],
     },
     {
@@ -127,8 +129,8 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
       subItems: [
         { label: "Men", link: "/" },
         { label: "Women", link: "/" },
-        // { label: "Kidwaya", link: "/" },
-        // { label: "Unisex", link: "/" },
+        { label: "Kidwaya", link: "/" },
+        { label: "Unisex", link: "/" },
       ],
     },
     {
@@ -136,6 +138,7 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
       subItems: [
         { label: "Gas cooker", link: "/" },
         { label: "Cutlery", link: "/" },
+        { label: "Pots", link: "/" },
       ],
     },
     {
@@ -143,6 +146,7 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
       subItems: [
         { label: "Table", link: "/" },
         { label: "Chair", link: "/" },
+        { label: "Stationary", link: "/" },
       ],
     },
   ];
@@ -279,7 +283,11 @@ const HeaderTwo: React.FC<HeaderProps> = ({ isOpen, clicked }: HeaderProps) => {
             {/* This is for the second icon */}
             <div className={`${styles.navSearch}`}>
               <div className={`${styles.searchBtn}`}>
-                <Search className={` iconStyle  ${styles.iconStyleLight}`} />
+                {/* <Search className={` iconStyle  ${styles.iconStyleLight}`} /> */}
+                <FontAwesomeIcon
+                  icon={faSearch}
+                  className={` iconStyle  ${styles.iconStyleFA}`}
+                />
               </div>
             </div>
 

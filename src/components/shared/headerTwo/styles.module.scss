@@ -230,18 +230,18 @@
                   padding: 25px 16px;
                 }
 
-                &:hover {
-                  background: var(--black);
-                  color: var(--white);
+                // &:hover {
+                //   background: var(--black);
+                //   color: var(--white);
 
-                  .dropText {
-                    .linkDiv {
-                      .dropDesc {
-                        color: var(--white);
-                      }
-                    }
-                  }
-                }
+                //   .dropText {
+                //     .linkDiv {
+                //       .dropDesc {
+                //         color: var(--white);
+                //       }
+                //     }
+                //   }
+                // }
 
                 .dropIcon {
                   flex-shrink: 0;
@@ -268,6 +268,11 @@
 
                         @media (max-width: 1275px) {
                           font-size: 14px;
+                        }
+
+                        &:hover {
+                          color: var(--main);
+                          font-weight: bold;
                         }
                       }
                     }
@@ -681,7 +686,13 @@
         }
 
         .iconStyleLight {
-          font-size: 22px;
+          font-size: 27px;
+          font-weight: bolder;
+        }
+
+         .iconStyleFA {
+          font-size: 21px;
+          // font-weight: bolder;
         }
 
         .cartCount {
