@@ -15,7 +15,7 @@ const Select: React.FC<CustomSelectProps> = ({
   clicked,
   reveal,
   iconSrc,
-
+  iconFont,
   password,
   onBlur,
   onChange,
@@ -36,15 +36,21 @@ const Select: React.FC<CustomSelectProps> = ({
           {required && <span>*</span>}
         </label>
       )}
-      <div
-        className={`select-wrapper ${wrapperClass ? wrapperClass : ""} ${
-          sort ? "sort" : ""
-        }`}
-      >
-        <select {...props} id={id} required={required}>
-          {children}
-        </select>
-      </div>
+      {!innerLabel && (
+        <div
+          className={`select-wrapper ${wrapperClass ? wrapperClass : ""} ${
+            sort ? "sort" : ""
+          }`}
+        >
+          <div className="input-icon">
+            {iconSrc && <img src={iconSrc} alt="" />}
+            {iconFont && iconFont}
+          </div>
+          <select {...props} id={id} required={required}>
+            {children}
+          </select>
+        </div>
+      )}
     </>
   );
 };

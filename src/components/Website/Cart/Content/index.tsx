@@ -19,6 +19,7 @@ import {
 import styles from "./styles.module.scss";
 
 const Content: React.FC = () => {
+    const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
   const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
@@ -307,7 +308,7 @@ const Content: React.FC = () => {
                 </div>
               </div>
               <div className={`${styles.filterBtnGroup}`}>
-                <button className="btn-block btn-primary">
+                <button className="btn-block btn-primary" onClick={() => navigate("/checkout")}>
                   Proceed To Checkout
                 </button>
               </div>

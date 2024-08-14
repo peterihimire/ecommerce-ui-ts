@@ -87,11 +87,11 @@ const Form: React.FC = () => {
           });
 
           setLoading(false);
-          setTimeout(() => {
-            navigate("/collections");
-          }, 3000);
+          // setTimeout(() => {
+          //   navigate("/collections");
+          // }, 3000);
 
-          // navigate("/");
+          navigate("/");
         } else {
           toast.error(response.payload, {
             position: "top-right",

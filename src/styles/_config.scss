@@ -485,7 +485,18 @@ select {
   width: 100%;
   position: relative;
   height: 50px;
-  max-width: 100%;
+  // max-width: 100%;
+
+ .input-icon {
+    position: absolute;
+    left: 16px;
+    top: 25%;
+    font-size: 15px;
+    color: var(--med-grey);
+  }
+
+ 
+
 
   select {
     font-family: inherit;

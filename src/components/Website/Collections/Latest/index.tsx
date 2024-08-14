@@ -191,40 +191,40 @@ const Latest: React.FC = () => {
     document.body.classList.add("_fixed");
   };
 
-  const openModalHandler = () => {
-    console.log("Modal opened...");
-    setShowModal(true);
-    document.documentElement.classList.add("_fixed");
-    document.body.classList.add("_fixed");
-  };
-
-  const closeModalHandler = () => {
-    console.log("Modal closed...");
-    setShowModal(false);
-    document.documentElement.classList.remove("_fixed");
-    document.body.classList.remove("_fixed");
-  };
-
-  const handleBudgetChange = (event: any, newValue: number) => {
-    setBudgetValue(newValue);
-  };
-
-  const handleTimelineChange = (event: any, newValue: number) => {
-    setTimelineValue(newValue);
-  };
-
-  const handleOnChange = () => {
-    setIsChecked(!isChecked);
-  };
-
-  // const handleCheckChange = (e) => {
-  //   const { name, checked } = e.target;
-
-  //   setChecks({
-  //     ...checks,
-  //     [name]: checked,
-  //   });
+  // const openModalHandler = () => {
+  //   console.log("Modal opened...");
+  //   setShowModal(true);
+  //   document.documentElement.classList.add("_fixed");
+  //   document.body.classList.add("_fixed");
   // };
+
+  // const closeModalHandler = () => {
+  //   console.log("Modal closed...");
+  //   setShowModal(false);
+  //   document.documentElement.classList.remove("_fixed");
+  //   document.body.classList.remove("_fixed");
+  // };
+
+  // const handleBudgetChange = (event: any, newValue: number) => {
+  //   setBudgetValue(newValue);
+  // };
+
+  // const handleTimelineChange = (event: any, newValue: number) => {
+  //   setTimelineValue(newValue);
+  // };
+
+  // const handleOnChange = () => {
+  //   setIsChecked(!isChecked);
+  // };
+
+  // // const handleCheckChange = (e) => {
+  // //   const { name, checked } = e.target;
+
+  // //   setChecks({
+  // //     ...checks,
+  // //     [name]: checked,
+  // //   });
+  // // };
 
   const handleClickOutside = (event: MouseEvent) => {
     if (
@@ -271,40 +271,6 @@ const Latest: React.FC = () => {
     [dispatch]
   );
 
-  // const fetchProducts = async (page: number) => {
-  //   setLoading(true);
-  //   try {
-  //     const params: GetProductsFilterArg = { page };
-  //     const response = await dispatch(getProductsFilter(params)).unwrap();
-  //     setCurrentPage(response.currentPage);
-  //     setTotalPages(response.totalPages);
-  //     setTotalItems(response.totalItems);
-  //     setProdList(response.productRecords);
-  //   } catch (error: any) {
-  //     setError(error.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-  // FOR THE SCROLL TO TOP BUTTON
-  // useEffect(() => {
-  //   const changeVisibility = () => {
-  //     if (window.scrollY >= 540) {
-  //       setVisibility(true);
-  //     } else {
-  //       setVisibility(false);
-  //     }
-  //   };
-
-  //   window.addEventListener("scroll", changeVisibility);
-
-  //   return () => {
-  //     window.removeEventListener("scroll", changeVisibility);
-  //   };
-  // }, []);
-  // console.log(visibility);
-
   const openFilterHandler = () => {
     console.log("Add handler...");
     setOpenFilter(true);
@@ -322,115 +288,6 @@ const Latest: React.FC = () => {
     currentPage * (prodList?.length ?? 0),
     totalItems ?? 0
   );
-
-  // const filterSlider = (
-  //   <div className={`${styles.filterDiv}`}>
-  //     <div className={`${styles.filterContainer}`}>
-  //       <Accordion
-  //         title={"Category"}
-  //         content={
-  //           <div className={`${styles.filterCategory}`}>
-  //             <div className={`${styles.checkboxGroup}`}>
-  //               <Checkbox
-  //                 checkText={"Non Smart tv"}
-  //                 htmlFor="tv"
-  //                 name="non-smart"
-  //                 // onChange={handleCheckChange}
-  //               />
-  //             </div>
-  //             <div className={`${styles.checkboxGroup}`}>
-  //               <Checkbox
-  //                 checkText={"Smart tv"}
-  //                 htmlFor="tv"
-  //                 name="smart tv"
-  //                 // onChange={handleCheckChange}
-  //               />
-  //             </div>
-  //           </div>
-  //         }
-  //         focus={1}
-  //       />
-  //       <Accordion
-  //         title={"Price"}
-  //         content={
-  //           <Slider
-  //             aria-label="Temperature"
-  //             // defaultValue will not work because, this is a controlled component in the sense that it is controlled by react . it's value is stored in a [state]
-  //             defaultValue={100}
-  //             step={1}
-  //             // marks={budget}
-  //             valueLabelDisplay="on"
-  //             // valueLabelDisplay="auto"
-  //             // Added this with the new scaling
-  //             // value={budgetValue}
-  //             value={value}
-  //             min={0}
-  //             max={100}
-  //             valueLabelFormat={numFormatter}
-  //             scale={scale}
-  //             // onChange={handleBudgetChange}
-  //           />
-  //         }
-  //         focus={1}
-  //       />
-
-  //       <Accordion
-  //         title={"Color"}
-  //         content={
-  //           <div>
-  //             <div className={`${styles.checkboxGroup}`}>
-  //               <Checkbox
-  //                 checkText={"Black"}
-  //                 htmlFor="color"
-  //                 name="black"
-  //                 // onChange={handleCheckChange}
-  //               />
-  //             </div>
-  //             <div className={`${styles.checkboxGroup}`}>
-  //               <Checkbox
-  //                 checkText={"Silver"}
-  //                 htmlFor="color"
-  //                 name="silver"
-  //                 // onChange={handleCheckChange}
-  //               />
-  //             </div>
-  //           </div>
-  //         }
-  //         focus={1}
-  //       />
-
-  //       <Accordion
-  //         title={"Size"}
-  //         content={
-  //           <div>
-  //             <div className={`${styles.checkboxGroup}`}>
-  //               <Checkbox
-  //                 checkText={"32 inches"}
-  //                 htmlFor="size"
-  //                 name="32"
-  //                 // onChange={handleCheckChange}
-  //               />
-  //             </div>
-  //             <div className={`${styles.checkboxGroup}`}>
-  //               <Checkbox
-  //                 checkText={"43 inches"}
-  //                 htmlFor="size"
-  //                 name="43"
-  //                 // onChange={handleCheckChange}
-  //               />
-  //             </div>
-  //           </div>
-  //         }
-  //         focus={1}
-  //       />
-
-  //       <div className={`${styles.filterBtnGroup}`}>
-  //         <button className="btn-block btn-small">Apply Filter</button>
-  //         <button className="btn-block btn-small-sec ">Reset Filter</button>
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
 
   // const startIdx = (currentPage - 1) * (prodList?.length ?? 0) + 1;
   // const endIdx = Math.min(startIdx + prodList.length - 1, totalItems);
