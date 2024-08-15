@@ -98,7 +98,7 @@ export const getProductsFilter = createAsyncThunk(
 
     const { page, limit, filter } = params;
     const pageNum = page ?? 1;
-    const pageSize = limit ?? 3;
+    const pageSize = limit ?? 4;
 
     const queryParams: Record<string, string> = {
       page: pageNum.toString(),
