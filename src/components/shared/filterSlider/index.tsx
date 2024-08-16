@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { LightboxProps } from "../../../types/types";
 import Checkbox from "../../shared/customCheckbox";
@@ -11,85 +11,144 @@ import {
   faChevronUp,
   faSliders,
 } from "@fortawesome/free-solid-svg-icons";
+import { RootState } from "../../../redux/store.config";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../../hooks/useTypedSelector";
+import { getProducts } from "../../../redux/features/products/productSlice";
+import { getCart } from "../../../redux/features/cart/cartSlice";
+import { Product } from "../../../types/types";
+
 import styles from "./styles.module.scss";
 
-const timeline = [
-  {
-    value: 0,
-    scaledValue: 0,
-    label: "0",
-  },
+// const budget = [
+//   {
+//     value: 0,
+//     scaledValue: 0,
+//     label: "₦0",
+//   },
+//   {
+//     value: 25,
+//     scaledValue: 1000,
+//     label: "₦1k",
+//   },
+//   {
+//     value: 50,
+//     scaledValue: 10000,
+//     label: "₦10k",
+//   },
+//   {
+//     value: 75,
+//     scaledValue: 100000,
+//     label: "₦100k",
+//   },
+//   {
+//     value: 100,
+//     scaledValue: 1000000,
+//     label: "₦100k+",
+//   },
+// ];
 
-  {
-    value: 30,
-    scaledValue: 3,
-    label: "3+ M",
-  },
+const createBudget = (priceRange: [number, number]) => {
+  const [minPrice, maxPrice] = priceRange;
 
-  {
-    value: 60,
-    scaledValue: 6,
-    label: "6+ M",
-  },
+  console.log("This is shocking price....min", minPrice);
+  console.log("This is shocking price....max", maxPrice);
 
-  {
-    value: 90,
-    scaledValue: 9,
-    label: "9+ M",
-  },
-  {
-    value: 120,
-    scaledValue: 12,
-    label: "12+ M",
-  },
-];
+  // const budget = [
+  //   {
+  //     value: { minPrice },
+  //     scaledValue: minPrice,
+  //     label: `₦${minPrice}`,
+  //   },
+  //   {
+  //     value: Math.round((minPrice + maxPrice) / 4),
+  //     scaledValue: Math.round((minPrice + maxPrice) / 4),
+  //     label: `₦${Math.round((minPrice + maxPrice) / 4)}`,
+  //   },
+  //   {
+  //     value: Math.round((minPrice + maxPrice) / 2),
+  //     scaledValue: Math.round((minPrice + maxPrice) / 2),
+  //     label: `₦${Math.round((minPrice + maxPrice) / 2)}`,
+  //   },
+  //   {
+  //     value: Math.round((3 * maxPrice + minPrice) / 4),
+  //     scaledValue: Math.round((3 * maxPrice + minPrice) / 4),
+  //     label: `₦${Math.round((3 * maxPrice + minPrice) / 4)}`,
+  //   },
+  //   {
+  //     value: { maxPrice },
+  //     scaledValue: maxPrice,
+  //     label: `₦${maxPrice}`,
+  //   },
+  // ];
 
-const budget = [
-  {
-    value: 0,
-    scaledValue: 0,
-    label: "₦0",
-  },
-  {
-    value: 25,
-    scaledValue: 1000,
-    label: "₦1k",
-  },
-  {
-    value: 50,
-    scaledValue: 10000,
-    label: "₦10k",
-  },
-  {
-    value: 75,
-    scaledValue: 100000,
-    label: "₦100k",
-  },
-  {
-    value: 100,
-    scaledValue: 1000000,
-    label: "₦100k+",
-  },
-];
+  // const budget = Array.from({ length: 11 }, (_, i) => {
+  //   const value = Math.round(minPrice + (i * (maxPrice - minPrice)) / 10);
+  //   return {
+  //     value,
+  //     scaledValue: value,
+  //     label: `₦${value}`,
+  //   };
+  // });
+
+  const budget = Array.from({ length: 11 }, (_, i) => {
+    const value = Math.round(minPrice + (i * (maxPrice - minPrice)) / 10);
+    return {
+      value,
+      scaledValue: value,
+      label: `₦${value}`,
+    };
+  });
+
+
+  // const budget = Array.from({ length: 11 }, (_, index) => {
+  //   const value = index * 10; // 0, 10, 20, ... 100
+  //   const scaledValue = Math.round(
+  //     minPrice + ((maxPrice - minPrice) * value) / 100
+  //   );
+  //   return {
+  //     value,
+  //     scaledValue,
+  //     label: `₦${scaledValue}`,
+  //   };
+  // });
+
+  return budget;
+};
+
+// Example usage
 
 // const ProductLightbox = ({ images }) => {
 const FilterSlider: React.FC = () => {
-  const [value, setValue] = React.useState<number[]>([20, 37]);
+  const dispatch = useAppDispatch();
+  const [value, setValue] = React.useState<number[]>([20, 60]);
+  const [loading, setLoading] = useState(false);
+  const [products, setProducts] = useState(false);
+  const [error, setError] = useState("");
+
+  const loadFromLocalStorage = (key: any) => {
+    const value = localStorage.getItem(key);
+    return value ? JSON.parse(value) : null;
+  };
 
   const handleChange = (event: Event, newValue: number | number[]) => {
+    console.log("This is event...", event);
+    console.log("These are new values...", newValue);
     setValue(newValue as number[]);
   };
 
   const scale = (value: number) => {
-    const previousMarkIndex = Math.floor(value / 25);
+    const previousMarkIndex = Math.floor(value / 10);
     const previousMark = budget[previousMarkIndex];
-    const remainder = value % 25;
+    const remainder = value % 10;
     if (remainder === 0) {
       return previousMark.scaledValue;
     }
 
     const nextMark = budget[previousMarkIndex + 1];
-    const increment = (nextMark.scaledValue - previousMark.scaledValue) / 25;
+    const increment = (nextMark.scaledValue - previousMark.scaledValue) / 10;
     return remainder * increment + previousMark.scaledValue;
   };
 
@@ -102,6 +161,101 @@ const FilterSlider: React.FC = () => {
       return "₦" + ((num / 100) * 100).toFixed(0); //  convert to H for number if value < 1000,
     }
   }
+
+  const productsList = useAppSelector(
+    (state: RootState) => state.product.items
+  );
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        // const response = await axios.get("/api/products");
+        const response = await dispatch(getProducts()).unwrap();
+        const cartresponse = await dispatch(getCart()).unwrap();
+        console.log("This res from home call from products...", response.data);
+        console.log("This res from home cart...", cartresponse.data);
+
+        // saveToLocalStorage("ecommerce_products", response.data);
+        // setProducts(response);
+      } catch (error: any) {
+        console.log("This error from products...", error);
+        setError(error.message);
+      } finally {
+        // dispatch(setLoading(false));
+        setLoading(false);
+      }
+    };
+
+    const localProducts = loadFromLocalStorage("ecommerce_products");
+    console.log("This local products...", localProducts);
+    if (localProducts) {
+      setProducts(localProducts);
+    } else {
+      fetchProducts();
+    }
+  }, [dispatch]);
+
+  console.log("Product list from filter component slider", productsList);
+
+  const productsArr: Product[] = productsList;
+  console.log("Products array..", productsArr);
+
+  const extractFilters = (products: Product[]) => {
+    let minPrice = Number.MAX_VALUE;
+    let maxPrice = Number.MIN_VALUE;
+    const colorSet = new Set<string>();
+    const sizeSet = new Set<string>();
+    const categorySet = new Set<string>();
+
+    products.forEach((product) => {
+      const { price, color, size, categories } = product;
+
+      // Calculate min and max prices
+      if (price < minPrice) {
+        minPrice = price;
+      }
+      if (price > maxPrice) {
+        maxPrice = price;
+      }
+
+      // Add color to the set
+      if (color) {
+        colorSet.add(color);
+      }
+
+      // Add size to the set
+      if (size) {
+        sizeSet.add(size);
+      }
+
+      // Add categories to the set
+      if (categories) {
+        categories.forEach((category) => categorySet.add(category));
+      }
+    });
+
+    // Convert sets to arrays and sort them
+    const colors = Array.from(colorSet).sort();
+    const sizes = Array.from(sizeSet).sort();
+    const categories = Array.from(categorySet).sort();
+
+    return {
+      priceRange: [minPrice, maxPrice],
+      colors,
+      sizes,
+      categories,
+    };
+  };
+
+  const filters = extractFilters(productsArr);
+
+  const priceArray: number[] = filters.priceRange;
+  const priceRange: [number, number] = [priceArray[0], priceArray[1]];
+  const budget = createBudget(priceRange);
+
+  console.log("Here are the filters mhen...", filters);
+  console.log("Here are the filters price range...", filters.priceRange);
   return (
     <div className={`${styles.filterDiv}`}>
       <div className={`${styles.filterContainer}`}>
@@ -109,22 +263,18 @@ const FilterSlider: React.FC = () => {
           title={"Category"}
           content={
             <div className={`${styles.filterCategory}`}>
-              <div className={`${styles.checkboxGroup}`}>
-                <Checkbox
-                  checkText={"Non Smart tv"}
-                  htmlFor="tv"
-                  name="non-smart"
-                  // onChange={handleCheckChange}
-                />
-              </div>
-              <div className={`${styles.checkboxGroup}`}>
-                <Checkbox
-                  checkText={"Smart tv"}
-                  htmlFor="tv"
-                  name="smart tv"
-                  // onChange={handleCheckChange}
-                />
-              </div>
+              {filters.categories.map((category) => {
+                return (
+                  <div className={`${styles.checkboxGroup}`}>
+                    <Checkbox
+                      checkText={category}
+                      htmlFor={category}
+                      name={category}
+                      // onChange={handleCheckChange}
+                    />
+                  </div>
+                );
+              })}
             </div>
           }
           focus={1}
@@ -141,13 +291,15 @@ const FilterSlider: React.FC = () => {
               valueLabelDisplay="on"
               // valueLabelDisplay="auto"
               // Added this with the new scaling
-              // value={budgetValue}
               value={value}
+              // value={filters.priceRange}
               min={0}
               max={100}
+              // min={filters?.priceRange[0]}
+              // max={filters?.priceRange[1]}
               valueLabelFormat={numFormatter}
               scale={scale}
-              // onChange={handleBudgetChange}
+              onChange={handleChange}
             />
           }
           focus={1}
@@ -157,22 +309,18 @@ const FilterSlider: React.FC = () => {
           title={"Color"}
           content={
             <div>
-              <div className={`${styles.checkboxGroup}`}>
-                <Checkbox
-                  checkText={"Black"}
-                  htmlFor="color"
-                  name="black"
-                  // onChange={handleCheckChange}
-                />
-              </div>
-              <div className={`${styles.checkboxGroup}`}>
-                <Checkbox
-                  checkText={"Silver"}
-                  htmlFor="color"
-                  name="silver"
-                  // onChange={handleCheckChange}
-                />
-              </div>
+              {filters.colors.map((color) => {
+                return (
+                  <div className={`${styles.checkboxGroup}`}>
+                    <Checkbox
+                      checkText={color}
+                      htmlFor="color"
+                      name={color}
+                      // onChange={handleCheckChange}
+                    />
+                  </div>
+                );
+              })}
             </div>
           }
           focus={1}
@@ -182,22 +330,18 @@ const FilterSlider: React.FC = () => {
           title={"Size"}
           content={
             <div>
-              <div className={`${styles.checkboxGroup}`}>
-                <Checkbox
-                  checkText={"32 inches"}
-                  htmlFor="size"
-                  name="32"
-                  // onChange={handleCheckChange}
-                />
-              </div>
-              <div className={`${styles.checkboxGroup}`}>
-                <Checkbox
-                  checkText={"43 inches"}
-                  htmlFor="size"
-                  name="43"
-                  // onChange={handleCheckChange}
-                />
-              </div>
+              {filters.sizes.map((size) => {
+                return (
+                  <div className={`${styles.checkboxGroup}`}>
+                    <Checkbox
+                      checkText={size}
+                      htmlFor="size"
+                      name="32"
+                      // onChange={handleCheckChange}
+                    />
+                  </div>
+                );
+              })}
             </div>
           }
           focus={1}

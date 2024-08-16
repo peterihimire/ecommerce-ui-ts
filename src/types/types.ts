@@ -295,3 +295,22 @@ export type CartProps = {
   total_qty: number;
   total_price: number;
 };
+
+
+export type Product = {
+  oldPrice: number | null;
+  price: number;
+  title: string;
+  slug: string;
+  images: string[];
+  color: string;
+  categories: string[];
+  flashSale: boolean | null;
+  featured: boolean | null;
+  popular: boolean | null;
+  brand: string;
+  countInStock: number;
+  desc: string;
+  size: string;
+  uuid: string;
+};
