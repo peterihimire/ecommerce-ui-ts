@@ -102,7 +102,6 @@ const createBudget = (priceRange: [number, number]) => {
     };
   });
 
-
   // const budget = Array.from({ length: 11 }, (_, index) => {
   //   const value = index * 10; // 0, 10, 20, ... 100
   //   const scaledValue = Math.round(
@@ -139,24 +138,32 @@ const FilterSlider: React.FC = () => {
     setValue(newValue as number[]);
   };
 
-  const scale = (value: number) => {
-    const previousMarkIndex = Math.floor(value / 10);
-    const previousMark = budget[previousMarkIndex];
-    const remainder = value % 10;
-    if (remainder === 0) {
-      return previousMark.scaledValue;
-    }
+  // const scale = (value: number) => {
+  //   const previousMarkIndex = Math.floor(value / 10);
+  //   const previousMark = budget[previousMarkIndex];
+  //   const remainder = value % 10;
+  //   if (remainder === 0) {
+  //     return previousMark.scaledValue;
+  //   }
 
-    const nextMark = budget[previousMarkIndex + 1];
-    const increment = (nextMark.scaledValue - previousMark.scaledValue) / 10;
-    return remainder * increment + previousMark.scaledValue;
+  //   const nextMark = budget[previousMarkIndex + 1];
+  //   const increment = (nextMark.scaledValue - previousMark.scaledValue) / 10;
+  //   return remainder * increment + previousMark.scaledValue;
+  // };
+
+  const scale = (value: number) => {
+    const minPrice = 300; // Your actual min price
+    const maxPrice = 600100; // Your actual max price
+
+    // Calculate the corresponding price using linear interpolation
+    return minPrice + (value / 100) * (maxPrice - minPrice);
   };
 
   function numFormatter(num: number) {
     if (num > 999 && num < 1000000) {
-      return (num / 1000).toFixed(0) + "K"; // convert to K for number from > 1000 < 1 million
+      return "₦" + (num / 1000).toFixed(0) + "K"; // convert to K for number from > 1000 < 1 million
     } else if (num >= 1000000) {
-      return (num / 1000000).toFixed(0) + "M"; // convert to M for number from > 1 million
+      return "₦" + (num / 1000000).toFixed(0) + "M"; // convert to M for number from > 1 million
     } else if (num < 1000) {
       return "₦" + ((num / 100) * 100).toFixed(0); //  convert to H for number if value < 1000,
     }
@@ -256,6 +263,7 @@ const FilterSlider: React.FC = () => {
 
   console.log("Here are the filters mhen...", filters);
   console.log("Here are the filters price range...", filters.priceRange);
+  console.log("Here is the value...", value);
   return (
     <div className={`${styles.filterDiv}`}>
       <div className={`${styles.filterContainer}`}>
@@ -283,20 +291,20 @@ const FilterSlider: React.FC = () => {
           title={"Price"}
           content={
             <Slider
-              aria-label="Temperature"
+              aria-label="Price Range"
               // defaultValue will not work because, this is a controlled component in the sense that it is controlled by react . it's value is stored in a [state]
-              defaultValue={100}
+              // defaultValue={100}
               step={1}
               // marks={budget}
               valueLabelDisplay="on"
               // valueLabelDisplay="auto"
               // Added this with the new scaling
               value={value}
-              // value={filters.priceRange}
+              // value={[filters.priceRange[0], filters.priceRange[1]]}
               min={0}
               max={100}
-              // min={filters?.priceRange[0]}
-              // max={filters?.priceRange[1]}
+              // min={300}
+              // max={600100}
               valueLabelFormat={numFormatter}
               scale={scale}
               onChange={handleChange}
