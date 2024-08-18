@@ -31,8 +31,12 @@ const App: React.FC = (): JSX.Element => {
         location="bottom"
         buttonText="Accept Cookie"
         cookieName="benkih-ecommerce"
-        style={{ background: "#2B373B" }}
-        buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
+        style={{ background: "#1e1e1e" }}
+        buttonStyle={{
+          background: "#FFE802",
+          color: "#4e503b",
+          fontSize: "13px",
+        }}
         expires={150}
       >
         This website uses cookies to enhance the user experience.

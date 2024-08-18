@@ -67,7 +67,7 @@ const Sale: React.FC = () => {
         </div>
 
         <div className={`${styles.productDiv}`}>
-          {productsList.slice(0, 9).map((product) => {
+          {productsList.slice(0, 4).map((product) => {
             return (
               <ProductCard
                 key={product.uuid}
