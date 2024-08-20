@@ -189,7 +189,7 @@ const Latest: React.FC = () => {
     window.scrollTo(0, 0);
   }, [currentPage]);
 
-  // // Calculate start and end indices for the displayed products
+  // Calculate start and end indices for the displayed products
   const itemsPerPage = 3; // Number of items displayed per page
 
   const startIdx = (currentPage - 1) * itemsPerPage + 1;
