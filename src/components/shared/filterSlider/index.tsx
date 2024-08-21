@@ -570,3 +570,5 @@ export default FilterSlider;
 //   // Calculate the corresponding price using linear interpolation
 //   return minPrice + (value / 100) * (maxPrice - minPrice);
 // };
+// This is the mininmum of the things that  i need, so lets set this thing to  be going. This is the only things thats the thing+
+// well this is something i lovvvv
